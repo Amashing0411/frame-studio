@@ -1,0 +1,25 @@
+{
+  "name": "frame-studio",
+  "private": true,
+  "version": "0.8.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "verify:split": "node tools/verify-split.mjs",
+    "test:frames": "node tools/capture-frames.mjs http://localhost:4173/ qa/captures/frames --compare reference/frames/manifest.json",
+    "test:smoke": "node tools/smoke-test.mjs http://localhost:4173/ qa/captures/smoke.json"
+  },
+  "dependencies": {
+    "mp4-muxer": "5.2.1",
+    "three": "0.128.0",
+    "webm-muxer": "5.1.3"
+  },
+  "devDependencies": {
+    "vite": "7.3.7"
+  }
+}
