@@ -30,5 +30,3 @@ function updateFlood(dt,t){const st=floodState(t);if(!st.hz){if(floodRig&&floodR
 // Advance the flood and keep the camera above the water surface.
 function updateFloodCamera(dt,t){const st=updateFlood(dt,t);if(st?.hz&&typeof camera!=='undefined'){const top=Math.max(st.level,st.hz==='tsunami'&&st.front>camera.position.z-3&&st.front<camera.position.z+3?st.level+st.crest:st.level);if(camera.position.y<top+.45){camera.position.y=top+.45;camera.updateMatrixWorld()}}}
 function validateWaterHazard(j,r){const h=j?.hazard?.type;if(h==='tsunami'||h==='flood'){r.w=r.w.filter(x=>!/renders quake and zombie hazards/.test(x));const biome=j?.world?.biome;if(biome&&biome!=='city')r.w.push('The '+h+' hazard is drawn in the city biome; in "'+biome+'" only the water level follows it.');const evs=new Set((r.fl||[]).flatMap(s=>Array.isArray(s.events)?s.events:[]));if(h==='tsunami'&&!evs.has('tsunami_wave'))r.w.push('Tsunami hazard has no tsunami_wave event, so no wave will arrive.');if(h==='flood'&&!evs.has('flood_rise'))r.w.push('Flood hazard has no flood_rise event, so the water stays low.')}}
-
-initializeWorkshop();

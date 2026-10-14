@@ -65,7 +65,11 @@ export default function classicScripts(config) {
     transformIndexHtml: {
       order: 'post',
       handler(html, ctx) {
-        if (!html.includes(MARKER)) throw new Error(`classic-scripts: ${MARKER} not found in index.html`);
+        // Only the app page carries the marker; other HTML files (reports, tools) are served untouched.
+        if (!html.includes(MARKER)) {
+          if (/(^|\/)index\.html$/.test(ctx.path || '/index.html')) throw new Error(`classic-scripts: ${MARKER} not found in index.html`);
+          return html;
+        }
         const urls = ctx.server
           ? Object.keys(config).map(n => `/__classic/${n}.js`)
           : Object.keys(config).map(n => base + built[n].fileName);

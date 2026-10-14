@@ -3,3 +3,7 @@ dist/
 .vercel/
 qa/captures/
 *.log
+qa/skill-snapshots/
+qa/skill-tests/
+qa/film-engine-maintainer-workspace/
+qa/skill-packages/

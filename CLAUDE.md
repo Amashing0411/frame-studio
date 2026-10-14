@@ -22,7 +22,7 @@ A Vite static site (`npm run build` → `dist/`, deployable to Vercel as is).
 - `tools/vite-classic-scripts.js`: Vite plugin that serves the bundles in dev and emits hashed files on build. Applies vendor patches (see below) and fails the build if a patch stops matching.
 - Vendor: `three@0.128.0` (build + examples/js OrbitControls, SkeletonUtils, GLTFLoader, GLTFExporter), `mp4-muxer@5.2.1`, `webm-muxer@5.1.3` with one patch in `classic.config.js` (keeps the last frame in the WebM duration).
 - Still classic scripts (shared globals). Every function now has exactly one definition, so converting to ES modules is possible later, but it is not required.
-- Some engine functions read studio variables (`fix`/`shotCam` → `authoredCamShot`, `build`/`resetWorld` → `worldLife`, `toyPerson` → v3 tables). That works because nothing calls them while the scripts are still loading. Do not add top-level calls to engine or studio functions in the middle of the load order; boot work belongs in `initializeWorkshop()`, which runs last.
+- Some engine functions read studio variables (`fix`/`shotCam` → `authoredCamShot`, `build`/`resetWorld` → `worldLife`, `toyPerson` → v3 tables). That works because nothing calls them while the scripts are still loading. Do not add top-level calls to engine or studio functions in the middle of the load order; boot work belongs in `initializeWorkshop()`, called from `src/studio/99-boot.js` (always the last file; add new files before it, and restart the dev server after editing `classic.config.js`).
 - Features that extend a core function do it as a **named step the core calls** (e.g. `validate()` runs `validateScenario` then `validateCameraFields`, `validateCinemaAndMoments`, ...; `step()` ends with `applyCrowdLOD`, `updateWorldLife`, `updateFloodCamera`). Add a new step the same way: write a named function in the feature's file and call it from the core function.
 - **Material palette** (`src/studio/07-workshop.js`): `paletteMaterial(key, make)` / `toyPalette(color, extra)` share one material per look. Palette materials are never edited in place: the city clay finish and cinema finishes swap in cached variants (`paletteVariant`). Materials that change per object must stay private: a person's skin, clothing and dark eye material (zombie tint, `resetWorld`), window walls (lights), water, debris.
 - `reference/workshop-original.html`: the original single file, unchanged. `reference/v1.html`: an earlier version. Do not edit either.
@@ -30,6 +30,8 @@ A Vite static site (`npm run build` → `dist/`, deployable to Vercel as is).
 - `perf/budgets.json`: per-story limits (draw calls, triangles, objects, materials, geometries) we must stay under; `perf/stats-step1.json`, `perf/stats-step2.json`: measurements behind them.
 - `tools/check-wrappers.mjs` (wrapper gate), `tools/scene-stats.mjs` (counts + budget check), `tools/capture-finishes.mjs` (frames under every cinema finish + Asset studio isolation), `tools/verify-step.sh` (all gates).
 - `tools/lib/chrome.mjs`: headless Chrome helper used by the test tools.
+- `tools/extract-vocabulary.mjs <url> <out.json>`: the scenario vocabulary read from the running engine (+ a `.md` copy). Use it to keep the skills in sync.
+- `skills/`: source of the `film-engine-maintainer` and `whatif-director` skills (packaged with skill-creator and installed in the app). Update them whenever the architecture, the workflow or the vocabulary changes.
 - `qa/captures/`: scratch captures (gitignored).
 
 ## Commands
@@ -57,6 +59,7 @@ Three.js sorts opaque objects by material id, so changing which objects share a 
 
 ## Known issues
 
+- `updateFloodCamera` lifts the camera after the frame is drawn, and the next `step()` places the camera again with `shotCam`, so the lift may not show during live playback (seek redraws hide it). Check when working on hazards.
 - Textures are never freed when switching stories (235 after the market, 778 after four stories). Fix in the performance step.
 - The toon finish posterizes colors, so a few pixels on band edges can differ between runs; compare toon frames with a small tolerance.
 - Fixed in Step 2: the outbreak was not repeatable because clouds, stars and rain were placed with unseeded `Math.random`; they now use their own seeded stream (`SKY`).

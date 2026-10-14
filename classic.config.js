@@ -62,6 +62,7 @@ export default {
       'src/studio/15-balloons.js',
       'src/assets/16-world-revamp.js',
       'src/studio/17-water-hazards.js',
+      'src/studio/99-boot.js',
     ],
   },
 };

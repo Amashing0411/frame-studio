@@ -1,0 +1,748 @@
+{
+  "version": "7",
+  "generated_by": "tools/extract-vocabulary.mjs (frame-studio)",
+  "generated": "2026-10-14",
+  "hazards": [
+    "none",
+    "quake",
+    "zombie",
+    "tsunami",
+    "flood"
+  ],
+  "presets": [
+    "aerial",
+    "ground",
+    "rooftop",
+    "waterline",
+    "pov",
+    "over_shoulder",
+    "window",
+    "orbit",
+    "closeup"
+  ],
+  "moves": [
+    "push",
+    "pull",
+    "crane",
+    "track",
+    "orbit"
+  ],
+  "events": [
+    "quake_shake",
+    "facade_fall",
+    "dust_cloud",
+    "power_outage",
+    "crowd_evacuate",
+    "traffic_jam",
+    "fire_small",
+    "smoke_plume",
+    "siren",
+    "helicopter",
+    "rescue_crew",
+    "zombie_spawn",
+    "zombie_surge",
+    "infection_spread",
+    "sea_retreat",
+    "tsunami_wave",
+    "flood_rise",
+    "flood_recede",
+    "floating_debris"
+  ],
+  "crowd": [
+    "calm",
+    "alert",
+    "freeze",
+    "film",
+    "panic",
+    "flee",
+    "hide",
+    "help",
+    "relief"
+  ],
+  "emotions": [
+    "neutral",
+    "fear",
+    "shock",
+    "determined",
+    "relief",
+    "happy",
+    "sad",
+    "angry"
+  ],
+  "zombies": [
+    "shamble",
+    "chase",
+    "sprint"
+  ],
+  "biomes": [
+    "city",
+    "coast",
+    "ocean",
+    "sky",
+    "jungle",
+    "island",
+    "custom"
+  ],
+  "finishes": [
+    "toy",
+    "classic"
+  ],
+  "cinema": {
+    "material": [
+      "natural",
+      "soft",
+      "ceramic",
+      "faceted",
+      "toon"
+    ],
+    "grade": [
+      "neutral",
+      "warm",
+      "cool",
+      "mono"
+    ],
+    "ranges": {
+      "dof": [
+        0,
+        1
+      ],
+      "focus": [
+        0,
+        300
+      ],
+      "radial": [
+        0,
+        1
+      ],
+      "bloom": [
+        0,
+        1
+      ],
+      "vignette": [
+        0,
+        1
+      ],
+      "grain": [
+        0,
+        1
+      ]
+    },
+    "speech": [
+      "icons",
+      "text",
+      "off"
+    ]
+  },
+  "speech_icons": [
+    "heart",
+    "question",
+    "exclaim",
+    "idea",
+    "food",
+    "home",
+    "coin",
+    "phone",
+    "music",
+    "sleep",
+    "angry",
+    "smile",
+    "warning",
+    "plus"
+  ],
+  "dialogue_moods": [
+    "friendly",
+    "surprised",
+    "worried"
+  ],
+  "shaders": [
+    "standard",
+    "matte",
+    "metal",
+    "glass",
+    "toon",
+    "emissive"
+  ],
+  "sfx_first_match_wins": [
+    {
+      "id": "music",
+      "label": "Music bed",
+      "group": "music",
+      "match": "music|resolve|pad"
+    },
+    {
+      "id": "helicopter",
+      "label": "Helicopter",
+      "group": "effects",
+      "match": "helicopter|rotor"
+    },
+    {
+      "id": "thunder",
+      "label": "Thunder",
+      "group": "effects",
+      "match": "thunder"
+    },
+    {
+      "id": "rain",
+      "label": "Rain",
+      "group": "ambience",
+      "match": "rain|drizzle"
+    },
+    {
+      "id": "horn",
+      "label": "Horns",
+      "group": "effects",
+      "match": "horn|brake|screech"
+    },
+    {
+      "id": "siren",
+      "label": "Siren",
+      "group": "effects",
+      "match": "siren|alert|emergency|alarm"
+    },
+    {
+      "id": "gun",
+      "label": "Gunshots",
+      "group": "effects",
+      "match": "gun|shot|rifle"
+    },
+    {
+      "id": "fire",
+      "label": "Fire crackle",
+      "group": "effects",
+      "match": "fire|crackle"
+    },
+    {
+      "id": "impact",
+      "label": "Debris / impacts",
+      "group": "effects",
+      "match": "debris|fall|glass|concrete|stone|masonry|crack|impact|grit|rubble"
+    },
+    {
+      "id": "rumble",
+      "label": "Ground rumble",
+      "group": "effects",
+      "match": "rumbl|quake|shak|ground|rattl|creak"
+    },
+    {
+      "id": "groan",
+      "label": "Creature groans",
+      "group": "voices",
+      "match": "groan|zombie|undead"
+    },
+    {
+      "id": "scream",
+      "label": "Screams",
+      "group": "voices",
+      "match": "scream|cry"
+    },
+    {
+      "id": "radio",
+      "label": "Radio chatter",
+      "group": "voices",
+      "match": "radio|instruction"
+    },
+    {
+      "id": "footstep",
+      "label": "Footsteps",
+      "group": "effects",
+      "match": "footstep|running"
+    },
+    {
+      "id": "crowd",
+      "label": "Crowd",
+      "group": "voices",
+      "match": "crowd|shout|voice|people|chatter|panic|flee"
+    },
+    {
+      "id": "traffic",
+      "label": "Traffic",
+      "group": "ambience",
+      "match": "traffic|engine|car"
+    },
+    {
+      "id": "bird",
+      "label": "Birds",
+      "group": "ambience",
+      "match": "bird|chirp|gull"
+    },
+    {
+      "id": "wind",
+      "label": "Wind / air",
+      "group": "ambience",
+      "match": "wind|ambien|quiet|room|calm"
+    },
+    {
+      "id": "water",
+      "label": "Water / surf",
+      "group": "ambience",
+      "match": "wave|sea|surf|water|flood|splash|tsunami|ocean|river"
+    }
+  ],
+  "time_of_day": {
+    "night": "night|midnight",
+    "golden": "rush|late|dusk|evening|sunset|golden|dawn",
+    "day": "anything else"
+  },
+  "weather": {
+    "rain": "rain|storm|typhoon|drizzle|thunder",
+    "storm_lightning": "storm|typhoon|thunder",
+    "fog": "fog|mist",
+    "grey_sky": "overcast|gr[ae]y|smoke|haze|gloom|cloud"
+  },
+  "assets": {
+    "archetypes": 182,
+    "variants_per_archetype": 24,
+    "groups": [
+      {
+        "category": "human",
+        "kind": "human",
+        "states": [
+          "idle",
+          "walk",
+          "run",
+          "wave",
+          "talk",
+          "phone",
+          "sit",
+          "crouch",
+          "cower",
+          "cheer",
+          "point",
+          "carry",
+          "swim",
+          "dance",
+          "jump",
+          "climb",
+          "fall",
+          "sleep",
+          "zombie",
+          "think"
+        ],
+        "expressions": [
+          "neutral",
+          "happy",
+          "sad",
+          "angry",
+          "fear",
+          "surprised",
+          "determined",
+          "relief",
+          "sleepy"
+        ],
+        "accessories": [
+          "backpack",
+          "cap",
+          "helmet",
+          "glasses",
+          "mask",
+          "bag",
+          "vest",
+          "umbrella"
+        ],
+        "ids": [
+          "human.civilian",
+          "human.commuter",
+          "human.medic",
+          "human.firefighter",
+          "human.police",
+          "human.worker",
+          "human.sailor",
+          "human.pilot",
+          "human.hiker",
+          "human.chef",
+          "human.vendor",
+          "human.student",
+          "human.child",
+          "human.elder",
+          "human.athlete",
+          "human.diver",
+          "human.raincoat",
+          "human.survivor"
+        ]
+      },
+      {
+        "category": "vehicle",
+        "kind": "car",
+        "states": [
+          "idle",
+          "drive",
+          "turn_left",
+          "turn_right",
+          "doors_open",
+          "hazard"
+        ],
+        "expressions": [],
+        "accessories": [],
+        "ids": [
+          "vehicle.compact",
+          "vehicle.sedan",
+          "vehicle.suv",
+          "vehicle.taxi",
+          "vehicle.police",
+          "vehicle.ambulance",
+          "vehicle.firetruck",
+          "vehicle.bus",
+          "vehicle.schoolbus",
+          "vehicle.van",
+          "vehicle.pickup",
+          "vehicle.flatbed",
+          "vehicle.tanker",
+          "vehicle.garbage",
+          "vehicle.jeepney",
+          "vehicle.tractor"
+        ]
+      },
+      {
+        "category": "vehicle",
+        "kind": "bike",
+        "states": [
+          "idle",
+          "drive",
+          "turn_left",
+          "turn_right"
+        ],
+        "expressions": [],
+        "accessories": [],
+        "ids": [
+          "vehicle.bicycle",
+          "vehicle.motorcycle",
+          "vehicle.scooter"
+        ]
+      },
+      {
+        "category": "boat",
+        "kind": "boat",
+        "states": [
+          "idle",
+          "sail",
+          "storm",
+          "anchor"
+        ],
+        "expressions": [],
+        "accessories": [],
+        "ids": [
+          "boat.dinghy",
+          "boat.canoe",
+          "boat.speedboat",
+          "boat.sailboat",
+          "boat.fishing",
+          "boat.ferry",
+          "boat.cargo",
+          "boat.raft"
+        ]
+      },
+      {
+        "category": "aircraft",
+        "kind": "aircraft",
+        "states": [
+          "idle",
+          "fly",
+          "bank_left",
+          "bank_right",
+          "land"
+        ],
+        "expressions": [],
+        "accessories": [],
+        "ids": [
+          "aircraft.propeller",
+          "aircraft.jet",
+          "aircraft.seaplane",
+          "aircraft.helicopter",
+          "aircraft.drone",
+          "aircraft.glider"
+        ]
+      },
+      {
+        "category": "building",
+        "kind": "building",
+        "states": [
+          "idle",
+          "doors_open",
+          "damage"
+        ],
+        "expressions": [],
+        "accessories": [],
+        "ids": [
+          "building.house",
+          "building.apartment",
+          "building.office",
+          "building.shop",
+          "building.hospital",
+          "building.school",
+          "building.firestation",
+          "building.policestation",
+          "building.warehouse",
+          "building.cafe",
+          "building.hotel",
+          "building.skyscraper",
+          "building.stilt_house",
+          "building.hut",
+          "building.hangar",
+          "building.shelter"
+        ]
+      },
+      {
+        "category": "building",
+        "kind": "building",
+        "states": [
+          "idle",
+          "damage"
+        ],
+        "expressions": [],
+        "accessories": [],
+        "ids": [
+          "building.lighthouse",
+          "building.watertower"
+        ]
+      },
+      {
+        "category": "tree",
+        "kind": "tree",
+        "states": [
+          "idle",
+          "wind",
+          "storm"
+        ],
+        "expressions": [],
+        "accessories": [],
+        "ids": [
+          "tree.oak",
+          "tree.banyan",
+          "tree.acacia",
+          "tree.pine",
+          "tree.cypress",
+          "tree.palm",
+          "tree.banana",
+          "tree.mangrove",
+          "tree.bamboo",
+          "tree.jungle",
+          "tree.dead",
+          "tree.sapling"
+        ]
+      },
+      {
+        "category": "plant",
+        "kind": "plant",
+        "states": [
+          "idle",
+          "wind"
+        ],
+        "expressions": [],
+        "accessories": [],
+        "ids": [
+          "plant.fern",
+          "plant.grass",
+          "plant.reeds",
+          "plant.bush",
+          "plant.flower",
+          "plant.potted",
+          "plant.lily",
+          "plant.kelp",
+          "plant.coral",
+          "plant.vine"
+        ]
+      },
+      {
+        "category": "animal",
+        "kind": "quadruped",
+        "states": [
+          "idle",
+          "walk",
+          "run",
+          "rest"
+        ],
+        "expressions": [],
+        "accessories": [],
+        "ids": [
+          "animal.dog",
+          "animal.cat",
+          "animal.deer",
+          "animal.boar",
+          "animal.cow",
+          "animal.tiger",
+          "animal.elephant",
+          "animal.monkey"
+        ]
+      },
+      {
+        "category": "animal",
+        "kind": "bird",
+        "states": [
+          "idle",
+          "fly",
+          "glide"
+        ],
+        "expressions": [],
+        "accessories": [],
+        "ids": [
+          "animal.gull",
+          "animal.pigeon",
+          "animal.parrot",
+          "animal.eagle"
+        ]
+      },
+      {
+        "category": "animal",
+        "kind": "fish",
+        "states": [
+          "idle",
+          "swim",
+          "dart"
+        ],
+        "expressions": [],
+        "accessories": [],
+        "ids": [
+          "animal.fish",
+          "animal.shark",
+          "animal.dolphin",
+          "animal.whale",
+          "animal.turtle"
+        ]
+      },
+      {
+        "category": "food",
+        "kind": "food",
+        "states": [
+          "idle"
+        ],
+        "expressions": [],
+        "accessories": [],
+        "ids": [
+          "food.apple",
+          "food.orange",
+          "food.banana",
+          "food.coconut",
+          "food.watermelon",
+          "food.pineapple",
+          "food.bread",
+          "food.burger",
+          "food.pizza",
+          "food.fish",
+          "food.rice",
+          "food.soup",
+          "food.noodles",
+          "food.coffee",
+          "food.water",
+          "food.can",
+          "food.crate",
+          "food.sack"
+        ]
+      },
+      {
+        "category": "trash",
+        "kind": "trash",
+        "states": [
+          "idle",
+          "scatter"
+        ],
+        "expressions": [],
+        "accessories": [],
+        "ids": [
+          "trash.bag",
+          "trash.bottle",
+          "trash.can",
+          "trash.cardboard",
+          "trash.paper",
+          "trash.tire",
+          "trash.wood",
+          "trash.metal",
+          "trash.bin",
+          "trash.dumpster",
+          "trash.net",
+          "trash.plastic"
+        ]
+      },
+      {
+        "category": "debris",
+        "kind": "debris",
+        "states": [
+          "idle",
+          "scatter",
+          "fall"
+        ],
+        "expressions": [],
+        "accessories": [],
+        "ids": [
+          "debris.concrete",
+          "debris.brick",
+          "debris.glass",
+          "debris.asphalt",
+          "debris.roof",
+          "debris.beam",
+          "debris.driftwood",
+          "debris.rock"
+        ]
+      },
+      {
+        "category": "prop",
+        "kind": "prop",
+        "states": [
+          "idle"
+        ],
+        "expressions": [],
+        "accessories": [],
+        "ids": [
+          "prop.bench",
+          "prop.table",
+          "prop.chair",
+          "prop.lamp",
+          "prop.traffic_light",
+          "prop.cone",
+          "prop.barrier",
+          "prop.hydrant",
+          "prop.sign",
+          "prop.fence",
+          "prop.crate",
+          "prop.container",
+          "prop.barrel",
+          "prop.pallet",
+          "prop.lifebuoy",
+          "prop.anchor",
+          "prop.buoy",
+          "prop.dock",
+          "prop.bridge",
+          "prop.tent",
+          "prop.umbrella",
+          "prop.cart",
+          "prop.generator",
+          "prop.solar",
+          "prop.antenna",
+          "prop.suitcase",
+          "prop.backpack",
+          "prop.traffic_barrel"
+        ]
+      },
+      {
+        "category": "environment",
+        "kind": "environment",
+        "states": [
+          "idle",
+          "animate"
+        ],
+        "expressions": [],
+        "accessories": [],
+        "ids": [
+          "environment.water",
+          "environment.cloud",
+          "environment.waterfall"
+        ]
+      },
+      {
+        "category": "environment",
+        "kind": "environment",
+        "states": [
+          "idle"
+        ],
+        "expressions": [],
+        "accessories": [],
+        "ids": [
+          "environment.sun",
+          "environment.moon",
+          "environment.island",
+          "environment.sandbank",
+          "environment.mountain"
+        ]
+      }
+    ]
+  }
+}
