@@ -8,7 +8,7 @@ function resetWorld(){S={quaked:false,jam:false,evac:false,out:false,q:0,plumes:
  for(const v of veh)v.pos=v.pos0,v.cur=v.sp;
  for(const o of ppl.concat(resc)){o.mode='calm';o.pend=null;o.panicUntil=0;o.panicDirection=null;o.zm=false;o.inf=0;o.fall=0;o.cr=0;o.wild=false;o.tg=null;o.go=false;o.x=o.hx;o.z=o.hz;o.tx=o.hx;o.tz=o.hz;o.pos=o.pos0;o.dir=o.dir0;o.yaw=o.yaw0||0;o.skM.color.copy(o.sk0);o.shM.color.copy(o.sh0);o.eyeP.color.set(0x15110e);o.eyeP.emissiveIntensity=0;o.j={...IDLE};if(o.rs)o.g.visible=false}
  for(const b of birds)b.a=b.a%6.28;for(const p of pig){p.fly=false;p.g.visible=true;p.g.position.set(p.x,.1,p.z)}for(const d of dogs){d.pos=d.pos0;d.dir=d.dir0}
- truck.visible=false;heli.visible=false;fireL.intensity=0;cur=-1}
+ truck.visible=false;heli.visible=false;fireL.intensity=0;cur=-1;for(const b of worldLife.bodies){b.pos.copy(b.home);b.vel.set(0,0,0);b.air=false;b.o.position.copy(b.home);b.o.rotation.set(0,b.yaw,0)}for(const v of veh){const u=v.g.userData;delete u.prev;delete u.prevCur;u.pitch=0}}
 const near=(h,n,f)=>blds.filter(f).sort((a,b)=>Math.hypot(a.x-h.x,a.z-h.z)-Math.hypot(b.x-h.x,b.z-h.z)).slice(0,n);
 const nearP=(h,n,f)=>ppl.filter(f).sort((a,b)=>Math.hypot(a.x-h.x,a.z-h.z)-Math.hypot(b.x-h.x,b.z-h.z)).slice(0,n);
 function damage(b){b.dmg++;b.tilt+=(Q()-.5)*.05;b.mats.forEach(m=>m.color.lerp(new THREE.Color(0x7d7260),.35));S.dmg.push(b);const sg=Math.sign(b.x)||1;

@@ -33,9 +33,10 @@ export async function launch({ width = 1600, height = 900 } = {}) {
   if (!version) throw new Error('Chrome did not start');
   const ws = new WebSocket(version.webSocketDebuggerUrl);
   await new Promise((ok, fail) => { ws.onopen = ok; ws.onerror = fail; });
-  let seq = 0; const pending = new Map(), errors = [], warnings = [];
+  let seq = 0; const pending = new Map(), errors = [], warnings = [], listeners = new Map();
   ws.onmessage = e => {
     const m = JSON.parse(e.data);
+    if (m.method && listeners.has(m.method)) for (const cb of listeners.get(m.method)) cb(m.params);
     if (m.id && pending.has(m.id)) { const p = pending.get(m.id); pending.delete(m.id); m.error ? p.fail(new Error(m.error.message)) : p.ok(m.result); }
     else if (m.method === 'Runtime.exceptionThrown') errors.push(m.params.exceptionDetails?.exception?.description || m.params.exceptionDetails?.text);
     else if (m.method === 'Runtime.consoleAPICalled' && m.params.type === 'error') errors.push(m.params.args.map(a => a.value ?? a.description).join(' '));
@@ -64,7 +65,8 @@ export async function launch({ width = 1600, height = 900 } = {}) {
     await waitFor(`document.readyState==='complete'`);
   };
   const screenshot = async () => Buffer.from((await cdp('Page.captureScreenshot', { format: 'png' })).data, 'base64');
-  return { cdp, evaluate, waitFor, open, screenshot, errors, warnings, version: version.Browser, close: () => { ws.close(); close(); } };
+  const on = (method, cb) => listeners.set(method, [...(listeners.get(method) || []), cb]);
+  return { cdp, evaluate, waitFor, open, screenshot, on, errors, warnings, version: version.Browser, close: () => { ws.close(); close(); } };
 }
 
 // Studio helpers shared by the tools.

@@ -2,7 +2,7 @@
 const PRE=['aerial','ground','rooftop','waterline','pov','over_shoulder','window','orbit','closeup'],MOV=['push','pull','crane','track','orbit'],EVT=['quake_shake','facade_fall','dust_cloud','power_outage','crowd_evacuate','traffic_jam','fire_small','smoke_plume','siren','helicopter','rescue_crew','zombie_spawn','zombie_surge','infection_spread'];
 const CRW=['calm','alert','freeze','film','panic','flee','hide','help','relief'],EMOS=['neutral','fear','shock','determined','relief','happy','sad','angry'],ZMB=['shamble','chase','sprint'];
 function parse(){let t=String($('ta').value||'').trim();t=t.replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/,'').trim();if(!t)throw new Error('Paste a scenario JSON object first.');const j=JSON.parse(t);if(!j||typeof j!=='object'||Array.isArray(j))throw new Error('Scenario JSON root must be an object.');return j}
-function validate(j){
+function validateScenario(j){
  const w=[],fl=[];
  if(!j||typeof j!=='object'||Array.isArray(j))return{w:['ERROR: scenario root must be a JSON object.'],fl:[],tot:0,errors:1};
  const obj=v=>v!==null&&typeof v==='object'&&!Array.isArray(v);
@@ -35,6 +35,8 @@ function validate(j){
  if(!j.end_card)w.push('No end_card.');const ht=(j.hazard||{}).type;if(ht&&ht!=='none'&&ht!=='quake'&&ht!=='zombie')w.push('This engine renders quake and zombie hazards; "'+ht+'" plays as a plain city.');
  if(typeof validateCatalogScenario==='function')validateCatalogScenario(j,w,fl);
  const errors=w.filter(x=>x.startsWith('ERROR:')).length;return{w,fl,tot,errors}}
+// Scenario rules first, then each feature's own checks, then the final error count.
+function validate(j){const r=validateScenario(j);validateCameraFields(r);validateCinemaAndMoments(j,r);validateSpeech(j,r);validateFinish(j,r);validateWaterHazard(j,r);r.errors=r.w.filter(x=>x.startsWith('ERROR:')).length;return r}
 
 function report(r){$('rep').textContent=(r.w.length?(r.errors?'BLOCKED · '+r.errors+' structural error(s)':'Review · '+r.w.length+' note(s)')+'\n- '+r.w.slice(0,12).join('\n- '):'Valid JSON and shot structure.')+'\n'+r.fl.length+' shots, '+r.tot+'s.'}
 const KL={quake:'TIME SINCE EARTHQUAKE',zombie:'TIME SINCE OUTBREAK'},fm=n=>String(Math.floor(n)).padStart(2,'0'),esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));

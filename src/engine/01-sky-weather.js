@@ -5,10 +5,12 @@ const hx=n=>'#'+n.toString(16).padStart(6,'0');
 const puff=(()=>{const c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d'),g=x.createRadialGradient(32,32,2,32,32,30);g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=g;x.fillRect(0,0,64,64);return new THREE.CanvasTexture(c)})();
 const mkSpr=(col,add)=>{const s=new THREE.Sprite(new THREE.SpriteMaterial({map:puff,color:col,transparent:true,depthWrite:false,fog:false,blending:add?THREE.AdditiveBlending:THREE.NormalBlending}));scene.add(s);return s};
 const sunS=mkSpr(0xffd9a0,true),moonS=mkSpr(0xdfe8ff,false),clouds=[];
-for(let i=0;i<36;i++){const s=mkSpr(0xffffff,false),sc=90+Math.random()*90;s.material.opacity=.5+Math.random()*.3;s.scale.set(sc*1.8,sc*.7,1);s.position.set((Math.random()-.5)*1100,300+Math.random()*80,(Math.random()-.5)*1100);clouds.push({s,v:2+Math.random()*3})}
+// Sky setup has its own seeded stream so clouds, stars and rain start the same every time, without shifting the world's R/Q sequences.
+const SKY=rngf(2026);
+for(let i=0;i<36;i++){const s=mkSpr(0xffffff,false),sc=90+SKY()*90;s.material.opacity=.5+SKY()*.3;s.scale.set(sc*1.8,sc*.7,1);s.position.set((SKY()-.5)*1100,300+SKY()*80,(SKY()-.5)*1100);clouds.push({s,v:2+SKY()*3})}
 const stars=new THREE.Points(new THREE.BufferGeometry(),new THREE.PointsMaterial({size:2,sizeAttenuation:false,color:0xffffff,fog:false}));
-{const a=[];for(let i=0;i<400;i++){const u=Math.random()*6.28,v=.1+Math.random()*1.3;a.push(Math.cos(u)*Math.cos(v)*900,Math.sin(v)*900,Math.sin(u)*Math.cos(v)*900)}stars.geometry.setAttribute('position',new THREE.Float32BufferAttribute(a,3));scene.add(stars)}
-const RN=500,rainG=new THREE.BufferGeometry(),rainP=new Float32Array(RN*6),rainL=[];for(let i=0;i<RN;i++)rainL.push([Math.random()*60-30,Math.random()*40-20,Math.random()*60-30]);
+{const a=[];for(let i=0;i<400;i++){const u=SKY()*6.28,v=.1+SKY()*1.3;a.push(Math.cos(u)*Math.cos(v)*900,Math.sin(v)*900,Math.sin(u)*Math.cos(v)*900)}stars.geometry.setAttribute('position',new THREE.Float32BufferAttribute(a,3));scene.add(stars)}
+const RN=500,rainG=new THREE.BufferGeometry(),rainP=new Float32Array(RN*6),rainL=[];for(let i=0;i<RN;i++)rainL.push([SKY()*60-30,SKY()*40-20,SKY()*60-30]);
 rainG.setAttribute('position',new THREE.BufferAttribute(rainP,3).setUsage(THREE.DynamicDrawUsage));
 const rain=new THREE.LineSegments(rainG,new THREE.LineBasicMaterial({color:0xbfd0e8,transparent:true,opacity:.4,fog:false}));rain.frustumCulled=false;rain.visible=false;scene.add(rain);
 const TOD={golden:{sky:[0x3b4a78,0xe9a37a,0xffc58f],fog:0xe3a47d,sun:0xffc088,si:1.3,hi:.8,p:[-150,60,110],cc:0xf4c2a4},day:{sky:[0x4f86c6,0xa9cdee,0xdfeaf2],fog:0xcfdde8,sun:0xfff2d8,si:1.5,hi:1,p:[-70,140,90],cc:0xffffff},night:{sky:[0x05070f,0x121a33,0x2a3350],fog:0x141b30,sun:0x8aa0e0,si:.45,hi:.5,p:[40,90,40],cc:0x3a4260}};

@@ -1,5 +1,5 @@
 // ---- build world (seeded)
-function build(seed,style,hz){
+function buildBaseWorld(seed,style,hz){
  if(typeof importedModels!=='undefined')importedModels.forEach(m=>{if(m.parent===world)world.remove(m)});world.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.material)[].concat(o.material).forEach(m=>{for(const k of['map','emissiveMap','normalMap','roughnessMap','metalnessMap','alphaMap','bumpMap','aoMap']){const x=m[k];if(x&&x.isTexture&&!isSharedTex(x))x.dispose()}m.dispose()})});scene.remove(world);world=new THREE.Group();scene.add(world);if(typeof importedModels!=='undefined')importedModels.forEach(m=>world.add(m));MC={};
  R=rngf(seed||7);blds=[];veh=[];ppl=[];resc=[];lamps=[];tl=[];birds=[];pig=[];dogs=[];puddles=[];wetM=[];benches=[];const town=style==='town',wet=WX.rain;
  if(typeof buildBiome==='function'&&SC?.world?.biome&&SC.world.biome!=='city'){buildBiome(SC.world.biome);return}
@@ -39,3 +39,5 @@ function build(seed,style,hz){
   const lg=[];for(const sx of[-.1,.1])for(const sz of[-.25,.25]){const l=new THREE.Mesh(new THREE.CylinderGeometry(.04,.03,.34,5).translate(0,-.17,0),mat(c));l.position.set(sx,.4,sz);g.add(l);lg.push(l)}
   world.add(g);dogs.push({g,lg,tail,ax:i%2?'z':'x',side:R()<.5?-1:1,pos0:(24+R()*130)*(R()<.5?-1:1),dir0:R()<.5?-1:1,ph:R()*6})}
  enhanceModels();world.traverse(o=>{if(o.isMesh){o.receiveShadow=true;o.castShadow=!o.userData.nf&&!o.userData.pp}})}
+// Build the world from a seed; city worlds then get the toy finish unless the scenario asks for the classic look.
+function build(seed,style,hz){worldLife={plants:[],bodies:[],t:0};buildBaseWorld(seed,style,hz);if(SC?.world?.biome&&SC.world.biome!=='city')return;if(SC?.world?.finish==='classic')return;stylizeCityWorld()}

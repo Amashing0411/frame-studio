@@ -1,7 +1,8 @@
 // ---- camera
 const BASEH={aerial:150,orbit:120,rooftop:40,window:15,ground:1.6,pov:1.65,over_shoulder:1.9,waterline:.8,closeup:1.6},tmpV=V();
-function fix(p){for(const b of blds){if(Math.abs(p.x-b.x)<b.w/2+1.5&&Math.abs(p.z-b.z)<b.d/2+1.5&&p.y<b.h+3)p.y=b.h+3}p.y=Math.max(p.y,.7)}
-function shotCam(s,u,t,pos,look){const c=s.cam,P=c.preset,M=c.move,h=+c.height>0?+c.height:BASEH[P]||10,hub=s.hub,dur=s.t1-s.t0;let az=s.az;
+// Lift a camera out of buildings (not for the Divisoria set or authored camera paths).
+function fix(p){if(SC?.world?.set==='divisoria'||authoredCamShot)return;for(const b of blds){if(Math.abs(p.x-b.x)<b.w/2+1.5&&Math.abs(p.z-b.z)<b.d/2+1.5&&p.y<b.h+3)p.y=b.h+3}p.y=Math.max(p.y,.7)}
+function shotCam(s,u,t,pos,look){authoredCamShot=Array.isArray(s.cam.position)&&Array.isArray(s.cam.look);if(authoredCamShot){pos.fromArray(s.cam.position);look.fromArray(s.cam.look);if(Array.isArray(s.cam.end_position))pos.lerp(V(...s.cam.end_position),sm(u));if(Array.isArray(s.cam.end_look))look.lerp(V(...s.cam.end_look),sm(u));camera.fov=cl(Number(s.cam.fov)||42,15,100);camera.updateProjectionMatrix();return}camera.fov=cl(Number(s.cam.fov)||56,15,100);camera.updateProjectionMatrix();const c=s.cam,P=c.preset,M=c.move,h=+c.height>0?+c.height:BASEH[P]||10,hub=s.hub,dur=s.t1-s.t0;let az=s.az;
  if(P==='aerial'||P==='orbit'){if(M==='orbit'||P==='orbit')az+=(u-.5);const D=M==='push'?lp(200,130,u):M==='pull'?lp(130,200,u):165,hh=M==='crane'?h*lp(.75,1.3,u):h;pos.set(hub.x+Math.sin(az)*D+(M==='track'?(u-.5)*60:0),hh,hub.z+Math.cos(az)*D);look.set(hub.x,6,hub.z)}
  else if(P==='rooftop'){if(M==='orbit')az+=(u-.5);const D=M==='push'?lp(85,55,u):M==='pull'?lp(55,85,u):70;pos.set(hub.x+Math.sin(az)*D,h+(M==='crane'?u*12:0),hub.z+Math.cos(az)*D);look.set(hub.x,4,hub.z)}
  else if(P==='window'){const a=M==='push'?lp(-14,4,u):M==='pull'?lp(4,-14,u):lp(-10,10,u);pos.copy(Wp(hub,s.sd*24,a,h));look.copy(Wp(hub,-s.sd*6,a+16,h*.35))}

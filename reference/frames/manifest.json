@@ -1,39 +1,181 @@
 {
-  "page": "film-studio-workshop.html",
-  "story": {
-    "title": "The eight-armed customer",
-    "end": 44,
-    "canvas": [
-      540,
-      960
-    ],
-    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Laptop GPU (0x000028A0) Direct3D11 vs_5_0 ps_5_0, D3D11)"
-  },
+  "page": "http://localhost:5173/",
+  "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Laptop GPU (0x000028A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
   "chrome": "Chrome/155.0.8059.40",
+  "stories": {
+    "market": {
+      "title": "The eight-armed customer",
+      "end": 44,
+      "shots": 10,
+      "canvas": [
+        540,
+        960
+      ],
+      "times": [
+        0,
+        9.5,
+        21,
+        30
+      ]
+    },
+    "earthquake": {
+      "title": "What if a magnitude 7.2 earthquake hit Metro Manila at rush hour?",
+      "end": 62,
+      "shots": 12,
+      "canvas": [
+        540,
+        960
+      ],
+      "times": [
+        2,
+        21.5,
+        42,
+        59
+      ]
+    },
+    "outbreak": {
+      "title": "What if a zombie outbreak hit Manila?",
+      "end": 58,
+      "shots": 12,
+      "canvas": [
+        540,
+        960
+      ],
+      "times": [
+        2,
+        20.5,
+        38.5,
+        55
+      ]
+    },
+    "coast": {
+      "title": "What if the coast went quiet?",
+      "end": 12,
+      "shots": 3,
+      "canvas": [
+        540,
+        960
+      ],
+      "times": [
+        1.5,
+        4.5,
+        7.5,
+        10.5
+      ]
+    }
+  },
   "frames": [
     {
+      "story": "market",
       "file": "market-0000.png",
       "time": 0,
       "timecode": "00:00.00",
-      "sha256": "bff3caf34a85041bb45ed640364a5b4893dfea23c348be35bc3429313dbecdc2"
+      "sha256": "e774f8bd52c43b6732b78664b85f1f10d836ccfeda3be0d8c95aad32ad59364d"
     },
     {
+      "story": "market",
       "file": "market-0950.png",
       "time": 9.5,
       "timecode": "00:09.50",
-      "sha256": "a5f1b462b639232045a537140f9a43cb36538d90c5f69111262478cc9e362fe0"
+      "sha256": "c04d06a90cb7e03cb2622cb679ef4536fdc59101d56ba12e17f7d4395627ecce"
     },
     {
+      "story": "market",
       "file": "market-2100.png",
       "time": 21,
       "timecode": "00:21.00",
-      "sha256": "960c66d68d07e284ff6a1b7da27f5944cf49fe3cb001c43fcc08a9e9e0f2cb34"
+      "sha256": "ca18e78ae0cf6e2cdd05ae3e5706e7e09761b4d4694af7eac527ec1dbae8591a"
     },
     {
+      "story": "market",
       "file": "market-3000.png",
       "time": 30,
       "timecode": "00:30.00",
-      "sha256": "cc69b3cde71c9f1e2362542e6a408749f1eee8a05290a304b4d3e62f9e522d1b"
+      "sha256": "48da584e216c734ddf8c036d00a1afd45799150057b0b8522331520023565cce"
+    },
+    {
+      "story": "earthquake",
+      "file": "earthquake-0200.png",
+      "time": 2,
+      "timecode": "00:02.00",
+      "sha256": "262938be2032da94117ab0b3316a1ce0506d35187809ebfae55b5a5ba52d78b7"
+    },
+    {
+      "story": "earthquake",
+      "file": "earthquake-2150.png",
+      "time": 21.5,
+      "timecode": "00:21.50",
+      "sha256": "49d62c774f2066e143778adc5a8bf671aedaa904056f109aa0149006670fba9b"
+    },
+    {
+      "story": "earthquake",
+      "file": "earthquake-4200.png",
+      "time": 42,
+      "timecode": "00:42.00",
+      "sha256": "ff238cfa2eef34b69b8854ef5a5fbc3cc13391109ae638040dd785931726b678"
+    },
+    {
+      "story": "earthquake",
+      "file": "earthquake-5900.png",
+      "time": 59,
+      "timecode": "00:59.00",
+      "sha256": "c68a4cdbbe43b5ccd4082a404f95e3c545d46e822796279486cb93eab277a4df"
+    },
+    {
+      "story": "outbreak",
+      "file": "outbreak-0200.png",
+      "time": 2,
+      "timecode": "00:02.00",
+      "sha256": "d4c8969571be4e192154104a9042e6d462a027c66c7fe87996967b660313507d"
+    },
+    {
+      "story": "outbreak",
+      "file": "outbreak-2050.png",
+      "time": 20.5,
+      "timecode": "00:20.50",
+      "sha256": "d966843562f56f75127fdf7ec11e428612f54f7adc338a047fc3de49430435f3"
+    },
+    {
+      "story": "outbreak",
+      "file": "outbreak-3850.png",
+      "time": 38.5,
+      "timecode": "00:38.50",
+      "sha256": "ca7efc504c28a3018b39922c8bb53d00d9fa2e3311ee85adb73f107502db764f"
+    },
+    {
+      "story": "outbreak",
+      "file": "outbreak-5500.png",
+      "time": 55,
+      "timecode": "00:55.00",
+      "sha256": "190bd307d2d1d78eaead91b1fbfc5d6786acefe169b48c6b79dcc0cf216a2dfb"
+    },
+    {
+      "story": "coast",
+      "file": "coast-0150.png",
+      "time": 1.5,
+      "timecode": "00:01.50",
+      "sha256": "618ea5693a4555424aa045c618fc13d5deac3f2a465e0ff8bc8cfe90b287b59c"
+    },
+    {
+      "story": "coast",
+      "file": "coast-0450.png",
+      "time": 4.5,
+      "timecode": "00:04.50",
+      "sha256": "a645783156d559fd9be5222fb135caba5f04cf84d8ec9b6135aaea1f229a3364"
+    },
+    {
+      "story": "coast",
+      "file": "coast-0750.png",
+      "time": 7.5,
+      "timecode": "00:07.50",
+      "sha256": "495c4a83cabd00273cd66681c8261bd158d41c7b49e8133c4d316fbb485e7ea8"
+    },
+    {
+      "story": "coast",
+      "file": "coast-1050.png",
+      "time": 10.5,
+      "timecode": "00:10.50",
+      "sha256": "6efcf7345fab913602e5796cb01840501d4a16bc081da0614d408923705309ff"
     }
   ]
 }

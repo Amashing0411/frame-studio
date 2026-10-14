@@ -1,0 +1,278 @@
+{
+  "target": "http://localhost:5173/",
+  "stories": {
+    "market": {
+      "max": {
+        "objects": 3580,
+        "visible": 2319,
+        "hidden": 1503,
+        "materials": 1587,
+        "geometries": 2852,
+        "gpuGeometries": 2255,
+        "textures": 235,
+        "programs": 11,
+        "drawCalls": 2993,
+        "triangles": 620992
+      },
+      "frames": [
+        {
+          "t": 0,
+          "objects": 3580,
+          "visible": 2077,
+          "hidden": 1503,
+          "materials": 1587,
+          "geometries": 2852,
+          "gpuGeometries": 2248,
+          "textures": 146,
+          "programs": 11,
+          "drawCalls": 2993,
+          "triangles": 620992
+        },
+        {
+          "t": 9.5,
+          "objects": 3580,
+          "visible": 2230,
+          "hidden": 1350,
+          "materials": 1587,
+          "geometries": 2852,
+          "gpuGeometries": 2255,
+          "textures": 176,
+          "programs": 11,
+          "drawCalls": 2021,
+          "triangles": 419710
+        },
+        {
+          "t": 21,
+          "objects": 3580,
+          "visible": 2319,
+          "hidden": 1261,
+          "materials": 1587,
+          "geometries": 2852,
+          "gpuGeometries": 2240,
+          "textures": 208,
+          "programs": 11,
+          "drawCalls": 2830,
+          "triangles": 601260
+        },
+        {
+          "t": 30,
+          "objects": 3580,
+          "visible": 2228,
+          "hidden": 1352,
+          "materials": 1587,
+          "geometries": 2852,
+          "gpuGeometries": 2243,
+          "textures": 235,
+          "programs": 11,
+          "drawCalls": 2893,
+          "triangles": 618566
+        }
+      ]
+    },
+    "earthquake": {
+      "max": {
+        "objects": 7514,
+        "visible": 3799,
+        "hidden": 4312,
+        "materials": 3566,
+        "geometries": 5106,
+        "gpuGeometries": 3310,
+        "textures": 490,
+        "programs": 13,
+        "drawCalls": 3748,
+        "triangles": 557492
+      },
+      "frames": [
+        {
+          "t": 2,
+          "objects": 7514,
+          "visible": 3291,
+          "hidden": 4223,
+          "materials": 3566,
+          "geometries": 5106,
+          "gpuGeometries": 2687,
+          "textures": 309,
+          "programs": 11,
+          "drawCalls": 1769,
+          "triangles": 318644
+        },
+        {
+          "t": 21.5,
+          "objects": 7514,
+          "visible": 3202,
+          "hidden": 4312,
+          "materials": 3566,
+          "geometries": 5106,
+          "gpuGeometries": 2754,
+          "textures": 364,
+          "programs": 13,
+          "drawCalls": 1509,
+          "triangles": 284068
+        },
+        {
+          "t": 42,
+          "objects": 7514,
+          "visible": 3799,
+          "hidden": 3715,
+          "materials": 3566,
+          "geometries": 5106,
+          "gpuGeometries": 2895,
+          "textures": 427,
+          "programs": 13,
+          "drawCalls": 2146,
+          "triangles": 371078
+        },
+        {
+          "t": 59,
+          "objects": 7514,
+          "visible": 3369,
+          "hidden": 4145,
+          "materials": 3566,
+          "geometries": 5106,
+          "gpuGeometries": 3310,
+          "textures": 490,
+          "programs": 13,
+          "drawCalls": 3748,
+          "triangles": 557492
+        }
+      ]
+    },
+    "outbreak": {
+      "max": {
+        "objects": 7553,
+        "visible": 3308,
+        "hidden": 4417,
+        "materials": 3576,
+        "geometries": 5140,
+        "gpuGeometries": 3431,
+        "textures": 773,
+        "programs": 14,
+        "drawCalls": 3183,
+        "triangles": 455094
+      },
+      "frames": [
+        {
+          "t": 2,
+          "objects": 7553,
+          "visible": 3233,
+          "hidden": 4320,
+          "materials": 3576,
+          "geometries": 5140,
+          "gpuGeometries": 2721,
+          "textures": 600,
+          "programs": 14,
+          "drawCalls": 1613,
+          "triangles": 294696
+        },
+        {
+          "t": 20.5,
+          "objects": 7553,
+          "visible": 3276,
+          "hidden": 4277,
+          "materials": 3576,
+          "geometries": 5140,
+          "gpuGeometries": 2754,
+          "textures": 655,
+          "programs": 14,
+          "drawCalls": 1529,
+          "triangles": 285336
+        },
+        {
+          "t": 38.5,
+          "objects": 7553,
+          "visible": 3136,
+          "hidden": 4417,
+          "materials": 3576,
+          "geometries": 5140,
+          "gpuGeometries": 3186,
+          "textures": 710,
+          "programs": 14,
+          "drawCalls": 2831,
+          "triangles": 386748
+        },
+        {
+          "t": 55,
+          "objects": 7553,
+          "visible": 3308,
+          "hidden": 4245,
+          "materials": 3576,
+          "geometries": 5140,
+          "gpuGeometries": 3431,
+          "textures": 773,
+          "programs": 14,
+          "drawCalls": 3183,
+          "triangles": 455094
+        }
+      ]
+    },
+    "coast": {
+      "max": {
+        "objects": 756,
+        "visible": 346,
+        "hidden": 412,
+        "materials": 496,
+        "geometries": 465,
+        "gpuGeometries": 352,
+        "textures": 778,
+        "programs": 14,
+        "drawCalls": 392,
+        "triangles": 104938
+      },
+      "frames": [
+        {
+          "t": 1.5,
+          "objects": 756,
+          "visible": 344,
+          "hidden": 412,
+          "materials": 496,
+          "geometries": 465,
+          "gpuGeometries": 352,
+          "textures": 775,
+          "programs": 14,
+          "drawCalls": 387,
+          "triangles": 104594
+        },
+        {
+          "t": 4.5,
+          "objects": 756,
+          "visible": 345,
+          "hidden": 411,
+          "materials": 496,
+          "geometries": 465,
+          "gpuGeometries": 352,
+          "textures": 776,
+          "programs": 14,
+          "drawCalls": 387,
+          "triangles": 104596
+        },
+        {
+          "t": 7.5,
+          "objects": 756,
+          "visible": 345,
+          "hidden": 411,
+          "materials": 496,
+          "geometries": 465,
+          "gpuGeometries": 352,
+          "textures": 777,
+          "programs": 14,
+          "drawCalls": 386,
+          "triangles": 104270
+        },
+        {
+          "t": 10.5,
+          "objects": 756,
+          "visible": 346,
+          "hidden": 410,
+          "materials": 496,
+          "geometries": 465,
+          "gpuGeometries": 352,
+          "textures": 778,
+          "programs": 14,
+          "drawCalls": 392,
+          "triangles": 104938
+        }
+      ]
+    }
+  },
+  "errors": []
+}

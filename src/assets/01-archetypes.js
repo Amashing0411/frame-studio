@@ -29,7 +29,9 @@ const PRESET_COLORS=[0x355d80,0xc57045,0x34776b,0xd8b762,0x7f698e,0xc6d6dc,0x4b5
 let catalogPacks=[];
 const catalogById=new Map(),catalogEntries=[];
 function presetEntry(base,n){const wear=Math.floor(n/8),palette=n%8;return{id:base.id+'.v'+String(n+1).padStart(2,'0'),archetype:base.id,name:base.name+' / '+(base.category==='food'?['fresh','ripe','weathered']:['clean','used','weathered'])[wear]+' '+String(palette+1).padStart(2,'0'),category:base.category,seed:(CATALOG_BASE.indexOf(base)+1)*997+n*37,variant:n,color:'#'+PRESET_COLORS[palette].toString(16).padStart(6,'0'),wear,proportion:+(.91+palette*.021+wear*.003).toFixed(3),accessories:presetAccessories(base,n),states:base.states,rig:base.rig}}
-function rebuildCatalog(){catalogEntries.length=0;catalogById.clear();for(const b of CATALOG_BASE)for(let n=0;n<24;n++){const e=presetEntry(b,n);catalogEntries.push(e);catalogById.set(e.id,e)}for(const pack of catalogPacks)for(const e of pack.assets){catalogEntries.push(e);catalogById.set(e.id,e)}}
-function resolveCatalog(id){const e=catalogById.get(id);if(e)return{entry:e,base:CATALOG_BASE.find(b=>b.id===e.archetype)};const b=CATALOG_BASE.find(b=>b.id===id);return b?{base:b,entry:catalogById.get(id+'.v01')}:null}
-rebuildCatalog();
+function rebuildArchetypeCatalog(){catalogEntries.length=0;catalogById.clear();for(const b of CATALOG_BASE)for(let n=0;n<24;n++){const e=presetEntry(b,n);catalogEntries.push(e);catalogById.set(e.id,e)}for(const pack of catalogPacks)for(const e of pack.assets){catalogEntries.push(e);catalogById.set(e.id,e)}}
+// The archetype catalog plus every installed extension and registered import.
+function rebuildCatalog(){rebuildArchetypeCatalog();for(const id of [...workshopExtensions.keys(),...workshopGLBs.keys()]){const {entry}=resolveCatalog(id);catalogEntries.push(entry);catalogById.set(id,entry)}}
+function resolveCatalog(id){if(workshopExtensions.has(id)){const a=workshopExtensions.get(id);return customReference(id,a.name,a.category||'extension',Object.keys(a.animations),'extension',a.tags)}if(workshopGLBs.has(id)){const a=workshopGLBs.get(id);return customReference(id,a.name,'imported',Object.keys(a.actions),'imported',a.tags)}const e=catalogById.get(id);if(e)return{entry:e,base:CATALOG_BASE.find(b=>b.id===e.archetype)};const b=CATALOG_BASE.find(b=>b.id===id);return b?{base:b,entry:catalogById.get(id+'.v01')}:null}
+rebuildArchetypeCatalog();
 

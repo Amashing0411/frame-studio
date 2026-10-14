@@ -1,6 +1,6 @@
 // ---- faces, poses, joints
 const EMO={neutral:{e:1,ba:0,bh:0,c:0,o:0,w:1},fear:{e:1.4,ba:.38,bh:.035,c:-.4,o:.55,w:1.1},shock:{e:1.5,ba:.15,bh:.045,c:0,o:.85,w:.8},determined:{e:.78,ba:-.4,bh:-.005,c:-.25,o:0,w:1},relief:{e:.55,ba:.14,bh:.01,c:.55,o:0,w:1.15},happy:{e:.8,ba:.08,bh:.01,c:.9,o:.1,w:1.3},sad:{e:.85,ba:.4,bh:0,c:-.5,o:0,w:.8},angry:{e:.8,ba:-.55,bh:-.01,c:-.45,o:.2,w:1.1},zombie:{e:1.1,ba:-.35,bh:-.01,c:-.3,o:.95,w:1.15}};
-function face(o,dt,emo,vis,t,talk){o.fc.visible=vis;if(!vis)return;const g=EMO[emo]||EMO.neutral,F=o.F,k=Math.min(1,dt*9);for(const n in g)F[n]+=(g[n]-F[n])*k;
+function face(o,dt,emo,vis,t,talk){if(o.bones){o.fc.visible=vis;if(vis)faceV2(o,talk?'talk':'idle',t,emo);return}o.fc.visible=vis;if(!vis)return;const g=EMO[emo]||EMO.neutral,F=o.F,k=Math.min(1,dt*9);for(const n in g)F[n]+=(g[n]-F[n])*k;
  if(t>o.bt){o.bd=.13;o.bt=t+2.5+Q()*3.5}o.bd-=dt;const bl=o.bd>0?.12:1,op=F.o+(talk?.3*(.5+.5*Math.sin(t*9+o.ph)):0);
  o.e[0].scale.set(1,F.e*bl,.55);o.e[1].scale.set(1,F.e*bl,.55);o.p[0].scale.set(1,F.e*bl*.9,.8);o.p[1].scale.set(1,F.e*bl*.9,.8);
  o.b[0].rotation.z=F.ba;o.b[1].rotation.z=-F.ba;o.b[0].position.y=o.b[1].position.y=.075+F.bh;
@@ -20,7 +20,7 @@ function target(o,P,spd,t){const T=o.T,p=o.ph;Object.assign(T,IDLE);T.lean=Math.
   case'help':T.rs=1.3;T.re=.3;break;
   case'film':T.ls=T.rs=1.45;T.le=T.re=1.1;T.hx=-.1;break;
   case'limp':T.ls=-.3;T.rs=-.2;T.lsz=T.rsz=.6;T.lh=.3;T.lk=.3;T.rk=.2;T.hx=.4;T.lean=.1;break}}
-function updPerson(o,dt,t,s,q,zs){
+function updPersonState(o,dt,t,s,q,zs){
  const ZB=SC.hazard&&SC.hazard.type==='zombie',beh=s.beh;let nz=null,nd=1e9;
  if(!o.zm)for(const z of zs){const d=Math.hypot(z.x-o.x,z.z-o.z);if(d<nd){nd=d;nz=z}}
  let m;if(o.rs)m='rescue';else if(o.zm)m='zombie';else if(o.inf>0)m='infected';else if(nz&&nd<30)m='flee';else if(q>.3&&!ZB)m='drop';else m=beh.crowd||(S.evac?'flee':S.quaked?'alert':'calm');
@@ -58,3 +58,5 @@ function updPerson(o,dt,t,s,q,zs){
  o.phone.visible=P==='phone'||P==='sit_phone'||P==='film';o.news.visible=P==='sit_news';o.um.visible=WX.rain&&o.hasU&&md==='calm'&&!o.wild&&o.act!=='sit';
  o.g.rotation.y=o.yaw;o.g.rotation.x=-1.45*o.fall;o.g.position.set(o.x+(q>.3&&!o.zm&&!ZB?Math.sin(t*35+o.ph)*.1:0),.18*o.fall,o.z);
  face(o,dt,emo,Math.hypot(camera.position.x-o.x,camera.position.z-o.z)<16||o===curHero,t,talk)}
+// Per-person update: the state machine above, then jointed people get a pose from their motion, then flood swimming.
+function updPerson(p,dt,t,...args){const x=p.x,z=p.z;updPersonState(p,dt,t,...args);if(!p.bones)return;const distance=Math.hypot(p.x-x,p.z-z),speed=dt>0?distance/dt:0;p.distanceV2=(p.distanceV2||0)+distance;const mode=p.mode,state=p.zm?'zombie':mode==='drop'||mode==='hide'?'cower':mode==='film'?'phone':mode==='freeze'||mode==='alert'?'think':speed>.1?(speed>1.5?'run':'walk'):p.act==='talk'?'talk':p.act==='sit'?'sit':'idle';poseV2(p,state,t,p.mood||'neutral',p.distanceV2,speed);const st=floodState(t);if(!st.hz)return;const d=floodDepthAt(st,p.g.position.x,p.g.position.z);if(d>.95){poseV2(p,'swim',t,'fear',null,.85);p.g.position.y=st.level-1.12+Math.sin(t*1.6+p.variant)*.05;p.inWater3=true}else if(p.inWater3){p.g.position.y=0;p.inWater3=false}}

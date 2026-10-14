@@ -6,8 +6,8 @@ A browser film engine: Three.js r128 plays a scenario JSON as a 9:16 portrait fi
 
 1. **Screenshots for anything visual.** Use the `workflow-progress-screenshots` skill: send real renders (start, key moment, result) as files as the work progresses, and look at every image before sending it.
 2. **End every step with an `audit-verify-explain-grade-5` summary:** what changed, why it matters, how it was verified, what is still not proven.
-3. **Never wrap functions. Edit them.** Do not write `const fooV1 = foo; foo = function (...) { fooV1(...) }` or any other layer on top of an existing function. Change the original definition in place. The current file has about 35 such layers; removing them is Step 2.
-4. **Commit only after the user says "approved".** Until then, leave changes uncommitted and show them.
+3. **Never wrap functions. Edit them.** Do not write `const fooV1 = foo; foo = function (...) { fooV1(...) }`, replace a function from a later file, declare it twice, or override a method like `renderer.render`. Change the original definition in place. `tools/check-wrappers.mjs` enforces this and runs before every build (`prebuild`), so a wrapper fails the build.
+4. **Commit only after the user says "approved", then push.** Until then, leave changes uncommitted and show them. After each approved commit, push to GitHub (`git push`, remote `origin` = https://github.com/Amashing0411/frame-studio, public).
 
 ## Layout
 
@@ -21,9 +21,14 @@ A Vite static site (`npm run build` → `dist/`, deployable to Vercel as is).
 - `public/favicon.ico`: served at the site root.
 - `tools/vite-classic-scripts.js`: Vite plugin that serves the bundles in dev and emits hashed files on build. Applies vendor patches (see below) and fails the build if a patch stops matching.
 - Vendor: `three@0.128.0` (build + examples/js OrbitControls, SkeletonUtils, GLTFLoader, GLTFExporter), `mp4-muxer@5.2.1`, `webm-muxer@5.1.3` with one patch in `classic.config.js` (keeps the last frame in the WebM duration).
-- Not ES modules yet: the patch layers reassign functions across files, which ES module imports forbid. Converting to real modules becomes possible after Step 2.
+- Still classic scripts (shared globals). Every function now has exactly one definition, so converting to ES modules is possible later, but it is not required.
+- Some engine functions read studio variables (`fix`/`shotCam` → `authoredCamShot`, `build`/`resetWorld` → `worldLife`, `toyPerson` → v3 tables). That works because nothing calls them while the scripts are still loading. Do not add top-level calls to engine or studio functions in the middle of the load order; boot work belongs in `initializeWorkshop()`, which runs last.
+- Features that extend a core function do it as a **named step the core calls** (e.g. `validate()` runs `validateScenario` then `validateCameraFields`, `validateCinemaAndMoments`, ...; `step()` ends with `applyCrowdLOD`, `updateWorldLife`, `updateFloodCamera`). Add a new step the same way: write a named function in the feature's file and call it from the core function.
+- **Material palette** (`src/studio/07-workshop.js`): `paletteMaterial(key, make)` / `toyPalette(color, extra)` share one material per look. Palette materials are never edited in place: the city clay finish and cinema finishes swap in cached variants (`paletteVariant`). Materials that change per object must stay private: a person's skin, clothing and dark eye material (zombie tint, `resetWorld`), window walls (lights), water, debris.
 - `reference/workshop-original.html`: the original single file, unchanged. `reference/v1.html`: an earlier version. Do not edit either.
-- `reference/frames/`: reference frames of the market story at 0:00, 0:09.5, 0:21 and 0:30, plus `manifest.json` with SHA-256 hashes.
+- `reference/frames/`: 16 reference frames (market 0:00/0:09.5/0:21/0:30, earthquake, outbreak and the coast world at 4 shot midpoints each), plus `manifest.json` with SHA-256 hashes.
+- `perf/budgets.json`: per-story limits (draw calls, triangles, objects, materials, geometries) we must stay under; `perf/stats-step1.json`, `perf/stats-step2.json`: measurements behind them.
+- `tools/check-wrappers.mjs` (wrapper gate), `tools/scene-stats.mjs` (counts + budget check), `tools/capture-finishes.mjs` (frames under every cinema finish + Asset studio isolation), `tools/verify-step.sh` (all gates).
 - `tools/lib/chrome.mjs`: headless Chrome helper used by the test tools.
 - `qa/captures/`: scratch captures (gitignored).
 
@@ -36,21 +41,25 @@ npm run build          # dist/
 npm run preview        # serves dist/ at http://localhost:4173 (needed by the two tests below)
 npm run test:frames    # reference frames from the built site, compared with reference/frames/manifest.json
 npm run test:smoke     # real-browser smoke test (boot, play, tabs, all 10 stories to the end, WebM+MP4 export, save, PNG)
-npm run verify:split   # Step 1 only: proves the sources rebuild the original file byte for byte
+npm run test:budgets   # scene counts per story against perf/budgets.json
+npm run verify         # all gates: wrappers, frames, smoke, budgets (needs npm run preview; or: bash tools/verify-step.sh http://localhost:5173/)
 ```
 
 Both test tools also take a file path or another URL, e.g. `node tools/smoke-test.mjs reference/workshop-original.html` for a baseline. Servers are in `.claude/launch.json` (`dev`, `preview`).
 
 ## Reference frames
 
-The frame tool loads the market story fresh (ignoring autosave), seeks with the app's own `seekFilm` (fixed 60 steps/s from 0:00) and saves the canvas pixels at 540x960. Repeated runs on this machine produce byte-identical PNGs, so a hash change means the picture changed. Hashes are GPU-specific (recorded on an RTX 4060, Direct3D11); compare on the same machine.
+The frame tool loads each story fresh (ignoring autosave), in the order market, earthquake, outbreak, coast, seeks with the app's own `seekFilm` (fixed 60 steps/s from 0:00) and saves the canvas pixels at 540x960. Repeated runs on this machine produce byte-identical PNGs, so a hash change means the picture changed. Hashes are GPU-specific (recorded on an RTX 4060, Direct3D11); compare on the same machine.
 
 Steps that promise "no visual change" must reproduce the hashes in `reference/frames/manifest.json`.
 
-## Known issues (pre-existing)
+Three.js sorts opaque objects by material id, so changing which objects share a material shifts a few edge pixels where surfaces touch even when nothing else changed. To prove such a change is otherwise identical, compare with a fixed draw order (`renderer.setOpaqueSort` by renderOrder, depth, object id) before and after.
 
-- **Outbreak sample is not deterministic:** its frames differ on every run even in the original file (seen at 0:10, 0:30, 0:58). Something on that path uses unseeded randomness. Fix before using outbreak frames as references.
-- `Math.random` is used for clouds, stars and rain setup in `src/engine/01-sky-weather.js` (market frames are still repeatable).
+## Known issues
+
+- Textures are never freed when switching stories (235 after the market, 778 after four stories). Fix in the performance step.
+- The toon finish posterizes colors, so a few pixels on band edges can differ between runs; compare toon frames with a small tolerance.
+- Fixed in Step 2: the outbreak was not repeatable because clouds, stars and rain were placed with unseeded `Math.random`; they now use their own seeded stream (`SKY`).
 
 ## Roadmap
 

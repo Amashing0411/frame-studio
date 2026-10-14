@@ -24,6 +24,10 @@ function step(dt,t){
  pos.x+=(Math.sin(t*53)*.5+Math.sin(t*31+1)*.3)*amp;pos.y+=Math.sin(t*47+2)*amp*.5;pos.z+=Math.sin(t*41+4)*amp*.5;
  camera.position.copy(pos);camera.lookAt(look);if(P==='pov')camera.rotateZ(Math.sin(t*4.5)*.012);
  importedModels.forEach(m=>{const meta=importedMeta.get(m);if(meta&&meta.mixer)meta.mixer.update(dt)});
- if(!simulating){applyAssetEdits();renderer.render(scene,camera);composeFrame(t);mix('',s.cam.preset,q,t>=END-Math.min(1.5,END*.15),dt)}
+ if(!simulating){applyAssetEdits();renderFilm();composeFrame(t);mix('',s.cam.preset,q,t>=END-Math.min(1.5,END*.15),dt)}
+ // After the frame is drawn: crowd level of detail, ambient world life, flood level and camera lift.
+ if(dt===0||!simulating)applyCrowdLOD();
+ updateWorldLife(dt,t);
+ updateFloodCamera(dt,t);
 }
 

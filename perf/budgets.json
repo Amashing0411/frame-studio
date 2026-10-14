@@ -1,0 +1,35 @@
+{
+  "note": "Per-story maximums across the reference frames, with 5% headroom. Measured by tools/scene-stats.mjs (draw calls and triangles counted at the WebGL level, all passes of one frame). Raise a budget only on purpose, in the same change that needs it.",
+  "measured": "2026-10-14",
+  "gpu": "RTX 4060 Laptop, Chrome headless",
+  "stories": {
+    "market": {
+      "drawCalls": 3143,
+      "triangles": 652042,
+      "objects": 3759,
+      "materials": 1205,
+      "geometries": 2995
+    },
+    "earthquake": {
+      "drawCalls": 3936,
+      "triangles": 585367,
+      "objects": 7890,
+      "materials": 2469,
+      "geometries": 5362
+    },
+    "outbreak": {
+      "drawCalls": 3343,
+      "triangles": 477849,
+      "objects": 7931,
+      "materials": 2505,
+      "geometries": 5397
+    },
+    "coast": {
+      "drawCalls": 412,
+      "triangles": 110185,
+      "objects": 794,
+      "materials": 520,
+      "geometries": 489
+    }
+  }
+}
