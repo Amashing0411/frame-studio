@@ -2,7 +2,7 @@
 // Capture exact reference frames from the film canvas, in headless Chrome, for several stories.
 // Saves the canvas pixels (not a page screenshot), so frames can be compared byte for byte between builds.
 //
-//   node tools/capture-frames.mjs <url-or-html-file> [outDir] [--compare reference/frames/manifest.json] [--stories market,outbreak]
+//   node tools/capture-frames.mjs <url-or-html-file> [outDir] [--compare reference/frames/manifest.json] [--stories market,outbreak] [--safe off|youtube|tiktok|both]
 // examples:
 //   node tools/capture-frames.mjs http://localhost:4173/ qa/captures/frames --compare reference/frames/manifest.json
 //   node tools/capture-frames.mjs reference/workshop-original.html qa/captures/original --stories market
@@ -25,6 +25,7 @@ const args = process.argv.slice(2);
 const opt = name => { const i = args.indexOf(name); return i >= 0 ? args.splice(i, 2)[1] : null; };
 const manifestPath = opt('--compare');
 const only = opt('--stories');
+const safe = opt('--safe'); // off | youtube | tiktok | both (default: the app's default)
 const [target, outArg] = args;
 if (!target) { console.error('usage: node tools/capture-frames.mjs <url-or-html-file> [outDir] [--compare manifest.json] [--stories a,b]'); process.exit(1); }
 const outDir = resolve(outArg || 'qa/captures/frames');
@@ -34,6 +35,7 @@ const chrome = await launch();
 await chrome.open(target);
 await chrome.waitFor(STUDIO_READY);
 await sleep(1500);
+if (safe) await chrome.evaluate(`UI.safeZone=${JSON.stringify(safe)}`);
 const gpu = await chrome.evaluate(`(()=>{const gl=renderer.getContext(),d=gl.getExtension('WEBGL_debug_renderer_info');return d?gl.getParameter(d.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER)})()`);
 console.log('gpu:', gpu);
 mkdirSync(outDir, { recursive: true });

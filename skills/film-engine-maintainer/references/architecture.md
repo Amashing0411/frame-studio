@@ -62,6 +62,7 @@ Vendor (npm, pinned): `three@0.128.0` (`build/three.min.js` + `examples/js` Orbi
 | 15 | studio/balloons | balloon layout helpers |
 | 16 | assets/world-revamp | `worldLife` (swaying plants, physics litter), `wlMat`/`wlGeo` caches, `updateWorldLife` |
 | 17 | studio/water-hazards | tsunami and flood (`floodState`, `updateFlood`, `updateFloodCamera`, `validateWaterHazard`); adds the water events and the water sound channel at load |
+| 18 | studio/safe-zones | platform safe zones: `SAFE_ZONES`, `safeArea`, `safeTextBoxes`, the guides canvas (`drawSafeGuides`), `validateSafeZoneText`, `checkSafeZoneSubjects` |
 | 99 | studio/boot | `initializeWorkshop();` (boot). Always the last file |
 
 ## Load order and boot

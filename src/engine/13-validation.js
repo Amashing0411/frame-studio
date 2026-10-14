@@ -36,7 +36,7 @@ function validateScenario(j){
  if(typeof validateCatalogScenario==='function')validateCatalogScenario(j,w,fl);
  const errors=w.filter(x=>x.startsWith('ERROR:')).length;return{w,fl,tot,errors}}
 // Scenario rules first, then each feature's own checks, then the final error count.
-function validate(j){const r=validateScenario(j);validateCameraFields(r);validateCinemaAndMoments(j,r);validateSpeech(j,r);validateFinish(j,r);validateWaterHazard(j,r);r.errors=r.w.filter(x=>x.startsWith('ERROR:')).length;return r}
+function validate(j){const r=validateScenario(j);validateCameraFields(r);validateCinemaAndMoments(j,r);validateSpeech(j,r);validateFinish(j,r);validateWaterHazard(j,r);validateSafeZoneText(j,r);r.errors=r.w.filter(x=>x.startsWith('ERROR:')).length;return r}
 
 function report(r){$('rep').textContent=(r.w.length?(r.errors?'BLOCKED · '+r.errors+' structural error(s)':'Review · '+r.w.length+' note(s)')+'\n- '+r.w.slice(0,12).join('\n- '):'Valid JSON and shot structure.')+'\n'+r.fl.length+' shots, '+r.tot+'s.'}
 const KL={quake:'TIME SINCE EARTHQUAKE',zombie:'TIME SINCE OUTBREAK'},fm=n=>String(Math.floor(n)).padStart(2,'0'),esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));

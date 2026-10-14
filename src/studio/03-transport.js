@@ -2,7 +2,7 @@
 let importedModels=[], importedMeta=new Map(), assetEdits={}, transformUndo=[], soundSettings={}, audioGroups={ambience:true,effects:true,voices:true,music:true};
 let assetEditSceneKey='';
 let validatedSource='',validatedData=null,validation=null,sceneReady=false,simulating=false,seeking=false,filmEnd=0,seed=7,accumulator=0,stepCount=0,selectedShot=0,view='film',recording=null,exportStream=null,exportChunks=[],exportURL='',exportClock=0,exportFrame=0,exportOptions=null,seekToken=0,suppressAutosave=false;
-let UI={titles:true,captions:true,clock:true,end:true,font:'sans',textScale:1,exposure:1.15,shadows:true,endSeconds:8};
+let UI={titles:true,captions:true,clock:true,end:true,font:'sans',textScale:1,exposure:1.15,shadows:true,endSeconds:8,safeZone:'both',safeGuides:true};
 const canvas=$('output'),cx=canvas.getContext('2d');
 const $all=s=>Array.from(document.querySelectorAll(s)),copy=o=>JSON.parse(JSON.stringify(o)),timecode=t=>fm(t/60)+':'+fm(t%60)+'.'+String(Math.floor((t%1)*100)).padStart(2,'0');
 function notifyUser(msg){$('toast').textContent=msg;$('toast').style.display='block';clearTimeout(notifyUser.timer);notifyUser.timer=setTimeout(()=>$('toast').style.display='none',3800)}

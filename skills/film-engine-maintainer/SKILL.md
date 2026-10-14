@@ -29,7 +29,7 @@ The app is **three classic scripts that share one global scope**, exactly like t
 4. **Keep it deterministic.** World building uses the seeded `R`, runtime randomness uses `Q` (reset in `resetWorld`), sky setup uses `SKY`. `Math.random` is only acceptable for audio texture and ids. Seeking re-simulates from 0:00 at a fixed 60 steps/s, so preview, seek and export agree, and the reference frames are byte-identical between runs. One unseeded `Math.random` made the outbreak story unrepeatable.
 5. **Persistent world state lives in `S`** (damage, fires, zombies, outages, the flood), is applied by events in `onShot` or a step, and is reset in `resetWorld`. Things that happen must survive camera cuts.
 6. **Stay inside the budgets** in `perf/budgets.json` (draw calls, triangles, objects, materials, geometries per story). Every mesh you add per person, vehicle or building multiplies by hundreds. Prefer toggling visibility, sharing geometry (`wlGeo`, `char3Geo`) and the palette over adding meshes. Raise a budget only on purpose, in the change that needs it, and say so.
-7. **Text safe zones.** Keep important picture and text out of the top ~13% and bottom ~33% of the 1080x1920 frame, and away from the right edge, where YouTube Shorts and TikTok draw their buttons.
+7. **Text safe zones.** `src/studio/18-safe-zones.js` holds the YouTube Shorts / TikTok / Both margins. Anything drawn on the film (titles, captions, balloons, end card, new overlays) must lay itself out inside `safeArea(w, h)` when a zone is selected, and keep its classic position when it is Off (so Off frames stay identical). The guides live on their own canvas and must never be drawn into the film canvas.
 
 ## Workflow for any change
 

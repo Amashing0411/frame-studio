@@ -74,6 +74,21 @@ check('Asset studio view renders', assetView.active && assetView.calls > 0 && as
 await evaluate(`document.querySelector('[data-view=film]').click()`);
 await sleep(300);
 
+// 4b. Safe zones: every mode switches the guides, and the guides never change the exported picture
+await evaluate(`loadMarketDemo(true)`); await sleep(500); await waitFor('!seeking', 120000); await seek(chrome, 9.5);
+const zones = [];
+for (const mode of ['off', 'youtube', 'tiktok', 'both']) {
+  await evaluate(`(()=>{const s=document.getElementById('safeZone');s.value='${mode}';s.dispatchEvent(new Event('change',{bubbles:true}))})()`);
+  await waitFor('!seeking', 120000); await seek(chrome, 9.5);
+  const guides = await evaluate(`!document.getElementById('safeCanvas').hidden`);
+  await evaluate(`document.getElementById('showSafe').click()`); await sleep(150); const filmA = sha(await canvasPng(chrome));
+  await evaluate(`document.getElementById('showSafe').click()`); await sleep(150); const filmB = sha(await canvasPng(chrome));
+  zones.push({ mode, guides, sameFilm: filmA === filmB });
+}
+check('safe-zone selector shows guides for every platform and none for Off', zones.every(z => z.guides === (z.mode !== 'off')), JSON.stringify(zones.map(z => z.mode + ':' + z.guides)));
+check('safe-zone guides never change the exported film frame', zones.every(z => z.sameFilm), JSON.stringify(zones.map(z => z.mode + ':' + z.sameFilm)));
+await evaluate(`(()=>{const s=document.getElementById('safeZone');s.value='both';s.dispatchEvent(new Event('change',{bubbles:true}))})()`); await waitFor('!seeking', 120000);
+
 // 5. Every built-in story and world, simulated to its last frame
 const stories = [
   ['market (creature)', `loadMarketDemo(true)`],
