@@ -19,6 +19,9 @@ A Vite static site (`npm run build` → `dist/`, deployable to Vercel as is).
 - `src/studio/*.js` and `src/assets/*.js`: the studio layer, numbered in load order across both folders (`assets/` holds asset definitions: archetypes, recipes, mesh factory, character style v3, world revamp).
 - `src/styles/studio.css`, `src/styles/theme.css`: the two original style blocks (theme overrides studio).
 - `public/favicon.ico`: served at the site root.
+- Live site: https://frame-studio-sage-psi.vercel.app/ (Vercel, deploys from `main`).
+- `vercel.json`: Vercel build settings (Vite, `npm ci`, `npm run build`, output `dist`) and headers (immutable caching for `/assets/*`, `nosniff`, referrer policy). Node is pinned to 22.x in `package.json` `engines`.
+- `tools/serve-dist.mjs [dist] [port]`: serves a build with the `vercel.json` headers, like Vercel does (launch config `vercel-local`, port 4174).
 - `tools/vite-classic-scripts.js`: Vite plugin that serves the bundles in dev and emits hashed files on build. Applies vendor patches (see below) and fails the build if a patch stops matching.
 - Vendor: `three@0.128.0` (build + examples/js OrbitControls, SkeletonUtils, GLTFLoader, GLTFExporter), `mp4-muxer@5.2.1`, `webm-muxer@5.1.3` with one patch in `classic.config.js` (keeps the last frame in the WebM duration).
 - Still classic scripts (shared globals). Every function now has exactly one definition, so converting to ES modules is possible later, but it is not required.
@@ -46,6 +49,8 @@ npm run test:smoke     # real-browser smoke test (boot, play, tabs, all 10 stori
 npm run test:budgets   # scene counts per story against perf/budgets.json
 npm run verify         # all gates: wrappers, frames, smoke, budgets (needs npm run preview; or: bash tools/verify-step.sh http://localhost:5173/)
 ```
+
+To test exactly what Vercel serves: `npm run build`, start `vercel-local` (or `node tools/serve-dist.mjs dist 4174`), then `bash tools/verify-step.sh http://localhost:4174/`. After a deploy, run the same gates against the live URL.
 
 Both test tools also take a file path or another URL, e.g. `node tools/smoke-test.mjs reference/workshop-original.html` for a baseline. Servers are in `.claude/launch.json` (`dev`, `preview`).
 

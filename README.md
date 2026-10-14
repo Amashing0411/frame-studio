@@ -6,14 +6,22 @@ A browser film studio for 9:16 "what if" shorts. Write a scenario as JSON, and a
 
 ## Run it
 
-Requires Node.js 20.19 or newer.
+Requires Node.js 22 (the same version Vercel uses).
 
 ```
 npm install
 npm run dev        # open http://localhost:5173
 ```
 
-`npm run build` creates a static site in `dist/` that can be hosted anywhere, such as Vercel.
+`npm run build` creates a static site in `dist/` that can be hosted anywhere.
+
+## Deploy (Vercel)
+
+Live: https://frame-studio-sage-psi.vercel.app/
+
+The repo is connected to Vercel: every push to `main` deploys to production, other branches get preview URLs. Settings live in `vercel.json` (Vite, `npm ci`, `npm run build`, output `dist`, Node 22, long-lived caching for the hashed files in `dist/assets`). The build runs the wrapper check first, so a build that fails locally also fails on Vercel.
+
+To test a build the way Vercel serves it (same headers): `npm run build`, then `node tools/serve-dist.mjs dist 4174` and open http://localhost:4174.
 
 ## Tests
 
