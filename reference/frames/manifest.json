@@ -1,0 +1,39 @@
+{
+  "page": "film-studio-workshop.html",
+  "story": {
+    "title": "The eight-armed customer",
+    "end": 44,
+    "canvas": [
+      540,
+      960
+    ],
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Laptop GPU (0x000028A0) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+  },
+  "chrome": "Chrome/155.0.8059.40",
+  "frames": [
+    {
+      "file": "market-0000.png",
+      "time": 0,
+      "timecode": "00:00.00",
+      "sha256": "bff3caf34a85041bb45ed640364a5b4893dfea23c348be35bc3429313dbecdc2"
+    },
+    {
+      "file": "market-0950.png",
+      "time": 9.5,
+      "timecode": "00:09.50",
+      "sha256": "a5f1b462b639232045a537140f9a43cb36538d90c5f69111262478cc9e362fe0"
+    },
+    {
+      "file": "market-2100.png",
+      "time": 21,
+      "timecode": "00:21.00",
+      "sha256": "960c66d68d07e284ff6a1b7da27f5944cf49fe3cb001c43fcc08a9e9e0f2cb34"
+    },
+    {
+      "file": "market-3000.png",
+      "time": 30,
+      "timecode": "00:30.00",
+      "sha256": "cc69b3cde71c9f1e2362542e6a408749f1eee8a05290a304b4d3e62f9e522d1b"
+    }
+  ]
+}

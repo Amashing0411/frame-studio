@@ -1,0 +1,2 @@
+# Keep files byte-exact (the bundled HTML and reference PNGs must not be rewritten with CRLF).
+* -text
