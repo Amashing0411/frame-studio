@@ -1,0 +1,237 @@
+{
+  "table": [
+    {
+      "code": "O-X8",
+      "name": "octopus-A",
+      "reviewers": 3,
+      "silhouette": 6,
+      "proportions": 6,
+      "face": 4,
+      "hands": 3.7,
+      "appeal": 4.7,
+      "consistency": 4.7,
+      "performance": 4,
+      "visual": 29,
+      "total": 33,
+      "outOf10": 4.7,
+      "spread": 2,
+      "defects": [
+        "Arms are chains of overlapping ellipsoid beads with visible seams and no taper curl or suckers (all views, closeup)",
+        "Flat grey-green eyes with no highlight and slab brow/mouth discs (closeup and front)",
+        "Dark speckled artifact on the cheek next to the left eye (front)",
+        "Arms are chains of separate ellipsoid beads with no taper, curl or suckers, splayed flat like spider legs (all views, closeup)",
+        "Flat, deadpan face: flat bar brows, small dull eyes without highlights, tiny dash mouth (front, closeup)",
+        "Dark jagged shadow patches on the left side of the head; plain sphere mantle with no skirt where the arms meet (front)",
+        "Arms are chains of separate sausage beads lying flat on the ground (all views)",
+        "Dull grey oval eyes and peach disc brows/mouth stuck on the surface; eye juts out of the profile; dark smudge on the left cheek (front, side, closeup)",
+        "42 materials and 42 draw calls, 14k triangles (stats)"
+      ]
+    },
+    {
+      "code": "O-Q3",
+      "name": "octopus-B",
+      "reviewers": 3,
+      "silhouette": 6.7,
+      "proportions": 6.3,
+      "face": 7.7,
+      "hands": 5.3,
+      "appeal": 7.3,
+      "consistency": 5.3,
+      "performance": 4,
+      "visual": 38.7,
+      "total": 42.7,
+      "outOf10": 6.1,
+      "spread": 6,
+      "defects": [
+        "Arms are plain tubes jammed into the underside of a perfect sphere with no mantle or skirt transition (front, back, closeup)",
+        "Arm tips are lumpy faceted curls with tiny sphere suckers floating on them (closeup and side)",
+        "Mouth is a hairline curve between two dimple balls, almost invisible; head is a featureless sphere from side/back (front at small size, side, back)",
+        "Head sphere sits on top of the arms with a hard join; arms plug into the underside like table legs, no mantle skirt (front, 3/4, back)",
+        "Curled arm tips are faceted and lumpy, with suckers as loose white dots and small balls that seem to float (closeup, side, 3/4)",
+        "Hard two-tone band along each arm (pale underside with a sharp edge) and a thin mouth that vanishes at small size; 35 draw calls (front, closeup)",
+        "Arms poke out under a hard sphere with no blend; visible seam/gap where they meet the head (front, back, closeup)",
+        "Faceted, lumpy curled tips with suckers half-buried; hard pink/white banding seam along each arm (closeup and 3/4)",
+        "35 draw calls (10 materials) (stats)"
+      ]
+    },
+    {
+      "code": "O-K4",
+      "name": "octopus-C",
+      "reviewers": 3,
+      "silhouette": 4.7,
+      "proportions": 5,
+      "face": 3,
+      "hands": 3,
+      "appeal": 3,
+      "consistency": 3.7,
+      "performance": 10,
+      "visual": 22.3,
+      "total": 32.3,
+      "outOf10": 4.6,
+      "spread": 1,
+      "defects": [
+        "Standing on long angular kinked legs; side view is an unreadable tangle of crossing arms (side and 3/4)",
+        "Tiny realistic side-set eyes, no brows, no mouth (front and closeup)",
+        "Arm tips taper to spikes; white underside panel and hex sucker nubs stick off with hard edges (back, side, closeup)",
+        "Arms are flat faceted planks with sharp angular kinks, tangling into a confusing mess (side, 3/4, back)",
+        "Small realistic goat-like eyes on stalks, no mouth, no brows (front, closeup)",
+        "Hard-edged pale panel on the back/underside, flat arm planes standing vertically, suckers as white polyhedral pebbles (back, side)",
+        "Arms are angular, kinked segments ending in spiky points, with suckers as loose white polyhedra (all views, especially side)",
+        "Flat white underside panels stick out as planes; the side view becomes a tangle (side and back)",
+        "Small realistic eyes, no mouth, no brows (front and closeup)"
+      ]
+    },
+    {
+      "code": "V-H5",
+      "name": "vendor-A",
+      "reviewers": 3,
+      "silhouette": 6.3,
+      "proportions": 5,
+      "face": 6.3,
+      "hands": 5.3,
+      "appeal": 5.3,
+      "consistency": 4,
+      "performance": 2,
+      "visual": 32.3,
+      "total": 34.3,
+      "outOf10": 4.9,
+      "spread": 2,
+      "defects": [
+        "Apron and shirt intersect: white apron patches poke through the blue shirt at the side and under the arm; skin/white fleck at the temple under the cap (3/4 and side)",
+        "Very long, thin straight-tube legs and arms with flat brick shoes; almost no neck (front and side)",
+        "65 draw calls and 15.8k triangles (load 4.06) (stats)",
+        "Back of the head is bare skin below the cap and bun, making the character look bald from behind (back, side)",
+        "Apron and shirt intersect: white apron patches poke through the blue shirt at the sides, plus stray fragments near the ear in profile (3/4, side)",
+        "Very long stiff legs vs short torso, brick-shaped shoes and floating brows above a small face; 65 draw calls (front, side, closeup)",
+        "Blue shirt pokes through the apron in ragged patches; jagged white sliver at the cap/forehead edge (3/4 and side)",
+        "Very long thin stick legs and boxy brick shoes under a short torso; whole figure is lanky and stiff (front and side)",
+        "Huge draw-call count (65) and 15.8k triangles for a simple figure (stats)"
+      ]
+    },
+    {
+      "code": "V-M7",
+      "name": "vendor-B",
+      "reviewers": 3,
+      "silhouette": 7,
+      "proportions": 6,
+      "face": 7.7,
+      "hands": 5,
+      "appeal": 7,
+      "consistency": 4,
+      "performance": 4,
+      "visual": 36.7,
+      "total": 40.7,
+      "outOf10": 5.8,
+      "spread": 1,
+      "defects": [
+        "Shirt hem and elbow cuffs have jagged, torn sawtooth edges where they meet pants and forearms (front, back, side)",
+        "Apron is a flat card floating off the body; its back ties are two white blobs stuck on the shirt; hairline is a hard straight diagonal cut across the cheek (side and back)",
+        "45 draw calls and 11.6k triangles (load 2.81) (stats)",
+        "Ragged, saw-toothed seams where sleeve meets forearm and where the shirt hem meets the trousers (torn-looking edges at both hips) (front, 3/4, back)",
+        "Hair is a helmet shell cut off by a hard diagonal plane, exposing a sharp straight edge across the side of the head (side, 3/4)",
+        "Apron is a flat white rectangular card with no straps on the front and two floating white blobs as the back tie; the hands are plain mitten lumps (front, back, side)",
+        "Jagged torn edges where shirt meets pants and at the elbows (sleeve/forearm rings); two white blobs floating on the back (front, back, 3/4)",
+        "Hair is a cap shell that slices diagonally across the side of the head down to the jaw, leaving no hair at the nape (side)",
+        "Apron is a flat floating card with no neck strap; 45 draw calls (front, side, stats)"
+      ]
+    },
+    {
+      "code": "V-P1",
+      "name": "vendor-C",
+      "reviewers": 3,
+      "silhouette": 5,
+      "proportions": 5.3,
+      "face": 3,
+      "hands": 4.3,
+      "appeal": 3,
+      "consistency": 4.3,
+      "performance": 9,
+      "visual": 25,
+      "total": 34,
+      "outOf10": 4.9,
+      "spread": 3,
+      "defects": [
+        "Tiny head with pinhead dot eyes and a barely-there mouth; stares blankly (front and closeup)",
+        "Hair is a thin cap with floating pink cards on the forehead and a grey bald patch on the back/side (closeup, side, back)",
+        "Patchy checkerboard-like facet shading on the shirt and jeans (front and closeup)",
+        "Small realistic head with tiny dot eyes, no brows to speak of and a barely-there mouth line; blank stare (front, closeup)",
+        "Hair is a few flat pink cards floating over a grey bald scalp, with visible gaps and clipping strands (closeup, side, back)",
+        "Harsh flat-shaded facets with blotchy light/dark blocks on the torso and a bright specular rectangle on the back; no vendor identity (no apron or prop) (closeup, back, front)",
+        "Tiny realistic head with dot eyes and an expressionless, mannequin face (front and closeup)",
+        "Pink hair is a few loose flat cards over a grey bald patch (closeup, back, side)",
+        "Blotchy checkerboard flat shading on the torso and legs; blocky square hands (closeup and 3/4)"
+      ]
+    },
+    {
+      "code": "V-W6",
+      "name": "vendor-C2",
+      "reviewers": 3,
+      "silhouette": 7,
+      "proportions": 6,
+      "face": 4.3,
+      "hands": 3,
+      "appeal": 6,
+      "consistency": 5.7,
+      "performance": 9,
+      "visual": 32,
+      "total": 41,
+      "outOf10": 5.9,
+      "spread": 2,
+      "defects": [
+        "Hands are oversized flat paddle slabs, wider than the forearm, with no readable fingers or thumb (3/4 and side)",
+        "No mouth, and only one brow visible (the other is hidden under the fringe) (front and closeup)",
+        "Hard flat-shaded seam runs vertically down the middle of the face; chin is a sharp wedge in profile (closeup and side)",
+        "Hands are huge flat paddle slabs, nearly as long as the forearm (3/4, side, front)",
+        "No mouth or nose; one brow hidden under the fringe, the visible brow droops, giving a sad/sleepy look (front, closeup)",
+        "Face split by a hard vertical crease down the center with a sharp wedge chin; outfit reads as a fantasy hero, not a market vendor (closeup, side)",
+        "Hands are oversized flat slabs, like paddles, as long as the forearm (3/4 and side)",
+        "No mouth and no nose; a hard vertical shading seam splits the face in two flat halves (front and closeup)",
+        "Sharp wedge chin and faceted head under a voluminous hair mass (side and closeup)"
+      ]
+    }
+  ],
+  "rankings": [
+    {
+      "reviewer": 1,
+      "vendor": [
+        "vendor-C2",
+        "vendor-B",
+        "vendor-A",
+        "vendor-C"
+      ],
+      "octopus": [
+        "octopus-B",
+        "octopus-A",
+        "octopus-C"
+      ]
+    },
+    {
+      "reviewer": 2,
+      "vendor": [
+        "vendor-B",
+        "vendor-C2",
+        "vendor-C",
+        "vendor-A"
+      ],
+      "octopus": [
+        "octopus-B",
+        "octopus-C",
+        "octopus-A"
+      ]
+    },
+    {
+      "reviewer": 3,
+      "vendor": [
+        "vendor-B",
+        "vendor-C2",
+        "vendor-A",
+        "vendor-C"
+      ],
+      "octopus": [
+        "octopus-B",
+        "octopus-A",
+        "octopus-C"
+      ]
+    }
+  ]
+}

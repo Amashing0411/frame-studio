@@ -1,0 +1,114 @@
+{
+  "$schema-note": "Frame Studio character and creature tokens, direction B (soft toy / designer vinyl). Units: metres at character scale 1, ratios are unitless, angles in radians unless noted. DESIGN.md explains every value. 'current' blocks record the shipped build for comparison only; code reads 'target'.",
+  "version": "B-1",
+  "current": {
+    "source": "src/studio/10-rig.js buildToyRig + src/assets/14-characters-v3.js restyleCharacter3 + src/assets/08-mesh-factory.js octopusBasePack",
+    "adultHeight": 1.84,
+    "headToHeight": 0.236,
+    "childScale": 0.74,
+    "elderScale": 0.96,
+    "headScaleV3": 1.1,
+    "shoulderToHeadWidth": 1.9,
+    "legToHeight": 0.5,
+    "armToHeight": 0.29,
+    "handLengthToHeadHeight": 0.21,
+    "eyeHeightToHeadHeight": 0.145,
+    "eyeSpacingToHeadWidth": 0.36,
+    "mouthNeutralWidthToHeadWidth": 0.19,
+    "limbRadialSegments": 20,
+    "trianglesPerCharacterEstimate": 11400,
+    "meshesPerCharacter": 50,
+    "privateMaterialsPerCharacter": 9,
+    "octopusMaterials": 38,
+    "minDeltaE_clothingVsCity": 0.0,
+    "minDeltaE_octopusVsSkin": 1.6
+  },
+  "target": {
+    "proportions": {
+      "adult": { "height": 1.75, "headToHeight": 0.30, "legToHeight": 0.40, "armToHeight": 0.30, "shoulderToHeadWidth": 1.5 },
+      "child": { "height": 1.10, "headToHeight": 0.36, "legToHeight": 0.34, "armToHeight": 0.28, "shoulderToHeadWidth": 1.2 },
+      "elder": { "height": 1.62, "headToHeight": 0.29, "legToHeight": 0.39, "armToHeight": 0.30, "shoulderToHeadWidth": 1.45, "spineStoop": 0.14 },
+      "head": { "widthToHeight": [0.88, 0.95], "chinRadiusToHalfWidth": 0.45, "neckRadiusToHalfWidth": [0.30, 0.38], "neckVisibleToHeight": 0.04 },
+      "limbs": {
+        "upperArmRadiusToHeight": 0.040, "wristToShoulderRadius": [0.55, 0.65],
+        "thighRadiusToHeight": 0.058, "ankleToThighRadius": [0.50, 0.60],
+        "bentJointRadiusKeep": 0.85, "restElbowBend": 0.15, "restKneeBend": 0.08
+      },
+      "hand": { "lengthToHeadHeight": 0.36, "widthToLength": 0.52, "fingerMasses": 1, "thumb": true, "indexSplitOnlyForPoint": true },
+      "foot": { "lengthToHeight": 0.13, "toeRoundRadiusToHeight": 0.5 }
+    },
+    "face": {
+      "eye": { "heightToHeadHeight": 0.17, "heightToWidth": 1.35, "spacingToHeadWidth": 0.40, "centreFromChinToHeadHeight": 0.46, "minPxAtSixthFrame": 14 },
+      "highlight": { "count": 2, "mainDiameterToEyeWidth": 0.36, "secondDiameterToEyeWidth": 0.18, "position": "upper-outer, same side on both eyes", "minPxAtSixthFrame": 3 },
+      "brow": { "lengthToEyeWidth": 1.1, "thicknessToEyeHeight": 0.25, "gapAboveEyeToEyeHeight": 0.45, "maxValueHSL": 0.35, "colour": "hair" },
+      "mouth": {
+        "centreFromChinToHeadHeight": 0.21,
+        "lineThicknessToHeadHeight": 0.022,
+        "maxSurfaceOffset": 0.002,
+        "shapes": {
+          "neutral": { "widthToHeadWidth": 0.20, "openToHeadHeight": 0.0,  "cornerLift": 0.15 },
+          "talk":    { "widthToHeadWidth": [0.16, 0.24], "openToHeadHeight": [0.04, 0.12], "cornerLift": 0.05 },
+          "happy":   { "widthToHeadWidth": 0.26, "openToHeadHeight": 0.05, "cornerLift": 0.85 },
+          "fear":    { "widthToHeadWidth": 0.14, "openToHeadHeight": 0.09, "cornerLift": -0.35, "roundness": 0.7 }
+        }
+      },
+      "blush": { "opacityMax": 0.30, "material": "standard" },
+      "readability": { "frameHeightPx": 1920, "figureFractionOfFrame": 0.1667 }
+    },
+    "palette": {
+      "skin": { "porcelain": "#f0c39b", "honey": "#dca27a", "tan": "#c68660", "caramel": "#a8693f", "umber": "#8a5232", "espresso": "#6b3d26" },
+      "hair": { "black": "#2a211f", "darkBrown": "#49312b", "charcoal": "#29282b", "chestnut": "#38231c", "elderGrey": "#98938b" },
+      "tops": { "tomato": "#e4553b", "marigold": "#f7c21a", "cobalt": "#3d6fdb", "violet": "#8b58c7", "leaf": "#5aab45", "rose": "#e5689a", "cloud": "#fbf8f2" },
+      "bottoms": { "navy": "#2c3a52", "cocoa": "#4b3a33", "charcoal": "#2a2c33" },
+      "face": { "eye": "#1f1714", "highlight": "#ffffff", "mouthInside": "#4c1a24", "tongue": "#d46a74", "teeth": "#f7f2e8", "blush": "#ff8a86" },
+      "octopus": { "body": "#c2456e", "underside": "#ef9fb5", "brow": "#6e2340" },
+      "cityReference": ["#c9baa0", "#b4aa93", "#ddc5a1", "#b6c4b5", "#e3d7be", "#9eada5", "#cdb194", "#d17f68", "#d5b364", "#458a81", "#7689ad", "#e7d7c0"],
+      "rules": {
+        "minDeltaE_OKLab_topsVsCity": 8,
+        "minDeltaE_OKLab_creatureVsSkin": 9,
+        "maxHSLSaturation": 0.95,
+        "maxChannelValue": 0.98,
+        "accentMaxSurfaceFraction": 0.15,
+        "accentsPerCharacter": 1
+      }
+    },
+    "shading": {
+      "model": "MeshStandardMaterial",
+      "metalness": 0,
+      "flatShading": false,
+      "roughness": { "skin": [0.55, 0.65], "cloth": [0.70, 0.85], "hair": [0.55, 0.70], "shoes": [0.50, 0.70], "eye": [0.15, 0.25], "octopus": [0.45, 0.55] },
+      "unlitAllowed": ["eye highlight"],
+      "maxAdjacentNormalAngleDeg": { "lod0": 20, "lod1": 30 },
+      "bevelMinRadiusToSmallestDim": 0.25,
+      "bevelMinRadius": 0.012,
+      "lighting": { "toneMapping": "ACESFilmic", "exposure": 1.15, "keyColour": "#ffc890", "keyIntensity": 1.2, "fillToKey": [0.45, 0.60], "rimToKey": [0.35, 0.50], "rimColour": "#dfe6ff", "rimAzimuthFromKeyDeg": [120, 160], "maxSkinChannel8bit": 245 }
+    },
+    "creature": {
+      "octopus": {
+        "tentacles": 8,
+        "tentacleLengthToMantleHeight": [1.3, 1.6],
+        "tipToBaseRadius": 0.18,
+        "tipCurlRad": [2.1, 5.2],
+        "curlZoneFraction": 0.3,
+        "bonesPerTentacle": 6,
+        "radialSegments": 12,
+        "lengthSegments": 24,
+        "suckerRows": 2,
+        "suckersPerRowMin": 6,
+        "suckerRadiusToLocalRadius": [0.35, 0.6],
+        "suckerZoneFraction": 0.7,
+        "eyeHeightToMantleHeight": 0.17,
+        "eyeStyle": "human Eye3"
+      }
+    },
+    "lod": {
+      "distanceMetric": "applyCrowdLOD effective distance (camera distance x tan(fov/2)/tan(28deg/2))",
+      "lod0": { "use": "cast or distance < 8", "maxTriangles": 9000, "maxMeshes": 16 },
+      "lod1": { "use": "distance 8-24", "maxTriangles": 3500, "maxMeshes": 8 },
+      "lod2": { "use": "distance > 24", "maxTriangles": 900, "maxMeshes": 3 },
+      "octopusLod0": { "maxTriangles": 14000, "maxMeshes": 12, "maxMaterials": 5 },
+      "crowd100": { "maxTriangles": 250000, "maxDrawCallsInclShadow": 1200, "mustFit": "perf/budgets.json market" },
+      "materials": { "maxPrivatePerCharacter": 3, "defaultPrivate": 0, "noClonesForSkinnedParts": true, "source": "toyPalette / paletteMaterial" }
+    }
+  }
+}

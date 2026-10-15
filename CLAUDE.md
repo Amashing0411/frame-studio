@@ -36,6 +36,9 @@ A Vite static site (`npm run build` → `dist/`, deployable to Vercel as is).
 - `tools/lib/chrome.mjs`: headless Chrome helper used by the test tools.
 - `tools/extract-vocabulary.mjs <url> <out.json>`: the scenario vocabulary read from the running engine (+ a `.md` copy). Use it to keep the skills in sync.
 - `skills/`: source of the `film-engine-maintainer` and `whatif-director` skills (packaged with skill-creator and installed in the app). Update them whenever the architecture, the workflow or the vocabulary changes.
+- `design/DESIGN.md` + `design/design-tokens.json`: the character style sheet (Step 6; `current` = shipped models, `target` = procedural direction B). `design/model-rubric.md`: the blind review rubric (7 criteria, performance by formula: 9k triangles / 16 draw calls per character). `design/model-review-round1.json`: the Step 6 scores.
+- **Chosen model direction (Step 6): C, downloaded models.** `public/models/`: `quaternius-woman.glb` (C) and `quaternius-character-animated.glb` (C2), CC0; `poly-octopus.glb`, **CC-BY 3.0: the credit "Octopus by Poly by Google, CC-BY 3.0" must appear wherever it is shown** (credits screen, README, exports that use it). `public/models/CREDITS.md` lists every model, its license and source; add a row for every new model.
+- `lab/model-lab.js` + `tools/capture-lab.mjs [url] [outDir] [candidates]`: the Model Lab, turntables (front, 3/4, side, back, closeup) of any candidate under identical lights, plus triangles/draw calls/materials. `tools/aggregate-review.mjs [roundDir]`: combines blind reviewer JSON files and un-blinds them with `qa/review/key.json` (`qa/review/` is gitignored scratch).
 - `qa/captures/`: scratch captures (gitignored).
 
 ## Commands
@@ -72,4 +75,4 @@ Three.js sorts opaque objects by material id, so changing which objects share a 
 
 ## Roadmap
 
-Step 0 baseline → 1 Vite/Vercel project split → 2 remove patch layers → 3 update the film-engine-maintainer skill → 4 first Vercel deploy → 5 YouTube/TikTok safe zones → 6–10 models (choose direction, characters, creatures, world, catalog) → 11 UI → 12 in-app guide → 13 performance → 14 release QA.
+Step 0 baseline → 1 Vite/Vercel project split → 2 remove patch layers → 3 update the film-engine-maintainer skill → 4 first Vercel deploy → 5 YouTube/TikTok safe zones → 6 choose model direction (done: C, downloaded glTF) → 7–10 models (characters, creatures, world, catalog) → 11 UI → 12 in-app guide → 13 performance → 14 release QA.
