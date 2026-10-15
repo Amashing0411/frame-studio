@@ -69,6 +69,10 @@ const tabs = await evaluate(`(()=>{const r=[],shown=el=>!!el&&el.getClientRects(
 check('every side tab and every inspector opens', tabs.length === 11 && tabs.every(t => t[1]), tabs.map(t => `${t[0]}:${t[1] ? 'ok' : 'NO'}`).join(' '));
 const guide = await evaluate(`(()=>{showPanel('guide');const g=document.getElementById('guide');return {sections:g.querySelectorAll('.guide-sec').length,items:g.querySelectorAll('.guide-sec button').length,people:g.querySelector('.guide-counts b')?.textContent}})()`);
 check('Guide lists what the engine offers', guide.sections >= 6 && guide.items > 30 && guide.people === '21', JSON.stringify(guide));
+// the free What if… writer: a sentence becomes a checked, playable film (no AI, no network)
+const whatif = await evaluate(`(async()=>{$('whatifPrompt').value='What if a typhoon flooded Pasig at night?';await makeWhatIfFilm(false);return {ok:validatedSource===$('ta').value,hazard:SC.hazard.type,shots:shots.length,errors:(validation.e||[]).length,title:SC.meta.title}})()`);
+await waitFor('!seeking', 120000);
+check('the free What if writer makes a valid film from a sentence', whatif.ok && whatif.hazard === 'flood' && whatif.shots >= 8 && !whatif.errors, JSON.stringify(whatif));
 await evaluate(`tabLeft('library');document.querySelector('#left-library .asset-item')?.click();
   document.querySelector('[data-view=asset]').click()`);
 await sleep(1500);

@@ -19,6 +19,8 @@ let before = 0, after = 0;
 for (const f of files) {
   const b = statSync(f).size; before += b;
   const doc = await io.read(f);
+  // already optimised (written by glTF-Transform, not Blender): skip, so a re-run never re-quantizes and changes files
+  if (/glTF-Transform/i.test(doc.getRoot().getAsset().generator || '')) { after += b; continue; }
   // no sparse accessors: three r128's GLTFLoader cannot read sparse accessors without a buffer view (Blender writes
   // shape keys sparse, and gltf-transform would write them without one)
   for (const a of doc.getRoot().listAccessors()) a.setSparse(false);

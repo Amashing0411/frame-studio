@@ -398,8 +398,8 @@
    "face": {
     "eye_z": 1.646,
     "eye_x": 0.055,
-    "chin": 1.482,
-    "mouth_z": 1.555,
+    "chin": 1.521,
+    "mouth_z": 1.577,
     "brow_verts": 48,
     "face_meshes": [
      "Adventurer_Head_face"
@@ -407,8 +407,8 @@
    },
    "feet": {
     "ankle": 0.0818,
-    "toe": 0.093,
-    "heel": 0.1773
+    "toe": 0.1773,
+    "heel": 0.093
    }
   },
   "m-worker": {

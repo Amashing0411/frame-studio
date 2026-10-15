@@ -122,7 +122,23 @@
  <div class="panels">
  <div class="panel active" id="panel-story" role="tabpanel">
   <div class="left-pane" id="left-scenario">
-   <h3 class="panel-title">Choose a story</h3><p class="hint">Start from a sample or a world, then check it.</p>
+   <section class="whatif-card" aria-labelledby="whatifTitle">
+    <h3 class="panel-title" id="whatifTitle">What if…</h3>
+    <textarea id="whatifPrompt" rows="3" placeholder="What if a zombie outbreak hit Manila at night?" aria-label="Your what-if"></textarea>
+    <div class="whatif-examples" id="whatifExamples" aria-label="Examples"></div>
+    <p class="hint" id="whatifNote"></p>
+    <div class="row"><button class="primary grow" id="whatifMake"><svg class="i"><use href="#i-film"/></svg>Make my film</button><button id="whatifRemix" hidden title="Same idea, different shots and words">Another version</button></div>
+    <details class="fold ai-fold"><summary><svg class="i"><use href="#i-export"/></svg>Write it with AI (your own key)</summary>
+     <p class="hint">Claude writes the script from your sentence. Use your own Anthropic API key: it stays in this browser and is sent only to Anthropic, and you pay Anthropic directly for what you use. The free button above costs nothing.</p>
+     <label>Model<select id="aiModel"></select></label>
+     <label>Anthropic API key<input id="aiKey" type="password" autocomplete="off" spellcheck="false" placeholder="sk-ant-…"></label>
+     <div class="row"><label class="check grow"><input id="aiRemember" type="checkbox"> Remember on this device</label><button id="aiForget" class="ghost">Forget key</button></div>
+     <button class="primary wide" id="aiWrite">Write it with AI</button>
+     <p class="hint" id="aiStatus">Get a key at console.anthropic.com. Don't tick Remember on a shared computer.</p>
+    </details>
+    <button id="pasteScript" class="wide"><svg class="i"><use href="#i-copy"/></svg>Paste a script from Claude</button>
+   </section>
+   <h3 class="panel-title">Or pick a story</h3><p class="hint">Start from a sample or a world, then check it.</p>
    <div class="story-grid"><button id="storyCreature"><svg class="i"><use href="#i-film"/></svg><span><b>The eight-armed customer</b><small>A 44-second market story</small></span></button><button id="storyMarket"><svg class="i"><use href="#i-person"/></svg><span><b>A morning in Divisoria</b><small>A short character scene</small></span></button><button id="bq"><svg class="i"><use href="#i-bolt"/></svg><span><b>Earthquake</b><small>Metro Manila at rush hour</small></span></button><button id="bz"><svg class="i"><use href="#i-crowd"/></svg><span><b>Outbreak</b><small>A zombie night in the city</small></span></button><button id="newScenario"><svg class="i"><use href="#i-plus"/></svg><span><b>Blank</b><small>Start from nothing</small></span></button></div>
    <div class="row world-row"><select id="worldDemo" aria-label="World template"><option value="coast">Coast & harbor</option><option value="city">City response</option><option value="jungle">Jungle expedition</option><option value="ocean">Ocean voyage</option><option value="sky">Sky traffic</option><option value="custom">Empty asset stage</option></select><button id="loadWorldDemo">Load world</button></div>
    <div class="check-card"><div class="check-head"><button class="primary grow" id="bv"><svg class="i"><use href="#i-check"/></svg>Check story</button><span id="dirtyState" class="chip">Not checked</span></div>
@@ -179,6 +195,7 @@
 </main>
 <div class="scrim" id="sheetScrim"></div>
 <div id="toast" role="status" aria-live="polite"></div><dialog id="help"><h2>Shortcuts</h2><p><kbd>Space</kbd> Play / pause<br><kbd>←</kbd> / <kbd>→</kbd> Step one frame<br><kbd>F</kbd> Frame the selected model<br><kbd>Ctrl / ⌘ + S</kbd> Save project</p><p>In Model studio, drag to orbit, right-drag to pan and scroll to zoom. Use X / Y / Z for exact views.</p><button id="closeHelp" class="primary">Got it</button></dialog><canvas id="c" hidden></canvas>
+<script type="module" src="/src/ai/claude-sdk.js"></script>
 <!-- classic-scripts --><!-- Bundled dependency licenses (WebM duration fix by Studio 6):
 The MIT License
 

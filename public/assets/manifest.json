@@ -362,7 +362,7 @@
     "bytes": 388720
    },
    "m-adventurer": {
-    "file": "people/m-adventurer.glb?v=3511d38e75",
+    "file": "people/m-adventurer.glb?v=a70d2a5251",
     "family": "m",
     "sex": "m",
     "height": 1.8,
@@ -370,10 +370,10 @@
     "face": true,
     "feet": {
      "ankle": 0.0818,
-     "toe": 0.093,
-     "heel": 0.1773
+     "toe": 0.1773,
+     "heel": 0.093
     },
-    "bytes": 690392
+    "bytes": 1286456
    },
    "m-worker": {
     "file": "people/m-worker.glb?v=e022028d50",

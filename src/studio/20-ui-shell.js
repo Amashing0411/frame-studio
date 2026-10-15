@@ -35,6 +35,9 @@ function finishUIShell() {
   syncChoiceMirrors();
   renderShotTicks();
   initGuide();
+  initWhatIf();
+  initAIWriter();
+  initPasteScript();
   $('loadOverlay').classList.add('done');
   setTimeout(() => $('loadOverlay').hidden = true, 320);
 }
@@ -113,6 +116,19 @@ function foldFieldset(f, open) {
 
 // The eye button on the film bar mirrors Look › Safe-zone guides.
 function syncGuidesToggle() { const on = $('showSafe').checked; $('guidesToggle').classList.toggle('on', on); $('guidesToggle').setAttribute('aria-pressed', on); $('guidesToggle').title = on ? 'Hide the safe-zone guides' : 'Show the safe-zone guides'; }
+
+// "Paste a script from Claude": the whatif-director skill (or any chat) hands back a JSON script; paste it, check it, play.
+function initPasteScript() {
+  $('pasteScript').onclick = async () => {
+    let text = '';
+    try { text = await navigator.clipboard.readText(); } catch (e) { }
+    if (!text.trim().startsWith('{')) text = prompt('Paste the script (JSON) here:', '') || '';
+    const json = (text.match(/\{[\s\S]*\}/) || [''])[0];
+    if (!json) return;
+    try { closeSheet(); setScenario(JSON.parse(json)); if (validateOnly()) { selectShot(0, false); await seekFilm(0); notifyUser('Script loaded. Press Play.'); } }
+    catch (e) { notifyUser('That does not look like a film script: ' + e.message); }
+  };
+}
 
 // Small marks on the scrubber where each shot starts.
 function renderShotTicks() {

@@ -141,6 +141,14 @@ def normalise(arm, meshes, height):
     """Rest pose, metres, soles at 0, the given height; transforms applied so the armature object is identity."""
     if arm.animation_data: arm.animation_data_clear()
     for pb in arm.pose.bones: pb.matrix_basis = Matrix.Identity(4)
+    # every model must face -Y like the clip libraries' reference models; a model facing +Y (m-adventurer) mirrored
+    # every arm motion (lowering an arm raised it) and walked backwards. The packs' foot bones point the way it faces.
+    bpy.context.view_layer.update()
+    foot = arm.data.bones.get('Foot.L') or arm.data.bones.get('Foot.R')
+    if foot and ((arm.matrix_world @ foot.tail_local).y - (arm.matrix_world @ foot.head_local).y) > 0:
+        turn = Matrix.Rotation(math.pi, 4, 'Z')
+        for ob in [arm] + meshes: ob.matrix_world = turn @ ob.matrix_world
+        print('TURNED to face -Y')
     select_only([arm] + meshes, arm)
     bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
     lo, hi = mesh_bounds(meshes)

@@ -17,6 +17,7 @@
     "verify": "bash tools/verify-step.sh http://localhost:4173/"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.134.0",
     "mp4-muxer": "5.2.1",
     "three": "0.128.0",
     "webm-muxer": "5.1.3"

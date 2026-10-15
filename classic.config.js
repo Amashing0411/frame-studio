@@ -66,6 +66,8 @@ export default {
       'src/assets/19-cast.js',
       'src/studio/20-ui-shell.js',
       'src/studio/21-guide.js',
+      'src/studio/22-whatif.js',
+      'src/studio/23-ai-writer.js',
       'src/studio/99-boot.js',
     ],
   },
