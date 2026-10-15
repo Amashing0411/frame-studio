@@ -24,4 +24,5 @@ function toyBox(p,name,xyz,size,mat,r=.045){
 function toyJoint(p,n,v){const g=new THREE.Group();g.name=n;g.position.set(...v);g.userData.motion=n;p.add(g);return g}
 function toyTube(p,n,xyz,top,bottom,h,m){const o=new THREE.Mesh(new THREE.CylinderGeometry(top,bottom,h,16),m);o.name=n;o.position.set(...xyz);o.castShadow=o.receiveShadow=true;p.add(o);return o}
 // A toy character: the jointed rig, restyled with the v3 face, hands and proportions.
-function toyPerson(opts={}){return restyleCharacter3(buildToyRig(opts))}
+// A person: the jointed rig with the v3 face, wearing a glTF cast body when the cast has loaded (src/assets/19-cast.js).
+function toyPerson(opts={}){const p=restyleCharacter3(buildToyRig(opts));return CAST.ready?attachCastBody(p,opts):p}

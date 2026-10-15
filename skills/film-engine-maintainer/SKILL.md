@@ -59,4 +59,4 @@ The app is **three classic scripts that share one global scope**, exactly like t
 
 ## Honest limits
 
-Stylized procedural low-poly toy characters, not film-quality models. The rig is articulated with continuous skinned limbs; fingers are mittens and lip-sync is a babble with visemes. Textures are not freed when switching stories (known leak). Draw calls are ~3,000-3,700 for city stories because every part is its own mesh; merging and instancing is the performance step. Say what was and was not verified: headless frames and tests prove behavior; they do not judge whether a new look is good.
+People are low-poly Quaternius glTF bodies driven by the procedural rig (no model animation clips yet); faces are the graphic v3 face with babble lip-sync and visemes. The cast is 7.3 MB loaded at boot. People's bone textures are released on story change; the rest of the texture lifecycle is a performance-step check. Draw calls are ~3,000-3,700 for city stories because every part is its own mesh; merging and instancing is the performance step. Say what was and was not verified: headless frames and tests prove behavior; they do not judge whether a new look is good.

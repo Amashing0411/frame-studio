@@ -63,6 +63,7 @@ export default {
       'src/assets/16-world-revamp.js',
       'src/studio/17-water-hazards.js',
       'src/studio/18-safe-zones.js',
+      'src/assets/19-cast.js',
       'src/studio/99-boot.js',
     ],
   },

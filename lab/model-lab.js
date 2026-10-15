@@ -192,8 +192,8 @@
   LAB.builders = {
     'vendor-A': async () => currentA('human.vendor', 'human'),
     'vendor-B': async () => vendorB(),
-    'vendor-C': async () => fromGLB('/models/quaternius-woman.glb', 1.75),
-    'vendor-C2': async () => fromGLB('/models/quaternius-character-animated.glb', 1.75, /^(CharacterArmature\|)?Idle$/),
+    // direction C as built for the film (Step 7 cast): the Woman, without animation clips
+    'vendor-C': async () => fromGLB('/models/cast/u-woman.glb', 1.75),
     'octopus-A': async () => currentA('extension.market_octopus', 'octopus'),
     'octopus-B': async () => octopusB(),
     'octopus-C': async () => fromGLB('/models/poly-octopus.glb', 1.3),

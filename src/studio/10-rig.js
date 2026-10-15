@@ -60,7 +60,7 @@ function poseJointedRig(p,state,t,expression='neutral',distance=null,speed=.85){
  if(state==='jump')p.pv.position.y+=Math.max(0,Math.sin(t*Math.PI))* .35;
  const gaitWeight=distance===null?1:cl(speed/.18);
  for(let i=0;i<2;i++){const a=p.legs[i],s=a.side,q=(cycle+i*.5)%1,stance=q<.60,swing=cl((q-.60)/.40),stepZ=gait?(stance?stride*.30-q*stride:lp(-stride*.30,stride*.30,sm(swing))):0,stepY=gait&&!stance?Math.sin(swing*Math.PI)*(state==='run'?.17:.085):0;
- let target=V(s*.095,.095+stepY*gaitWeight,stepZ*gaitWeight);if(state==='sit'||state==='sleep')target.z=.34;if(state==='jump')target.y+=Math.max(0,Math.sin(t*Math.PI))*.35;if(state==='dance'){target.x+=.07*Math.sin(t*2);target.y+=i===Math.floor(t*2)%2?.025:0}
+ let target=V(s*(p.footX??.095),(p.ankleY??.095)+stepY*gaitWeight,stepZ*gaitWeight);if(state==='sit'||state==='sleep')target.z=.34;if(state==='jump')target.y+=Math.max(0,Math.sin(t*Math.PI))*.35;if(state==='dance'){target.x+=.07*Math.sin(t*2);target.y+=i===Math.floor(t*2)%2?.025:0}
  solveLimb(p.g,a.hp,a.kn,a.ft,target,V(s*.12,.45,.7));uprightJoint(p.g,a.ft,[0,0,s*.015]);
  }
  const armTargets=[V(-.255,.865,.045),V(.255,.865,.045)],poles=[V(-.63,1.17,.12),V(.63,1.17,.12)];

@@ -9,7 +9,7 @@ import { launch, sleep, STUDIO_READY } from './lib/chrome.mjs';
 const [url = 'http://localhost:5173/', outArg = 'qa/captures/lab', only] = process.argv.slice(2);
 const out = resolve(outArg); mkdirSync(out, { recursive: true });
 const root = resolve(import.meta.dirname, '..');
-const names = only ? only.split(',') : ['vendor-A', 'vendor-B', 'vendor-C', 'vendor-C2', 'octopus-A', 'octopus-B', 'octopus-C'];
+const names = only ? only.split(',') : ['vendor-A', 'vendor-B', 'vendor-C', 'octopus-A', 'octopus-B', 'octopus-C'];
 
 const c = await launch();
 await c.open(url); await c.waitFor(STUDIO_READY); await sleep(1500);
