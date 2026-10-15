@@ -1,0 +1,524 @@
+{
+ "models": {
+  "m-woman2": {
+   "family": "m",
+   "height": 1.66,
+   "pelvis": 0.8803,
+   "meshes": 5,
+   "face": {
+    "eye_z": 1.513,
+    "eye_x": 0.053,
+    "chin": 1.415,
+    "mouth_z": 1.459,
+    "brow_verts": 12,
+    "face_meshes": [
+     "Casual_Head_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.0755,
+    "toe": 0.1892,
+    "heel": 0.0672
+   }
+  },
+  "m-woman3": {
+   "family": "m",
+   "height": 1.65,
+   "pelvis": 0.8709,
+   "meshes": 5,
+   "face": {
+    "eye_z": 1.503,
+    "eye_x": 0.053,
+    "chin": 1.405,
+    "mouth_z": 1.449,
+    "brow_verts": 86,
+    "face_meshes": [
+     "Formad_Head_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.075,
+    "toe": 0.1759,
+    "heel": 0.0521
+   }
+  },
+  "m-punk2": {
+   "family": "m",
+   "height": 1.67,
+   "pelvis": 0.829,
+   "meshes": 5,
+   "face": {
+    "eye_z": 1.431,
+    "eye_x": 0.051,
+    "chin": 1.337,
+    "mouth_z": 1.38,
+    "brow_verts": 12,
+    "face_meshes": [
+     "Punk_Head_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.0759,
+    "toe": 0.0945,
+    "heel": 0.14
+   }
+  },
+  "m-adventurer2": {
+   "family": "m",
+   "height": 1.66,
+   "pelvis": 0.8845,
+   "meshes": 5,
+   "face": {
+    "eye_z": 1.526,
+    "eye_x": 0.054,
+    "chin": 1.426,
+    "mouth_z": 1.471,
+    "brow_verts": 12,
+    "face_meshes": [
+     "Adventurer_Head_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.0755,
+    "toe": 0.1764,
+    "heel": 0.083
+   }
+  },
+  "m-swat": {
+   "family": "m",
+   "height": 1.82,
+   "pelvis": 0.851,
+   "meshes": 4,
+   "face": null,
+   "feet": {
+    "ankle": 0.0827,
+    "toe": 0.169,
+    "heel": 0.1048
+   }
+  },
+  "u-woman": {
+   "family": "u",
+   "height": 1.66,
+   "pelvis": 0.7632,
+   "meshes": 2,
+   "face": {
+    "eye_z": 1.541,
+    "eye_x": 0.054,
+    "chin": 1.418,
+    "mouth_z": 1.473,
+    "brow_verts": 68,
+    "face_meshes": [
+     "Female_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.0755,
+    "toe": 0.1828,
+    "heel": 0.0451
+   }
+  },
+  "u-woman-casual": {
+   "family": "u",
+   "height": 1.64,
+   "pelvis": 0.7537,
+   "meshes": 2,
+   "face": {
+    "eye_z": 1.521,
+    "eye_x": 0.053,
+    "chin": 1.401,
+    "mouth_z": 1.455,
+    "brow_verts": 152,
+    "face_meshes": [
+     "Female_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.0745,
+    "toe": 0.1805,
+    "heel": 0.0446
+   }
+  },
+  "u-woman-tank": {
+   "family": "u",
+   "height": 1.67,
+   "pelvis": 0.7623,
+   "meshes": 2,
+   "face": {
+    "eye_z": 1.539,
+    "eye_x": 0.053,
+    "chin": 1.416,
+    "mouth_z": 1.471,
+    "brow_verts": 86,
+    "face_meshes": [
+     "BaseHuman.000_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.0759,
+    "toe": 0.1826,
+    "heel": 0.0451
+   }
+  },
+  "u-woman-dress": {
+   "family": "u",
+   "height": 1.65,
+   "pelvis": 0.7531,
+   "meshes": 2,
+   "face": {
+    "eye_z": 1.52,
+    "eye_x": 0.053,
+    "chin": 1.399,
+    "mouth_z": 1.454,
+    "brow_verts": 56,
+    "face_meshes": [
+     "Female_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.075,
+    "toe": 0.1804,
+    "heel": 0.0445
+   }
+  },
+  "u-man": {
+   "family": "u",
+   "height": 1.76,
+   "pelvis": 0.7699,
+   "meshes": 2,
+   "face": {
+    "eye_z": 1.623,
+    "eye_x": 0.055,
+    "chin": 1.496,
+    "mouth_z": 1.553,
+    "brow_verts": 16,
+    "face_meshes": [
+     "BaseHuman_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.08,
+    "toe": 0.1863,
+    "heel": 0.046
+   }
+  },
+  "u-man2": {
+   "family": "u",
+   "height": 1.78,
+   "pelvis": 0.7787,
+   "meshes": 2,
+   "face": {
+    "eye_z": 1.641,
+    "eye_x": 0.055,
+    "chin": 1.513,
+    "mouth_z": 1.571,
+    "brow_verts": 28,
+    "face_meshes": [
+     "BaseHuman_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.0809,
+    "toe": 0.1884,
+    "heel": 0.0465
+   }
+  },
+  "u-man-sleeves": {
+   "family": "u",
+   "height": 1.75,
+   "pelvis": 0.7656,
+   "meshes": 2,
+   "face": {
+    "eye_z": 1.614,
+    "eye_x": 0.054,
+    "chin": 1.487,
+    "mouth_z": 1.544,
+    "brow_verts": 16,
+    "face_meshes": [
+     "BaseHuman_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.0795,
+    "toe": 0.1852,
+    "heel": 0.0457
+   }
+  },
+  "u-man-suit": {
+   "family": "u",
+   "height": 1.72,
+   "pelvis": 0.7524,
+   "meshes": 2,
+   "face": {
+    "eye_z": 1.586,
+    "eye_x": 0.053,
+    "chin": 1.462,
+    "mouth_z": 1.518,
+    "brow_verts": 16,
+    "face_meshes": [
+     "BaseHuman_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.0782,
+    "toe": 0.1829,
+    "heel": 0.0441
+   }
+  },
+  "m-beach": {
+   "family": "m",
+   "height": 1.77,
+   "pelvis": 0.8185,
+   "meshes": 5,
+   "face": {
+    "eye_z": 1.6,
+    "eye_x": 0.054,
+    "chin": 1.479,
+    "mouth_z": 1.534,
+    "brow_verts": 48,
+    "face_meshes": [
+     "Beach_Head_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.0805,
+    "toe": 0.1641,
+    "heel": 0.1039
+   }
+  },
+  "m-casual": {
+   "family": "m",
+   "height": 1.78,
+   "pelvis": 0.8304,
+   "meshes": 5,
+   "face": {
+    "eye_z": 1.627,
+    "eye_x": 0.055,
+    "chin": 1.547,
+    "mouth_z": 1.583,
+    "brow_verts": 48,
+    "face_meshes": [
+     "Casual2_Head_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.0809,
+    "toe": 0.1927,
+    "heel": 0.0829
+   }
+  },
+  "m-business": {
+   "family": "m",
+   "height": 1.79,
+   "pelvis": 0.8355,
+   "meshes": 5,
+   "face": {
+    "eye_z": 1.637,
+    "eye_x": 0.055,
+    "chin": 1.513,
+    "mouth_z": 1.569,
+    "brow_verts": 48,
+    "face_meshes": [
+     "Suit_Head_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.0814,
+    "toe": 0.2007,
+    "heel": 0.0766
+   }
+  },
+  "m-hoodie": {
+   "family": "m",
+   "height": 1.76,
+   "pelvis": 0.8183,
+   "meshes": 5,
+   "face": {
+    "eye_z": 1.6,
+    "eye_x": 0.054,
+    "chin": 1.487,
+    "mouth_z": 1.538,
+    "brow_verts": 80,
+    "face_meshes": [
+     "Casual_Head_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.08,
+    "toe": 0.1895,
+    "heel": 0.0812
+   }
+  },
+  "m-farmer": {
+   "family": "m",
+   "height": 1.77,
+   "pelvis": 0.8257,
+   "meshes": 5,
+   "face": {
+    "eye_z": 1.618,
+    "eye_x": 0.054,
+    "chin": 1.496,
+    "mouth_z": 1.551,
+    "brow_verts": 384,
+    "face_meshes": [
+     "Farmer_Head_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.0805,
+    "toe": 0.1642,
+    "heel": 0.1018
+   }
+  },
+  "m-punk": {
+   "family": "m",
+   "height": 1.78,
+   "pelvis": 0.7859,
+   "meshes": 5,
+   "face": {
+    "eye_z": 1.537,
+    "eye_x": 0.052,
+    "chin": 1.421,
+    "mouth_z": 1.473,
+    "brow_verts": 48,
+    "face_meshes": [
+     "Punk_Head_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.0809,
+    "toe": 0.1839,
+    "heel": 0.0761
+   }
+  },
+  "m-adventurer": {
+   "family": "m",
+   "height": 1.8,
+   "pelvis": 0.84,
+   "meshes": 6,
+   "face": {
+    "eye_z": 1.646,
+    "eye_x": 0.055,
+    "chin": 1.482,
+    "mouth_z": 1.555,
+    "brow_verts": 48,
+    "face_meshes": [
+     "Adventurer_Head_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.0818,
+    "toe": 0.093,
+    "heel": 0.1773
+   }
+  },
+  "m-worker": {
+   "family": "m",
+   "height": 1.79,
+   "pelvis": 0.8335,
+   "meshes": 5,
+   "face": {
+    "eye_z": 1.631,
+    "eye_x": 0.055,
+    "chin": 1.508,
+    "mouth_z": 1.563,
+    "brow_verts": 384,
+    "face_meshes": [
+     "Worker_Head_face"
+    ]
+   },
+   "feet": {
+    "ankle": 0.0814,
+    "toe": 0.1754,
+    "heel": 0.092
+   }
+  }
+ },
+ "families": {
+  "u": {
+   "reference": "u-man",
+   "clips": [
+    "aim",
+    "carry",
+    "carry_idle",
+    "cheer",
+    "cower",
+    "crouch",
+    "crouch_walk",
+    "dance",
+    "drive",
+    "fall",
+    "hit",
+    "idle",
+    "interact",
+    "jump",
+    "jump_land",
+    "jump_start",
+    "kneel",
+    "phone",
+    "pickup",
+    "point",
+    "punch",
+    "push",
+    "roll",
+    "run",
+    "sit",
+    "sit_enter",
+    "sit_talk",
+    "sleep",
+    "sprint",
+    "swim",
+    "swim_idle",
+    "talk",
+    "think",
+    "walk",
+    "walk_formal",
+    "wave",
+    "zombie"
+   ],
+   "pelvis": 0.7699
+  },
+  "m": {
+   "reference": "m-casual",
+   "clips": [
+    "aim",
+    "carry",
+    "carry_idle",
+    "cheer",
+    "cower",
+    "crouch",
+    "crouch_walk",
+    "dance",
+    "drive",
+    "fall",
+    "hit",
+    "idle",
+    "interact",
+    "jump",
+    "jump_land",
+    "jump_start",
+    "kneel",
+    "phone",
+    "pickup",
+    "point",
+    "punch",
+    "push",
+    "roll",
+    "run",
+    "sit",
+    "sit_enter",
+    "sit_talk",
+    "sleep",
+    "sprint",
+    "swim",
+    "swim_idle",
+    "talk",
+    "think",
+    "walk",
+    "walk_formal",
+    "wave",
+    "zombie"
+   ],
+   "pelvis": 0.8304
+  }
+ }
+}

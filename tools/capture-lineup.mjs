@@ -13,23 +13,23 @@ const root = resolve(import.meta.dirname, '..');
 // first clip, if any, is used).
 const IDLE_U = '(Female|Man)_Idle$', IDLE_M = '(^|[|])Idle$';
 const models = [
-  { url: '/models/cast/u-woman.glb', label: 'U Woman (C)', clip: IDLE_U },
-  { url: '/models/cast/u-man-suit.glb', label: 'U Man in Suit', clip: IDLE_U },
-  { url: '/models/cast/u-woman-dress.glb', label: 'U Woman in Dress', clip: IDLE_U },
-  { url: '/models/cast/m-casual.glb', label: 'M Casual', clip: IDLE_M },
-  { url: '/models/cast/m-woman2.glb', label: 'M Woman', clip: IDLE_M },
-  { url: '/models/cast/m-farmer.glb', label: 'M Farmer', clip: IDLE_M },
+  { url: '/assets/people/u-woman.glb', label: 'U Woman (C)', clip: IDLE_U },
+  { url: '/assets/people/u-man-suit.glb', label: 'U Man in Suit', clip: IDLE_U },
+  { url: '/assets/people/u-woman-dress.glb', label: 'U Woman in Dress', clip: IDLE_U },
+  { url: '/assets/people/m-casual.glb', label: 'M Casual', clip: IDLE_M },
+  { url: '/assets/people/m-woman2.glb', label: 'M Woman', clip: IDLE_M },
+  { url: '/assets/people/m-farmer.glb', label: 'M Farmer', clip: IDLE_M },
 ];
 // "kids": children made from U and M adults (child height, bigger head) between adults, as family groups
 const KID = { heightScale: 0.66, boneScale: { Head: 1.32 } };
 if (variant === 'kids') models.splice(0, models.length,
-  { url: '/models/cast/u-man.glb', label: 'U Man', clip: IDLE_U },
-  { url: '/models/cast/u-woman-casual.glb', label: 'kid from U Woman Casual', clip: IDLE_U, ...KID },
-  { url: '/models/cast/u-woman.glb', label: 'C Woman', clip: IDLE_U },
-  { url: '/models/cast/m-hoodie.glb', label: 'kid from M Hoodie', clip: IDLE_M, ...KID },
-  { url: '/models/cast/m-woman3.glb', label: 'M Woman 3', clip: IDLE_M },
-  { url: '/models/cast/u-man-sleeves.glb', label: 'kid from U Man', clip: IDLE_U, ...KID },
-  { url: '/models/cast/m-casual.glb', label: 'kid from M Casual', clip: IDLE_M, ...KID });
+  { url: '/assets/people/u-man.glb', label: 'U Man', clip: IDLE_U },
+  { url: '/assets/people/u-woman-casual.glb', label: 'kid from U Woman Casual', clip: IDLE_U, ...KID },
+  { url: '/assets/people/u-woman.glb', label: 'C Woman', clip: IDLE_U },
+  { url: '/assets/people/m-hoodie.glb', label: 'kid from M Hoodie', clip: IDLE_M, ...KID },
+  { url: '/assets/people/m-woman3.glb', label: 'M Woman 3', clip: IDLE_M },
+  { url: '/assets/people/u-man-sleeves.glb', label: 'kid from U Man', clip: IDLE_U, ...KID },
+  { url: '/assets/people/m-casual.glb', label: 'kid from M Casual', clip: IDLE_M, ...KID });
 const c = await launch();
 await c.open(url); await c.waitFor(STUDIO_READY); await sleep(1500);
 await c.evaluate(`loadMarketDemo(true)`); await sleep(500); await c.waitFor('!seeking', 120000);

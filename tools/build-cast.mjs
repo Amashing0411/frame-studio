@@ -1,19 +1,14 @@
 #!/usr/bin/env node
-// Builds the people cast (Step 7) from the Quaternius CC0 models on poly.pizza:
-// downloads each source GLB once (cached in qa/cast-src/, gitignored), checks the page still says CC0, keeps only the
-// animation clips the engine uses, removes unused data, quantizes normals and skin weights and writes
-// public/models/cast/<id>.glb. Positions stay float: three r128 reads quantized positions as raw integers in bounding
-// boxes and CPU skinning, which broke sizing.
+// Fetches the people cast sources (Step 7) from poly.pizza: downloads each Quaternius CC0 model once into qa/cast-src/
+// (gitignored), checks the model page still says CC0 by Quaternius and rewrites the people table in
+// public/models/CREDITS.md. tools/blender/build_people.py then builds public/assets/people/ from these sources.
 //   node tools/build-cast.mjs [--offline]
 import { existsSync, mkdirSync, readFileSync, writeFileSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import { NodeIO } from '@gltf-transform/core';
-import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
-import { prune, dedup, quantize } from '@gltf-transform/functions';
 
-const root = resolve(import.meta.dirname, '..'), cache = join(root, 'qa/cast-src'), out = join(root, 'public/models/cast');
+const root = resolve(import.meta.dirname, '..'), cache = join(root, 'qa/cast-src');
 const offline = process.argv.includes('--offline');
-mkdirSync(cache, { recursive: true }); mkdirSync(out, { recursive: true });
+mkdirSync(cache, { recursive: true });
 
 // id: output name; pp: poly.pizza model id; glb: its file on static.poly.pizza. "u" = Ultimate Animated Character pack
 // (31-bone rig), "m" = modular pack (62-bone rig). Both by Quaternius, CC0.
@@ -40,11 +35,6 @@ export const CAST_SOURCES = [
   ['m-worker', 'Yg2bQZO6Hj', '3a5f3056-ffe6-42eb-bd52-122afcbd22b2', 'Worker'],
   ['m-swat', 'Btfn3G5Xv4', '713f6535-f4f3-4367-a4c6-ced126ae0936', 'SWAT'],
 ];
-// Clips kept in the output (matched on the name after the armature prefix). The engine poses people from its own
-// motion rig, so none are needed yet.
-const KEEP_CLIPS = [];
-
-const io = new NodeIO().registerExtensions(ALL_EXTENSIONS);
 let total = 0;
 const credits = [];
 for (const [id, pp, file, title] of CAST_SOURCES) {
@@ -61,24 +51,12 @@ for (const [id, pp, file, title] of CAST_SOURCES) {
   if (!/CC0|Public Domain/.test(html) || /CC-BY|Creative Commons Attribution/.test(html)) throw new Error(`${id}: the poly.pizza page no longer says CC0`);
   if (!/Quaternius/.test(html)) throw new Error(`${id}: the author is not Quaternius`);
 
-  const doc = await io.read(src);
-  // a disposed animation leaves its samplers and keyframe accessors behind (prune keeps them), so dispose those too
-  for (const anim of doc.getRoot().listAnimations()) {
-    if (KEEP_CLIPS.includes(anim.getName().replace(/^.*\|/, ''))) continue;
-    for (const s of anim.listSamplers()) { s.getInput()?.dispose(); s.getOutput()?.dispose(); s.dispose(); }
-    for (const c of anim.listChannels()) c.dispose();
-    anim.dispose();
-  }
-  await doc.transform(prune(), dedup(), quantize({ pattern: /^(NORMAL|WEIGHTS_0|COLOR_0)$/ }));
-  const dst = join(out, id + '.glb');
-  await io.write(dst, doc);
-  const before = statSync(src).size, after = statSync(dst).size; total += after;
-  console.log(`${id.padEnd(15)} ${(before / 1024).toFixed(0).padStart(5)} KB -> ${(after / 1024).toFixed(0).padStart(4)} KB`);
-  credits.push(`| cast/${id}.glb | ${title} | Quaternius | CC0 1.0 (no credit required) | https://poly.pizza/m/${pp} |`);
+  total += statSync(src).size;
+  credits.push(`| ../assets/people/${id}.glb | ${title} | Quaternius | CC0 1.0 (no credit required) | https://poly.pizza/m/${pp} |`);
 }
 // the people table in public/models/CREDITS.md, between the cast markers
 const creditsFile = join(root, 'public/models/CREDITS.md'), md = readFileSync(creditsFile, 'utf8');
 const table = ['| File | Model | Author | License | Source |', '|---|---|---|---|---|', ...credits].join('\n');
 if (!/<!-- cast:start -->[^]*<!-- cast:end -->/.test(md)) throw new Error('CREDITS.md has no cast markers');
 writeFileSync(creditsFile, md.replace(/<!-- cast:start -->[^]*<!-- cast:end -->/, `<!-- cast:start -->\n${table}\n<!-- cast:end -->`));
-console.log(`cast: ${CAST_SOURCES.length} models, ${(total / 1024 / 1024).toFixed(2)} MB total`);
+console.log(`cast sources: ${CAST_SOURCES.length} models (${(total / 1024 / 1024).toFixed(1)} MB) in qa/cast-src, licenses checked`);

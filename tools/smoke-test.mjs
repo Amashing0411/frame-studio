@@ -37,6 +37,9 @@ const boot = await evaluate(`({status:document.getElementById('status').textCont
 results.boot = boot;
 check('boots with the market story loaded', boot.title === 'The eight-armed customer' && boot.end === 44 && boot.shots === 10, JSON.stringify(boot));
 check('asset catalog populated', +boot.assets > 0, `assets ${boot.assets}`);
+// the people cast (assets/manifest.json) loaded: without it people silently fall back to procedural bodies
+const cast = await evaluate(`({ready: typeof CAST !== 'undefined' && CAST.ready, models: typeof CAST !== 'undefined' ? CAST.src.size : 0, clipSets: typeof CAST !== 'undefined' ? Object.keys(CAST.clips).length : 0})`);
+check('people cast assets loaded', cast.ready && cast.models > 0 && cast.clipSets > 0, JSON.stringify(cast));
 
 // 2. Playback
 await seek(chrome, 0);

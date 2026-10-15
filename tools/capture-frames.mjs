@@ -9,7 +9,7 @@
 // env: CHROME=<path to chrome.exe>
 import { writeFileSync, mkdirSync, readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { join, resolve } from 'node:path';
+import { join, resolve, dirname } from 'node:path';
 import { launch, sleep, seek, canvasPng, STUDIO_READY } from './lib/chrome.mjs';
 
 // How to load each story. Market uses fixed times (the original Step 0 frames); the others use the middle of
@@ -75,12 +75,23 @@ console.log(chrome.errors.length ? `page errors (${chrome.errors.length}):\n  ${
 let failed = chrome.errors.length > 0;
 if (manifestPath) {
   const expected = JSON.parse(readFileSync(manifestPath, 'utf8')).frames.filter(e => names.includes(e.story || 'market'));
+  // The film target is multisampled: now and then a couple of edge pixels resolve one level apart between identical
+  // runs. A frame whose hash differs still matches if at most 20 pixels differ, by at most 2 levels.
+  const near = async (a, b) => chrome.evaluate(`(async()=>{const load=u=>new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src=u});
+    const [x,y]=await Promise.all([load(${JSON.stringify('data:image/png;base64,' + a.toString('base64'))}),load(${JSON.stringify('data:image/png;base64,' + b.toString('base64'))})]);
+    if(x.width!==y.width||x.height!==y.height)return{px:-1,max:255};const px=im=>{const c=document.createElement('canvas');c.width=im.width;c.height=im.height;const g=c.getContext('2d');g.drawImage(im,0,0);return g.getImageData(0,0,c.width,c.height).data};
+    const p=px(x),q=px(y);let n=0,m=0;for(let i=0;i<p.length;i+=4){const d=Math.max(Math.abs(p[i]-q[i]),Math.abs(p[i+1]-q[i+1]),Math.abs(p[i+2]-q[i+2]));if(d){n++;if(d>m)m=d}}return{px:n,max:m}})()`);
   let same = 0;
   for (const e of expected) {
     const got = frames.find(f => f.file === e.file);
-    const ok = got?.sha256 === e.sha256;
+    let ok = got?.sha256 === e.sha256, tag = ok ? 'MATCH    ' : got ? 'DIFFERENT' : 'MISSING  ', note = '';
+    if (got && !ok) {
+      const d = await near(readFileSync(join(outDir, got.file)), readFileSync(join(dirname(resolve(manifestPath)), e.file)));
+      note = ` (${d.px} pixels differ, by up to ${d.max})`;
+      if (d.px >= 0 && d.px <= 20 && d.max <= 2) { ok = true; tag = 'NEAR     '; }
+    }
     if (ok) same++; else failed = true;
-    console.log(`${ok ? 'MATCH    ' : got ? 'DIFFERENT' : 'MISSING  '} ${e.file}`);
+    console.log(`${tag} ${e.file}${note}`);
   }
   console.log(`${same}/${expected.length} frames match ${manifestPath}`);
 }

@@ -1,23 +1,31 @@
 // ---- build world (seeded)
+// City walking surfaces: top heights (m). People, vehicles and props stand at y=0, so every surface stays within two
+// centimetres of it (the old stack put roads at .10-.11 and pavements at .14-.15, over the feet and wheels). Upper
+// layers also get a polygon offset, so thin markings do not flicker against the road far from the camera.
+const CITY_TOP={road:.006,plaza:.012,pavement:.018,mark:.010};
+// A thin slab whose top is at `top`, drawn over the layers below it.
+function citySlab(w,d,top,c,layer){const m=mk(w,.04,d,c);Object.assign(m.material,{polygonOffset:true,polygonOffsetFactor:-layer,polygonOffsetUnits:-4*layer});return put(flat(m),0,top-.02,0)}
+// Surface height at a point of the city layout (pavements at 14-19 m from either avenue's axis, plazas beyond).
+function cityTopAt(x,z){const ax=Math.abs(x),az=Math.abs(z);if(ax<14||az<14)return CITY_TOP.road;if(ax<19||az<19)return CITY_TOP.pavement;if(ax<48&&az<48)return CITY_TOP.plaza;return 0}
 function buildBaseWorld(seed,style,hz){
  if(typeof importedModels!=='undefined')importedModels.forEach(m=>{if(m.parent===world)world.remove(m)});world.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.material)[].concat(o.material).forEach(m=>{for(const k of['map','emissiveMap','normalMap','roughnessMap','metalnessMap','alphaMap','bumpMap','aoMap']){const x=m[k];if(x&&x.isTexture&&!isSharedTex(x))x.dispose()}m.dispose()})});scene.remove(world);world=new THREE.Group();scene.add(world);if(typeof importedModels!=='undefined')importedModels.forEach(m=>world.add(m));MC={};
  R=rngf(seed||7);blds=[];veh=[];ppl=[];resc=[];lamps=[];tl=[];birds=[];pig=[];dogs=[];puddles=[];wetM=[];benches=[];const town=style==='town',wet=WX.rain;
  if(typeof buildBiome==='function'&&SC?.world?.biome&&SC.world.biome!=='city'){buildBiome(SC.world.biome);return}
  const roadC=wet?0x24262c:0x34373e,swkC=wet?0x8e8a80:0xb3ad9f;
  put(flat(new THREE.Mesh(new THREE.PlaneGeometry(900,900).rotateX(-Math.PI/2),mat(town?0x7d9a5a:wet?0x5e5c57:0x7c7a72))),0,0,0);
- put(flat(mk(28,.1,440,roadC)),0,.05,0);put(flat(mk(440,.1,28,roadC)),0,.06,0);
- for(const s of[-1,1])for(const t of[-1,1]){put(flat(mk(5,.14,206,swkC)),s*16.5,.07,t*117);put(flat(mk(206,.14,5,swkC)),t*117,.08,s*16.5)}
- for(const t of[-1,1]){put(flat(mk(.4,.12,206,0xe8c24a)),0,.1,t*117);put(flat(mk(206,.12,.4,0xe8c24a)),t*117,.11,0)}
- for(const s of[-1,1])for(const t of[-1,1])for(let i=-5;i<=5;i++){put(flat(mk(.7,.12,3,0xf2f2f2)),i*2.2,.12,t*13.5);put(flat(mk(3,.12,.7,0xf2f2f2)),t*13.5,.13,i*2.2);if(s>0)break}
- for(const sx of[-1,1])for(const sz of[-1,1]){put(flat(mk(30,.08,30,0xa89f8c)),sx*33,.04,sz*33);palm(sx*(24+R()*6),sz*(24+R()*6));palm(sx*(36+R()*6),sz*(36+R()*6));tree(sx*(40+R()*3),sz*(26+R()*8));bush(sx*(28+R()*8),sz*(40+R()*3));
+ citySlab(28,440,CITY_TOP.road,roadC,1);citySlab(440,28,CITY_TOP.road,roadC,1);
+ for(const s of[-1,1])for(const t of[-1,1]){citySlab(5,206,CITY_TOP.pavement,swkC,2).position.set(s*16.5,CITY_TOP.pavement-.02,t*117);citySlab(206,5,CITY_TOP.pavement,swkC,2).position.set(t*117,CITY_TOP.pavement-.02,s*16.5)}
+ for(const t of[-1,1]){citySlab(.4,206,CITY_TOP.mark,0xe8c24a,3).position.z=t*117;citySlab(206,.4,CITY_TOP.mark,0xe8c24a,3).position.x=t*117}
+ for(const s of[-1,1])for(const t of[-1,1])for(let i=-5;i<=5;i++){citySlab(.7,3,CITY_TOP.mark,0xf2f2f2,3).position.set(i*2.2,CITY_TOP.mark-.02,t*13.5);citySlab(3,.7,CITY_TOP.mark,0xf2f2f2,3).position.set(t*13.5,CITY_TOP.mark-.02,i*2.2);if(s>0)break}
+ for(const sx of[-1,1])for(const sz of[-1,1]){citySlab(30,30,CITY_TOP.plaza,0xa89f8c,1).position.set(sx*33,CITY_TOP.plaza-.02,sz*33);palm(sx*(24+R()*6),sz*(24+R()*6));palm(sx*(36+R()*6),sz*(36+R()*6));tree(sx*(40+R()*3),sz*(26+R()*8));bush(sx*(28+R()*8),sz*(40+R()*3));
   const sg=Math.atan2(-sx*30,-sz*25);bench(sx*30,sz*25,sg);bench(sx*25,sz*34,Math.atan2(-sx*25,-sz*34));
   const p=new THREE.Group(),lm=mk(.3,.3,.12,0xff3020,0xff3020,1.5);put(cyl(.08,.1,5,5,0x2a2d33),0,2.5,0,p);put(mk(.4,.9,.3,0x1d1f26),0,4.9,0,p);lm.position.set(0,5.1,.18);p.add(lm);p.position.set(sx*15,0,sz*15);p.rotation.y=Math.atan2(-sx,-sz);world.add(p);tl.push(lm.material);
   bin(sx*17.5,sz*(21+R()*8));bin(sx*(21+R()*8),sz*17.5);const hy=cyl(.12,.14,.7,6,0xd02a24);put(hy,sx*19.2,.35,sz*(30+R()*10));if(sx*sz>0)cart(sx*36,sz*21.5,Math.atan2(-sx,-sz*.2),pick(ACC))}
  for(const s of[-1,1])for(let a=-170;a<=170;a+=34){if(Math.abs(a)<20)continue;[[s*19.5,a],[a,s*19.5]].forEach(p=>{const g=new THREE.Group(),hd=mk(.9,.25,.5,0x40444c,0xffe2a0,EI*1.2);put(cyl(.1,.14,7,5,0x40444c),0,3.5,0,g);hd.position.set(0,7.1,0);g.add(hd);g.position.set(p[0],0,p[1]);world.add(g);lamps.push(hd.material)})}
  const nl=Math.round(70*QL);for(let i=0;i<nl;i++){const s=R()<.5?-1:1,a=(R()-.5)*320;if(R()<.5)litter(s*(14.5+R()*4),a);else litter(a,s*(14.5+R()*4))}
  for(let i=0;i<Math.round(14*QL);i++){const a=(R()-.5)*320,s=R()<.5?-1:1;if(Math.abs(a)>22){if(R()<.5)bin(s*17.5,a);else bin(a,s*17.5)}}
- for(let i=0;i<Math.round(28*QL);i++){const x=(R()-.5)*300,z=R()<.5?(R()-.5)*20:(R()-.5)*300,pd=new THREE.Mesh(new THREE.CircleGeometry(.8+R()*1.4,10).rotateX(-Math.PI/2),new THREE.MeshStandardMaterial({color:0x2a3a52,roughness:.15,metalness:.5,transparent:true,opacity:wet?.75:.0})),rg=new THREE.Mesh(new THREE.RingGeometry(.8,1,14).rotateX(-Math.PI/2),new THREE.MeshBasicMaterial({color:0xcfe0f0,transparent:true,opacity:0,depthWrite:false}));
-  flat(pd);flat(rg);const px=(R()<.5?x:(R()<.5?-1:1)*(15+R()*3)),pz=R()<.5?z:(R()<.5?-1:1)*(15+R()*3);put(pd,px,.15,pz);put(rg,px,.16,pz);puddles.push({pd,rg,ph:R()})}
+ for(let i=0;i<Math.round(28*QL);i++){const x=(R()-.5)*300,z=R()<.5?(R()-.5)*20:(R()-.5)*300,pd=new THREE.Mesh(new THREE.CircleGeometry(.8+R()*1.4,10).rotateX(-Math.PI/2),new THREE.MeshStandardMaterial({color:0x2a3a52,roughness:.15,metalness:.5,transparent:true,opacity:wet?.75:.0,polygonOffset:true,polygonOffsetFactor:-4,polygonOffsetUnits:-16})),rg=new THREE.Mesh(new THREE.RingGeometry(.8,1,14).rotateX(-Math.PI/2),new THREE.MeshBasicMaterial({color:0xcfe0f0,transparent:true,opacity:0,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-5,polygonOffsetUnits:-20}));
+  flat(pd);flat(rg);const px=(R()<.5?x:(R()<.5?-1:1)*(15+R()*3)),pz=R()<.5?z:(R()<.5?-1:1)*(15+R()*3);const py=cityTopAt(px,pz);put(pd,px,py+.003,pz);put(rg,px,py+.004,pz);puddles.push({pd,rg,ph:R()})}
  const cs=24,dens=.06+R()*.12+(1-QL)*.22,hs=.75+R()*.7,cl0=R()*6.283;
  for(let i=-8;i<8;i++)for(let j=-8;j<8;j++){const cx=(i+.5)*cs,cz=(j+.5)*cs;if(Math.min(Math.abs(cx),Math.abs(cz))<30||(Math.abs(cx)<48&&Math.abs(cz)<48)||R()<dens)continue;const dist=Math.hypot(cx,cz);
   if(town){for(let k=0;k<2;k++)house(cx+(k?5.5:-5.5)+(R()-.5)*2,cz+(R()-.5)*8,7+R()*3,8+R()*3,3.5+R()*2.5);if(R()<.5)tree(cx+(R()-.5)*16,cz+(R()-.5)*16)}

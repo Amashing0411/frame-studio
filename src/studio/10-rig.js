@@ -77,7 +77,7 @@ function poseJointedRig(p,state,t,expression='neutral',distance=null,speed=.85){
  for(let i=0;i<2;i++){const a=p.arms[i];solveLimb(p.g,a.sh,a.el,a.ha,armTargets[i],poles[i]);uprightJoint(p.g,a.ha,state==='wave'&&i===1?[0,0,Math.PI+Math.sin(t*5)*.16]:state==='phone'&&i===1?[-.25,Math.PI-.25,.08]:state==='talk'?[.2,0,(i?1:-1)*.15]:[0,0,0]);const fingerBones=p.fingerBones||(p.fingerBones=[0,1].map(k=>[0,1,2,3].map(f=>p.g.getObjectByName('Finger'+(k?'R':'L')+f))));for(let f=0;f<4;f++){const finger=fingerBones[i][f];finger.rotation.x=state==='phone'&&i===1?-.95:state==='point'&&i===1&&f===0?0:.13}}
  if(state==='phone'){p.phone.rotation.set(0,0,0);p.phone.position.set(0,-.014,.033)}
  if(state==='fall'){p.pv.rotation.x=sm(cl(t))*1.45;p.pv.position.y-=sm(cl(t))*.55}
- if(state==='sleep')expression='sleepy';faceV2(p,state,t,expression);p.g.updateMatrixWorld(true);
+ if(state==='sleep')expression='sleepy';faceV2(p,state,t,expression);p.g.updateMatrixWorld(true);poseCastBody(p,state,t,expression,distance,speed);
 }
 // v3 characters remember the pose being applied so the face can add body life for it.
 function poseV2(p,state,t,expression='neutral',distance=null,speed=.85){if(p?.v3){p.posing3={state,t}}try{poseJointedRig(p,state,t,expression,distance,speed)}finally{if(p)p.posing3=null}}
@@ -87,7 +87,7 @@ function pathDistance(path,t){let distance=0,speed=0;for(let i=1;i<path.length;i
 // Path-driven walk speed for catalog characters, read by their gait.
 function updateCatalogGait(t){for(const item of catalogInstances){if(item.spec.path?.length){const p=pathDistance(item.spec.path,t);item.object.userData.gaitDistance=p.distance;item.object.userData.gaitSpeed=p.speed}else{delete item.object.userData.gaitDistance;delete item.object.userData.gaitSpeed}}}
 // The Divisoria workshop crowd walks or idles; imported models registered as references stay hidden.
-function updateWorkshopCrowd(t){if(SC?.world?.set==='divisoria')for(const a of workshopCrowd){const speed=.35+(a.phase%1)*.22,max=Math.max(0,-8-a.anchor.z),travel=a.walk?Math.min(max,t*speed):0,moving=a.walk&&travel<max;var p=a.p;p.g.position.copy(a.anchor);p.g.position.z+=travel;p.g.rotation.y=a.walk?0:(a.anchor.x>0?-.7:.7);poseV2(p,moving?'walk':'idle',t+a.phase,'neutral',travel,speed);p.phone.scale.setScalar(.001);p.news.scale.setScalar(.001)}for(const m of importedModels)if(importedMeta.get(m)?.registration)m.visible=false;}
+function updateWorkshopCrowd(t){if(SC?.world?.set==='divisoria')for(const a of workshopCrowd){const speed=.95+(a.phase%1)*.35,max=Math.max(0,-8-a.anchor.z),travel=a.walk?Math.min(max,t*speed):0,moving=a.walk&&travel<max;var p=a.p;p.g.position.copy(a.anchor);p.g.position.z+=travel;p.g.rotation.y=a.walk?0:(a.anchor.x>0?-.7:.7);poseV2(p,moving?'walk':'idle',t+a.phase,'neutral',travel,speed);p.phone.scale.setScalar(.001);p.news.scale.setScalar(.001)}for(const m of importedModels)if(importedMeta.get(m)?.registration)m.visible=false;}
 
 const CINEMA_DEFAULTS={material:'natural',grade:'warm',dof:.35,focus:0,radial:0,bloom:.10,vignette:.18,grain:.035,voices:true,bubbles:true,speech:'icons',smartCamera:true};
 let CINEMA={...CINEMA_DEFAULTS},cameraSolids=[],cameraCorrection='Clear',filmPost=null;

@@ -1,0 +1,447 @@
+{
+ "version": 1,
+ "note": "Runtime assets served from /assets by Vercel. Built by tools/blender/*.py and tools/build-manifest.mjs; licenses in public/models/CREDITS.md.",
+ "people": {
+  "families": {
+   "u": {
+    "anim": "people/anim-u.glb?v=5ad6f1b890",
+    "reference": "u-man",
+    "pelvis": 0.7699,
+    "clips": [
+     "aim",
+     "carry",
+     "carry_idle",
+     "cheer",
+     "cower",
+     "crouch",
+     "crouch_walk",
+     "dance",
+     "drive",
+     "fall",
+     "hit",
+     "idle",
+     "interact",
+     "jump",
+     "jump_land",
+     "jump_start",
+     "kneel",
+     "phone",
+     "pickup",
+     "point",
+     "punch",
+     "push",
+     "roll",
+     "run",
+     "sit",
+     "sit_enter",
+     "sit_talk",
+     "sleep",
+     "sprint",
+     "swim",
+     "swim_idle",
+     "talk",
+     "think",
+     "walk",
+     "walk_formal",
+     "wave",
+     "zombie"
+    ],
+    "bytes": 994996
+   },
+   "m": {
+    "anim": "people/anim-m.glb?v=0f105d7ae3",
+    "reference": "m-casual",
+    "pelvis": 0.8304,
+    "clips": [
+     "aim",
+     "carry",
+     "carry_idle",
+     "cheer",
+     "cower",
+     "crouch",
+     "crouch_walk",
+     "dance",
+     "drive",
+     "fall",
+     "hit",
+     "idle",
+     "interact",
+     "jump",
+     "jump_land",
+     "jump_start",
+     "kneel",
+     "phone",
+     "pickup",
+     "point",
+     "punch",
+     "push",
+     "roll",
+     "run",
+     "sit",
+     "sit_enter",
+     "sit_talk",
+     "sleep",
+     "sprint",
+     "swim",
+     "swim_idle",
+     "talk",
+     "think",
+     "walk",
+     "walk_formal",
+     "wave",
+     "zombie"
+    ],
+    "bytes": 1643020
+   }
+  },
+  "models": {
+   "m-woman2": {
+    "file": "people/m-woman2.glb?v=699c26ff7f",
+    "family": "m",
+    "sex": "f",
+    "height": 1.66,
+    "pelvis": 0.8803,
+    "face": true,
+    "feet": {
+     "ankle": 0.0755,
+     "toe": 0.1892,
+     "heel": 0.0672
+    },
+    "bytes": 432916
+   },
+   "m-woman3": {
+    "file": "people/m-woman3.glb?v=4d729a9998",
+    "family": "m",
+    "sex": "f",
+    "height": 1.65,
+    "pelvis": 0.8709,
+    "face": true,
+    "feet": {
+     "ankle": 0.075,
+     "toe": 0.1759,
+     "heel": 0.0521
+    },
+    "bytes": 420768
+   },
+   "m-punk2": {
+    "file": "people/m-punk2.glb?v=5ba7815ec8",
+    "family": "m",
+    "sex": "f",
+    "height": 1.67,
+    "pelvis": 0.829,
+    "face": true,
+    "feet": {
+     "ankle": 0.0759,
+     "toe": 0.0945,
+     "heel": 0.14
+    },
+    "bytes": 409956
+   },
+   "m-adventurer2": {
+    "file": "people/m-adventurer2.glb?v=525dbf25eb",
+    "family": "m",
+    "sex": "f",
+    "height": 1.66,
+    "pelvis": 0.8845,
+    "face": true,
+    "feet": {
+     "ankle": 0.0755,
+     "toe": 0.1764,
+     "heel": 0.083
+    },
+    "bytes": 467060
+   },
+   "m-swat": {
+    "file": "people/m-swat.glb?v=9494eca803",
+    "family": "m",
+    "sex": "m",
+    "height": 1.82,
+    "pelvis": 0.851,
+    "face": false,
+    "feet": {
+     "ankle": 0.0827,
+     "toe": 0.169,
+     "heel": 0.1048
+    },
+    "bytes": 477368
+   },
+   "u-woman": {
+    "file": "people/u-woman.glb?v=44e936392d",
+    "family": "u",
+    "sex": "f",
+    "height": 1.66,
+    "pelvis": 0.7632,
+    "face": true,
+    "feet": {
+     "ankle": 0.0755,
+     "toe": 0.1828,
+     "heel": 0.0451
+    },
+    "bytes": 506104
+   },
+   "u-woman-casual": {
+    "file": "people/u-woman-casual.glb?v=62bdf38e8f",
+    "family": "u",
+    "sex": "f",
+    "height": 1.64,
+    "pelvis": 0.7537,
+    "face": true,
+    "feet": {
+     "ankle": 0.0745,
+     "toe": 0.1805,
+     "heel": 0.0446
+    },
+    "bytes": 247044
+   },
+   "u-woman-tank": {
+    "file": "people/u-woman-tank.glb?v=1e2d2946e8",
+    "family": "u",
+    "sex": "f",
+    "height": 1.67,
+    "pelvis": 0.7623,
+    "face": true,
+    "feet": {
+     "ankle": 0.0759,
+     "toe": 0.1826,
+     "heel": 0.0451
+    },
+    "bytes": 193196
+   },
+   "u-woman-dress": {
+    "file": "people/u-woman-dress.glb?v=5fc16e241e",
+    "family": "u",
+    "sex": "f",
+    "height": 1.65,
+    "pelvis": 0.7531,
+    "face": true,
+    "feet": {
+     "ankle": 0.075,
+     "toe": 0.1804,
+     "heel": 0.0445
+    },
+    "bytes": 177980
+   },
+   "u-man": {
+    "file": "people/u-man.glb?v=6fae12f2c5",
+    "family": "u",
+    "sex": "m",
+    "height": 1.76,
+    "pelvis": 0.7699,
+    "face": true,
+    "feet": {
+     "ankle": 0.08,
+     "toe": 0.1863,
+     "heel": 0.046
+    },
+    "bytes": 178372
+   },
+   "u-man2": {
+    "file": "people/u-man2.glb?v=8d2d6ffbe8",
+    "family": "u",
+    "sex": "m",
+    "height": 1.78,
+    "pelvis": 0.7787,
+    "face": true,
+    "feet": {
+     "ankle": 0.0809,
+     "toe": 0.1884,
+     "heel": 0.0465
+    },
+    "bytes": 184176
+   },
+   "u-man-sleeves": {
+    "file": "people/u-man-sleeves.glb?v=f2e2d9db29",
+    "family": "u",
+    "sex": "m",
+    "height": 1.75,
+    "pelvis": 0.7656,
+    "face": true,
+    "feet": {
+     "ankle": 0.0795,
+     "toe": 0.1852,
+     "heel": 0.0457
+    },
+    "bytes": 184764
+   },
+   "u-man-suit": {
+    "file": "people/u-man-suit.glb?v=d121463ba8",
+    "family": "u",
+    "sex": "m",
+    "height": 1.72,
+    "pelvis": 0.7524,
+    "face": true,
+    "feet": {
+     "ankle": 0.0782,
+     "toe": 0.1829,
+     "heel": 0.0441
+    },
+    "bytes": 193124
+   },
+   "m-beach": {
+    "file": "people/m-beach.glb?v=42430491be",
+    "family": "m",
+    "sex": "m",
+    "height": 1.77,
+    "pelvis": 0.8185,
+    "face": true,
+    "feet": {
+     "ankle": 0.0805,
+     "toe": 0.1641,
+     "heel": 0.1039
+    },
+    "bytes": 455800
+   },
+   "m-casual": {
+    "file": "people/m-casual.glb?v=b8d77f91ad",
+    "family": "m",
+    "sex": "m",
+    "height": 1.78,
+    "pelvis": 0.8304,
+    "face": true,
+    "feet": {
+     "ankle": 0.0809,
+     "toe": 0.1927,
+     "heel": 0.0829
+    },
+    "bytes": 407732
+   },
+   "m-business": {
+    "file": "people/m-business.glb?v=554df48d5c",
+    "family": "m",
+    "sex": "m",
+    "height": 1.79,
+    "pelvis": 0.8355,
+    "face": true,
+    "feet": {
+     "ankle": 0.0814,
+     "toe": 0.2007,
+     "heel": 0.0766
+    },
+    "bytes": 467136
+   },
+   "m-hoodie": {
+    "file": "people/m-hoodie.glb?v=5f62ed0f41",
+    "family": "m",
+    "sex": "m",
+    "height": 1.76,
+    "pelvis": 0.8183,
+    "face": true,
+    "feet": {
+     "ankle": 0.08,
+     "toe": 0.1895,
+     "heel": 0.0812
+    },
+    "bytes": 433224
+   },
+   "m-farmer": {
+    "file": "people/m-farmer.glb?v=aaa79c2d94",
+    "family": "m",
+    "sex": "m",
+    "height": 1.77,
+    "pelvis": 0.8257,
+    "face": true,
+    "feet": {
+     "ankle": 0.0805,
+     "toe": 0.1642,
+     "heel": 0.1018
+    },
+    "bytes": 407276
+   },
+   "m-punk": {
+    "file": "people/m-punk.glb?v=ae8b3754a1",
+    "family": "m",
+    "sex": "m",
+    "height": 1.78,
+    "pelvis": 0.7859,
+    "face": true,
+    "feet": {
+     "ankle": 0.0809,
+     "toe": 0.1839,
+     "heel": 0.0761
+    },
+    "bytes": 388720
+   },
+   "m-adventurer": {
+    "file": "people/m-adventurer.glb?v=3511d38e75",
+    "family": "m",
+    "sex": "m",
+    "height": 1.8,
+    "pelvis": 0.84,
+    "face": true,
+    "feet": {
+     "ankle": 0.0818,
+     "toe": 0.093,
+     "heel": 0.1773
+    },
+    "bytes": 690392
+   },
+   "m-worker": {
+    "file": "people/m-worker.glb?v=e022028d50",
+    "family": "m",
+    "sex": "m",
+    "height": 1.79,
+    "pelvis": 0.8335,
+    "face": true,
+    "feet": {
+     "ankle": 0.0814,
+     "toe": 0.1754,
+     "heel": 0.092
+    },
+    "bytes": 393468
+   }
+  },
+  "women": [
+   "m-woman2",
+   "m-woman3",
+   "m-punk2",
+   "m-adventurer2",
+   "u-woman",
+   "u-woman-casual",
+   "u-woman-tank",
+   "u-woman-dress"
+  ],
+  "men": [
+   "u-man",
+   "u-man2",
+   "u-man-sleeves",
+   "m-beach",
+   "m-casual",
+   "m-business",
+   "m-hoodie",
+   "m-farmer",
+   "m-punk",
+   "m-adventurer"
+  ],
+  "roles": {
+   "elder": "u-man-suit",
+   "worker": "m-worker",
+   "police": "m-swat",
+   "sol": "m-swat"
+  },
+  "stride": {
+   "u": {
+    "refHeight": 1.76,
+    "walk": 1.13,
+    "walk_formal": 1.16,
+    "zombie": 1.13,
+    "carry": 1.13,
+    "crouch_walk": 0.81,
+    "run": 2.3,
+    "sprint": 3,
+    "swim": 1.3
+   },
+   "m": {
+    "refHeight": 1.78,
+    "walk": 1.38,
+    "walk_formal": 1.4,
+    "zombie": 1.38,
+    "carry": 1.38,
+    "crouch_walk": 1.2,
+    "run": 2.75,
+    "sprint": 3.6,
+    "swim": 1.3
+   }
+  }
+ },
+ "credits": []
+}

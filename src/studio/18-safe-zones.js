@@ -62,17 +62,25 @@ function shotSubjectPoint(s){let id=s.cam?.target_id;if(!id&&Array.isArray(s.cam
 // Bounds of the meshes that actually show (Box3.setFromObject also counts hidden accessories and props).
 function visibleBox(root){const box=new THREE.Box3(),part=new THREE.Box3();root.updateMatrixWorld(true);root.traverse(o=>{if(!o.isMesh)return;for(let p=o;p;p=p.parent)if(!p.visible)return;if(!o.geometry.boundingBox)o.geometry.computeBoundingBox();box.union(part.copy(o.geometry.boundingBox).applyMatrix4(o.matrixWorld))});return box}
 function noGoPart(a,x,y,w,h){if(x<0||x>w||y<0||y>h)return'outside';if(y<a.top)return'top';if(y>a.bottom)return'bottom';if(x<a.left)return'left';if(x>a.rightEdge(y,y))return'right';return null}
+let cameraCheckHits=[];
+// A camera inside a building or vehicle box, or a box between the camera and the shot's subject (null when clear).
+function cameraClearance(sub){if(!cameraSolids.length)return null;const cam=camera.getWorldPosition(V());
+ if(cameraSolids.some(b=>b.clone().expandByScalar(.15).containsPoint(cam)))return'inside';if(!sub)return null;
+ const d=sub.point.clone().sub(cam),len=d.length(),ray=new THREE.Ray(cam,d.normalize()),hit=V();
+ return cameraSolids.some(b=>!b.containsPoint(sub.point)&&ray.intersectBox(b,hit)&&hit.distanceTo(cam)<len-.4)?'blocked':null}
 // After Validate (or a zone change): play the film once without drawing, sample each shot three times and warn when its
-// subject sits under the platform interface. Cancels itself if a seek, playback or export starts, then returns to the current time.
-async function checkSafeZoneSubjects(){const a=safeArea(canvas.width,canvas.height);safeCheckHits=[];if(!a||!shots.length||recording||seeking||!validatedSource)return;
- const token=++seekToken,back=T;stopPlayback();seeking=true;status('Checking safe zones…');const w=canvas.width,h=canvas.height,
-  samples=shots.flatMap((s,i)=>[.15,.5,.85].map(f=>({i,t:s.t0+(s.t1-s.t0)*f}))).sort((p,q)=>p.t-q.t),flagged=new Set();let k=0;
- try{prepareScene();simulating=true;const n=Math.floor(Math.min(END,filmEnd)*60);
+// subject sits under the platform interface (with a safe zone selected) and when the camera is inside a building or a
+// building blocks its view of the subject. Cancels itself if a seek, playback or export starts, then returns to the current time.
+async function checkSafeZoneSubjects(){const a=safeArea(canvas.width,canvas.height);safeCheckHits=[];cameraCheckHits=[];if(!shots.length||recording||seeking||!validatedSource)return;
+ const token=++seekToken,back=T;stopPlayback();seeking=true;status(a?'Checking safe zones and cameras…':'Checking cameras…');const w=canvas.width,h=canvas.height,
+  samples=shots.flatMap((s,i)=>[.15,.5,.85].map(f=>({i,t:s.t0+(s.t1-s.t0)*f}))).sort((p,q)=>p.t-q.t),flagged=new Set(),camFlagged=new Set();let k=0;
+ try{prepareScene();refreshCameraSolids();simulating=true;const n=Math.floor(Math.min(END,filmEnd)*60);let due=performance.now()+24;
   for(let i=0;i<n&&k<samples.length;i++){if(token!==seekToken)return;stepCount++;step(1/60,stepCount/60);
-   while(k<samples.length&&stepCount/60>=samples[k].t){const sp=samples[k++],s=shots[sp.i];if(flagged.has(sp.i))continue;const sub=shotSubjectPoint(s);if(!sub)continue;
-    camera.updateMatrixWorld(true);const v=sub.point.clone().project(camera);if(v.z<0||v.z>1)continue;const x=(v.x*.5+.5)*w,y=(-.5*v.y+.5)*h,part=noGoPart(a,x,y,w,h);
+   while(k<samples.length&&stepCount/60>=samples[k].t){const sp=samples[k++],s=shots[sp.i],sub=shotSubjectPoint(s);camera.updateMatrixWorld(true);
+    if(!camFlagged.has(sp.i)){const c=cameraClearance(sub);if(c){camFlagged.add(sp.i);cameraCheckHits.push('Shot '+(sp.i+1)+' at '+timecode(sp.t)+': '+(c==='inside'?'the camera is inside a building or vehicle.':'a building blocks the camera\'s view of '+sub.name+'.')+' Move the camera (cam.pos or offset) or raise it.')}}
+    if(!a||flagged.has(sp.i)||!sub)continue;const v=sub.point.clone().project(camera);if(v.z<0||v.z>1)continue;const x=(v.x*.5+.5)*w,y=(-.5*v.y+.5)*h,part=noGoPart(a,x,y,w,h);
     if(part){flagged.add(sp.i);safeCheckHits.push('Shot '+(sp.i+1)+' at '+timecode(sp.t)+': '+sub.name+(part==='outside'?' is outside the frame.':' is under the '+a.zone.name+' '+part+' area.')+' Move the camera or change target_height/offset.')}}
-   if(i%240===239)await new Promise(r=>setTimeout(r,0))}}
+   if(performance.now()>due){status((a?'Checking safe zones and cameras… ':'Checking cameras… ')+Math.round(i/n*100)+'%');await new Promise(r=>setTimeout(r,0));due=performance.now()+24}}}
  finally{if(token===seekToken){simulating=false;seeking=false}}
- if(token!==seekToken)return;const rep=$('rep');rep.textContent=rep.textContent.replace(/\n?Safe zones[^]*$/,'')+'\nSafe zones ('+a.zone.name+'): '+(safeCheckHits.length?safeCheckHits.length+' warning(s)\n- '+safeCheckHits.join('\n- '):'every camera subject is inside the safe area.');
+ if(token!==seekToken)return;const rep=$('rep');rep.textContent=rep.textContent.replace(/\n?(Safe zones|Camera clearance)[^]*$/,'')+(a?'\nSafe zones ('+a.zone.name+'): '+(safeCheckHits.length?safeCheckHits.length+' warning(s)\n- '+safeCheckHits.join('\n- '):'every camera subject is inside the safe area.'):'')+'\nCamera clearance: '+(cameraCheckHits.length?cameraCheckHits.length+' warning(s)\n- '+cameraCheckHits.join('\n- '):'every camera is clear of buildings.');
  await seekFilm(back)}
