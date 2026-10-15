@@ -31,16 +31,16 @@ function validateSafeZoneText(j,r){const a=safeArea(1080,1920);if(!a)return;cons
   check(label,b.title,1080*.077*scale,700,'the title');check(cap,b.caption,1080*.041*scale,500,'the caption')})}
 
 // The safe-zone guides: drawn on their own canvas over the film, so they never reach a PNG or a video export.
-function drawSafeGuides(){const c=$('safeCanvas');if(!c)return;const a=safeArea(1080,1920),show=!!a&&UI.safeGuides!==false;c.hidden=!show;if(!show)return;
- const g=c.getContext('2d'),W=1080,H=1920,z=a.zone,Y='#ffe14a',ghost='rgba(255,255,255,.30)';g.clearRect(0,0,W,H);
+// The guides overlay the preview only (never exports). Off by default (UI.zoneGuides; the old safeGuides key of earlier
+// saves is ignored, so they start hidden): the zone still keeps titles and captions inside the safe area.
+function drawSafeGuides(){const c=$('safeCanvas');if(!c)return;const a=safeArea(1080,1920),show=!!a&&UI.zoneGuides===true;c.hidden=!show;syncGuidesToggle();if(!show)return;
+ const g=c.getContext('2d'),W=1080,H=1920,z=a.zone,Y='rgba(255,255,255,.9)',ghost='rgba(255,255,255,.16)';g.clearRect(0,0,W,H);
  // the safe area as a polygon (the right edge steps inward lower down)
  const pts=[[a.left,a.top]];for(let i=0;i<z.right.length;i++){const from=Math.max(a.top,z.right[i][0]),to=i+1<z.right.length?Math.min(a.bottom,z.right[i+1][0]):a.bottom;if(to<=from)continue;pts.push([W-z.right[i][1],from],[W-z.right[i][1],to])}pts.push([a.left,a.bottom]);
- g.fillStyle='rgba(8,10,18,.52)';g.beginPath();g.rect(0,0,W,H);g.moveTo(pts[0][0],pts[0][1]);for(const p of pts.slice(1))g.lineTo(p[0],p[1]);g.closePath();g.fill('evenodd');
- g.strokeStyle=Y;g.lineWidth=4;g.beginPath();pts.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.closePath();g.stroke();
- const tag=(text,x,y,align='center')=>{g.font='700 30px Arial';const tw=g.measureText(text).width+24,x0=align==='center'?x-tw/2:align==='right'?x-tw:x;g.fillStyle='rgba(8,10,18,.82)';g.fillRect(x0,y-21,tw,42);g.strokeStyle=Y;g.lineWidth=2;g.strokeRect(x0,y-21,tw,42);g.fillStyle=Y;g.textAlign='center';g.textBaseline='middle';g.fillText(text,x0+tw/2,y+1)};
- tag(z.name.toUpperCase()+' SAFE ZONE',a.left+8,46,'left');
- tag(z.top+' px',W/2,a.top/2+18);tag(z.bottom+' px',W*.42,a.bottom+(H-a.bottom)*.5);tag(z.left+'',a.left/2,(a.top+a.bottom)/2);
- z.right.forEach(([from,m],i)=>{const to=i+1<z.right.length?z.right[i+1][0]:a.bottom,mid=(Math.max(from,a.top)+Math.min(to,a.bottom))/2;if(mid>a.top&&mid<a.bottom)tag(m+'',W-m/2,mid)});
+ g.fillStyle='rgba(8,10,18,.26)';g.beginPath();g.rect(0,0,W,H);g.moveTo(pts[0][0],pts[0][1]);for(const p of pts.slice(1))g.lineTo(p[0],p[1]);g.closePath();g.fill('evenodd');
+ g.strokeStyle=Y;g.lineWidth=3;g.setLineDash([18,12]);g.beginPath();pts.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.closePath();g.stroke();g.setLineDash([]);
+ const tag=(text,x,y,align='center')=>{g.font='600 26px Arial';const tw=g.measureText(text).width+28,x0=align==='center'?x-tw/2:align==='right'?x-tw:x;g.fillStyle='rgba(8,10,18,.55)';g.beginPath();g.roundRect(x0,y-20,tw,40,20);g.fill();g.fillStyle=Y;g.textAlign='center';g.textBaseline='middle';g.fillText(text,x0+tw/2,y+1)};
+ tag(z.name+' safe zone',a.left+8,46,'left');
  // generic ghost interface: tabs at the top, action buttons on the right, caption lines at the bottom (no platform logos)
  g.fillStyle=ghost;const pill=(x,y,w,h)=>{g.beginPath();g.roundRect(x,y,w,h,h/2);g.fill()};
  pill(W/2-230,a.top*.42,200,46);pill(W/2+30,a.top*.42,200,46);g.beginPath();g.arc(W-70,a.top*.42+23,26,0,Math.PI*2);g.fill();

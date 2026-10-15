@@ -83,6 +83,8 @@ await sleep(300);
 
 // 4b. Safe zones: every mode switches the guides, and the guides never change the exported picture
 await evaluate(`loadMarketDemo(true)`); await sleep(500); await waitFor('!seeking', 120000); await seek(chrome, 9.5);
+// guides start hidden (UI.zoneGuides); turn them on with the film's eye button
+await evaluate(`(()=>{if(!document.getElementById('showSafe').checked)document.getElementById('guidesToggle').click()})()`);
 const zones = [];
 for (const mode of ['off', 'youtube', 'tiktok', 'both']) {
   await evaluate(`(()=>{const s=document.getElementById('safeZone');s.value='${mode}';s.dispatchEvent(new Event('change',{bubbles:true}))})()`);

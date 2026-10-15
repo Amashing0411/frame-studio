@@ -23,6 +23,7 @@ function initUIShell() {
   $('storyCreature').onclick = () => { closeSheet(); loadMarketDemo(true); };
   $('storyMarket').onclick = () => { closeSheet(); loadMarketDemo(false); };
   for (const id of ['bq', 'bz', 'newScenario', 'loadWorldDemo']) $(id).addEventListener('click', closeSheet);
+  $('guidesToggle').onclick = () => $('showSafe').click();
   castProgress(0, 1);
 }
 
@@ -109,6 +110,9 @@ function foldFieldset(f, open) {
   const flip = () => f.classList.toggle('open');
   legend.onclick = flip; legend.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } };
 }
+
+// The eye button on the film bar mirrors Look › Safe-zone guides.
+function syncGuidesToggle() { const on = $('showSafe').checked; $('guidesToggle').classList.toggle('on', on); $('guidesToggle').setAttribute('aria-pressed', on); $('guidesToggle').title = on ? 'Hide the safe-zone guides' : 'Show the safe-zone guides'; }
 
 // Small marks on the scrubber where each shot starts.
 function renderShotTicks() {
