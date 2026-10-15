@@ -16,7 +16,7 @@ for (const finish of ['natural', 'soft', 'ceramic', 'faceted', 'toon']) {
   for (const t of [0, 9.5]) { await seek(c, t); await sleep(200); const f = `finish-${finish}-${t * 10}.png`; writeFileSync(join(out, f), await canvasPng(c)); files.push(f); }
 }
 // Asset studio with the film left on "faceted": select the first catalog human and screenshot the viewer.
-await c.evaluate(`CINEMA.material='faceted';applyCinemaMaterials('faceted');document.querySelector('[data-left=library]').click();document.querySelector('#left-library .asset-item')?.click();document.querySelector('[data-view=asset]').click()`);
+await c.evaluate(`CINEMA.material='faceted';applyCinemaMaterials('faceted');tabLeft('library');document.querySelector('#left-library .asset-item')?.click();document.querySelector('[data-view=asset]').click()`);
 await sleep(2000);
 const box = await c.evaluate(`(()=>{const r=document.getElementById('assetPreview').getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,scale:1}})()`);
 writeFileSync(join(out, 'asset-faceted.png'), Buffer.from((await c.cdp('Page.captureScreenshot', { format: 'png', clip: box })).data, 'base64')); files.push('asset-faceted.png');

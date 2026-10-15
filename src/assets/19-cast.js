@@ -19,7 +19,9 @@ const CAST_ONCE = new Set(['fall', 'sleep', 'sit_enter', 'jump_start', 'jump_lan
 async function loadCast() {
   try {
     const m = await (await fetch('assets/manifest.json')).json(), P = m.people;
-    const loader = new THREE.GLTFLoader(), load = u => new Promise((ok, fail) => loader.load('assets/' + u, ok, undefined, fail));
+    // castProgress (20-ui-shell.js) fills the film's loading bar as each file arrives
+    const total = Object.keys(P.families).length + Object.keys(P.models).length; let done = 0;
+    const loader = new THREE.GLTFLoader(), load = u => new Promise((ok, fail) => loader.load('assets/' + u, g => { castProgress(++done, total); ok(g); }, undefined, fail));
     await Promise.all([
       ...Object.entries(P.families).map(async ([f, d]) => { CAST.clips[f] = (await load(d.anim)).animations; }),
       ...Object.entries(P.models).map(async ([id, d]) => { CAST.src.set(id, (await load(d.file)).scene); }),

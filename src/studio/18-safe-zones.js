@@ -50,7 +50,7 @@ function drawSafeGuides(){const c=$('safeCanvas');if(!c)return;const a=safeArea(
 
 function setSafeZone(mode){UI.safeZone=SAFE_ZONES[mode]?mode:'off';$('safeZone').value=UI.safeZone;drawSafeGuides();
  if(validatedSource&&validatedSource===$('ta').value){const r=validate(parse());validation=r;report(r)}
- composeFrame(T);autosave();checkSafeZoneSubjects()}
+ composeFrame(T);autosave()}
 
 // The camera's subject for a shot: the asset it follows, or for an authored camera the placed asset nearest the point it
 // looks at (within 2.5 m), or the closeup person. People are measured at head height, objects at their centre.

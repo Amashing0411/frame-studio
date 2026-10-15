@@ -60,12 +60,16 @@ const shot2 = await evaluate(`document.getElementById('shotName').textContent`);
 check('Next shot changes the selected shot', shot1 !== shot2, `"${shot1}" -> "${shot2}"`);
 
 // 4. Tabs and views
-const tabs = await evaluate(`(()=>{const r=[];
-  for(const b of document.querySelectorAll('[data-left]')){b.click();r.push([b.dataset.left,!!document.querySelector('#left-'+b.dataset.left+'.active')])}
-  for(const b of document.querySelectorAll('[data-inspector]')){b.click();r.push([b.dataset.inspector,!!document.querySelector('#inspector-'+b.dataset.inspector+'.active')])}
+// the four side tabs, then every inspector the code opens by name (tabInspector / tabLeft route into Shot and More)
+const tabs = await evaluate(`(()=>{const r=[],shown=el=>!!el&&el.getClientRects().length>0;
+  for(const b of document.querySelectorAll('.paneltabs [data-panel]')){b.click();r.push([b.dataset.panel,document.getElementById('panel-'+b.dataset.panel).classList.contains('active')&&b.classList.contains('on')])}
+  for(const k of ['shot','model','audio','look','export']){tabInspector(k);r.push(['inspector-'+k,shown(document.getElementById('inspector-'+k))])}
+  for(const k of ['scenario','library']){tabLeft(k);r.push(['left-'+k,shown(document.getElementById('left-'+k))])}
   return r})()`);
-check('every left tab and inspector tab opens its panel', tabs.every(t => t[1]), tabs.map(t => `${t[0]}:${t[1] ? 'ok' : 'NO'}`).join(' '));
-await evaluate(`document.querySelector('[data-left=library]').click();document.querySelector('#left-library .asset-item')?.click();
+check('every side tab and every inspector opens', tabs.length === 11 && tabs.every(t => t[1]), tabs.map(t => `${t[0]}:${t[1] ? 'ok' : 'NO'}`).join(' '));
+const guide = await evaluate(`(()=>{showPanel('guide');const g=document.getElementById('guide');return {sections:g.querySelectorAll('.guide-sec').length,items:g.querySelectorAll('.guide-sec button').length,people:g.querySelector('.guide-counts b')?.textContent}})()`);
+check('Guide lists what the engine offers', guide.sections >= 6 && guide.items > 30 && guide.people === '21', JSON.stringify(guide));
+await evaluate(`tabLeft('library');document.querySelector('#left-library .asset-item')?.click();
   document.querySelector('[data-view=asset]').click()`);
 await sleep(1500);
 // The asset canvas does not keep its drawing buffer, and a frame ends with a 2-triangle composite pass,

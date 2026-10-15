@@ -94,7 +94,9 @@ export async function launch({ width = 1600, height = 900 } = {}) {
 }
 
 // Studio helpers shared by the tools.
-export const STUDIO_READY = `typeof seekFilm==='function'&&typeof loadMarketDemo==='function'&&!seeking`;
+// Boot has finished (the people models are loaded or failed, the first story is in): over the network the model
+// download takes seconds, and the functions exist long before that.
+export const STUDIO_READY = `typeof seekFilm==='function'&&typeof loadMarketDemo==='function'&&!seeking&&typeof shots!=='undefined'&&shots.length>0`;
 export async function seek(chrome, t) {
   await chrome.evaluate(`seekFilm(${t})`);
   await chrome.waitFor('!seeking', 120000);

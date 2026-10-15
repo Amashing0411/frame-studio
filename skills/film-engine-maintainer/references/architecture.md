@@ -10,7 +10,7 @@ classic.config.js         load order of every source file, per bundle (vendor, e
 vite.config.js            Vite + tools/vite-classic-scripts.js (cssMinify off)
 src/engine/00-15-*.js     core engine (one script)
 src/studio/*.js, src/assets/*.js   studio layer (one script), numbered in load order across both folders
-src/styles/*.css          studio.css then theme.css (theme overrides)
+src/styles/studio.css     the interface design system (light/dark tokens on :root, data-theme switch)
 public/favicon.ico
 reference/                workshop-original.html (pre-split single file), v1.html, frames/ (16 PNG + manifest.json)
 perf/budgets.json         per-story limits; perf/stats-step*.json are the measurements behind them
@@ -72,7 +72,8 @@ Vendor (npm, pinned): `three@0.128.0` (`build/three.min.js` + `examples/js` Orbi
 
 ## The film loop
 
-- `validateOnly()` (Validate button): reads cinema settings, `validateAndCompile()` parses the JSON in the editor, validates, compiles shots, `prepareScene()` (build world, reset state, instantiate assets), then refreshes camera solids and materials.
+- Interface (Step 11): top bar, film stage, one side panel with four tabs (Story, Shot, Guide, More; phone: bottom bar + sheet). Every original element id is kept; `tabInspector(key)` / `tabLeft(key)` route into the tabs (`showPanel`, `openMoreSection` in `src/studio/20-ui-shell.js`). The Guide (`src/studio/21-guide.js`) is rebuilt from the live engine each time it opens. Camera/move picture buttons mirror the hidden `#shotPreset` / `#shotMove` selects (`syncChoiceMirrors`, called from `showShotFields`).
+- `validateOnly()` (Validate button, labelled "Check story"; the full-film camera/safe-zone pass runs only from `#checkCameras`): reads cinema settings, `validateAndCompile()` parses the JSON in the editor, validates, compiles shots, `prepareScene()` (build world, reset state, instantiate assets), then refreshes camera solids and materials.
 - `seekFilm(t)`: re-simulates from 0:00 with `step(1/60, …)` while `simulating`, then `renderCurrent()`. Deterministic, so it is what the frame tools use.
 - `step(dt, t)`: simulation for the current shot (events in `onShot`, people, vehicles, debris, camera via `shotCam`), then if not simulating draws: `renderFilm()` (scene into a target, then the cinema post pass: depth of field, radial blur, bloom, vignette, grain, grade) and `composeFrame()` (titles, captions, clock or end card, speech and thought balloons on the 2D canvas `#output`).
 - Shot timing: `shots[]` from `compileShots`; `cur` is the current shot; `END` = film length + end card seconds.
