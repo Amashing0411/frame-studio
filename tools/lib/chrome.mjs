@@ -1,6 +1,6 @@
 // Minimal headless Chrome over the DevTools Protocol (no dependencies; Node 22+ has fetch and WebSocket).
-import { spawn } from 'node:child_process';
-import { existsSync, rmSync } from 'node:fs';
+import { spawn, spawnSync } from 'node:child_process';
+import { existsSync, rmSync, readdirSync, statSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -19,13 +19,37 @@ export function findChrome() {
 // A URL stays as is; anything else is treated as a local file path.
 export const toUrl = target => /^(https?|file):/.test(target) ? target : pathToFileURL(resolve(target)).href;
 
+// Every launch uses a throwaway profile folder fs-chrome-<pid>-<port> in the temp folder. Profiles older than this
+// belong to runs that crashed or were killed; launch() removes them so they never pile up.
+const STALE_PROFILE_MS = 15 * 60 * 1000;
+function sweepStaleProfiles() {
+  let names = []; try { names = readdirSync(tmpdir()); } catch { return; }
+  for (const n of names) {
+    if (!n.startsWith('fs-chrome-')) continue;
+    const p = join(tmpdir(), n);
+    try { if (Date.now() - statSync(p).mtimeMs > STALE_PROFILE_MS) rmSync(p, { recursive: true, force: true, maxRetries: 2, retryDelay: 100 }); } catch {}
+  }
+}
+
 export async function launch({ width = 1600, height = 900 } = {}) {
+  sweepStaleProfiles();
   const port = 9300 + Math.floor(Math.random() * 600), profile = join(tmpdir(), `fs-chrome-${process.pid}-${port}`);
+  // no disk caches or component downloads in the throwaway profile (they made each leftover profile 25-110 MB)
   const chrome = spawn(findChrome(), ['--headless=new', '--enable-gpu', '--ignore-gpu-blocklist', '--disable-frame-rate-limit',
     '--allow-file-access-from-files', '--autoplay-policy=no-user-gesture-required', `--remote-debugging-port=${port}`,
     '--no-first-run', '--no-default-browser-check', `--user-data-dir=${profile}`, `--window-size=${width},${height}`,
+    '--disable-gpu-shader-disk-cache', '--disk-cache-size=1', '--media-cache-size=1', '--disable-component-update', '--disable-background-networking',
     '--hide-scrollbars', '--mute-audio', 'about:blank'], { stdio: 'ignore' });
-  const close = () => { try { chrome.kill(); } catch {} try { rmSync(profile, { recursive: true, force: true }); } catch {} };
+  // Synchronous, because tools call close() and then process.exit(). On Windows chrome.kill() only stops the main
+  // process and returns at once, so the GPU/renderer children kept the profile locked and the delete failed silently:
+  // taskkill /T /F ends the whole tree and waits, then the delete retries while the last file handles close.
+  let closed = false;
+  const close = () => {
+    if (closed) return; closed = true;
+    if (process.platform === 'win32' && chrome.pid) spawnSync('taskkill', ['/pid', String(chrome.pid), '/T', '/F'], { stdio: 'ignore' });
+    else try { chrome.kill('SIGKILL'); } catch {}
+    try { rmSync(profile, { recursive: true, force: true, maxRetries: 20, retryDelay: 150 }); } catch {}
+  };
   process.on('exit', close);
 
   let version;
