@@ -413,3 +413,12 @@ kbd{background:var(--sunk);border-radius:6px;padding:2px 7px;font:12px ui-monosp
 #pasteScript{background:var(--surface)}
 .ai-fold label.check{font-size:13px}
 details.fold>.wide{width:calc(100% - 28px)}
+/* asset library picture grid (thumbnails from tools/build-thumbnails.mjs, lazy loaded) */
+.asset-list.asset-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:8px;max-height:560px;padding:2px}
+.asset-grid .asset-item{position:relative;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:4px;height:auto;padding:6px 6px 8px;border-radius:13px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);text-align:center;white-space:normal}
+.asset-grid .asset-item.active{box-shadow:inset 0 0 0 2px var(--accent);background:var(--tint)}
+.asset-thumb{display:block;width:100%;aspect-ratio:1;object-fit:contain;border-radius:9px;background:var(--sunk)}
+.asset-grid .name{font-size:12px;line-height:1.25;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.asset-grid small{display:none}
+.asset-swatch{position:absolute;top:11px;right:11px;width:12px;height:12px;border-radius:50%;box-shadow:0 0 0 2px var(--surface)}
+@media (hover:hover) and (pointer:fine){.asset-grid .asset-item:hover{box-shadow:inset 0 0 0 1px var(--line2),var(--sh1)}}

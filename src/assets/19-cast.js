@@ -246,7 +246,10 @@ function castClipFor(p, state, speed) {
 // with 'talk' in the same tick is the talking layer of 13-talking.js: it adds lip-sync and keeps the current clip.
 function poseCastBody(p, state, t, expression, distance, speed) {
   const a = p.castAnim; if (!a) return;
-  const clock = typeof stepCount === 'number' ? stepCount / 60 : t;
+  // the film's clock in a film; in Model studio (not in the film scene) the preview's own time, since stepCount stands
+  // still there (otherwise one-shot clips never played and a 'talk' preview kept the previous clip)
+  let top = p.g; while (top.parent) top = top.parent;
+  const clock = typeof stepCount === 'number' && top === scene ? stepCount / 60 : t;
   if (state === 'talk' && a.tick === clock && a.clip !== 'talk') { a.talk = true; a.expression = expression || a.expression; castFace(p); return; }
   a.tick = clock; a.pending = { state, t, expression, distance, speed, clock };
   // the ambient crowd and extras are posed at render time when on screen (the camera never aims at them); the state
@@ -335,6 +338,19 @@ function castGround(p) {
   let dy = Infinity; const v = V();
   for (const g of c.ground) dy = Math.min(dy, p.g.worldToLocal(g.o.getWorldPosition(v)).y - g.rest);
   c.body.position.y = -dy;
+}
+
+// cloneModel (Model studio, scene previews) copies a person: the copy gets its own mixer, actions and ground points on
+// its own cloned body. Without this the copy kept the original's cast, so previews animated the original, off screen,
+// while the visible copy stood still and only its rig moved.
+function cloneCastBody(p, q, map) {
+  const c = p.cast, body = c && map.get(c.body); if (!body) return;
+  const mixer = new THREE.AnimationMixer(body), actions = {};
+  for (const clip of castClipsFor(c.id)) { const a = mixer.clipAction(clip); a.play(); a.setEffectiveWeight(0); actions[clip.name] = a; }
+  q.cast = { ...c, body, mixer, actions, head: map.get(c.head), morphs: c.morphs.map(m => map.get(m)).filter(Boolean),
+    ground: c.ground.map(g => ({ o: map.get(g.o), rest: g.rest })).filter(g => g.o), lying: c.lying.map(b => map.get(b)).filter(Boolean) };
+  q.castAnim = { ...p.castAnim, prev: null, pending: null, dirty: false, tick: undefined, last: undefined, since: 0 };
+  q.castKind = 'actor'; CAST.people.add(q);
 }
 
 // A person is no longer in any scene (story rebuilt): free its skeleton's bone texture and its private materials.

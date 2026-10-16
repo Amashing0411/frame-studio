@@ -73,6 +73,8 @@ check('Guide lists what the engine offers', guide.sections >= 6 && guide.items >
 const whatif = await evaluate(`(async()=>{$('whatifPrompt').value='What if a typhoon flooded Pasig at night?';await makeWhatIfFilm(false);return {ok:validatedSource===$('ta').value,hazard:SC.hazard.type,shots:shots.length,errors:(validation.e||[]).length,title:SC.meta.title}})()`);
 await waitFor('!seeking', 120000);
 check('the free What if writer makes a valid film from a sentence', whatif.ok && whatif.hazard === 'flood' && whatif.shots >= 8 && !whatif.errors, JSON.stringify(whatif));
+const library = await evaluate(`new Promise(ok=>{tabLeft('library');$('libraryMode').value='catalog';libraryModeChanged();setTimeout(()=>{const imgs=[...document.querySelectorAll('#assetList img.asset-thumb')];ok({cards:document.querySelectorAll('#assetList .asset-item').length,pictures:imgs.filter(i=>i.complete&&i.naturalWidth>0).length})},1500)})`);
+check('asset library shows a picture for each model', library.cards > 0 && library.pictures === library.cards, JSON.stringify(library));
 await evaluate(`tabLeft('library');document.querySelector('#left-library .asset-item')?.click();
   document.querySelector('[data-view=asset]').click()`);
 await sleep(1500);
@@ -82,6 +84,9 @@ const assetView = await evaluate(`new Promise(ok=>{const r=assetRenderer,orig=r.
   r.render=function(s,c){orig.call(this,s,c);calls++;triangles=Math.max(triangles,this.info.render.triangles)};
   setTimeout(()=>{r.render=orig;ok({active:document.getElementById('assetView').classList.contains('active'),selected:document.getElementById('selectedName').textContent,calls,maxTriangles:triangles})},1000)})`);
 check('Asset studio view renders', assetView.active && assetView.calls > 0 && assetView.maxTriangles > 100, JSON.stringify(assetView));
+// Model studio: previewing an animation moves the visible person's body, not only its hidden rig
+const studioAnim = await evaluate(`new Promise(ok=>{selectCatalog('human.vendor.v02');setTimeout(()=>{const p=workshopActors.get(assetObject),arm=()=>p?.cast?.body.getObjectByName('UpperArmL')?.quaternion.toArray().join(',');let up=null;for(let x=p?.cast?.body;x;x=x.parent)up=x;const a=arm();$('assetAnimation').value='walk';if(!assetAnimationPlaying)startAssetAnimation();setTimeout(()=>{const b=arm();startAssetAnimation();ok({visible:up===assetScene,moved:!!a&&a!==b})},700)},700)})`);
+check('Model studio animation preview moves the visible body', studioAnim.visible && studioAnim.moved, JSON.stringify(studioAnim));
 await evaluate(`document.querySelector('[data-view=film]').click()`);
 await sleep(300);
 
