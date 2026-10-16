@@ -26,7 +26,7 @@ function collect() {
     presets: PRE, moves: MOV, events: EVT, crowd: CRW, emotions: EMOS, zombies: ZMB,
     biomes: lists(validateCatalogScenario).find(l => l.includes('city') && l.includes('coast')),
     finishes: quoted(validateFinish, /'(\w+)'/g).filter(x => x !== 'toy' ? x === 'classic' : true),
-    cinema: { material: lists(validateCinemaAndMoments)[0], grade: lists(validateCinemaAndMoments)[1], ranges: cinemaRanges, speech: lists(validateSpeech)[0] },
+    cinema: { material: FILM_FINISHES, grade: lists(validateCinemaAndMoments)[0], ranges: cinemaRanges, speech: lists(validateSpeech)[0] },
     speech_icons: SPEECH_ICONS,
     dialogue_moods: ['friendly', ...quoted(String(updateTalkingFaces) + String(applyConversation), /d\.mood==='(\w+)'/g)],
     shaders: [...document.getElementById('catalogShader').options].map(o => o.value),

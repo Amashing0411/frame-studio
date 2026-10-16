@@ -77,7 +77,7 @@ Any key not listed inside `assets[]` items or `actions` is an ERROR in the engin
 - **dialogue**: the character lip-syncs in a babble voice that stays the same for that character all film (children higher, elders lower). A speech balloon appears beside the speaker: by default 1-2 pictogram icons picked from the line's words; with `cinema.speech:"text"` it shows the words (first 120 characters); `"off"` hides it (voice only). `icon` (optional) forces the pictogram: heart, question, exclaim, idea, food, home, coin, phone, music, sleep, angry, smile, warning, plus. `mood`: friendly, surprised, worried (anything else plays as friendly). `start` default 0.4 s, `duration` default 2.2 s, both within the shot. Text max 200 characters. One speaker at a time.
 - **Conversation (automatic)**: while someone speaks, other placed humans within 7 m turn their heads toward them and nod; the speaker looks at whoever spoke last (otherwise the nearest listener). A speaker whose state is idle and who is not walking blends into talking hand gestures for the line. Heads turn at most about 60 degrees, so stand people in conversation within 7 m of each other and roughly facing each other.
 - **thoughts**: a thought-cloud bubble with the text above the character's head. Keep it to 40 characters or fewer. `start` default 0, `duration` default the whole shot.
-- **cinema** (top level and per shot): material natural|soft|ceramic|faceted|toon; grade neutral|warm|cool|mono; dof 0-1; focus 0-300 (0 = auto); radial 0-1 (motion blur from center); bloom 0-1; vignette 0-1; grain 0-1; voices true/false; bubbles true/false (thought clouds); speech icons|text|off (speech balloons, default icons). Typical: closeup dof 0.5-0.65; action radial 0.1-0.2.
+- **cinema** (top level and per shot): material natural|soft|ceramic|faceted|toon|psx (psx = PlayStation-1 look: low-res pixels, wobble, dither; turns off dof/bloom/grain); grade neutral|warm|cool|mono; dof 0-1; focus 0-300 (0 = auto); radial 0-1 (motion blur from center); bloom 0-1; vignette 0-1; grain 0-1; voices true/false; bubbles true/false (thought clouds); speech icons|text|off (speech balloons, default icons). Typical: closeup dof 0.5-0.65; action radial 0.1-0.2.
 - **environment**: overrides lighting only for the parts you include. In city films leave out sun/fog/clouds and let time_of_day and weather light the scene; include them for other biomes. Ranges: sun azimuth ±360, elevation ±90, intensity 0-5; moon phase 0-1, intensity 0-3; clouds coverage 0-1, speed ±20; wind 0-5 (above 2 makes trees sway hard); water level ±100, wave_height 0-5, speed 0-5, color #rrggbb; fog near 0-1000, far 1-2000 and greater than near.
 - **Camera on a placed asset**: `target_id` (an instance_id), `target_height` (where to look, metres above the asset's feet, ±1000), `offset` (camera position relative to the asset, WORLD axes, not rotated with the asset, nonzero). With target_id only push/pull (zoom 18%) and orbit (circles) move the camera; crane and track give a static frame. The camera follows the asset if it walks a path.
 - **Authored camera** (any world): `position` and `look` (world [x,y,z], each coordinate within ±1000) place the camera exactly; both are required, one alone is ignored. Add `end_position` and/or `end_look` to glide smoothly to them over the shot. Preset and move then only affect shake. `target_id` overrides an authored position, so use one or the other. Use authored cameras for precise compositions (a low angle past a foreground prop, a reveal over a rooftop edge); use target_id for anything that follows a moving actor. "Keep camera clear of solid scenery" may nudge an authored camera out of a wall.
@@ -91,20 +91,19 @@ Use a base id (e.g. `human.medic`) or a variant `.v01` to `.v24` (e.g. `human.me
   - states: idle walk run wave talk phone sit crouch cower cheer point carry swim dance jump climb fall sleep zombie think
   - expressions: neutral happy sad angry fear surprised determined relief sleepy
   - accessories: backpack cap helmet glasses mask bag vest umbrella
-- **Cars and trucks**: vehicle.compact, .sedan, .suv, .taxi, .police, .ambulance, .firetruck, .bus, .schoolbus, .van, .pickup, .flatbed, .tanker, .garbage, .jeepney, .tractor (all prefixed `vehicle.`). States: idle drive turn_left turn_right doors_open hazard
-- **Two-wheelers**: vehicle.bicycle, vehicle.motorcycle, vehicle.scooter. States: idle drive turn_left turn_right
-- **Boats**: boat.dinghy, .canoe, .speedboat, .sailboat, .fishing, .ferry, .cargo, .raft. States: idle sail storm anchor
-- **Aircraft**: aircraft.propeller, .jet, .seaplane, .helicopter, .drone, .glider. States: idle fly bank_left bank_right land
-- **Buildings**: building.house, .apartment, .office, .shop, .hospital, .school, .firestation, .policestation, .warehouse, .cafe, .hotel, .skyscraper, .stilt_house, .hut, .hangar, .shelter. States: idle doors_open damage. Also building.lighthouse, building.watertower. States: idle damage
-- **Trees**: tree.oak, .banyan, .acacia, .pine, .cypress, .palm, .banana, .mangrove, .bamboo, .jungle, .dead, .sapling. States: idle wind storm
-- **Plants**: plant.fern, .grass, .reeds, .bush, .flower, .potted, .lily, .kelp, .coral, .vine. States: idle wind
-- **Land animals**: animal.dog, .cat, .deer, .boar, .cow, .tiger, .elephant, .monkey. States: idle walk run rest
-- **Birds**: animal.gull, .pigeon, .parrot, .eagle. States: idle fly glide
-- **Sea animals**: animal.fish, .shark, .dolphin, .whale, .turtle. States: idle swim dart
-- **Static props** (state idle only): food.apple, .orange, .banana, .coconut, .watermelon, .pineapple, .bread, .burger, .pizza, .fish, .rice, .soup, .noodles, .coffee, .water, .can, .crate, .sack; prop.bench, .table, .chair, .lamp, .traffic_light, .cone, .barrier, .hydrant, .sign, .fence, .crate, .container, .barrel, .pallet, .lifebuoy, .anchor, .buoy, .dock, .bridge, .tent, .umbrella, .cart, .generator, .solar, .antenna, .suitcase, .backpack, .traffic_barrel; environment.sun, .moon, .island, .sandbank, .mountain
-- **Trash**: trash.bag, .bottle, .can, .cardboard, .paper, .tire, .wood, .metal, .bin, .dumpster, .net, .plastic. States: idle scatter
-- **Debris**: debris.concrete, .brick, .glass, .asphalt, .roof, .beam, .driftwood, .rock. States: idle scatter fall
-- **Animated environment**: environment.water, environment.cloud, environment.waterfall. States: idle animate
+<!-- assets:start -->
+Each model below has one look: use the id as written (an old `.vNN` suffix still resolves to the same model). Sizes are width×height×depth in metres; models stand on y = 0, centred, facing +z.
+
+- **Cars and vans** (states: idle drive): vehicle.wagon (Station wagon, 1.8×1.5×4.2 m), vehicle.sedan (City sedan, 2.0×1.5×4.5 m), vehicle.compact (Compact hatchback, 1.9×1.5×4.0 m), vehicle.minivan (Minivan, 2.6×2.1×4.8 m), vehicle.cruiser (Full-size sedan, 2.0×1.5×5.3 m), vehicle.police (Police cruiser, 2.0×1.6×5.3 m), vehicle.taxi (Taxi, 2.0×1.6×5.3 m), vehicle.wreck (Burned-out car, 1.7×1.1×4.4 m), vehicle.vintage (Vintage car, 1.6×1.9×3.9 m), vehicle.van (Delivery van, 2.6×2.6×5.6 m)
+- **Buildings** (states: idle): building.office (Office tower, 25.0×73.0×25.0 m), building.tower_01_2 (Tower 01.2, 25.0×37.0×25.0 m), building.tower_01_3 (Tower 01.3, 49.0×73.0×49.0 m), building.tower_01_4 (Tower 01.4, 49.0×37.0×49.0 m), building.tower_02_1 (Tower 02.1, 33.0×97.0×33.0 m), building.tower_02_2 (Tower 02.2, 33.0×49.0×33.0 m), building.tower_03_1 (Tower 03.1, 29.0×97.0×29.0 m), building.tower_03_2 (Tower 03.2, 29.0×49.0×29.0 m), building.tower_04_1 (Tower 04.1, 33.0×125.0×33.0 m), building.tower_04_2 (Tower 04.2, 33.0×63.0×33.0 m), building.tower_05_1 (Tower 05.1, 33.0×121.0×33.0 m), building.tower_05_2 (Tower 05.2, 33.0×61.0×33.0 m), building.tower_06_1 (Tower 06.1, 33.0×121.0×33.0 m), building.tower_06_2 (Tower 06.2, 33.0×61.0×33.0 m), building.tower_07_1 (Tower 07.1, 33.0×121.0×33.0 m), building.tower_07_2 (Tower 07.2, 33.0×61.0×33.0 m), building.tower_08_1 (Tower 08.1, 65.0×73.0×65.0 m), building.tower_08_2 (Tower 08.2, 65.0×37.0×65.0 m), building.apartment (Apartment block, 28.2×19.6×19.4 m), building.shop (Corner shops, 34.0×23.6×19.5 m), building.block_03 (City block 3, 40.8×26.3×22.9 m), building.block_04 (City block 4, 23.2×18.8×17.1 m), building.block_05 (City block 5, 25.5×18.6×18.1 m), building.block_06 (City block 6, 29.8×18.8×19.1 m), building.block_07 (City block 7, 33.5×14.5×18.7 m), building.block_08 (City block 8, 24.9×14.8×16.2 m), building.block_09 (City block 9, 15.5×13.0×13.9 m), building.block_10 (City block 10, 16.9×11.9×13.9 m), building.house (Town house, 5.8×8.0×4.8 m), building.house_02 (Town building 2, 5.3×7.0×3.8 m), building.house_03 (Town building 3, 8.0×5.5×4.1 m), building.house_04 (Town building 4, 6.5×6.8×4.7 m), building.house_05 (Town building 5, 5.8×8.5×4.0 m), building.house_06 (Town building 6, 4.8×6.1×4.0 m), building.house_07 (Town building 7, 8.8×12.0×5.9 m), building.house_08 (Town building 8, 8.5×11.2×6.2 m), building.house_09 (Town building 9, 7.6×6.3×4.6 m), building.house_10 (Town building 10, 4.5×3.9×4.0 m), building.house_11 (Town building 11, 5.6×2.5×4.4 m), building.house_12 (Town building 12, 7.3×2.5×2.6 m), building.house_13 (Town building 13, 4.2×2.1×2.8 m), building.house_14 (Town building 14, 2.7×2.3×1.8 m), building.house_15 (Town building 15, 31.1×13.6×10.9 m), building.house_16 (Town building 16, 28.6×20.7×10.2 m), building.hut (Wooden cabin, 6.7×3.1×7.7 m), building.cabin_02 (Long cabin, 7.9×2.9×4.9 m), building.cabin_03 (Cabin with porch, 7.3×3.7×8.6 m)
+- **Props** (states: idle): prop.fence (Wooden fence, 0.06×0.90×1.3 m), prop.door (Wooden door, 0.85×2.0×0.10 m), prop.vending_01 (Vending machine 1, 0.45×1.8×0.87 m), prop.vending_02 (Vending machine 2, 0.45×1.8×1.1 m), prop.vending_03 (Vending machine 3, 0.45×1.8×1.1 m), prop.vending_04 (Vending machine 4, 0.45×1.8×0.92 m), prop.vending_05 (Vending machine 5, 0.45×1.8×1.1 m), prop.vending_06 (Vending machine 6, 0.45×1.8×0.82 m), prop.vending_07 (Vending machine 7, 0.40×1.8×0.98 m), prop.vending_08 (Vending machine 8, 0.61×1.8×1.1 m), prop.vending_09 (Vending machine 9, 0.53×1.8×0.73 m), prop.vending_10 (Vending machine 10, 0.39×1.8×0.97 m), prop.vending_11 (Vending machine 11, 0.42×1.8×1.0 m), prop.vending_12 (Vending machine 12, 0.34×1.8×0.95 m), prop.cooler (Cooler box, 0.44×0.45×0.24 m), prop.cooler_red (Red cooler, 0.44×0.45×0.24 m), prop.outboard (Outboard motor, 0.24×1.0×0.44 m)
+- **Trees** (states: idle wind): tree.oak (Broadleaf tree, 8.6×11.0×7.8 m), tree.pine (Pine, 7.0×14.0×6.5 m), tree.sapling (Young tree, 2.7×3.5×2.0 m), tree.fir (Fir, 3.2×9.0×3.3 m), tree.spruce (Thin spruce, 3.3×9.0×3.2 m), tree.birch (Birch, 4.3×7.5×4.3 m), tree.maple (Round tree, 5.4×8.0×6.0 m), tree.dead (Bare tree, 4.2×9.0×4.4 m), tree.bare_sapling (Bare sapling, 2.2×5.0×2.1 m)
+- **Rocks** (states: idle): rock.boulder (Boulder, 1.6×1.4×1.6 m), rock.rock_2 (Rock 2, 1.4×0.66×1.2 m), rock.rock_3 (Rock 3, 1.2×0.63×1.2 m), rock.rock_4 (Rock 4, 1.0×0.82×1.0 m), rock.rock_5 (Rock 5, 2.3×1.1×2.4 m), rock.rock_6 (Rock 6, 1.5×0.77×1.5 m), rock.rock_7 (Rock 7, 1.7×1.2×1.8 m), rock.rock_8 (Rock 8, 1.7×0.80×1.6 m)
+- **Boats** (states: idle sail): boat.fishing (Fishing boat, 1.7×0.76×6.5 m), boat.rowboat (Rowing boat, 1.8×0.49×4.2 m), boat.canoe (Small boat, 1.5×0.57×3.4 m)
+- **Fish** (states: idle swim): animal.fish (Fish, 0.06×0.21×0.45 m), animal.fish_2 (Fish 2, 0.06×0.15×0.40 m), animal.fish_3 (Fish 3, 0.06×0.19×0.35 m), animal.fish_4 (Fish 4, 0.04×0.14×0.40 m), animal.fish_5 (Fish 5, 0.04×0.27×0.50 m), animal.fish_6 (Fish 6, 0.04×0.13×0.40 m), animal.fish_7 (Fish 7, 0.04×0.18×0.45 m), animal.fish_8 (Fish 8, 0.25×0.22×0.90 m)
+- **Creatures (still, no animation)** (states: idle): creature.ghoul (Ghoul, 0.56×2.3×0.99 m), creature.ghoul_02 (Pale ghoul, 0.47×2.2×0.84 m), creature.antler_beast (Antlered beast, 2.6×2.6×1.6 m)
+- **Food and drinks** (states: idle): food.apple (Apple, 0.10×0.09×0.10 m), food.orange (Orange, 0.08×0.09×0.08 m), food.banana (Banana, 0.20×0.06×0.04 m), food.carrot (Carrot, 0.20×0.03×0.04 m), food.cucumber (Cucumber, 0.22×0.05×0.05 m), food.lettuce (Lettuce, 0.19×0.18×0.22 m), food.papaya (Papaya, 0.15×0.25×0.15 m), food.icecream (Ice cream tub, 0.13×0.14×0.12 m), food.icecream_02 (Ice cream tub 2, 0.17×0.12×0.16 m), food.soda (Soda bottle, 0.10×0.30×0.11 m), food.juice (Juice bottle, 0.12×0.30×0.12 m), food.drink_can (Drink can, 0.07×0.12×0.06 m), food.snack_bag (Snack bag, 0.15×0.25×0.16 m), food.cereal (Cereal box, 0.19×0.30×0.05 m), food.crate (Produce crate, 0.60×0.40×0.40 m), food.biscuits (Biscuit pack, 0.18×0.05×0.03 m)
+<!-- assets:end -->
 
 In the full JSON every id is written out in full (`vehicle.taxi`, never `.taxi`).
 
@@ -112,7 +111,7 @@ In the full JSON every id is written out in full (`vehicle.taxi`, never `.taxi`)
 
 - Units are metres; y is up. `rotation:[0,yaw,0]` in degrees. A character with yaw θ faces the direction (sin θ, cos θ) in (x, z): 0 → +z, 90 → +x, 180 → -z, -90 → -x.
 - **City biome layout**: two 28 m roads cross at the origin (traffic drives where |x| < 14 or |z| < 14). Sidewalks sit at 14-19 m. The four corner plazas (x and z both between 18 and 46, any signs) are open, with palms and benches and no buildings; (30, 30) is the engine's "open area". Put the cast in a plaza, not on a road. Buildings start beyond about 48 m.
-- Other biomes: the subject usually stands near the origin. Water surface is y = 0 (boats at y 0, swimmers at y about -0.2). Aircraft and birds need y 20-40.
+- Other biomes: the subject usually stands near the origin. Water surface is y = 0 (boats at y 0, swimmers at y about -0.2). Nothing in the catalog flies.
 - **Walking**: give the asset a `path` (2-100 points, film-time seconds, strictly increasing) and set its action state to walk (1-1.8 m/s) or run (2.5-3.5 m/s) for the shots where it moves. To stand still and then walk, repeat the start position at the time the walk begins: `[{t:0,p0},{t:22,p0},{t:29,p1}]`. A standing character keeps its `rotation`; a moving one faces its path.
 - **Camera recipes** (f = the actor's facing vector (sin θ, cos θ), s = sideways):
   - Closeup: `offset` = f × 1.0 + s × 0.15, y + 0.05; `target_height` = eye height.
@@ -167,7 +166,7 @@ Copy its shape, not its content.
   {"instance_id":"ana","asset_id":"human.student.v04","name":"Ana","position":[20,0,22],"rotation":[0,-135,0],"state":"phone","expression":"neutral","accessories":["backpack"],"path":[{"t":0,"position":[20,0,22]},{"t":22,"position":[20,0,22]},{"t":29,"position":[28,0,31]}]},
   {"instance_id":"lola","asset_id":"human.elder.v02","name":"Lola Nena","position":[21.2,0,20.6],"rotation":[0,-135,0],"state":"idle","expression":"happy","path":[{"t":0,"position":[21.2,0,20.6]},{"t":22,"position":[21.2,0,20.6]},{"t":29,"position":[29.4,0,29.6]}]},
   {"instance_id":"rico","asset_id":"human.medic.v03","name":"Rico","position":[42,0,8],"rotation":[0,45,0],"state":"idle","expression":"determined","path":[{"t":0,"position":[42,0,8]},{"t":29,"position":[42,0,8]},{"t":37,"position":[25.6,0,29.2]}]},
-  {"instance_id":"cone1","asset_id":"prop.cone.v02","position":[24.5,0,27.5]}
+  {"instance_id":"vend1","asset_id":"prop.vending_02","position":[24.5,0,27.5]}
  ],
  "chapters":[{"id":"ch1","title":"Dismissal","shots":[
   {"t0":0,"t1":4,"label":"What if a strong earthquake struck during school dismissal?","caption":{"type":"narration","text":"The ground begins to move."},"cam":{"preset":"closeup","move":"push","target_id":"ana","target_height":1.5,"offset":[-0.87,0.06,-0.62]},"events":["quake_shake"],"sfx":["deep_rumble","car_horns"],"behavior":{"crowd":"freeze","emotion":"shock"},"actions":[{"target":"ana","state":"phone","expression":"surprised","transition":0.3}],"thoughts":[{"target":"ana","text":"Is the ground moving?","start":0.6,"duration":3}],"cinema":{"dof":0.6}},
@@ -208,7 +207,7 @@ EMOS = "neutral fear shock determined relief happy sad angry".split()
 ZMB = "shamble chase sprint".split()
 BIOMES = "city coast ocean sky jungle island custom".split()
 SHADERS = "standard matte metal glass toon emissive".split()
-MATERIALS = "natural soft ceramic faceted toon".split()
+MATERIALS = "natural soft ceramic faceted toon psx".split()
 GRADES = "neutral warm cool mono".split()
 MOODS = "friendly surprised worried".split()
 SPEECH_ICONS = "heart question exclaim idea food home coin phone music sleep angry smile warning plus".split()
@@ -233,37 +232,26 @@ GROUPS = [  # (ids, states, expressions, accessories)
     ("human.civilian human.commuter human.medic human.firefighter human.police human.worker human.sailor human.pilot human.hiker "
      "human.chef human.vendor human.student human.child human.elder human.athlete human.diver human.raincoat human.survivor",
      HUMAN_STATES, HUMAN_EXPR, HUMAN_ACC),
-    ("vehicle.compact vehicle.sedan vehicle.suv vehicle.taxi vehicle.police vehicle.ambulance vehicle.firetruck vehicle.bus "
-     "vehicle.schoolbus vehicle.van vehicle.pickup vehicle.flatbed vehicle.tanker vehicle.garbage vehicle.jeepney vehicle.tractor",
-     "idle drive turn_left turn_right doors_open hazard".split(), [], []),
-    ("vehicle.bicycle vehicle.motorcycle vehicle.scooter", "idle drive turn_left turn_right".split(), [], []),
-    ("boat.dinghy boat.canoe boat.speedboat boat.sailboat boat.fishing boat.ferry boat.cargo boat.raft",
-     "idle sail storm anchor".split(), [], []),
-    ("aircraft.propeller aircraft.jet aircraft.seaplane aircraft.helicopter aircraft.drone aircraft.glider",
-     "idle fly bank_left bank_right land".split(), [], []),
-    ("building.house building.apartment building.office building.shop building.hospital building.school building.firestation "
-     "building.policestation building.warehouse building.cafe building.hotel building.skyscraper building.stilt_house building.hut "
-     "building.hangar building.shelter", "idle doors_open damage".split(), [], []),
-    ("building.lighthouse building.watertower", "idle damage".split(), [], []),
-    ("tree.oak tree.banyan tree.acacia tree.pine tree.cypress tree.palm tree.banana tree.mangrove tree.bamboo tree.jungle "
-     "tree.dead tree.sapling", "idle wind storm".split(), [], []),
-    ("plant.fern plant.grass plant.reeds plant.bush plant.flower plant.potted plant.lily plant.kelp plant.coral plant.vine",
+    # groups:start
+    ("vehicle.wagon vehicle.sedan vehicle.compact vehicle.minivan vehicle.cruiser vehicle.police vehicle.taxi vehicle.wreck vehicle.vintage vehicle.van",
+     "idle drive".split(), [], []),
+    ("building.office building.tower_01_2 building.tower_01_3 building.tower_01_4 building.tower_02_1 building.tower_02_2 building.tower_03_1 building.tower_03_2 building.tower_04_1 building.tower_04_2 building.tower_05_1 building.tower_05_2 building.tower_06_1 building.tower_06_2 building.tower_07_1 building.tower_07_2 building.tower_08_1 building.tower_08_2 building.apartment building.shop building.block_03 building.block_04 building.block_05 building.block_06 building.block_07 building.block_08 building.block_09 building.block_10 building.house building.house_02 building.house_03 building.house_04 building.house_05 building.house_06 building.house_07 building.house_08 building.house_09 building.house_10 building.house_11 building.house_12 building.house_13 building.house_14 building.house_15 building.house_16 building.hut building.cabin_02 building.cabin_03",
+     "idle".split(), [], []),
+    ("prop.fence prop.door prop.vending_01 prop.vending_02 prop.vending_03 prop.vending_04 prop.vending_05 prop.vending_06 prop.vending_07 prop.vending_08 prop.vending_09 prop.vending_10 prop.vending_11 prop.vending_12 prop.cooler prop.cooler_red prop.outboard",
+     "idle".split(), [], []),
+    ("tree.oak tree.pine tree.sapling tree.fir tree.spruce tree.birch tree.maple tree.dead tree.bare_sapling",
      "idle wind".split(), [], []),
-    ("animal.dog animal.cat animal.deer animal.boar animal.cow animal.tiger animal.elephant animal.monkey",
-     "idle walk run rest".split(), [], []),
-    ("animal.gull animal.pigeon animal.parrot animal.eagle", "idle fly glide".split(), [], []),
-    ("animal.fish animal.shark animal.dolphin animal.whale animal.turtle", "idle swim dart".split(), [], []),
-    ("food.apple food.orange food.banana food.coconut food.watermelon food.pineapple food.bread food.burger food.pizza food.fish "
-     "food.rice food.soup food.noodles food.coffee food.water food.can food.crate food.sack prop.bench prop.table prop.chair "
-     "prop.lamp prop.traffic_light prop.cone prop.barrier prop.hydrant prop.sign prop.fence prop.crate prop.container prop.barrel "
-     "prop.pallet prop.lifebuoy prop.anchor prop.buoy prop.dock prop.bridge prop.tent prop.umbrella prop.cart prop.generator "
-     "prop.solar prop.antenna prop.suitcase prop.backpack prop.traffic_barrel environment.sun environment.moon environment.island "
-     "environment.sandbank environment.mountain", ["idle"], [], []),
-    ("trash.bag trash.bottle trash.can trash.cardboard trash.paper trash.tire trash.wood trash.metal trash.bin trash.dumpster "
-     "trash.net trash.plastic", "idle scatter".split(), [], []),
-    ("debris.concrete debris.brick debris.glass debris.asphalt debris.roof debris.beam debris.driftwood debris.rock",
-     "idle scatter fall".split(), [], []),
-    ("environment.water environment.cloud environment.waterfall", "idle animate".split(), [], []),
+    ("rock.boulder rock.rock_2 rock.rock_3 rock.rock_4 rock.rock_5 rock.rock_6 rock.rock_7 rock.rock_8",
+     "idle".split(), [], []),
+    ("boat.fishing boat.rowboat boat.canoe",
+     "idle sail".split(), [], []),
+    ("animal.fish animal.fish_2 animal.fish_3 animal.fish_4 animal.fish_5 animal.fish_6 animal.fish_7 animal.fish_8",
+     "idle swim".split(), [], []),
+    ("creature.ghoul creature.ghoul_02 creature.antler_beast",
+     "idle".split(), [], []),
+    ("food.apple food.orange food.banana food.carrot food.cucumber food.lettuce food.papaya food.icecream food.icecream_02 food.soda food.juice food.drink_can food.snack_bag food.cereal food.crate food.biscuits",
+     "idle".split(), [], []),
+    # groups:end
 ]
 CATALOG = {i: (s, e, a) for ids, s, e, a in GROUPS for i in ids.split()}
 ID_RE = re.compile(r"^[A-Za-z][A-Za-z0-9_-]{0,63}$")

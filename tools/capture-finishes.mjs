@@ -11,7 +11,7 @@ const [url, out] = args; mkdirSync(out, { recursive: true });
 const c = await launch(); await c.open(url); await c.waitFor(STUDIO_READY); await sleep(1500);
 await c.evaluate('loadMarketDemo(true)'); await sleep(500); await c.waitFor('!seeking');
 const files = [];
-for (const finish of ['natural', 'soft', 'ceramic', 'faceted', 'toon']) {
+for (const finish of ['natural', 'soft', 'ceramic', 'faceted', 'toon', 'psx']) {
   await c.evaluate(`CINEMA.material='${finish}';applyCinemaMaterials('${finish}')`);
   for (const t of [0, 9.5]) { await seek(c, t); await sleep(200); const f = `finish-${finish}-${t * 10}.png`; writeFileSync(join(out, f), await canvasPng(c)); files.push(f); }
 }

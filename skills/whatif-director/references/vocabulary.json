@@ -1,7 +1,7 @@
 {
   "version": "7",
   "generated_by": "tools/extract-vocabulary.mjs (frame-studio)",
-  "generated": "2026-10-14",
+  "generated": "2026-10-16",
   "hazards": [
     "none",
     "quake",
@@ -93,7 +93,8 @@
       "soft",
       "ceramic",
       "faceted",
-      "toon"
+      "toon",
+      "psx"
     ],
     "grade": [
       "neutral",
@@ -290,8 +291,8 @@
     "grey_sky": "overcast|gr[ae]y|smoke|haze|gloom|cloud"
   },
   "assets": {
-    "archetypes": 182,
-    "variants_per_archetype": 24,
+    "archetypes": 139,
+    "variants_per_archetype": 4,
     "groups": [
       {
         "category": "human",
@@ -362,167 +363,115 @@
       },
       {
         "category": "vehicle",
-        "kind": "car",
+        "kind": "psx",
         "states": [
           "idle",
-          "drive",
-          "turn_left",
-          "turn_right",
-          "doors_open",
-          "hazard"
+          "drive"
         ],
         "expressions": [],
         "accessories": [],
         "ids": [
-          "vehicle.compact",
+          "vehicle.wagon",
           "vehicle.sedan",
-          "vehicle.suv",
-          "vehicle.taxi",
+          "vehicle.compact",
+          "vehicle.minivan",
+          "vehicle.cruiser",
           "vehicle.police",
-          "vehicle.ambulance",
-          "vehicle.firetruck",
-          "vehicle.bus",
-          "vehicle.schoolbus",
-          "vehicle.van",
-          "vehicle.pickup",
-          "vehicle.flatbed",
-          "vehicle.tanker",
-          "vehicle.garbage",
-          "vehicle.jeepney",
-          "vehicle.tractor"
-        ]
-      },
-      {
-        "category": "vehicle",
-        "kind": "bike",
-        "states": [
-          "idle",
-          "drive",
-          "turn_left",
-          "turn_right"
-        ],
-        "expressions": [],
-        "accessories": [],
-        "ids": [
-          "vehicle.bicycle",
-          "vehicle.motorcycle",
-          "vehicle.scooter"
-        ]
-      },
-      {
-        "category": "boat",
-        "kind": "boat",
-        "states": [
-          "idle",
-          "sail",
-          "storm",
-          "anchor"
-        ],
-        "expressions": [],
-        "accessories": [],
-        "ids": [
-          "boat.dinghy",
-          "boat.canoe",
-          "boat.speedboat",
-          "boat.sailboat",
-          "boat.fishing",
-          "boat.ferry",
-          "boat.cargo",
-          "boat.raft"
-        ]
-      },
-      {
-        "category": "aircraft",
-        "kind": "aircraft",
-        "states": [
-          "idle",
-          "fly",
-          "bank_left",
-          "bank_right",
-          "land"
-        ],
-        "expressions": [],
-        "accessories": [],
-        "ids": [
-          "aircraft.propeller",
-          "aircraft.jet",
-          "aircraft.seaplane",
-          "aircraft.helicopter",
-          "aircraft.drone",
-          "aircraft.glider"
+          "vehicle.taxi",
+          "vehicle.wreck",
+          "vehicle.vintage",
+          "vehicle.van"
         ]
       },
       {
         "category": "building",
-        "kind": "building",
+        "kind": "psx",
         "states": [
-          "idle",
-          "doors_open",
-          "damage"
+          "idle"
         ],
         "expressions": [],
         "accessories": [],
         "ids": [
-          "building.house",
-          "building.apartment",
           "building.office",
+          "building.tower_01_2",
+          "building.tower_01_3",
+          "building.tower_01_4",
+          "building.tower_02_1",
+          "building.tower_02_2",
+          "building.tower_03_1",
+          "building.tower_03_2",
+          "building.tower_04_1",
+          "building.tower_04_2",
+          "building.tower_05_1",
+          "building.tower_05_2",
+          "building.tower_06_1",
+          "building.tower_06_2",
+          "building.tower_07_1",
+          "building.tower_07_2",
+          "building.tower_08_1",
+          "building.tower_08_2",
+          "building.apartment",
           "building.shop",
-          "building.hospital",
-          "building.school",
-          "building.firestation",
-          "building.policestation",
-          "building.warehouse",
-          "building.cafe",
-          "building.hotel",
-          "building.skyscraper",
-          "building.stilt_house",
+          "building.block_03",
+          "building.block_04",
+          "building.block_05",
+          "building.block_06",
+          "building.block_07",
+          "building.block_08",
+          "building.block_09",
+          "building.block_10",
+          "building.house",
+          "building.house_02",
+          "building.house_03",
+          "building.house_04",
+          "building.house_05",
+          "building.house_06",
+          "building.house_07",
+          "building.house_08",
+          "building.house_09",
+          "building.house_10",
+          "building.house_11",
+          "building.house_12",
+          "building.house_13",
+          "building.house_14",
+          "building.house_15",
+          "building.house_16",
           "building.hut",
-          "building.hangar",
-          "building.shelter"
+          "building.cabin_02",
+          "building.cabin_03"
         ]
       },
       {
-        "category": "building",
-        "kind": "building",
+        "category": "prop",
+        "kind": "psx",
         "states": [
-          "idle",
-          "damage"
+          "idle"
         ],
         "expressions": [],
         "accessories": [],
         "ids": [
-          "building.lighthouse",
-          "building.watertower"
+          "prop.fence",
+          "prop.door",
+          "prop.vending_01",
+          "prop.vending_02",
+          "prop.vending_03",
+          "prop.vending_04",
+          "prop.vending_05",
+          "prop.vending_06",
+          "prop.vending_07",
+          "prop.vending_08",
+          "prop.vending_09",
+          "prop.vending_10",
+          "prop.vending_11",
+          "prop.vending_12",
+          "prop.cooler",
+          "prop.cooler_red",
+          "prop.outboard"
         ]
       },
       {
         "category": "tree",
-        "kind": "tree",
-        "states": [
-          "idle",
-          "wind",
-          "storm"
-        ],
-        "expressions": [],
-        "accessories": [],
-        "ids": [
-          "tree.oak",
-          "tree.banyan",
-          "tree.acacia",
-          "tree.pine",
-          "tree.cypress",
-          "tree.palm",
-          "tree.banana",
-          "tree.mangrove",
-          "tree.bamboo",
-          "tree.jungle",
-          "tree.dead",
-          "tree.sapling"
-        ]
-      },
-      {
-        "category": "plant",
-        "kind": "plant",
+        "kind": "psx",
         "states": [
           "idle",
           "wind"
@@ -530,78 +479,88 @@
         "expressions": [],
         "accessories": [],
         "ids": [
-          "plant.fern",
-          "plant.grass",
-          "plant.reeds",
-          "plant.bush",
-          "plant.flower",
-          "plant.potted",
-          "plant.lily",
-          "plant.kelp",
-          "plant.coral",
-          "plant.vine"
+          "tree.oak",
+          "tree.pine",
+          "tree.sapling",
+          "tree.fir",
+          "tree.spruce",
+          "tree.birch",
+          "tree.maple",
+          "tree.dead",
+          "tree.bare_sapling"
         ]
       },
       {
-        "category": "animal",
-        "kind": "quadruped",
+        "category": "rock",
+        "kind": "psx",
         "states": [
-          "idle",
-          "walk",
-          "run",
-          "rest"
+          "idle"
         ],
         "expressions": [],
         "accessories": [],
         "ids": [
-          "animal.dog",
-          "animal.cat",
-          "animal.deer",
-          "animal.boar",
-          "animal.cow",
-          "animal.tiger",
-          "animal.elephant",
-          "animal.monkey"
+          "rock.boulder",
+          "rock.rock_2",
+          "rock.rock_3",
+          "rock.rock_4",
+          "rock.rock_5",
+          "rock.rock_6",
+          "rock.rock_7",
+          "rock.rock_8"
         ]
       },
       {
-        "category": "animal",
-        "kind": "bird",
+        "category": "boat",
+        "kind": "psx",
         "states": [
           "idle",
-          "fly",
-          "glide"
+          "sail"
         ],
         "expressions": [],
         "accessories": [],
         "ids": [
-          "animal.gull",
-          "animal.pigeon",
-          "animal.parrot",
-          "animal.eagle"
+          "boat.fishing",
+          "boat.rowboat",
+          "boat.canoe"
         ]
       },
       {
         "category": "animal",
-        "kind": "fish",
+        "kind": "psx",
         "states": [
           "idle",
-          "swim",
-          "dart"
+          "swim"
         ],
         "expressions": [],
         "accessories": [],
         "ids": [
           "animal.fish",
-          "animal.shark",
-          "animal.dolphin",
-          "animal.whale",
-          "animal.turtle"
+          "animal.fish_2",
+          "animal.fish_3",
+          "animal.fish_4",
+          "animal.fish_5",
+          "animal.fish_6",
+          "animal.fish_7",
+          "animal.fish_8"
+        ]
+      },
+      {
+        "category": "creature",
+        "kind": "psx",
+        "states": [
+          "idle"
+        ],
+        "expressions": [],
+        "accessories": [],
+        "ids": [
+          "creature.ghoul",
+          "creature.ghoul_02",
+          "creature.antler_beast"
         ]
       },
       {
         "category": "food",
-        "kind": "food",
+        "kind": "psx",
         "states": [
           "idle"
         ],
@@ -611,136 +570,19 @@
           "food.apple",
           "food.orange",
           "food.banana",
-          "food.coconut",
-          "food.watermelon",
-          "food.pineapple",
-          "food.bread",
-          "food.burger",
-          "food.pizza",
-          "food.fish",
-          "food.rice",
-          "food.soup",
-          "food.noodles",
-          "food.coffee",
-          "food.water",
-          "food.can",
+          "food.carrot",
+          "food.cucumber",
+          "food.lettuce",
+          "food.papaya",
+          "food.icecream",
+          "food.icecream_02",
+          "food.soda",
+          "food.juice",
+          "food.drink_can",
+          "food.snack_bag",
+          "food.cereal",
           "food.crate",
-          "food.sack"
-        ]
-      },
-      {
-        "category": "trash",
-        "kind": "trash",
-        "states": [
-          "idle",
-          "scatter"
-        ],
-        "expressions": [],
-        "accessories": [],
-        "ids": [
-          "trash.bag",
-          "trash.bottle",
-          "trash.can",
-          "trash.cardboard",
-          "trash.paper",
-          "trash.tire",
-          "trash.wood",
-          "trash.metal",
-          "trash.bin",
-          "trash.dumpster",
-          "trash.net",
-          "trash.plastic"
-        ]
-      },
-      {
-        "category": "debris",
-        "kind": "debris",
-        "states": [
-          "idle",
-          "scatter",
-          "fall"
-        ],
-        "expressions": [],
-        "accessories": [],
-        "ids": [
-          "debris.concrete",
-          "debris.brick",
-          "debris.glass",
-          "debris.asphalt",
-          "debris.roof",
-          "debris.beam",
-          "debris.driftwood",
-          "debris.rock"
-        ]
-      },
-      {
-        "category": "prop",
-        "kind": "prop",
-        "states": [
-          "idle"
-        ],
-        "expressions": [],
-        "accessories": [],
-        "ids": [
-          "prop.bench",
-          "prop.table",
-          "prop.chair",
-          "prop.lamp",
-          "prop.traffic_light",
-          "prop.cone",
-          "prop.barrier",
-          "prop.hydrant",
-          "prop.sign",
-          "prop.fence",
-          "prop.crate",
-          "prop.container",
-          "prop.barrel",
-          "prop.pallet",
-          "prop.lifebuoy",
-          "prop.anchor",
-          "prop.buoy",
-          "prop.dock",
-          "prop.bridge",
-          "prop.tent",
-          "prop.umbrella",
-          "prop.cart",
-          "prop.generator",
-          "prop.solar",
-          "prop.antenna",
-          "prop.suitcase",
-          "prop.backpack",
-          "prop.traffic_barrel"
-        ]
-      },
-      {
-        "category": "environment",
-        "kind": "environment",
-        "states": [
-          "idle",
-          "animate"
-        ],
-        "expressions": [],
-        "accessories": [],
-        "ids": [
-          "environment.water",
-          "environment.cloud",
-          "environment.waterfall"
-        ]
-      },
-      {
-        "category": "environment",
-        "kind": "environment",
-        "states": [
-          "idle"
-        ],
-        "expressions": [],
-        "accessories": [],
-        "ids": [
-          "environment.sun",
-          "environment.moon",
-          "environment.island",
-          "environment.sandbank",
-          "environment.mountain"
+          "food.biscuits"
         ]
       }
     ]

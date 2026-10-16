@@ -68,6 +68,7 @@ export default {
       'src/studio/21-guide.js',
       'src/studio/22-whatif.js',
       'src/studio/23-ai-writer.js',
+      'src/assets/24-psx.js',
       'src/studio/99-boot.js',
     ],
   },

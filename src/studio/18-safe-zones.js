@@ -24,7 +24,7 @@ function safeTextBoxes(a,w,h){const titleTop=a.top+h*.012,capBottom=a.bottom-h*.
  return{title:{...a.box(titleTop,titleTop+h*.30),y:titleTop,maxH:Math.min(h*.30,(a.bottom-a.top)*.36)},caption:{...cap,width:cap.width-20,bottom:capBottom,maxH:h*.13}}}
 
 // Validation step: warn when a title or caption only fits the safe area by shrinking far below its normal size.
-function validateSafeZoneText(j,r){const a=safeArea(1080,1920);if(!a)return;const b=safeTextBoxes(a,1080,1920),scale=Number(UI.textScale)||1,family=UI.font;
+function validateSafeZoneText(j,r){const a=safeArea(1080,1920);if(!a)return;const b=safeTextBoxes(a,1080,1920),scale=Number(UI.textScale)||1,family=filmFont();
  (r.fl||[]).forEach((s,i)=>{const n='Shot '+(i+1)+': ',label=typeof s.label==='string'?s.label:'',cap=typeof s.caption==='string'?s.caption:s.caption?.text||'';
   const check=(text,box,size,weight,what)=>{if(!text)return;const f=fitText(text,box.width,size,box.maxH,weight,family,SAFE_MEASURE),k=f.size/size;
    if(k<.75)r.w.push(n+what+' is too long for the '+a.zone.name+' safe area: it shrinks to '+Math.round(k*100)+'% size. Shorten it.')};

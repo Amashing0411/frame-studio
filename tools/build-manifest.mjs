@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Writes public/assets/manifest.json: every runtime asset the engine loads from Vercel's static CDN (people now;
-// creatures, vehicles and props join as their pipelines land). Reads the Blender build reports.
+// Writes public/assets/manifest.json: every runtime asset the engine loads from Vercel's static CDN (people, the PSX
+// catalog models, library pictures). Reads the build reports (Blender people, tools/build-psx.mjs).
 //   node tools/build-manifest.mjs
 import { readFileSync, writeFileSync, existsSync, statSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -24,6 +24,11 @@ for (const [id, m] of Object.entries(people.models)) {
 const families = {};
 for (const [f, d] of Object.entries(people.families)) families[f] = { anim: url(`people/anim-${f}.glb`), reference: d.reference, pelvis: d.pelvis, clips: d.clips, bytes: size(`people/anim-${f}.glb`) };
 
+// PSX catalog models (tools/build-psx.mjs): loaded on demand when a scene or the library needs them
+const psx = {};
+if (existsSync(join(assets, 'psx', 'build-report.json'))) for (const [id, m] of Object.entries(JSON.parse(readFileSync(join(assets, 'psx', 'build-report.json'), 'utf8')).models))
+  psx[id] = { file: url(`psx/${id}.glb`), name: m.name, category: m.category, states: m.states, size: m.size, tris: m.tris, bytes: size(`psx/${id}.glb`) };
+
 // asset library pictures (tools/build-thumbnails.mjs): archetype -> url with a content hash
 const thumbs = {};
 if (existsSync(join(assets, 'thumbs'))) for (const f of readdirSync(join(assets, 'thumbs')).filter(f => f.endsWith('.webp')).sort()) thumbs[f.replace(/\.webp$/, '')] = url(`thumbs/${f}`);
@@ -41,9 +46,10 @@ const manifest = {
       m: { refHeight: 1.78, walk: 1.38, walk_formal: 1.4, zombie: 1.38, carry: 1.38, crouch_walk: 1.2, run: 2.75, sprint: 3.6, swim: 1.3 },
     },
   },
+  psx,
   thumbs,
   credits: [],
 };
 const total = Object.values(models).reduce((s, m) => s + m.bytes, 0) + Object.values(families).reduce((s, f) => s + f.bytes, 0);
 writeFileSync(join(assets, 'manifest.json'), JSON.stringify(manifest, null, 1) + '\n');
-console.log(`manifest: ${Object.keys(models).length} people, ${Object.keys(families).length} clip libraries, ${(total / 2 ** 20).toFixed(1)} MB`);
+console.log(`manifest: ${Object.keys(models).length} people, ${Object.keys(families).length} clip libraries, ${(total / 2 ** 20).toFixed(1)} MB; ${Object.keys(psx).length} PSX models, ${(Object.values(psx).reduce((s, m) => s + m.bytes, 0) / 2 ** 20).toFixed(1)} MB (on demand)`);

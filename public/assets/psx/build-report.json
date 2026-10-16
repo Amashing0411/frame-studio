@@ -1,0 +1,3124 @@
+{
+ "models": {
+  "vehicle.wagon": {
+   "name": "Station wagon",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    1.75,
+    1.48,
+    4.2
+   ],
+   "tris": 438,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 40032,
+   "source": {
+    "name": "PSX Style Cars",
+    "author": "GGBot",
+    "url": "https://ggbot.itch.io/psx-style-cars",
+    "license": "CC0",
+    "file": "Car.glb",
+    "objects": []
+   }
+  },
+  "vehicle.sedan": {
+   "name": "City sedan",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    2,
+    1.51,
+    4.5
+   ],
+   "tris": 312,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 28600,
+   "source": {
+    "name": "PSX Style Cars",
+    "author": "GGBot",
+    "url": "https://ggbot.itch.io/psx-style-cars",
+    "license": "CC0",
+    "file": "Car2.glb",
+    "objects": []
+   }
+  },
+  "vehicle.compact": {
+   "name": "Compact hatchback",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    1.89,
+    1.53,
+    4
+   ],
+   "tris": 448,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 39500,
+   "source": {
+    "name": "PSX Style Cars",
+    "author": "GGBot",
+    "url": "https://ggbot.itch.io/psx-style-cars",
+    "license": "CC0",
+    "file": "Car3.glb",
+    "objects": []
+   }
+  },
+  "vehicle.minivan": {
+   "name": "Minivan",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    2.59,
+    2.09,
+    4.8
+   ],
+   "tris": 476,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 42916,
+   "source": {
+    "name": "PSX Style Cars",
+    "author": "GGBot",
+    "url": "https://ggbot.itch.io/psx-style-cars",
+    "license": "CC0",
+    "file": "Car4.glb",
+    "objects": []
+   }
+  },
+  "vehicle.cruiser": {
+   "name": "Full-size sedan",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    2,
+    1.47,
+    5.3
+   ],
+   "tris": 454,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 38200,
+   "source": {
+    "name": "PSX Style Cars",
+    "author": "GGBot",
+    "url": "https://ggbot.itch.io/psx-style-cars",
+    "license": "CC0",
+    "file": "Car5.glb",
+    "objects": []
+   }
+  },
+  "vehicle.police": {
+   "name": "Police cruiser",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    2,
+    1.62,
+    5.3
+   ],
+   "tris": 472,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 41400,
+   "source": {
+    "name": "PSX Style Cars",
+    "author": "GGBot",
+    "url": "https://ggbot.itch.io/psx-style-cars",
+    "license": "CC0",
+    "file": "Car5_Police.glb",
+    "objects": []
+   }
+  },
+  "vehicle.taxi": {
+   "name": "Taxi",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    2.02,
+    1.63,
+    5.3
+   ],
+   "tris": 440,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 39336,
+   "source": {
+    "name": "PSX Style Cars",
+    "author": "GGBot",
+    "url": "https://ggbot.itch.io/psx-style-cars",
+    "license": "CC0",
+    "file": "Car5_Taxi.glb",
+    "objects": []
+   }
+  },
+  "vehicle.wreck": {
+   "name": "Burned-out car",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    1.72,
+    1.15,
+    4.4
+   ],
+   "tris": 304,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 32512,
+   "source": {
+    "name": "PSX Style Cars",
+    "author": "GGBot",
+    "url": "https://ggbot.itch.io/psx-style-cars",
+    "license": "CC0",
+    "file": "Car6.glb",
+    "objects": []
+   }
+  },
+  "vehicle.vintage": {
+   "name": "Vintage car",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    1.64,
+    1.93,
+    3.9
+   ],
+   "tris": 457,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 39632,
+   "source": {
+    "name": "PSX Style Cars",
+    "author": "GGBot",
+    "url": "https://ggbot.itch.io/psx-style-cars",
+    "license": "CC0",
+    "file": "Car7.glb",
+    "objects": []
+   }
+  },
+  "vehicle.van": {
+   "name": "Delivery van",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    2.57,
+    2.63,
+    5.6
+   ],
+   "tris": 376,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 30784,
+   "source": {
+    "name": "PSX Style Cars",
+    "author": "GGBot",
+    "url": "https://ggbot.itch.io/psx-style-cars",
+    "license": "CC0",
+    "file": "Car8.glb",
+    "objects": []
+   }
+  },
+  "building.office": {
+   "name": "Office tower",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    25,
+    73,
+    25
+   ],
+   "tris": 32,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 112432,
+   "source": {
+    "name": "Retro Skyscraper Pack",
+    "author": "elegantcrow",
+    "url": "https://elegantcrow.itch.io/retro-skyscraper-pack",
+    "license": "CC0",
+    "file": "building_01.1.glb",
+    "objects": []
+   }
+  },
+  "building.tower_01_2": {
+   "name": "Tower 01.2",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    25,
+    37,
+    25
+   ],
+   "tris": 32,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 112436,
+   "source": {
+    "name": "Retro Skyscraper Pack",
+    "author": "elegantcrow",
+    "url": "https://elegantcrow.itch.io/retro-skyscraper-pack",
+    "license": "CC0",
+    "file": "building_01.2.glb",
+    "objects": []
+   }
+  },
+  "building.tower_01_3": {
+   "name": "Tower 01.3",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    49,
+    73,
+    49
+   ],
+   "tris": 32,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 112464,
+   "source": {
+    "name": "Retro Skyscraper Pack",
+    "author": "elegantcrow",
+    "url": "https://elegantcrow.itch.io/retro-skyscraper-pack",
+    "license": "CC0",
+    "file": "building_01.3.glb",
+    "objects": []
+   }
+  },
+  "building.tower_01_4": {
+   "name": "Tower 01.4",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    49,
+    37,
+    49
+   ],
+   "tris": 32,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 112464,
+   "source": {
+    "name": "Retro Skyscraper Pack",
+    "author": "elegantcrow",
+    "url": "https://elegantcrow.itch.io/retro-skyscraper-pack",
+    "license": "CC0",
+    "file": "building_01.4.glb",
+    "objects": []
+   }
+  },
+  "building.tower_02_1": {
+   "name": "Tower 02.1",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    97,
+    33
+   ],
+   "tris": 40,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 94964,
+   "source": {
+    "name": "Retro Skyscraper Pack",
+    "author": "elegantcrow",
+    "url": "https://elegantcrow.itch.io/retro-skyscraper-pack",
+    "license": "CC0",
+    "file": "building_02.1.glb",
+    "objects": []
+   }
+  },
+  "building.tower_02_2": {
+   "name": "Tower 02.2",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    49,
+    33
+   ],
+   "tris": 32,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 94456,
+   "source": {
+    "name": "Retro Skyscraper Pack",
+    "author": "elegantcrow",
+    "url": "https://elegantcrow.itch.io/retro-skyscraper-pack",
+    "license": "CC0",
+    "file": "building_02.2.glb",
+    "objects": []
+   }
+  },
+  "building.tower_03_1": {
+   "name": "Tower 03.1",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    29,
+    97,
+    29
+   ],
+   "tris": 40,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 87608,
+   "source": {
+    "name": "Retro Skyscraper Pack",
+    "author": "elegantcrow",
+    "url": "https://elegantcrow.itch.io/retro-skyscraper-pack",
+    "license": "CC0",
+    "file": "building_03.1.glb",
+    "objects": []
+   }
+  },
+  "building.tower_03_2": {
+   "name": "Tower 03.2",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    29,
+    49,
+    29
+   ],
+   "tris": 32,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 87048,
+   "source": {
+    "name": "Retro Skyscraper Pack",
+    "author": "elegantcrow",
+    "url": "https://elegantcrow.itch.io/retro-skyscraper-pack",
+    "license": "CC0",
+    "file": "building_03.2.glb",
+    "objects": []
+   }
+  },
+  "building.tower_04_1": {
+   "name": "Tower 04.1",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    125,
+    33
+   ],
+   "tris": 40,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 87340,
+   "source": {
+    "name": "Retro Skyscraper Pack",
+    "author": "elegantcrow",
+    "url": "https://elegantcrow.itch.io/retro-skyscraper-pack",
+    "license": "CC0",
+    "file": "building_04.1.glb",
+    "objects": []
+   }
+  },
+  "building.tower_04_2": {
+   "name": "Tower 04.2",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    63,
+    33
+   ],
+   "tris": 32,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 86748,
+   "source": {
+    "name": "Retro Skyscraper Pack",
+    "author": "elegantcrow",
+    "url": "https://elegantcrow.itch.io/retro-skyscraper-pack",
+    "license": "CC0",
+    "file": "building_04.2.glb",
+    "objects": []
+   }
+  },
+  "building.tower_05_1": {
+   "name": "Tower 05.1",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    121,
+    33
+   ],
+   "tris": 40,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 90488,
+   "source": {
+    "name": "Retro Skyscraper Pack",
+    "author": "elegantcrow",
+    "url": "https://elegantcrow.itch.io/retro-skyscraper-pack",
+    "license": "CC0",
+    "file": "building_05.1.glb",
+    "objects": []
+   }
+  },
+  "building.tower_05_2": {
+   "name": "Tower 05.2",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    61,
+    33
+   ],
+   "tris": 32,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 89920,
+   "source": {
+    "name": "Retro Skyscraper Pack",
+    "author": "elegantcrow",
+    "url": "https://elegantcrow.itch.io/retro-skyscraper-pack",
+    "license": "CC0",
+    "file": "building_05.2.glb",
+    "objects": []
+   }
+  },
+  "building.tower_06_1": {
+   "name": "Tower 06.1",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    121,
+    33
+   ],
+   "tris": 40,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 94088,
+   "source": {
+    "name": "Retro Skyscraper Pack",
+    "author": "elegantcrow",
+    "url": "https://elegantcrow.itch.io/retro-skyscraper-pack",
+    "license": "CC0",
+    "file": "building_06.1.glb",
+    "objects": []
+   }
+  },
+  "building.tower_06_2": {
+   "name": "Tower 06.2",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    61,
+    33
+   ],
+   "tris": 32,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 93520,
+   "source": {
+    "name": "Retro Skyscraper Pack",
+    "author": "elegantcrow",
+    "url": "https://elegantcrow.itch.io/retro-skyscraper-pack",
+    "license": "CC0",
+    "file": "building_06.2.glb",
+    "objects": []
+   }
+  },
+  "building.tower_07_1": {
+   "name": "Tower 07.1",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    121,
+    33
+   ],
+   "tris": 40,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 94460,
+   "source": {
+    "name": "Retro Skyscraper Pack",
+    "author": "elegantcrow",
+    "url": "https://elegantcrow.itch.io/retro-skyscraper-pack",
+    "license": "CC0",
+    "file": "building_07.1.glb",
+    "objects": []
+   }
+  },
+  "building.tower_07_2": {
+   "name": "Tower 07.2",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    61,
+    33
+   ],
+   "tris": 32,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 93892,
+   "source": {
+    "name": "Retro Skyscraper Pack",
+    "author": "elegantcrow",
+    "url": "https://elegantcrow.itch.io/retro-skyscraper-pack",
+    "license": "CC0",
+    "file": "building_07.2.glb",
+    "objects": []
+   }
+  },
+  "building.tower_08_1": {
+   "name": "Tower 08.1",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    65,
+    73,
+    65
+   ],
+   "tris": 40,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 85528,
+   "source": {
+    "name": "Retro Skyscraper Pack",
+    "author": "elegantcrow",
+    "url": "https://elegantcrow.itch.io/retro-skyscraper-pack",
+    "license": "CC0",
+    "file": "building_08.1.glb",
+    "objects": []
+   }
+  },
+  "building.tower_08_2": {
+   "name": "Tower 08.2",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    65,
+    37,
+    65
+   ],
+   "tris": 32,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 84968,
+   "source": {
+    "name": "Retro Skyscraper Pack",
+    "author": "elegantcrow",
+    "url": "https://elegantcrow.itch.io/retro-skyscraper-pack",
+    "license": "CC0",
+    "file": "building_08.2.glb",
+    "objects": []
+   }
+  },
+  "building.apartment": {
+   "name": "Apartment block",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    28.18,
+    19.6,
+    19.43
+   ],
+   "tris": 196,
+   "materials": 7,
+   "textures": 7,
+   "bytes": 155572,
+   "source": {
+    "name": "Buildings",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/buildings",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Buildings.glb",
+    "objects": [
+     "Building"
+    ]
+   }
+  },
+  "building.shop": {
+   "name": "Corner shops",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    34.05,
+    23.55,
+    19.51
+   ],
+   "tris": 162,
+   "materials": 7,
+   "textures": 7,
+   "bytes": 162240,
+   "source": {
+    "name": "Buildings",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/buildings",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Buildings.glb",
+    "objects": [
+     "Building_01"
+    ]
+   }
+  },
+  "building.block_03": {
+   "name": "City block 3",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    40.8,
+    26.34,
+    22.88
+   ],
+   "tris": 548,
+   "materials": 9,
+   "textures": 9,
+   "bytes": 215892,
+   "source": {
+    "name": "Buildings",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/buildings",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Buildings.glb",
+    "objects": [
+     "Building_02"
+    ]
+   }
+  },
+  "building.block_04": {
+   "name": "City block 4",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    23.19,
+    18.8,
+    17.15
+   ],
+   "tris": 256,
+   "materials": 7,
+   "textures": 7,
+   "bytes": 177408,
+   "source": {
+    "name": "Buildings",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/buildings",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Buildings.glb",
+    "objects": [
+     "Building_03"
+    ]
+   }
+  },
+  "building.block_05": {
+   "name": "City block 5",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    25.49,
+    18.56,
+    18.15
+   ],
+   "tris": 162,
+   "materials": 7,
+   "textures": 7,
+   "bytes": 154932,
+   "source": {
+    "name": "Buildings",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/buildings",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Buildings.glb",
+    "objects": [
+     "Building_04"
+    ]
+   }
+  },
+  "building.block_06": {
+   "name": "City block 6",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    29.79,
+    18.82,
+    19.1
+   ],
+   "tris": 360,
+   "materials": 8,
+   "textures": 8,
+   "bytes": 191944,
+   "source": {
+    "name": "Buildings",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/buildings",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Buildings.glb",
+    "objects": [
+     "Building_05"
+    ]
+   }
+  },
+  "building.block_07": {
+   "name": "City block 7",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33.45,
+    14.47,
+    18.67
+   ],
+   "tris": 204,
+   "materials": 8,
+   "textures": 8,
+   "bytes": 182508,
+   "source": {
+    "name": "Buildings",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/buildings",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Buildings.glb",
+    "objects": [
+     "Building_06"
+    ]
+   }
+  },
+  "building.block_08": {
+   "name": "City block 8",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    24.88,
+    14.8,
+    16.24
+   ],
+   "tris": 220,
+   "materials": 7,
+   "textures": 7,
+   "bytes": 166176,
+   "source": {
+    "name": "Buildings",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/buildings",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Buildings.glb",
+    "objects": [
+     "Building_07"
+    ]
+   }
+  },
+  "building.block_09": {
+   "name": "City block 9",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    15.52,
+    12.97,
+    13.95
+   ],
+   "tris": 126,
+   "materials": 6,
+   "textures": 6,
+   "bytes": 117580,
+   "source": {
+    "name": "Buildings",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/buildings",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Buildings.glb",
+    "objects": [
+     "Building_08"
+    ]
+   }
+  },
+  "building.block_10": {
+   "name": "City block 10",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    16.89,
+    11.89,
+    13.86
+   ],
+   "tris": 236,
+   "materials": 6,
+   "textures": 6,
+   "bytes": 133764,
+   "source": {
+    "name": "Buildings",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/buildings",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Buildings.glb",
+    "objects": [
+     "Building_09"
+    ]
+   }
+  },
+  "building.house": {
+   "name": "Town house",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    5.77,
+    7.95,
+    4.78
+   ],
+   "tris": 24,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 17744,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Edificios.glb",
+    "objects": [
+     "Cube009"
+    ]
+   }
+  },
+  "building.house_02": {
+   "name": "Town building 2",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    5.35,
+    7.05,
+    3.79
+   ],
+   "tris": 10,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 17528,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Edificios.glb",
+    "objects": [
+     "Cube011"
+    ]
+   }
+  },
+  "building.house_03": {
+   "name": "Town building 3",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    7.96,
+    5.53,
+    4.11
+   ],
+   "tris": 14,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 21028,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Edificios.glb",
+    "objects": [
+     "Cube012"
+    ]
+   }
+  },
+  "building.house_04": {
+   "name": "Town building 4",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    6.49,
+    6.85,
+    4.68
+   ],
+   "tris": 10,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 20876,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Edificios.glb",
+    "objects": [
+     "Cube010"
+    ]
+   }
+  },
+  "building.house_05": {
+   "name": "Town building 5",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    5.82,
+    8.46,
+    4.01
+   ],
+   "tris": 10,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 18392,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Edificios.glb",
+    "objects": [
+     "Cube014"
+    ]
+   }
+  },
+  "building.house_06": {
+   "name": "Town building 6",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    4.82,
+    6.09,
+    3.99
+   ],
+   "tris": 22,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 23432,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Edificios.glb",
+    "objects": [
+     "Cube005"
+    ]
+   }
+  },
+  "building.house_07": {
+   "name": "Town building 7",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    8.81,
+    12.03,
+    5.91
+   ],
+   "tris": 26,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 27828,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Edificios.glb",
+    "objects": [
+     "Cube007"
+    ]
+   }
+  },
+  "building.house_08": {
+   "name": "Town building 8",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    8.54,
+    11.21,
+    6.21
+   ],
+   "tris": 10,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 24568,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Edificios.glb",
+    "objects": [
+     "Cube013"
+    ]
+   }
+  },
+  "building.house_09": {
+   "name": "Town building 9",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    7.6,
+    6.27,
+    4.61
+   ],
+   "tris": 10,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 25788,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Edificios.glb",
+    "objects": [
+     "Cube001"
+    ]
+   }
+  },
+  "building.house_10": {
+   "name": "Town building 10",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    4.45,
+    3.92,
+    4.05
+   ],
+   "tris": 46,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 23008,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Edificios.glb",
+    "objects": [
+     "Cube008"
+    ]
+   }
+  },
+  "building.house_11": {
+   "name": "Town building 11",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    5.56,
+    2.53,
+    4.39
+   ],
+   "tris": 24,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 16104,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Edificios.glb",
+    "objects": [
+     "Cube003"
+    ]
+   }
+  },
+  "building.house_12": {
+   "name": "Town building 12",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    7.26,
+    2.55,
+    2.61
+   ],
+   "tris": 22,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 12852,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Edificios.glb",
+    "objects": [
+     "Cube004"
+    ]
+   }
+  },
+  "building.house_13": {
+   "name": "Town building 13",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    4.16,
+    2.06,
+    2.76
+   ],
+   "tris": 342,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 45208,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Edificios.glb",
+    "objects": [
+     "Cube"
+    ]
+   }
+  },
+  "building.house_14": {
+   "name": "Town building 14",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    2.74,
+    2.31,
+    1.8
+   ],
+   "tris": 14,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 25720,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Edificios.glb",
+    "objects": [
+     "Cube002"
+    ]
+   }
+  },
+  "building.house_15": {
+   "name": "Town building 15",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    31.11,
+    13.64,
+    10.89
+   ],
+   "tris": 10,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 15888,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Edificios.glb",
+    "objects": [
+     "Cube006"
+    ]
+   }
+  },
+  "building.house_16": {
+   "name": "Town building 16",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    28.56,
+    20.73,
+    10.17
+   ],
+   "tris": 144,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 40688,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Edificios.glb",
+    "objects": [
+     "Cube015"
+    ]
+   }
+  },
+  "building.hut": {
+   "name": "Wooden cabin",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    6.69,
+    3.15,
+    7.69
+   ],
+   "tris": 1965,
+   "materials": 3,
+   "textures": 3,
+   "bytes": 253620,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Cabañas.glb",
+    "objects": [
+     "Cabaña"
+    ]
+   }
+  },
+  "building.cabin_02": {
+   "name": "Long cabin",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    7.9,
+    2.91,
+    4.91
+   ],
+   "tris": 1374,
+   "materials": 3,
+   "textures": 3,
+   "bytes": 196884,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Cabañas.glb",
+    "objects": [
+     "Cabaña001"
+    ]
+   }
+  },
+  "building.cabin_03": {
+   "name": "Cabin with porch",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    7.32,
+    3.68,
+    8.56
+   ],
+   "tris": 1800,
+   "materials": 3,
+   "textures": 3,
+   "bytes": 237788,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Cabañas.glb",
+    "objects": [
+     "Cabaña002"
+    ]
+   }
+  },
+  "prop.fence": {
+   "name": "Wooden fence",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.06,
+    0.9,
+    1.25
+   ],
+   "tris": 84,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 13676,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Cabañas.glb",
+    "objects": [
+     "Cube025"
+    ]
+   }
+  },
+  "prop.door": {
+   "name": "Wooden door",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.85,
+    2,
+    0.1
+   ],
+   "tris": 12,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 5812,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Cabañas.glb",
+    "objects": [
+     "Cube033"
+    ]
+   }
+  },
+  "tree.oak": {
+   "name": "Broadleaf tree",
+   "category": "tree",
+   "states": [
+    "idle",
+    "wind"
+   ],
+   "size": [
+    8.61,
+    11,
+    7.79
+   ],
+   "tris": 272,
+   "materials": 2,
+   "textures": 2,
+   "bytes": 159244,
+   "source": {
+    "name": "Trees",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/trees-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Trees.glb",
+    "objects": [
+     "Tree"
+    ]
+   }
+  },
+  "tree.pine": {
+   "name": "Pine",
+   "category": "tree",
+   "states": [
+    "idle",
+    "wind"
+   ],
+   "size": [
+    7.02,
+    14,
+    6.54
+   ],
+   "tris": 1428,
+   "materials": 2,
+   "textures": 2,
+   "bytes": 198824,
+   "source": {
+    "name": "Trees",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/trees-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Trees.glb",
+    "objects": [
+     "Tree_1"
+    ]
+   }
+  },
+  "tree.sapling": {
+   "name": "Young tree",
+   "category": "tree",
+   "states": [
+    "idle",
+    "wind"
+   ],
+   "size": [
+    2.68,
+    3.5,
+    1.97
+   ],
+   "tris": 324,
+   "materials": 2,
+   "textures": 2,
+   "bytes": 90616,
+   "source": {
+    "name": "Trees",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/trees-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Trees.glb",
+    "objects": [
+     "Tree_2"
+    ]
+   }
+  },
+  "tree.fir": {
+   "name": "Fir",
+   "category": "tree",
+   "states": [
+    "idle",
+    "wind"
+   ],
+   "size": [
+    3.17,
+    9,
+    3.34
+   ],
+   "tris": 256,
+   "materials": 2,
+   "textures": 2,
+   "bytes": 107656,
+   "source": {
+    "name": "Trees",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/trees-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Trees.glb",
+    "objects": [
+     "Tree_3"
+    ]
+   }
+  },
+  "tree.spruce": {
+   "name": "Thin spruce",
+   "category": "tree",
+   "states": [
+    "idle",
+    "wind"
+   ],
+   "size": [
+    3.25,
+    9,
+    3.19
+   ],
+   "tris": 256,
+   "materials": 2,
+   "textures": 2,
+   "bytes": 107648,
+   "source": {
+    "name": "Trees",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/trees-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Trees.glb",
+    "objects": [
+     "Tree_4"
+    ]
+   }
+  },
+  "tree.birch": {
+   "name": "Birch",
+   "category": "tree",
+   "states": [
+    "idle",
+    "wind"
+   ],
+   "size": [
+    4.3,
+    7.5,
+    4.28
+   ],
+   "tris": 170,
+   "materials": 2,
+   "textures": 2,
+   "bytes": 86168,
+   "source": {
+    "name": "Trees",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/trees-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Trees.glb",
+    "objects": [
+     "Tree_5"
+    ]
+   }
+  },
+  "tree.maple": {
+   "name": "Round tree",
+   "category": "tree",
+   "states": [
+    "idle",
+    "wind"
+   ],
+   "size": [
+    5.41,
+    8,
+    6
+   ],
+   "tris": 149,
+   "materials": 2,
+   "textures": 2,
+   "bytes": 119976,
+   "source": {
+    "name": "Trees",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/trees-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Trees.glb",
+    "objects": [
+     "Tree_6"
+    ]
+   }
+  },
+  "tree.dead": {
+   "name": "Bare tree",
+   "category": "tree",
+   "states": [
+    "idle",
+    "wind"
+   ],
+   "size": [
+    4.22,
+    9,
+    4.4
+   ],
+   "tris": 190,
+   "materials": 2,
+   "textures": 2,
+   "bytes": 90176,
+   "source": {
+    "name": "Trees",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/trees-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Trees.glb",
+    "objects": [
+     "Tree_7"
+    ]
+   }
+  },
+  "tree.bare_sapling": {
+   "name": "Bare sapling",
+   "category": "tree",
+   "states": [
+    "idle",
+    "wind"
+   ],
+   "size": [
+    2.16,
+    5,
+    2.09
+   ],
+   "tris": 140,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 36400,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Arboles_low_poy.glb",
+    "objects": [
+     "Arbol1"
+    ]
+   }
+  },
+  "rock.boulder": {
+   "name": "Boulder",
+   "category": "rock",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    1.57,
+    1.35,
+    1.6
+   ],
+   "tris": 24,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 12748,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Rock_low_poly.glb",
+    "objects": [
+     "Rock1"
+    ]
+   }
+  },
+  "rock.rock_2": {
+   "name": "Rock 2",
+   "category": "rock",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    1.4,
+    0.66,
+    1.24
+   ],
+   "tris": 8,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 11252,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Rock_low_poly.glb",
+    "objects": [
+     "Rock2"
+    ]
+   }
+  },
+  "rock.rock_3": {
+   "name": "Rock 3",
+   "category": "rock",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    1.2,
+    0.63,
+    1.2
+   ],
+   "tris": 12,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 11628,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Rock_low_poly.glb",
+    "objects": [
+     "Rock3"
+    ]
+   }
+  },
+  "rock.rock_4": {
+   "name": "Rock 4",
+   "category": "rock",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    1,
+    0.82,
+    1
+   ],
+   "tris": 24,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 12720,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Rock_low_poly.glb",
+    "objects": [
+     "Rock4"
+    ]
+   }
+  },
+  "rock.rock_5": {
+   "name": "Rock 5",
+   "category": "rock",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    2.29,
+    1.07,
+    2.4
+   ],
+   "tris": 36,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 13956,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Rock_low_poly.glb",
+    "objects": [
+     "Rock5"
+    ]
+   }
+  },
+  "rock.rock_6": {
+   "name": "Rock 6",
+   "category": "rock",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    1.46,
+    0.77,
+    1.5
+   ],
+   "tris": 52,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 15468,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Rock_low_poly.glb",
+    "objects": [
+     "Rock6"
+    ]
+   }
+  },
+  "rock.rock_7": {
+   "name": "Rock 7",
+   "category": "rock",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    1.71,
+    1.24,
+    1.8
+   ],
+   "tris": 96,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 19720,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Rock_low_poly.glb",
+    "objects": [
+     "Rock7"
+    ]
+   }
+  },
+  "rock.rock_8": {
+   "name": "Rock 8",
+   "category": "rock",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    1.7,
+    0.8,
+    1.62
+   ],
+   "tris": 26,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 12972,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Rock_low_poly.glb",
+    "objects": [
+     "Rock8"
+    ]
+   }
+  },
+  "prop.vending_01": {
+   "name": "Vending machine 1",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.45,
+    1.8,
+    0.87
+   ],
+   "tris": 20,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 8688,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Maquinas.glb",
+    "objects": [
+     "Cube"
+    ]
+   }
+  },
+  "prop.vending_02": {
+   "name": "Vending machine 2",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.45,
+    1.8,
+    1.05
+   ],
+   "tris": 20,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 11968,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Maquinas.glb",
+    "objects": [
+     "Cube001"
+    ]
+   }
+  },
+  "prop.vending_03": {
+   "name": "Vending machine 3",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.45,
+    1.8,
+    1.05
+   ],
+   "tris": 20,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 11964,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Maquinas.glb",
+    "objects": [
+     "Cube002"
+    ]
+   }
+  },
+  "prop.vending_04": {
+   "name": "Vending machine 4",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.45,
+    1.8,
+    0.92
+   ],
+   "tris": 20,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 8636,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Maquinas.glb",
+    "objects": [
+     "Cube003"
+    ]
+   }
+  },
+  "prop.vending_05": {
+   "name": "Vending machine 5",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.45,
+    1.8,
+    1.05
+   ],
+   "tris": 20,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 8060,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Maquinas.glb",
+    "objects": [
+     "Cube004"
+    ]
+   }
+  },
+  "prop.vending_06": {
+   "name": "Vending machine 6",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.45,
+    1.8,
+    0.82
+   ],
+   "tris": 20,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 8592,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Maquinas.glb",
+    "objects": [
+     "Cube005"
+    ]
+   }
+  },
+  "prop.vending_07": {
+   "name": "Vending machine 7",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.4,
+    1.8,
+    0.98
+   ],
+   "tris": 20,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 7980,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Maquinas.glb",
+    "objects": [
+     "Cube006"
+    ]
+   }
+  },
+  "prop.vending_08": {
+   "name": "Vending machine 8",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.61,
+    1.8,
+    1.09
+   ],
+   "tris": 20,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 9940,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Maquinas.glb",
+    "objects": [
+     "Cube007"
+    ]
+   }
+  },
+  "prop.vending_09": {
+   "name": "Vending machine 9",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.53,
+    1.8,
+    0.73
+   ],
+   "tris": 28,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 10412,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Maquinas.glb",
+    "objects": [
+     "Cube008"
+    ]
+   }
+  },
+  "prop.vending_10": {
+   "name": "Vending machine 10",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.39,
+    1.8,
+    0.97
+   ],
+   "tris": 20,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 9644,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Maquinas.glb",
+    "objects": [
+     "Cube010"
+    ]
+   }
+  },
+  "prop.vending_11": {
+   "name": "Vending machine 11",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.42,
+    1.8,
+    1
+   ],
+   "tris": 20,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 8672,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Maquinas.glb",
+    "objects": [
+     "Cube011"
+    ]
+   }
+  },
+  "prop.vending_12": {
+   "name": "Vending machine 12",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.34,
+    1.8,
+    0.95
+   ],
+   "tris": 38,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 9964,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Maquinas.glb",
+    "objects": [
+     "Cube012"
+    ]
+   }
+  },
+  "prop.cooler": {
+   "name": "Cooler box",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.44,
+    0.45,
+    0.24
+   ],
+   "tris": 80,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 19220,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Pesca.glb",
+    "objects": [
+     "Cube019"
+    ]
+   }
+  },
+  "prop.cooler_red": {
+   "name": "Red cooler",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.44,
+    0.45,
+    0.24
+   ],
+   "tris": 80,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 19224,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Pesca.glb",
+    "objects": [
+     "Cube018"
+    ]
+   }
+  },
+  "prop.outboard": {
+   "name": "Outboard motor",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.24,
+    1,
+    0.44
+   ],
+   "tris": 170,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 27844,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Pesca.glb",
+    "objects": [
+     "Cube017"
+    ]
+   }
+  },
+  "boat.fishing": {
+   "name": "Fishing boat",
+   "category": "boat",
+   "states": [
+    "idle",
+    "sail"
+   ],
+   "size": [
+    1.68,
+    0.76,
+    6.5
+   ],
+   "tris": 284,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 48844,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Pesca.glb",
+    "objects": [
+     "Cube016"
+    ]
+   }
+  },
+  "boat.rowboat": {
+   "name": "Rowing boat",
+   "category": "boat",
+   "states": [
+    "idle",
+    "sail"
+   ],
+   "size": [
+    1.81,
+    0.49,
+    4.2
+   ],
+   "tris": 156,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 36680,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Pesca.glb",
+    "objects": [
+     "Cube001"
+    ]
+   }
+  },
+  "boat.canoe": {
+   "name": "Small boat",
+   "category": "boat",
+   "states": [
+    "idle",
+    "sail"
+   ],
+   "size": [
+    1.54,
+    0.57,
+    3.4
+   ],
+   "tris": 156,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 36576,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Pesca.glb",
+    "objects": [
+     "Cube"
+    ]
+   }
+  },
+  "animal.fish": {
+   "name": "Fish",
+   "category": "animal",
+   "states": [
+    "idle",
+    "swim"
+   ],
+   "size": [
+    0.06,
+    0.21,
+    0.45
+   ],
+   "tris": 38,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 15288,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Pesca.glb",
+    "objects": [
+     "Cube009"
+    ]
+   }
+  },
+  "animal.fish_2": {
+   "name": "Fish 2",
+   "category": "animal",
+   "states": [
+    "idle",
+    "swim"
+   ],
+   "size": [
+    0.06,
+    0.15,
+    0.4
+   ],
+   "tris": 42,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 15676,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Pesca.glb",
+    "objects": [
+     "Cube010"
+    ]
+   }
+  },
+  "animal.fish_3": {
+   "name": "Fish 3",
+   "category": "animal",
+   "states": [
+    "idle",
+    "swim"
+   ],
+   "size": [
+    0.06,
+    0.19,
+    0.35
+   ],
+   "tris": 44,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 15864,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Pesca.glb",
+    "objects": [
+     "Cube011"
+    ]
+   }
+  },
+  "animal.fish_4": {
+   "name": "Fish 4",
+   "category": "animal",
+   "states": [
+    "idle",
+    "swim"
+   ],
+   "size": [
+    0.04,
+    0.14,
+    0.4
+   ],
+   "tris": 38,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 15288,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Pesca.glb",
+    "objects": [
+     "Cube012"
+    ]
+   }
+  },
+  "animal.fish_5": {
+   "name": "Fish 5",
+   "category": "animal",
+   "states": [
+    "idle",
+    "swim"
+   ],
+   "size": [
+    0.04,
+    0.27,
+    0.5
+   ],
+   "tris": 38,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 15260,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Pesca.glb",
+    "objects": [
+     "Cube013"
+    ]
+   }
+  },
+  "animal.fish_6": {
+   "name": "Fish 6",
+   "category": "animal",
+   "states": [
+    "idle",
+    "swim"
+   ],
+   "size": [
+    0.04,
+    0.13,
+    0.4
+   ],
+   "tris": 38,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 15296,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Pesca.glb",
+    "objects": [
+     "Cube014"
+    ]
+   }
+  },
+  "animal.fish_7": {
+   "name": "Fish 7",
+   "category": "animal",
+   "states": [
+    "idle",
+    "swim"
+   ],
+   "size": [
+    0.04,
+    0.18,
+    0.45
+   ],
+   "tris": 38,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 15296,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Pesca.glb",
+    "objects": [
+     "Cube015"
+    ]
+   }
+  },
+  "animal.fish_8": {
+   "name": "Fish 8",
+   "category": "animal",
+   "states": [
+    "idle",
+    "swim"
+   ],
+   "size": [
+    0.25,
+    0.22,
+    0.9
+   ],
+   "tris": 78,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 19116,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Pesca.glb",
+    "objects": [
+     "Cylinder"
+    ]
+   }
+  },
+  "creature.ghoul": {
+   "name": "Ghoul",
+   "category": "creature",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.56,
+    2.3,
+    0.99
+   ],
+   "tris": 790,
+   "materials": 1,
+   "textures": 0,
+   "bytes": 40420,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Criaturas.glb",
+    "objects": [
+     "W"
+    ]
+   }
+  },
+  "creature.ghoul_02": {
+   "name": "Pale ghoul",
+   "category": "creature",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.47,
+    2.2,
+    0.84
+   ],
+   "tris": 738,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 52728,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Criaturas.glb",
+    "objects": [
+     "W2"
+    ]
+   }
+  },
+  "creature.antler_beast": {
+   "name": "Antlered beast",
+   "category": "creature",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    2.58,
+    2.6,
+    1.56
+   ],
+   "tris": 1135,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 81384,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Criaturas.glb",
+    "objects": [
+     "W3"
+    ]
+   }
+  },
+  "food.apple": {
+   "name": "Apple",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.1,
+    0.09,
+    0.1
+   ],
+   "tris": 20,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 9264,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Comida_low_poly.glb",
+    "objects": [
+     "manzana"
+    ]
+   }
+  },
+  "food.orange": {
+   "name": "Orange",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.08,
+    0.09,
+    0.08
+   ],
+   "tris": 20,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 9240,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Comida_low_poly.glb",
+    "objects": [
+     "naranja"
+    ]
+   }
+  },
+  "food.banana": {
+   "name": "Banana",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.2,
+    0.06,
+    0.04
+   ],
+   "tris": 56,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 12748,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Comida_low_poly.glb",
+    "objects": [
+     "platano"
+    ]
+   }
+  },
+  "food.carrot": {
+   "name": "Carrot",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.2,
+    0.03,
+    0.04
+   ],
+   "tris": 34,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 10616,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Comida_low_poly.glb",
+    "objects": [
+     "zanahoria"
+    ]
+   }
+  },
+  "food.cucumber": {
+   "name": "Cucumber",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.22,
+    0.05,
+    0.05
+   ],
+   "tris": 44,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 11592,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Comida_low_poly.glb",
+    "objects": [
+     "pepino"
+    ]
+   }
+  },
+  "food.lettuce": {
+   "name": "Lettuce",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.19,
+    0.18,
+    0.22
+   ],
+   "tris": 56,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 12744,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Comida_low_poly.glb",
+    "objects": [
+     "lechuga"
+    ]
+   }
+  },
+  "food.papaya": {
+   "name": "Papaya",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.15,
+    0.25,
+    0.15
+   ],
+   "tris": 80,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 15032,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Comida_low_poly.glb",
+    "objects": [
+     "papaya"
+    ]
+   }
+  },
+  "food.icecream": {
+   "name": "Ice cream tub",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.13,
+    0.14,
+    0.12
+   ],
+   "tris": 52,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 15508,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Comida_low_poly.glb",
+    "objects": [
+     "Helado"
+    ]
+   }
+  },
+  "food.icecream_02": {
+   "name": "Ice cream tub 2",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.17,
+    0.12,
+    0.16
+   ],
+   "tris": 52,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 15516,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Comida_low_poly.glb",
+    "objects": [
+     "Helado003"
+    ]
+   }
+  },
+  "food.soda": {
+   "name": "Soda bottle",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.1,
+    0.3,
+    0.11
+   ],
+   "tris": 56,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 14808,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Comida_low_poly.glb",
+    "objects": [
+     "Cylinder044"
+    ]
+   }
+  },
+  "food.juice": {
+   "name": "Juice bottle",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.12,
+    0.3,
+    0.12
+   ],
+   "tris": 118,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 20760,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Comida_low_poly.glb",
+    "objects": [
+     "Cylinder034"
+    ]
+   }
+  },
+  "food.drink_can": {
+   "name": "Drink can",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.07,
+    0.12,
+    0.06
+   ],
+   "tris": 36,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 12940,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Comida_low_poly.glb",
+    "objects": [
+     "Cylinder040"
+    ]
+   }
+  },
+  "food.snack_bag": {
+   "name": "Snack bag",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.15,
+    0.25,
+    0.16
+   ],
+   "tris": 68,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 13468,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Comida_low_poly.glb",
+    "objects": [
+     "Cylinder031"
+    ]
+   }
+  },
+  "food.cereal": {
+   "name": "Cereal box",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.19,
+    0.3,
+    0.05
+   ],
+   "tris": 20,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 12444,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Comida_low_poly.glb",
+    "objects": [
+     "Cube103"
+    ]
+   }
+  },
+  "food.crate": {
+   "name": "Produce crate",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.6,
+    0.4,
+    0.4
+   ],
+   "tris": 12,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 8644,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Comida_low_poly.glb",
+    "objects": [
+     "Cube091"
+    ]
+   }
+  },
+  "food.biscuits": {
+   "name": "Biscuit pack",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.18,
+    0.05,
+    0.03
+   ],
+   "tris": 12,
+   "materials": 1,
+   "textures": 1,
+   "bytes": 11992,
+   "source": {
+    "name": "Paquete de modelos low poly estilo psx",
+    "author": "elbolilloduro",
+    "url": "https://elbolilloduro.itch.io/objetos-low-poly-estilo-psx",
+    "license": "CC0 (models); some textures from Textures.com",
+    "file": "Comida_low_poly.glb",
+    "objects": [
+     "Cube114"
+    ]
+   }
+  }
+ }
+}

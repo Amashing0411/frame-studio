@@ -20,6 +20,7 @@ const fit = await c.evaluate(`({sw:document.documentElement.scrollWidth,w:innerW
 check('no sideways scrolling', fit.sw <= fit.w, JSON.stringify(fit));
 check('film is at least 40% of the screen height', fit.film >= 844 * .4, fit.film + ' px');
 check('tab bar sits at the bottom of the screen', fit.bar[1] <= 844 && fit.bar[1] > 780, JSON.stringify(fit.bar));
+check('a phone starts with the light 360 x 640 preview', await c.evaluate(`document.getElementById('previewRes').value`) === '360');
 const sheets = [];
 for (const k of ['story', 'shot', 'guide', 'more']) {
   await tap(`.paneltabs [data-panel=${k}]`);

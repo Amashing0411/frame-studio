@@ -3,7 +3,7 @@
 // light, same three-quarter angle, fitted to the model, transparent background (so it suits light and dark). Writes
 // public/assets/thumbs/<archetype>.webp; tools/build-manifest.mjs lists them for the asset library grid.
 //   node tools/build-thumbnails.mjs [url]        (default http://localhost:5173/, the dev server)
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, readdirSync, unlinkSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { launch, sleep, STUDIO_READY } from './lib/chrome.mjs';
 
@@ -11,11 +11,14 @@ const url = process.argv[2] || 'http://localhost:5173/', SIZE = 192;
 const out = resolve(import.meta.dirname, '../public/assets/thumbs'); mkdirSync(out, { recursive: true });
 const c = await launch(); await c.open(url); await c.waitFor(STUDIO_READY, 120000); await sleep(1500);
 const ids = await c.evaluate(`CATALOG_BASE.map(b=>b.id)`);
+// pictures of models that left the catalog are removed (the manifest lists whatever is in the folder)
+for (const f of readdirSync(out)) if (f.endsWith('.webp') && !ids.includes(f.replace(/\.webp$/, ''))) unlinkSync(join(out, f));
 await c.evaluate(`(()=>{const r=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});r.setPixelRatio(1);r.setSize(${SIZE},${SIZE});r.outputEncoding=THREE.sRGBEncoding;r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=1.05;
   const s=new THREE.Scene();s.add(new THREE.HemisphereLight(0xffffff,0x8a7a6a,1.05));const d=new THREE.DirectionalLight(0xffffff,1.5);d.position.set(3,6,4);s.add(d);const b=new THREE.DirectionalLight(0xffffff,.45);b.position.set(-4,2,-3);s.add(b);
   window.__thumb={r,s,cam:new THREE.PerspectiveCamera(28,1,.01,2000)}})()`);
 let n = 0;
 for (const id of ids) {
+  await c.evaluate(`(async()=>{const e=catalogEntries.find(e=>e.archetype===${JSON.stringify(id)});if(e&&resolveCatalog(e.id)?.base.kind==='psx')await psxLoad(resolveCatalog(e.id).base.id)})()`);
   const png = await c.evaluate(`(()=>{const {r,s,cam}=window.__thumb,entry=catalogEntries.find(e=>e.archetype===${JSON.stringify(id)}&&e.variant===0)||catalogEntries.find(e=>e.archetype===${JSON.stringify(id)});if(!entry)return null;
     const root=buildCatalogModel(entry.id);try{applyCatalogPose(root,entry.states.includes('idle')?'idle':entry.states[0],.6)}catch(e){}
     const shadow=root.getObjectByName('Contact shadow');if(shadow)shadow.visible=false;s.add(root);root.updateMatrixWorld(true);if(typeof syncCastBodies==='function')syncCastBodies();root.updateMatrixWorld(true);

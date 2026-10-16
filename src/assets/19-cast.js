@@ -19,6 +19,7 @@ const CAST_ONCE = new Set(['fall', 'sleep', 'sit_enter', 'jump_start', 'jump_lan
 async function loadCast() {
   try {
     const m = await (await fetch('assets/manifest.json')).json(), P = m.people;
+    definePsxCatalog(m.psx); rebuildCatalog();
     // castProgress (20-ui-shell.js) fills the film's loading bar as each file arrives
     const total = Object.keys(P.families).length + Object.keys(P.models).length; let done = 0;
     const loader = new THREE.GLTFLoader(), load = u => new Promise((ok, fail) => loader.load('assets/' + u, g => { castProgress(++done, total); ok(g); }, undefined, fail));
@@ -27,6 +28,7 @@ async function loadCast() {
       ...Object.entries(P.models).map(async ([id, d]) => { CAST.src.set(id, (await load(d.file)).scene); }),
     ]);
     CAST.manifest = m; CAST.ready = true;
+    for (const id of CAST.src.keys()) { castInfo(id); castMergeModel(id); }
   } catch (e) { CAST.src.clear(); CAST.ready = false; console.warn('Cast assets did not load; people keep their procedural bodies.', e); }
 }
 
@@ -49,6 +51,73 @@ function castInfo(id) {
     if (rel > .45 && rel < .85) mats.set(o.material.name, (mats.get(o.material.name) || 0) + o.geometry.attributes.position.count);
   });
   info = { h, top: [...mats].sort((a, b) => b[1] - a[1])[0]?.[0] || null }; CAST.info.set(id, info); return info;
+}
+
+// Each model arrives as one skinned mesh per material (shirt, pants, shoes, hair, eyes...), so a person cost 6-18 draw
+// calls. Merged once per model at load: the pieces whose material a person changes stay apart (skin: zombie tint; top
+// garment: palette colour; mouth: drawn with a depth offset; hair on women's models: grey for elders), and everything
+// else becomes one mesh whose material colours are stored per vertex under one shared material. The materials are
+// plain colours (no textures), so the picture is unchanged; pieces without the face morphs get zero morph offsets so
+// a role never splits in two. A person now costs 3-5 draw calls.
+function castMergeModel(id) {
+  const src = CAST.src.get(id), info = castInfo(id), women = new Set(CAST.manifest.people.women);
+  const role = m => CAST_SKIN.test(m.name) ? 'skin' : m.name === info.top ? 'top' : m.name === 'Mouth' ? 'mouth' : women.has(id) && /^Hair/.test(m.name) ? 'hair' : 'other';
+  const groups = new Map(); src.updateMatrixWorld(true);
+  src.traverse(o => {
+    if (!o.isSkinnedMesh) return;
+    const key = [role(o.material), o.material.roughness.toFixed(2), o.material.metalness.toFixed(2), o.matrixWorld.elements.map(v => v.toFixed(4)).join(), o.bindMatrix.elements.map(v => v.toFixed(4)).join()].join('|');
+    (groups.get(key) || groups.set(key, []).get(key)).push(o);
+  });
+  // values of a (possibly quantized, normalized) attribute as floats
+  const unit = a => !a.normalized ? 1 : ({ Int8Array: 127, Uint8Array: 255, Int16Array: 32767, Uint16Array: 65535 })[a.array.constructor.name] || 1;
+  const read = (a, i, out) => { const k = unit(a); for (let c = 0; c < a.itemSize; c++) out[c] = Math.max(-1, a.getComponent ? a.getComponent(i, c) / k : [a.getX(i), a.getY(i), a.getZ(i), a.getW(i)][c] / k); return out; };
+  for (const [key, list] of groups) {
+    if (list.length < 2 && !key.startsWith('other')) continue;
+    const first = list[0], merged = new THREE.BufferGeometry(), total = list.reduce((n, o) => n + o.geometry.attributes.position.count, 0);
+    // morph target names live in the mesh's dictionary (GLTFLoader leaves the attributes unnamed)
+    const morphed = list.find(o => o.geometry.morphAttributes.position && o.morphTargetDictionary), targets = morphed?.geometry.morphAttributes;
+    const names = morphed ? Object.entries(morphed.morphTargetDictionary).sort((a, b) => a[1] - b[1]).map(e => e[0]) : [];
+    const withNormals = !!targets?.normal, colour = key.startsWith('other') || list.some(o => o.geometry.attributes.color);
+    const pos = new Float32Array(total * 3), nor = new Float32Array(total * 3), idx = new Uint16Array(total * 4), wgt = new Float32Array(total * 4), col = colour ? new Float32Array(total * 3) : null;
+    const mp = names.map(() => new Float32Array(total * 3)), mn = withNormals ? names.map(() => new Float32Array(total * 3)) : [], index = [], tmp = [0, 0, 0, 0];
+    let base = 0;
+    for (const o of list) {
+      const g = o.geometry, A = g.attributes, n = A.position.count, c = o.material.color, own = key.startsWith('other');
+      for (let i = 0; i < n; i++) {
+        const v = base + i;
+        read(A.position, i, tmp); pos.set(tmp.slice(0, 3), v * 3);
+        read(A.normal, i, tmp); nor.set(tmp.slice(0, 3), v * 3);
+        for (let k = 0; k < 4; k++) idx[v * 4 + k] = A.skinIndex.getComponent ? A.skinIndex.getComponent(i, k) : [A.skinIndex.getX(i), A.skinIndex.getY(i), A.skinIndex.getZ(i), A.skinIndex.getW(i)][k];
+        read(A.skinWeight, i, tmp); wgt.set(tmp, v * 4);
+        if (col) { const vc = A.color ? read(A.color, i, [0, 0, 0, 0]) : [1, 1, 1]; col.set(own ? [c.r * vc[0], c.g * vc[1], c.b * vc[2]] : vc.slice(0, 3), v * 3); }
+        names.forEach((name, t) => {
+          const j = o.morphTargetDictionary?.[name], P = j !== undefined ? g.morphAttributes.position?.[j] : null, N = j !== undefined ? g.morphAttributes.normal?.[j] : null;
+          if (P) { read(P, i, tmp); mp[t].set(tmp.slice(0, 3), v * 3); }
+          if (N && withNormals) { read(N, i, tmp); mn[t].set(tmp.slice(0, 3), v * 3); }
+        });
+      }
+      if (g.index) for (let i = 0; i < g.index.count; i++) index.push(base + g.index.getX(i)); else for (let i = 0; i < n; i++) index.push(base + i);
+      base += n;
+    }
+    merged.setAttribute('position', new THREE.BufferAttribute(pos, 3)); merged.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
+    merged.setAttribute('skinIndex', new THREE.BufferAttribute(idx, 4)); merged.setAttribute('skinWeight', new THREE.BufferAttribute(wgt, 4));
+    if (col) merged.setAttribute('color', new THREE.BufferAttribute(col, 3));
+    merged.setIndex(total > 65535 ? new THREE.Uint32BufferAttribute(index, 1) : new THREE.Uint16BufferAttribute(index, 1));
+    if (names.length) {
+      merged.morphAttributes.position = mp.map((a, t) => Object.assign(new THREE.BufferAttribute(a, 3), { name: names[t] }));
+      if (withNormals) merged.morphAttributes.normal = mn.map((a, t) => Object.assign(new THREE.BufferAttribute(a, 3), { name: names[t] }));
+      merged.morphTargetsRelative = true;
+    }
+    merged.computeBoundingBox(); merged.computeBoundingSphere();
+    let mat = (list.find(o => o.geometry.morphAttributes.position) || first).material;
+    if (key.startsWith('other')) mat = new THREE.MeshStandardMaterial({ name: 'CastMerged', color: 0xffffff, vertexColors: true, roughness: first.material.roughness, metalness: first.material.metalness });
+    else if (col && !mat.vertexColors) { mat = mat.clone(); mat.vertexColors = true; }
+    if (names.length && !mat.morphTargets) { mat = mat === first.material || list.some(o => o.material === mat) ? mat.clone() : mat; mat.morphTargets = true; mat.morphNormals = withNormals; }
+    mat.skinning = true;
+    const mesh = new THREE.SkinnedMesh(merged, mat); mesh.name = first.name; mesh.position.copy(first.position); mesh.quaternion.copy(first.quaternion); mesh.scale.copy(first.scale);
+    first.parent.add(mesh); mesh.bind(first.skeleton, first.bindMatrix);
+    for (const o of list) { o.parent.remove(o); o.geometry.dispose(); }
+  }
 }
 
 // Rest heights of a loaded model: pelvis bone (local position and height) and the lower foot bone.

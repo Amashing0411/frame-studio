@@ -22,6 +22,10 @@ const r = await c.evaluate(`(async () => {
       out.push({ file: d.file, ok, detail: need.length ? 'missing bones ' + need.join(',') : bones + ' bones, ' + morphs + ' morph meshes' });
     } catch (e) { out.push({ file: d.file, ok: false, detail: String(e.message || e) }); }
   }
+  for (const [id, d] of Object.entries(m.psx || {})) {
+    try { const g = await load(d.file); let meshes = 0; g.scene.traverse(o => { if (o.isMesh) meshes++; }); out.push({ file: d.file, ok: meshes > 0, detail: meshes + ' meshes' }); }
+    catch (e) { out.push({ file: d.file, ok: false, detail: String(e.message || e) }); }
+  }
   return out;
 })()`);
 let failed = 0;

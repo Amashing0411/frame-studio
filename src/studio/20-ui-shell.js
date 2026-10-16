@@ -38,6 +38,8 @@ function finishUIShell() {
   initWhatIf();
   initAIWriter();
   initPasteScript();
+  phonePreviewDefault();
+  loadFilmFonts();
   $('loadOverlay').classList.add('done');
   setTimeout(() => $('loadOverlay').hidden = true, 320);
 }
@@ -135,4 +137,32 @@ function renderShotTicks() {
   const box = $('shotTicks'); if (!box) return; box.replaceChildren();
   if (!shots.length || !END) return;
   for (const s of shots.slice(1)) { const b = document.createElement('b'); b.style.left = (s.t0 / END * 100) + '%'; box.append(b); }
+}
+
+// Preview quality (never the exported film). A phone starts at 360 x 640 the first time it opens the studio; after
+// that the saved choice is kept. During playback, if frames arrive over 40 ms apart for 2 seconds (under ~25 fps), the preview
+// steps down one resolution and says so; More > Look > Preview resolution brings it back.
+const UI_QUALITY_KEY = 'frame-studio-phone-quality', UI_SLOW = { since: 0, slow: 0, total: 0 };
+function phonePreviewDefault() {
+  let seen = null; try { seen = localStorage.getItem(UI_QUALITY_KEY); } catch (e) { }
+  if (seen || !UI_PHONE.matches || !matchMedia('(pointer: coarse)').matches) return;
+  try { localStorage.setItem(UI_QUALITY_KEY, '1'); } catch (e) { }
+  if (+$('previewRes').value > 360) { $('previewRes').value = '360'; configureRender(); autosave(); }
+}
+// The film's pixel fonts (FILM_FONTS in 05-capture.js) load in the background; the frame is redrawn when they arrive.
+// Exports wait for document.fonts.ready before the first frame.
+function loadFilmFonts() {
+  for (const [name, file] of [['Microtale', 'fonts/Microtale.ttf'], ['Dreadink', 'fonts/Dreadink.ttf']])
+    new FontFace(name, `url(${file})`).load().then(f => { document.fonts.add(f); if (sceneReady && !simulating && !seeking && !recording) renderCurrent(); }).catch(e => console.warn('Font ' + name + ' did not load', e));
+}
+function adaptPreviewQuality(ms, now) {
+  if (recording) return;
+  if (!UI_SLOW.since) UI_SLOW.since = now;
+  UI_SLOW.total++; if (ms > 40) UI_SLOW.slow++;
+  if (now - UI_SLOW.since < 2000) return;
+  const slow = UI_SLOW.slow > UI_SLOW.total * .6; UI_SLOW.since = now; UI_SLOW.slow = UI_SLOW.total = 0;
+  const sel = $('previewRes'), options = [...sel.options].map(o => o.value), i = options.indexOf(sel.value);
+  if (!slow || i <= 0) return;
+  sel.value = options[i - 1]; configureRender(); autosave();
+  notifyUser('Preview lowered to ' + sel.selectedOptions[0].textContent.split(' · ')[0] + ' to keep playback smooth. Exports are unaffected (More › Look).');
 }

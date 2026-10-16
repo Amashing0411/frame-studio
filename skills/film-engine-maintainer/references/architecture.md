@@ -58,7 +58,7 @@ Vendor (npm, pinned): `three@0.128.0` (`build/three.min.js` + `examples/js` Orbi
 | 11 | studio/camera-paths-chatter | cinema finishes (`applyFinish`, `applyCinemaMaterials`), film post pass (`makeFilmPost`, `renderFilm`), voices (`chatterSamples`, `dialogueList`, `voiceBuffer`), `marketStoryScenario`/`storyDemo`, cinema UI |
 | 12 | studio/story-delivery | `updateTalkingFaces` |
 | 13 | studio/talking | conversation (head turns, gestures), `applyConversationActions`/`applyConversation`, speech balloons and icons (`drawSpeech`), `validateSpeech` |
-| 19 | assets/cast | glTF people (Step 7): `loadCast`, `castModelFor`, `attachCastBody` (fits the rig to the model, hides the procedural body, maps the face, private skin/top), `driveCastBody`, `syncCastBodies` (named step of `renderFilm` and the Asset studio render), `releaseCastBody` |
+| 19 | assets/cast | glTF people (Step 7): `loadCast`, `castMergeModel` (once per model at load: every piece except skin, top garment, mouth and women's hair merged into one vertex-coloured mesh, morphs padded; 3-5 draw calls per person instead of 6-18), `castModelFor`, `attachCastBody` (fits the rig to the model, hides the procedural body, maps the face, private skin/top), `driveCastBody`, `syncCastBodies` (named step of `renderFilm` and the Asset studio render), `releaseCastBody` |
 | 14 | assets/characters-v3 | v3 face, mouth visemes and mitten hands (`restyleCharacter3`), crowd level of detail (`applyCrowdLOD`), toy city finish (`stylizeCityWorld`, `softenCityMaterial`), `validateFinish` |
 | 15 | studio/balloons | balloon layout helpers |
 | 16 | assets/world-revamp | `worldLife` (swaying plants, physics litter), `wlMat`/`wlGeo` caches, `updateWorldLife` |
@@ -93,7 +93,9 @@ Vendor (npm, pinned): `three@0.128.0` (`build/three.min.js` + `examples/js` Orbi
 
 ## Cameras
 
-Presets (`PRE`) with moves (`MOV`) around named hubs; `target_id` follows a placed asset (`referencedCamera`); authored cameras use `position`/`look` (+ `end_position`/`end_look`, `fov`). `fix()` keeps preset cameras out of buildings; `avoidCamera` steers around `cameraSolids` when `CINEMA.smartCamera` is on; the flood step keeps the camera above water.
+Presets (`PRE`) with moves (`MOV`) around named hubs; `target_id` follows a placed asset (`referencedCamera`); authored cameras use `position`/`look` (+ `end_position`/`end_look`, `fov`). `fix()` keeps preset cameras out of buildings; `avoidCamera` steers around `cameraSolids` when `CINEMA.smartCamera` is on (a camera inside a solid moves along its line of sight to just in front of it; the nearest-face push-out only when the subject is inside too, because the nearest face can flip between steps); `referencedCamera(s,t,pos,look,dt)` eases that correction in (fast) and out (slowly) through `cameraEase`, snapping only on a cut, after `prepareScene` or when the eased camera would sit in a solid, and a zero-time redraw reuses the last offset (deterministic). Quake shake is scaled by the camera-to-subject distance. The flood step keeps the camera above water. `tools/camera-probe.mjs` lists uneven camera steps per story with their cause.
+
+Live playback advances `T` continuously (`advanceTo(T+wall*speed)`, starting half a step off the 1/60 grid); the simulation still steps at a fixed 60/s and `renderCurrent` draws the camera at the exact time, so moves stay smooth at any refresh rate. Seeks and exports are unchanged. `adaptPreviewQuality` (20-ui-shell.js) steps the preview resolution down when frames arrive over 40 ms apart for 2 s; `phonePreviewDefault` starts phones at 360 x 640 once.
 
 ## Materials and looks
 
@@ -107,11 +109,13 @@ Presets (`PRE`) with moves (`MOV`) around named hubs; `target_id` follows a plac
 | `wlMat`, `char3Mat` | world-revamp and v3 face caches | yes (legacy caches) |
 | `cMaterial` | catalog assets (with wear and shader modes) | no |
 
-Finishes: `stylizeCityWorld` softens city materials once (`clayLook` flag); `applyCinemaMaterials(preset)` sets absolute values from each material's original surface (natural, soft, ceramic, faceted, toon). For palette materials both swap in cached variants instead.
+Finishes: `stylizeCityWorld` softens city materials once (`clayLook` flag); `applyCinemaMaterials(preset)` sets absolute values from each material's original surface (natural, soft, ceramic, faceted, toon, psx; the list is `FILM_FINISHES`). For palette materials both swap in cached variants instead.
+
+PSX finish (ported from fcidade's CC0 PSX Godot shader): `psxShader` snaps vertices to the low-resolution grid (`PSX.grid`) and maps textures affinely (uv·w and w interpolated, divided per pixel: GLSL ES 3.0 has no `noperspective`); `psxTexture` switches maps to nearest filtering (original filters kept in a WeakMap: r128 textures have no userData). `renderFilm` draws into `p.psxTarget` (no MSAA, nearest) at output/k with k = round(width/360) (540 → 270, 720/1080 → 360), and the post pass reduces colour to 15 bits with a 4×4 Bayer dither on internal pixels; depth of field, bloom and grain are forced off.
 
 ## Catalog and assets
 
-`CATALOG_BASE` (182 archetypes in 13 categories) × 24 variants; `buildCatalogModel(id, options)` builds one (extension packs and registered imports first, then `buildArchetypeModel` with a builder per kind). Scenario `assets[]` become `catalogInstances` with states, expressions, paths and actions over time (`updateCatalogInstances`). Extension packs are declarative JSON (nodes, shapes, animation tracks); imported GLB/GLTF models can be registered as an asset id.
+`CATALOG_BASE`: the 18 people archetypes (× 24 looks, built by `buildArchetypeModel` → `toyPerson` + the cast) and 121 PSX models (one look each, `kind: 'psx'`, added by `definePsxCatalog` from the manifest in `loadCast`; `src/assets/24-psx.js`). `buildCatalogModel(id, options)`: extension packs and registered imports first, then PSX (`buildPsxModel`: an invisible box of the model's size, filled with a shared-geometry clone when the file arrives; `psxReady()` is awaited by `seekFilm`, so exports and frame tools see loaded models), then people. `resolveCatalog` maps an old `.vNN` id of a PSX model to the model. PSX states are procedural (`posePsx`: wind/storm sway, sail bob, swim wiggle). `disposeCatalogModel` skips `userData.psxShared` geometry/materials. Pipeline: `tools/fetch-itch.py` → `tools/convert-itch.sh` (7-Zip, `tools/blender/convert_itch.py`, `tools/itch-dae2glb.mjs`) → `tools/build-psx.mjs` (table in `tools/psx-catalog.mjs`; writes the CREDITS rows) → `tools/build-manifest.mjs` → `tools/build-thumbnails.mjs` → `tools/sync-skill-assets.mjs`. The old procedural catalog (13 categories, 182 archetypes) is in `archive/frame-studio-catalog-v1.zip` (local, gitignored) and commit 083b45b. Scenario `assets[]` become `catalogInstances` with states, expressions, paths and actions over time (`updateCatalogInstances`). Extension packs are declarative JSON (nodes, shapes, animation tracks); imported GLB/GLTF models can be registered as an asset id.
 
 ## Water hazards
 
@@ -135,5 +139,7 @@ Export: frame-by-frame (WebCodecs `VideoEncoder`/`AudioEncoder` + mp4/webm muxer
 | `tools/scene-stats.mjs <url> [out] [--budget perf/budgets.json]` | objects, materials, geometries, WebGL-level draw calls and triangles per reference frame |
 | `tools/capture-finishes.mjs <url> <dir> [--compare dir]` | frames under every cinema finish + Asset studio isolation |
 | `tools/extract-vocabulary.mjs <url> <out.json>` | the scenario vocabulary from the running engine (+ `.md`) |
+| `tools/camera-probe.mjs [url] [--only a,b] [--json out]` | uneven camera steps inside shots, per story, with causes |
+| `tools/perf-probe.mjs [url] [--only a,b] [--json out]` | draw calls, shadow-pass share, GPU-synced ms per frame (median of 40), ms per step |
 | `tools/verify-step.sh [url]` | wrappers + frames + smoke + budgets |
 | `tools/lib/chrome.mjs` | headless Chrome over the DevTools Protocol (no dependencies) |

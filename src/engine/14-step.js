@@ -19,8 +19,9 @@ function step(dt,t){
  for(const p of pool){if(p.life<=0)continue;p.life-=dt;const k=1-p.life/p.max;if(p.life<=0){p.s.visible=false;continue}p.s.position.y+=p.vy*dt;p.s.position.x+=.8*dt;const sz=lp(p.s0,p.s1,k);p.s.scale.set(sz,sz,1);p.s.material.opacity=p.op*(1-k)*Math.min(1,k*8)}
  if(e.has('helicopter')){heli.visible=true;const a=t*.5;heli.position.set(s.hub.x+Math.cos(a)*75,110,s.hub.z+Math.sin(a)*75);heli.rotation.y=-a;rotor.rotation.y=t*30}else heli.visible=false;
  updateCatalogInstances(dt,t);
- const pos=V(),look=V(),u=cl((t-s.t0)/(s.t1-s.t0));shotCam(s,u,t,pos,look);if(!s.cam.target_id)fix(pos);referencedCamera(s,t,pos,look);
- const P=s.cam.preset,amp=q*(/aerial|orbit/.test(P)?.18:/rooftop|window/.test(P)?.3:.18);
+ const pos=V(),look=V(),u=cl((t-s.t0)/(s.t1-s.t0));shotCam(s,u,t,pos,look);if(!s.cam.target_id)fix(pos);referencedCamera(s,t,pos,look,dt);
+ // Quake shake: scaled by the distance to the subject, so a close-up shakes by a similar angle as a wide shot.
+ const P=s.cam.preset,amp=q*(/aerial|orbit/.test(P)?.18:/rooftop|window/.test(P)?.3:.18)*cl(pos.distanceTo(look)/10,.2,1);
  pos.x+=(Math.sin(t*53)*.5+Math.sin(t*31+1)*.3)*amp;pos.y+=Math.sin(t*47+2)*amp*.5;pos.z+=Math.sin(t*41+4)*amp*.5;
  camera.position.copy(pos);camera.lookAt(look);if(P==='pov')camera.rotateZ(Math.sin(t*4.5)*.012);
  importedModels.forEach(m=>{const meta=importedMeta.get(m);if(meta&&meta.mixer)meta.mixer.update(dt)});

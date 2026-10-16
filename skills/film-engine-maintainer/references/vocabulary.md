@@ -1,6 +1,6 @@
 # Frame Studio scenario vocabulary (schema v7)
 
-Generated 2026-10-14 from the running engine by `tools/extract-vocabulary.mjs (frame-studio)`. Do not edit by hand; re-run the tool.
+Generated 2026-10-16 from the running engine by `tools/extract-vocabulary.mjs (frame-studio)`. Do not edit by hand; re-run the tool.
 
 - **hazard.type**: none, quake, zombie, tsunami, flood
 - **cam.preset**: aerial, ground, rooftop, waterline, pov, over_shoulder, window, orbit, closeup
@@ -11,7 +11,7 @@ Generated 2026-10-14 from the running engine by `tools/extract-vocabulary.mjs (f
 - **behavior.zombies**: shamble, chase, sprint
 - **world.biome**: city, coast, ocean, sky, jungle, island, custom
 - **world.finish**: toy, classic
-- **cinema.material**: natural, soft, ceramic, faceted, toon
+- **cinema.material**: natural, soft, ceramic, faceted, toon, psx
 - **cinema.grade**: neutral, warm, cool, mono
 - **cinema.speech**: icons, text, off
 - **cinema ranges**: dof 0-1, focus 0-300, radial 0-1, bloom 0-1, vignette 0-1, grain 0-1
@@ -51,43 +51,27 @@ Generated 2026-10-14 from the running engine by `tools/extract-vocabulary.mjs (f
 - weather fog: `fog|mist`
 - weather grey_sky: `overcast|gr[ae]y|smoke|haze|gloom|cloud`
 
-## Assets (182 archetypes, each also as variants .v01-.v24)
+## Assets (139 archetypes, each also as variants .v01-.v04)
 
 - **human/human** (18): human.civilian, human.commuter, human.medic, human.firefighter, human.police, human.worker, human.sailor, human.pilot, human.hiker, human.chef, human.vendor, human.student, human.child, human.elder, human.athlete, human.diver, human.raincoat, human.survivor
   - states: idle walk run wave talk phone sit crouch cower cheer point carry swim dance jump climb fall sleep zombie think
   - expressions: neutral happy sad angry fear surprised determined relief sleepy
   - accessories: backpack cap helmet glasses mask bag vest umbrella
-- **vehicle/car** (16): vehicle.compact, vehicle.sedan, vehicle.suv, vehicle.taxi, vehicle.police, vehicle.ambulance, vehicle.firetruck, vehicle.bus, vehicle.schoolbus, vehicle.van, vehicle.pickup, vehicle.flatbed, vehicle.tanker, vehicle.garbage, vehicle.jeepney, vehicle.tractor
-  - states: idle drive turn_left turn_right doors_open hazard
-- **vehicle/bike** (3): vehicle.bicycle, vehicle.motorcycle, vehicle.scooter
-  - states: idle drive turn_left turn_right
-- **boat/boat** (8): boat.dinghy, boat.canoe, boat.speedboat, boat.sailboat, boat.fishing, boat.ferry, boat.cargo, boat.raft
-  - states: idle sail storm anchor
-- **aircraft/aircraft** (6): aircraft.propeller, aircraft.jet, aircraft.seaplane, aircraft.helicopter, aircraft.drone, aircraft.glider
-  - states: idle fly bank_left bank_right land
-- **building/building** (16): building.house, building.apartment, building.office, building.shop, building.hospital, building.school, building.firestation, building.policestation, building.warehouse, building.cafe, building.hotel, building.skyscraper, building.stilt_house, building.hut, building.hangar, building.shelter
-  - states: idle doors_open damage
-- **building/building** (2): building.lighthouse, building.watertower
-  - states: idle damage
-- **tree/tree** (12): tree.oak, tree.banyan, tree.acacia, tree.pine, tree.cypress, tree.palm, tree.banana, tree.mangrove, tree.bamboo, tree.jungle, tree.dead, tree.sapling
-  - states: idle wind storm
-- **plant/plant** (10): plant.fern, plant.grass, plant.reeds, plant.bush, plant.flower, plant.potted, plant.lily, plant.kelp, plant.coral, plant.vine
+- **vehicle/psx** (10): vehicle.wagon, vehicle.sedan, vehicle.compact, vehicle.minivan, vehicle.cruiser, vehicle.police, vehicle.taxi, vehicle.wreck, vehicle.vintage, vehicle.van
+  - states: idle drive
+- **building/psx** (47): building.office, building.tower_01_2, building.tower_01_3, building.tower_01_4, building.tower_02_1, building.tower_02_2, building.tower_03_1, building.tower_03_2, building.tower_04_1, building.tower_04_2, building.tower_05_1, building.tower_05_2, building.tower_06_1, building.tower_06_2, building.tower_07_1, building.tower_07_2, building.tower_08_1, building.tower_08_2, building.apartment, building.shop, building.block_03, building.block_04, building.block_05, building.block_06, building.block_07, building.block_08, building.block_09, building.block_10, building.house, building.house_02, building.house_03, building.house_04, building.house_05, building.house_06, building.house_07, building.house_08, building.house_09, building.house_10, building.house_11, building.house_12, building.house_13, building.house_14, building.house_15, building.house_16, building.hut, building.cabin_02, building.cabin_03
+  - states: idle
+- **prop/psx** (17): prop.fence, prop.door, prop.vending_01, prop.vending_02, prop.vending_03, prop.vending_04, prop.vending_05, prop.vending_06, prop.vending_07, prop.vending_08, prop.vending_09, prop.vending_10, prop.vending_11, prop.vending_12, prop.cooler, prop.cooler_red, prop.outboard
+  - states: idle
+- **tree/psx** (9): tree.oak, tree.pine, tree.sapling, tree.fir, tree.spruce, tree.birch, tree.maple, tree.dead, tree.bare_sapling
   - states: idle wind
-- **animal/quadruped** (8): animal.dog, animal.cat, animal.deer, animal.boar, animal.cow, animal.tiger, animal.elephant, animal.monkey
-  - states: idle walk run rest
-- **animal/bird** (4): animal.gull, animal.pigeon, animal.parrot, animal.eagle
-  - states: idle fly glide
-- **animal/fish** (5): animal.fish, animal.shark, animal.dolphin, animal.whale, animal.turtle
-  - states: idle swim dart
-- **food/food** (18): food.apple, food.orange, food.banana, food.coconut, food.watermelon, food.pineapple, food.bread, food.burger, food.pizza, food.fish, food.rice, food.soup, food.noodles, food.coffee, food.water, food.can, food.crate, food.sack
+- **rock/psx** (8): rock.boulder, rock.rock_2, rock.rock_3, rock.rock_4, rock.rock_5, rock.rock_6, rock.rock_7, rock.rock_8
   - states: idle
-- **trash/trash** (12): trash.bag, trash.bottle, trash.can, trash.cardboard, trash.paper, trash.tire, trash.wood, trash.metal, trash.bin, trash.dumpster, trash.net, trash.plastic
-  - states: idle scatter
-- **debris/debris** (8): debris.concrete, debris.brick, debris.glass, debris.asphalt, debris.roof, debris.beam, debris.driftwood, debris.rock
-  - states: idle scatter fall
-- **prop/prop** (28): prop.bench, prop.table, prop.chair, prop.lamp, prop.traffic_light, prop.cone, prop.barrier, prop.hydrant, prop.sign, prop.fence, prop.crate, prop.container, prop.barrel, prop.pallet, prop.lifebuoy, prop.anchor, prop.buoy, prop.dock, prop.bridge, prop.tent, prop.umbrella, prop.cart, prop.generator, prop.solar, prop.antenna, prop.suitcase, prop.backpack, prop.traffic_barrel
+- **boat/psx** (3): boat.fishing, boat.rowboat, boat.canoe
+  - states: idle sail
+- **animal/psx** (8): animal.fish, animal.fish_2, animal.fish_3, animal.fish_4, animal.fish_5, animal.fish_6, animal.fish_7, animal.fish_8
+  - states: idle swim
+- **creature/psx** (3): creature.ghoul, creature.ghoul_02, creature.antler_beast
   - states: idle
-- **environment/environment** (3): environment.water, environment.cloud, environment.waterfall
-  - states: idle animate
-- **environment/environment** (5): environment.sun, environment.moon, environment.island, environment.sandbank, environment.mountain
+- **food/psx** (16): food.apple, food.orange, food.banana, food.carrot, food.cucumber, food.lettuce, food.papaya, food.icecream, food.icecream_02, food.soda, food.juice, food.drink_can, food.snack_bag, food.cereal, food.crate, food.biscuits
   - states: idle

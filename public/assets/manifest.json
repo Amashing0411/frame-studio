@@ -443,189 +443,1993 @@
    }
   }
  },
+ "psx": {
+  "vehicle.wagon": {
+   "file": "psx/vehicle.wagon.glb?v=4ed0573d9c",
+   "name": "Station wagon",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    1.75,
+    1.48,
+    4.2
+   ],
+   "tris": 438,
+   "bytes": 40032
+  },
+  "vehicle.sedan": {
+   "file": "psx/vehicle.sedan.glb?v=771dc92752",
+   "name": "City sedan",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    2,
+    1.51,
+    4.5
+   ],
+   "tris": 312,
+   "bytes": 28600
+  },
+  "vehicle.compact": {
+   "file": "psx/vehicle.compact.glb?v=ee81989cc5",
+   "name": "Compact hatchback",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    1.89,
+    1.53,
+    4
+   ],
+   "tris": 448,
+   "bytes": 39500
+  },
+  "vehicle.minivan": {
+   "file": "psx/vehicle.minivan.glb?v=6ac2d0f483",
+   "name": "Minivan",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    2.59,
+    2.09,
+    4.8
+   ],
+   "tris": 476,
+   "bytes": 42916
+  },
+  "vehicle.cruiser": {
+   "file": "psx/vehicle.cruiser.glb?v=ab6a2453f9",
+   "name": "Full-size sedan",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    2,
+    1.47,
+    5.3
+   ],
+   "tris": 454,
+   "bytes": 38200
+  },
+  "vehicle.police": {
+   "file": "psx/vehicle.police.glb?v=c5a5fd755b",
+   "name": "Police cruiser",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    2,
+    1.62,
+    5.3
+   ],
+   "tris": 472,
+   "bytes": 41400
+  },
+  "vehicle.taxi": {
+   "file": "psx/vehicle.taxi.glb?v=d18b090db7",
+   "name": "Taxi",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    2.02,
+    1.63,
+    5.3
+   ],
+   "tris": 440,
+   "bytes": 39336
+  },
+  "vehicle.wreck": {
+   "file": "psx/vehicle.wreck.glb?v=434bab4c46",
+   "name": "Burned-out car",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    1.72,
+    1.15,
+    4.4
+   ],
+   "tris": 304,
+   "bytes": 32512
+  },
+  "vehicle.vintage": {
+   "file": "psx/vehicle.vintage.glb?v=2919f437c6",
+   "name": "Vintage car",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    1.64,
+    1.93,
+    3.9
+   ],
+   "tris": 457,
+   "bytes": 39632
+  },
+  "vehicle.van": {
+   "file": "psx/vehicle.van.glb?v=d6e98371c3",
+   "name": "Delivery van",
+   "category": "vehicle",
+   "states": [
+    "idle",
+    "drive"
+   ],
+   "size": [
+    2.57,
+    2.63,
+    5.6
+   ],
+   "tris": 376,
+   "bytes": 30784
+  },
+  "building.office": {
+   "file": "psx/building.office.glb?v=f9240a5e0b",
+   "name": "Office tower",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    25,
+    73,
+    25
+   ],
+   "tris": 32,
+   "bytes": 112432
+  },
+  "building.tower_01_2": {
+   "file": "psx/building.tower_01_2.glb?v=afad31aae6",
+   "name": "Tower 01.2",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    25,
+    37,
+    25
+   ],
+   "tris": 32,
+   "bytes": 112436
+  },
+  "building.tower_01_3": {
+   "file": "psx/building.tower_01_3.glb?v=58264a2c3d",
+   "name": "Tower 01.3",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    49,
+    73,
+    49
+   ],
+   "tris": 32,
+   "bytes": 112464
+  },
+  "building.tower_01_4": {
+   "file": "psx/building.tower_01_4.glb?v=18d4d1e5d9",
+   "name": "Tower 01.4",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    49,
+    37,
+    49
+   ],
+   "tris": 32,
+   "bytes": 112464
+  },
+  "building.tower_02_1": {
+   "file": "psx/building.tower_02_1.glb?v=9d32276d67",
+   "name": "Tower 02.1",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    97,
+    33
+   ],
+   "tris": 40,
+   "bytes": 94964
+  },
+  "building.tower_02_2": {
+   "file": "psx/building.tower_02_2.glb?v=f00bf54f42",
+   "name": "Tower 02.2",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    49,
+    33
+   ],
+   "tris": 32,
+   "bytes": 94456
+  },
+  "building.tower_03_1": {
+   "file": "psx/building.tower_03_1.glb?v=eaac2d7f30",
+   "name": "Tower 03.1",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    29,
+    97,
+    29
+   ],
+   "tris": 40,
+   "bytes": 87608
+  },
+  "building.tower_03_2": {
+   "file": "psx/building.tower_03_2.glb?v=699ec1d78f",
+   "name": "Tower 03.2",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    29,
+    49,
+    29
+   ],
+   "tris": 32,
+   "bytes": 87048
+  },
+  "building.tower_04_1": {
+   "file": "psx/building.tower_04_1.glb?v=ed91819b60",
+   "name": "Tower 04.1",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    125,
+    33
+   ],
+   "tris": 40,
+   "bytes": 87340
+  },
+  "building.tower_04_2": {
+   "file": "psx/building.tower_04_2.glb?v=afd191136f",
+   "name": "Tower 04.2",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    63,
+    33
+   ],
+   "tris": 32,
+   "bytes": 86748
+  },
+  "building.tower_05_1": {
+   "file": "psx/building.tower_05_1.glb?v=1e855287fb",
+   "name": "Tower 05.1",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    121,
+    33
+   ],
+   "tris": 40,
+   "bytes": 90488
+  },
+  "building.tower_05_2": {
+   "file": "psx/building.tower_05_2.glb?v=30f4d8efc7",
+   "name": "Tower 05.2",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    61,
+    33
+   ],
+   "tris": 32,
+   "bytes": 89920
+  },
+  "building.tower_06_1": {
+   "file": "psx/building.tower_06_1.glb?v=9c8272ea00",
+   "name": "Tower 06.1",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    121,
+    33
+   ],
+   "tris": 40,
+   "bytes": 94088
+  },
+  "building.tower_06_2": {
+   "file": "psx/building.tower_06_2.glb?v=bf9ac3ceb7",
+   "name": "Tower 06.2",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    61,
+    33
+   ],
+   "tris": 32,
+   "bytes": 93520
+  },
+  "building.tower_07_1": {
+   "file": "psx/building.tower_07_1.glb?v=0bdc1f59ae",
+   "name": "Tower 07.1",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    121,
+    33
+   ],
+   "tris": 40,
+   "bytes": 94460
+  },
+  "building.tower_07_2": {
+   "file": "psx/building.tower_07_2.glb?v=d61a61b9fa",
+   "name": "Tower 07.2",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33,
+    61,
+    33
+   ],
+   "tris": 32,
+   "bytes": 93892
+  },
+  "building.tower_08_1": {
+   "file": "psx/building.tower_08_1.glb?v=ee4af1ddd5",
+   "name": "Tower 08.1",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    65,
+    73,
+    65
+   ],
+   "tris": 40,
+   "bytes": 85528
+  },
+  "building.tower_08_2": {
+   "file": "psx/building.tower_08_2.glb?v=a865b52dd7",
+   "name": "Tower 08.2",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    65,
+    37,
+    65
+   ],
+   "tris": 32,
+   "bytes": 84968
+  },
+  "building.apartment": {
+   "file": "psx/building.apartment.glb?v=6b58cb3676",
+   "name": "Apartment block",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    28.18,
+    19.6,
+    19.43
+   ],
+   "tris": 196,
+   "bytes": 155572
+  },
+  "building.shop": {
+   "file": "psx/building.shop.glb?v=4d3e63ac39",
+   "name": "Corner shops",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    34.05,
+    23.55,
+    19.51
+   ],
+   "tris": 162,
+   "bytes": 162240
+  },
+  "building.block_03": {
+   "file": "psx/building.block_03.glb?v=75ea7bcdda",
+   "name": "City block 3",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    40.8,
+    26.34,
+    22.88
+   ],
+   "tris": 548,
+   "bytes": 215892
+  },
+  "building.block_04": {
+   "file": "psx/building.block_04.glb?v=f0286e34e2",
+   "name": "City block 4",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    23.19,
+    18.8,
+    17.15
+   ],
+   "tris": 256,
+   "bytes": 177408
+  },
+  "building.block_05": {
+   "file": "psx/building.block_05.glb?v=8c017e8c18",
+   "name": "City block 5",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    25.49,
+    18.56,
+    18.15
+   ],
+   "tris": 162,
+   "bytes": 154932
+  },
+  "building.block_06": {
+   "file": "psx/building.block_06.glb?v=359be04cd5",
+   "name": "City block 6",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    29.79,
+    18.82,
+    19.1
+   ],
+   "tris": 360,
+   "bytes": 191944
+  },
+  "building.block_07": {
+   "file": "psx/building.block_07.glb?v=98c2cd66b4",
+   "name": "City block 7",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    33.45,
+    14.47,
+    18.67
+   ],
+   "tris": 204,
+   "bytes": 182508
+  },
+  "building.block_08": {
+   "file": "psx/building.block_08.glb?v=d53721a116",
+   "name": "City block 8",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    24.88,
+    14.8,
+    16.24
+   ],
+   "tris": 220,
+   "bytes": 166176
+  },
+  "building.block_09": {
+   "file": "psx/building.block_09.glb?v=1f0443032d",
+   "name": "City block 9",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    15.52,
+    12.97,
+    13.95
+   ],
+   "tris": 126,
+   "bytes": 117580
+  },
+  "building.block_10": {
+   "file": "psx/building.block_10.glb?v=a3f8a805ec",
+   "name": "City block 10",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    16.89,
+    11.89,
+    13.86
+   ],
+   "tris": 236,
+   "bytes": 133764
+  },
+  "building.house": {
+   "file": "psx/building.house.glb?v=bb1a6c2229",
+   "name": "Town house",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    5.77,
+    7.95,
+    4.78
+   ],
+   "tris": 24,
+   "bytes": 17744
+  },
+  "building.house_02": {
+   "file": "psx/building.house_02.glb?v=170d09288b",
+   "name": "Town building 2",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    5.35,
+    7.05,
+    3.79
+   ],
+   "tris": 10,
+   "bytes": 17528
+  },
+  "building.house_03": {
+   "file": "psx/building.house_03.glb?v=e8c6831c56",
+   "name": "Town building 3",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    7.96,
+    5.53,
+    4.11
+   ],
+   "tris": 14,
+   "bytes": 21028
+  },
+  "building.house_04": {
+   "file": "psx/building.house_04.glb?v=8ae7142547",
+   "name": "Town building 4",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    6.49,
+    6.85,
+    4.68
+   ],
+   "tris": 10,
+   "bytes": 20876
+  },
+  "building.house_05": {
+   "file": "psx/building.house_05.glb?v=a3ce2ea5fa",
+   "name": "Town building 5",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    5.82,
+    8.46,
+    4.01
+   ],
+   "tris": 10,
+   "bytes": 18392
+  },
+  "building.house_06": {
+   "file": "psx/building.house_06.glb?v=4195ec2451",
+   "name": "Town building 6",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    4.82,
+    6.09,
+    3.99
+   ],
+   "tris": 22,
+   "bytes": 23432
+  },
+  "building.house_07": {
+   "file": "psx/building.house_07.glb?v=07ac71ada3",
+   "name": "Town building 7",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    8.81,
+    12.03,
+    5.91
+   ],
+   "tris": 26,
+   "bytes": 27828
+  },
+  "building.house_08": {
+   "file": "psx/building.house_08.glb?v=56e698e85f",
+   "name": "Town building 8",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    8.54,
+    11.21,
+    6.21
+   ],
+   "tris": 10,
+   "bytes": 24568
+  },
+  "building.house_09": {
+   "file": "psx/building.house_09.glb?v=999906f9a0",
+   "name": "Town building 9",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    7.6,
+    6.27,
+    4.61
+   ],
+   "tris": 10,
+   "bytes": 25788
+  },
+  "building.house_10": {
+   "file": "psx/building.house_10.glb?v=da5f568d47",
+   "name": "Town building 10",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    4.45,
+    3.92,
+    4.05
+   ],
+   "tris": 46,
+   "bytes": 23008
+  },
+  "building.house_11": {
+   "file": "psx/building.house_11.glb?v=6ccd9c00ca",
+   "name": "Town building 11",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    5.56,
+    2.53,
+    4.39
+   ],
+   "tris": 24,
+   "bytes": 16104
+  },
+  "building.house_12": {
+   "file": "psx/building.house_12.glb?v=db33200c15",
+   "name": "Town building 12",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    7.26,
+    2.55,
+    2.61
+   ],
+   "tris": 22,
+   "bytes": 12852
+  },
+  "building.house_13": {
+   "file": "psx/building.house_13.glb?v=7e96ba1a06",
+   "name": "Town building 13",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    4.16,
+    2.06,
+    2.76
+   ],
+   "tris": 342,
+   "bytes": 45208
+  },
+  "building.house_14": {
+   "file": "psx/building.house_14.glb?v=44d3a198c5",
+   "name": "Town building 14",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    2.74,
+    2.31,
+    1.8
+   ],
+   "tris": 14,
+   "bytes": 25720
+  },
+  "building.house_15": {
+   "file": "psx/building.house_15.glb?v=3c603977c1",
+   "name": "Town building 15",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    31.11,
+    13.64,
+    10.89
+   ],
+   "tris": 10,
+   "bytes": 15888
+  },
+  "building.house_16": {
+   "file": "psx/building.house_16.glb?v=daa8112dab",
+   "name": "Town building 16",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    28.56,
+    20.73,
+    10.17
+   ],
+   "tris": 144,
+   "bytes": 40688
+  },
+  "building.hut": {
+   "file": "psx/building.hut.glb?v=1fe72e0b53",
+   "name": "Wooden cabin",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    6.69,
+    3.15,
+    7.69
+   ],
+   "tris": 1965,
+   "bytes": 253620
+  },
+  "building.cabin_02": {
+   "file": "psx/building.cabin_02.glb?v=03516d7948",
+   "name": "Long cabin",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    7.9,
+    2.91,
+    4.91
+   ],
+   "tris": 1374,
+   "bytes": 196884
+  },
+  "building.cabin_03": {
+   "file": "psx/building.cabin_03.glb?v=e594202bec",
+   "name": "Cabin with porch",
+   "category": "building",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    7.32,
+    3.68,
+    8.56
+   ],
+   "tris": 1800,
+   "bytes": 237788
+  },
+  "prop.fence": {
+   "file": "psx/prop.fence.glb?v=146d3aacf8",
+   "name": "Wooden fence",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.06,
+    0.9,
+    1.25
+   ],
+   "tris": 84,
+   "bytes": 13676
+  },
+  "prop.door": {
+   "file": "psx/prop.door.glb?v=885a473b58",
+   "name": "Wooden door",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.85,
+    2,
+    0.1
+   ],
+   "tris": 12,
+   "bytes": 5812
+  },
+  "tree.oak": {
+   "file": "psx/tree.oak.glb?v=54a9f04b8c",
+   "name": "Broadleaf tree",
+   "category": "tree",
+   "states": [
+    "idle",
+    "wind"
+   ],
+   "size": [
+    8.61,
+    11,
+    7.79
+   ],
+   "tris": 272,
+   "bytes": 159244
+  },
+  "tree.pine": {
+   "file": "psx/tree.pine.glb?v=65707dabd6",
+   "name": "Pine",
+   "category": "tree",
+   "states": [
+    "idle",
+    "wind"
+   ],
+   "size": [
+    7.02,
+    14,
+    6.54
+   ],
+   "tris": 1428,
+   "bytes": 198824
+  },
+  "tree.sapling": {
+   "file": "psx/tree.sapling.glb?v=f424ae785c",
+   "name": "Young tree",
+   "category": "tree",
+   "states": [
+    "idle",
+    "wind"
+   ],
+   "size": [
+    2.68,
+    3.5,
+    1.97
+   ],
+   "tris": 324,
+   "bytes": 90616
+  },
+  "tree.fir": {
+   "file": "psx/tree.fir.glb?v=47125432de",
+   "name": "Fir",
+   "category": "tree",
+   "states": [
+    "idle",
+    "wind"
+   ],
+   "size": [
+    3.17,
+    9,
+    3.34
+   ],
+   "tris": 256,
+   "bytes": 107656
+  },
+  "tree.spruce": {
+   "file": "psx/tree.spruce.glb?v=bae9e52992",
+   "name": "Thin spruce",
+   "category": "tree",
+   "states": [
+    "idle",
+    "wind"
+   ],
+   "size": [
+    3.25,
+    9,
+    3.19
+   ],
+   "tris": 256,
+   "bytes": 107648
+  },
+  "tree.birch": {
+   "file": "psx/tree.birch.glb?v=c660ca21fe",
+   "name": "Birch",
+   "category": "tree",
+   "states": [
+    "idle",
+    "wind"
+   ],
+   "size": [
+    4.3,
+    7.5,
+    4.28
+   ],
+   "tris": 170,
+   "bytes": 86168
+  },
+  "tree.maple": {
+   "file": "psx/tree.maple.glb?v=acf3a5beb6",
+   "name": "Round tree",
+   "category": "tree",
+   "states": [
+    "idle",
+    "wind"
+   ],
+   "size": [
+    5.41,
+    8,
+    6
+   ],
+   "tris": 149,
+   "bytes": 119976
+  },
+  "tree.dead": {
+   "file": "psx/tree.dead.glb?v=7947f181f2",
+   "name": "Bare tree",
+   "category": "tree",
+   "states": [
+    "idle",
+    "wind"
+   ],
+   "size": [
+    4.22,
+    9,
+    4.4
+   ],
+   "tris": 190,
+   "bytes": 90176
+  },
+  "tree.bare_sapling": {
+   "file": "psx/tree.bare_sapling.glb?v=16d2cf5a88",
+   "name": "Bare sapling",
+   "category": "tree",
+   "states": [
+    "idle",
+    "wind"
+   ],
+   "size": [
+    2.16,
+    5,
+    2.09
+   ],
+   "tris": 140,
+   "bytes": 36400
+  },
+  "rock.boulder": {
+   "file": "psx/rock.boulder.glb?v=4b6ec2fe05",
+   "name": "Boulder",
+   "category": "rock",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    1.57,
+    1.35,
+    1.6
+   ],
+   "tris": 24,
+   "bytes": 12748
+  },
+  "rock.rock_2": {
+   "file": "psx/rock.rock_2.glb?v=0f9ddd9ed0",
+   "name": "Rock 2",
+   "category": "rock",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    1.4,
+    0.66,
+    1.24
+   ],
+   "tris": 8,
+   "bytes": 11252
+  },
+  "rock.rock_3": {
+   "file": "psx/rock.rock_3.glb?v=1d470c3fc7",
+   "name": "Rock 3",
+   "category": "rock",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    1.2,
+    0.63,
+    1.2
+   ],
+   "tris": 12,
+   "bytes": 11628
+  },
+  "rock.rock_4": {
+   "file": "psx/rock.rock_4.glb?v=5f7fff3482",
+   "name": "Rock 4",
+   "category": "rock",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    1,
+    0.82,
+    1
+   ],
+   "tris": 24,
+   "bytes": 12720
+  },
+  "rock.rock_5": {
+   "file": "psx/rock.rock_5.glb?v=57a5ef0915",
+   "name": "Rock 5",
+   "category": "rock",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    2.29,
+    1.07,
+    2.4
+   ],
+   "tris": 36,
+   "bytes": 13956
+  },
+  "rock.rock_6": {
+   "file": "psx/rock.rock_6.glb?v=34b89ad567",
+   "name": "Rock 6",
+   "category": "rock",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    1.46,
+    0.77,
+    1.5
+   ],
+   "tris": 52,
+   "bytes": 15468
+  },
+  "rock.rock_7": {
+   "file": "psx/rock.rock_7.glb?v=85ce5c97a3",
+   "name": "Rock 7",
+   "category": "rock",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    1.71,
+    1.24,
+    1.8
+   ],
+   "tris": 96,
+   "bytes": 19720
+  },
+  "rock.rock_8": {
+   "file": "psx/rock.rock_8.glb?v=5e8f7fb1de",
+   "name": "Rock 8",
+   "category": "rock",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    1.7,
+    0.8,
+    1.62
+   ],
+   "tris": 26,
+   "bytes": 12972
+  },
+  "prop.vending_01": {
+   "file": "psx/prop.vending_01.glb?v=ca14296eff",
+   "name": "Vending machine 1",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.45,
+    1.8,
+    0.87
+   ],
+   "tris": 20,
+   "bytes": 8688
+  },
+  "prop.vending_02": {
+   "file": "psx/prop.vending_02.glb?v=991ac0a23e",
+   "name": "Vending machine 2",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.45,
+    1.8,
+    1.05
+   ],
+   "tris": 20,
+   "bytes": 11968
+  },
+  "prop.vending_03": {
+   "file": "psx/prop.vending_03.glb?v=3019c5902c",
+   "name": "Vending machine 3",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.45,
+    1.8,
+    1.05
+   ],
+   "tris": 20,
+   "bytes": 11964
+  },
+  "prop.vending_04": {
+   "file": "psx/prop.vending_04.glb?v=dc6ade9b0b",
+   "name": "Vending machine 4",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.45,
+    1.8,
+    0.92
+   ],
+   "tris": 20,
+   "bytes": 8636
+  },
+  "prop.vending_05": {
+   "file": "psx/prop.vending_05.glb?v=d7f559cb89",
+   "name": "Vending machine 5",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.45,
+    1.8,
+    1.05
+   ],
+   "tris": 20,
+   "bytes": 8060
+  },
+  "prop.vending_06": {
+   "file": "psx/prop.vending_06.glb?v=58c5388c5e",
+   "name": "Vending machine 6",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.45,
+    1.8,
+    0.82
+   ],
+   "tris": 20,
+   "bytes": 8592
+  },
+  "prop.vending_07": {
+   "file": "psx/prop.vending_07.glb?v=f4fefc099e",
+   "name": "Vending machine 7",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.4,
+    1.8,
+    0.98
+   ],
+   "tris": 20,
+   "bytes": 7980
+  },
+  "prop.vending_08": {
+   "file": "psx/prop.vending_08.glb?v=2030caf326",
+   "name": "Vending machine 8",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.61,
+    1.8,
+    1.09
+   ],
+   "tris": 20,
+   "bytes": 9940
+  },
+  "prop.vending_09": {
+   "file": "psx/prop.vending_09.glb?v=40be9ca5f7",
+   "name": "Vending machine 9",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.53,
+    1.8,
+    0.73
+   ],
+   "tris": 28,
+   "bytes": 10412
+  },
+  "prop.vending_10": {
+   "file": "psx/prop.vending_10.glb?v=b8e23eabdc",
+   "name": "Vending machine 10",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.39,
+    1.8,
+    0.97
+   ],
+   "tris": 20,
+   "bytes": 9644
+  },
+  "prop.vending_11": {
+   "file": "psx/prop.vending_11.glb?v=cb6206585e",
+   "name": "Vending machine 11",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.42,
+    1.8,
+    1
+   ],
+   "tris": 20,
+   "bytes": 8672
+  },
+  "prop.vending_12": {
+   "file": "psx/prop.vending_12.glb?v=2610f5f7c2",
+   "name": "Vending machine 12",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.34,
+    1.8,
+    0.95
+   ],
+   "tris": 38,
+   "bytes": 9964
+  },
+  "prop.cooler": {
+   "file": "psx/prop.cooler.glb?v=1cec2635b0",
+   "name": "Cooler box",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.44,
+    0.45,
+    0.24
+   ],
+   "tris": 80,
+   "bytes": 19220
+  },
+  "prop.cooler_red": {
+   "file": "psx/prop.cooler_red.glb?v=6f6979460a",
+   "name": "Red cooler",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.44,
+    0.45,
+    0.24
+   ],
+   "tris": 80,
+   "bytes": 19224
+  },
+  "prop.outboard": {
+   "file": "psx/prop.outboard.glb?v=c567b4d15c",
+   "name": "Outboard motor",
+   "category": "prop",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.24,
+    1,
+    0.44
+   ],
+   "tris": 170,
+   "bytes": 27844
+  },
+  "boat.fishing": {
+   "file": "psx/boat.fishing.glb?v=8a705af88d",
+   "name": "Fishing boat",
+   "category": "boat",
+   "states": [
+    "idle",
+    "sail"
+   ],
+   "size": [
+    1.68,
+    0.76,
+    6.5
+   ],
+   "tris": 284,
+   "bytes": 48844
+  },
+  "boat.rowboat": {
+   "file": "psx/boat.rowboat.glb?v=5f1209ce57",
+   "name": "Rowing boat",
+   "category": "boat",
+   "states": [
+    "idle",
+    "sail"
+   ],
+   "size": [
+    1.81,
+    0.49,
+    4.2
+   ],
+   "tris": 156,
+   "bytes": 36680
+  },
+  "boat.canoe": {
+   "file": "psx/boat.canoe.glb?v=fd2cf7d348",
+   "name": "Small boat",
+   "category": "boat",
+   "states": [
+    "idle",
+    "sail"
+   ],
+   "size": [
+    1.54,
+    0.57,
+    3.4
+   ],
+   "tris": 156,
+   "bytes": 36576
+  },
+  "animal.fish": {
+   "file": "psx/animal.fish.glb?v=5b87755af0",
+   "name": "Fish",
+   "category": "animal",
+   "states": [
+    "idle",
+    "swim"
+   ],
+   "size": [
+    0.06,
+    0.21,
+    0.45
+   ],
+   "tris": 38,
+   "bytes": 15288
+  },
+  "animal.fish_2": {
+   "file": "psx/animal.fish_2.glb?v=e666e7830a",
+   "name": "Fish 2",
+   "category": "animal",
+   "states": [
+    "idle",
+    "swim"
+   ],
+   "size": [
+    0.06,
+    0.15,
+    0.4
+   ],
+   "tris": 42,
+   "bytes": 15676
+  },
+  "animal.fish_3": {
+   "file": "psx/animal.fish_3.glb?v=f2057166c5",
+   "name": "Fish 3",
+   "category": "animal",
+   "states": [
+    "idle",
+    "swim"
+   ],
+   "size": [
+    0.06,
+    0.19,
+    0.35
+   ],
+   "tris": 44,
+   "bytes": 15864
+  },
+  "animal.fish_4": {
+   "file": "psx/animal.fish_4.glb?v=0f84072a7f",
+   "name": "Fish 4",
+   "category": "animal",
+   "states": [
+    "idle",
+    "swim"
+   ],
+   "size": [
+    0.04,
+    0.14,
+    0.4
+   ],
+   "tris": 38,
+   "bytes": 15288
+  },
+  "animal.fish_5": {
+   "file": "psx/animal.fish_5.glb?v=ab78a21908",
+   "name": "Fish 5",
+   "category": "animal",
+   "states": [
+    "idle",
+    "swim"
+   ],
+   "size": [
+    0.04,
+    0.27,
+    0.5
+   ],
+   "tris": 38,
+   "bytes": 15260
+  },
+  "animal.fish_6": {
+   "file": "psx/animal.fish_6.glb?v=142e9201ae",
+   "name": "Fish 6",
+   "category": "animal",
+   "states": [
+    "idle",
+    "swim"
+   ],
+   "size": [
+    0.04,
+    0.13,
+    0.4
+   ],
+   "tris": 38,
+   "bytes": 15296
+  },
+  "animal.fish_7": {
+   "file": "psx/animal.fish_7.glb?v=901c96f6a4",
+   "name": "Fish 7",
+   "category": "animal",
+   "states": [
+    "idle",
+    "swim"
+   ],
+   "size": [
+    0.04,
+    0.18,
+    0.45
+   ],
+   "tris": 38,
+   "bytes": 15296
+  },
+  "animal.fish_8": {
+   "file": "psx/animal.fish_8.glb?v=5e12e44fde",
+   "name": "Fish 8",
+   "category": "animal",
+   "states": [
+    "idle",
+    "swim"
+   ],
+   "size": [
+    0.25,
+    0.22,
+    0.9
+   ],
+   "tris": 78,
+   "bytes": 19116
+  },
+  "creature.ghoul": {
+   "file": "psx/creature.ghoul.glb?v=530569da77",
+   "name": "Ghoul",
+   "category": "creature",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.56,
+    2.3,
+    0.99
+   ],
+   "tris": 790,
+   "bytes": 40420
+  },
+  "creature.ghoul_02": {
+   "file": "psx/creature.ghoul_02.glb?v=47fd429229",
+   "name": "Pale ghoul",
+   "category": "creature",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.47,
+    2.2,
+    0.84
+   ],
+   "tris": 738,
+   "bytes": 52728
+  },
+  "creature.antler_beast": {
+   "file": "psx/creature.antler_beast.glb?v=876ceeb309",
+   "name": "Antlered beast",
+   "category": "creature",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    2.58,
+    2.6,
+    1.56
+   ],
+   "tris": 1135,
+   "bytes": 81384
+  },
+  "food.apple": {
+   "file": "psx/food.apple.glb?v=afdc1d4097",
+   "name": "Apple",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.1,
+    0.09,
+    0.1
+   ],
+   "tris": 20,
+   "bytes": 9264
+  },
+  "food.orange": {
+   "file": "psx/food.orange.glb?v=173f67ae5c",
+   "name": "Orange",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.08,
+    0.09,
+    0.08
+   ],
+   "tris": 20,
+   "bytes": 9240
+  },
+  "food.banana": {
+   "file": "psx/food.banana.glb?v=c30b1ad2f1",
+   "name": "Banana",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.2,
+    0.06,
+    0.04
+   ],
+   "tris": 56,
+   "bytes": 12748
+  },
+  "food.carrot": {
+   "file": "psx/food.carrot.glb?v=01009369a2",
+   "name": "Carrot",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.2,
+    0.03,
+    0.04
+   ],
+   "tris": 34,
+   "bytes": 10616
+  },
+  "food.cucumber": {
+   "file": "psx/food.cucumber.glb?v=478349172e",
+   "name": "Cucumber",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.22,
+    0.05,
+    0.05
+   ],
+   "tris": 44,
+   "bytes": 11592
+  },
+  "food.lettuce": {
+   "file": "psx/food.lettuce.glb?v=7da2c1c721",
+   "name": "Lettuce",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.19,
+    0.18,
+    0.22
+   ],
+   "tris": 56,
+   "bytes": 12744
+  },
+  "food.papaya": {
+   "file": "psx/food.papaya.glb?v=91feb77d60",
+   "name": "Papaya",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.15,
+    0.25,
+    0.15
+   ],
+   "tris": 80,
+   "bytes": 15032
+  },
+  "food.icecream": {
+   "file": "psx/food.icecream.glb?v=d34f25c457",
+   "name": "Ice cream tub",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.13,
+    0.14,
+    0.12
+   ],
+   "tris": 52,
+   "bytes": 15508
+  },
+  "food.icecream_02": {
+   "file": "psx/food.icecream_02.glb?v=843b5d85ef",
+   "name": "Ice cream tub 2",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.17,
+    0.12,
+    0.16
+   ],
+   "tris": 52,
+   "bytes": 15516
+  },
+  "food.soda": {
+   "file": "psx/food.soda.glb?v=18988af911",
+   "name": "Soda bottle",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.1,
+    0.3,
+    0.11
+   ],
+   "tris": 56,
+   "bytes": 14808
+  },
+  "food.juice": {
+   "file": "psx/food.juice.glb?v=ffb4aa5877",
+   "name": "Juice bottle",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.12,
+    0.3,
+    0.12
+   ],
+   "tris": 118,
+   "bytes": 20760
+  },
+  "food.drink_can": {
+   "file": "psx/food.drink_can.glb?v=41ad90e388",
+   "name": "Drink can",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.07,
+    0.12,
+    0.06
+   ],
+   "tris": 36,
+   "bytes": 12940
+  },
+  "food.snack_bag": {
+   "file": "psx/food.snack_bag.glb?v=a71e8b87b5",
+   "name": "Snack bag",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.15,
+    0.25,
+    0.16
+   ],
+   "tris": 68,
+   "bytes": 13468
+  },
+  "food.cereal": {
+   "file": "psx/food.cereal.glb?v=92a935a185",
+   "name": "Cereal box",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.19,
+    0.3,
+    0.05
+   ],
+   "tris": 20,
+   "bytes": 12444
+  },
+  "food.crate": {
+   "file": "psx/food.crate.glb?v=7cdcf5d012",
+   "name": "Produce crate",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.6,
+    0.4,
+    0.4
+   ],
+   "tris": 12,
+   "bytes": 8644
+  },
+  "food.biscuits": {
+   "file": "psx/food.biscuits.glb?v=3315d215c3",
+   "name": "Biscuit pack",
+   "category": "food",
+   "states": [
+    "idle"
+   ],
+   "size": [
+    0.18,
+    0.05,
+    0.03
+   ],
+   "tris": 12,
+   "bytes": 11992
+  }
+ },
  "thumbs": {
-  "aircraft.drone": "thumbs/aircraft.drone.webp?v=7d44086821",
-  "aircraft.glider": "thumbs/aircraft.glider.webp?v=ccfe594af9",
-  "aircraft.helicopter": "thumbs/aircraft.helicopter.webp?v=5064a99f62",
-  "aircraft.jet": "thumbs/aircraft.jet.webp?v=6dfe15daf0",
-  "aircraft.propeller": "thumbs/aircraft.propeller.webp?v=aaf731afb4",
-  "aircraft.seaplane": "thumbs/aircraft.seaplane.webp?v=d6ab8583d3",
-  "animal.boar": "thumbs/animal.boar.webp?v=a5c172cd94",
-  "animal.cat": "thumbs/animal.cat.webp?v=082907c077",
-  "animal.cow": "thumbs/animal.cow.webp?v=bdbe162b95",
-  "animal.deer": "thumbs/animal.deer.webp?v=77203ef851",
-  "animal.dog": "thumbs/animal.dog.webp?v=244eb0d130",
-  "animal.dolphin": "thumbs/animal.dolphin.webp?v=4bd6f17068",
-  "animal.eagle": "thumbs/animal.eagle.webp?v=aaf18511b9",
-  "animal.elephant": "thumbs/animal.elephant.webp?v=de0c644f6b",
-  "animal.fish": "thumbs/animal.fish.webp?v=28a00a0402",
-  "animal.gull": "thumbs/animal.gull.webp?v=6b0345eb69",
-  "animal.monkey": "thumbs/animal.monkey.webp?v=a629dee4c3",
-  "animal.parrot": "thumbs/animal.parrot.webp?v=c5ac738e9c",
-  "animal.pigeon": "thumbs/animal.pigeon.webp?v=73f47b2f5e",
-  "animal.shark": "thumbs/animal.shark.webp?v=73018c15de",
-  "animal.tiger": "thumbs/animal.tiger.webp?v=7795d8739d",
-  "animal.turtle": "thumbs/animal.turtle.webp?v=22636b4910",
-  "animal.whale": "thumbs/animal.whale.webp?v=a618d3d205",
-  "boat.canoe": "thumbs/boat.canoe.webp?v=3539663b06",
-  "boat.cargo": "thumbs/boat.cargo.webp?v=55b88bb6d3",
-  "boat.dinghy": "thumbs/boat.dinghy.webp?v=0b700016cf",
-  "boat.ferry": "thumbs/boat.ferry.webp?v=9baf9d2e6a",
-  "boat.fishing": "thumbs/boat.fishing.webp?v=6fd809ad66",
-  "boat.raft": "thumbs/boat.raft.webp?v=9d2edf852f",
-  "boat.sailboat": "thumbs/boat.sailboat.webp?v=1cec19ce6d",
-  "boat.speedboat": "thumbs/boat.speedboat.webp?v=4eab826ad0",
-  "building.apartment": "thumbs/building.apartment.webp?v=178573fc92",
-  "building.cafe": "thumbs/building.cafe.webp?v=e239746426",
-  "building.firestation": "thumbs/building.firestation.webp?v=a4a007a02a",
-  "building.hangar": "thumbs/building.hangar.webp?v=7f85a6c1f3",
-  "building.hospital": "thumbs/building.hospital.webp?v=d5f61340d7",
-  "building.hotel": "thumbs/building.hotel.webp?v=abac5e54e3",
-  "building.house": "thumbs/building.house.webp?v=abd79cbedb",
-  "building.hut": "thumbs/building.hut.webp?v=6b504b73f0",
-  "building.lighthouse": "thumbs/building.lighthouse.webp?v=bbecdedc9a",
-  "building.office": "thumbs/building.office.webp?v=d414c1bdfb",
-  "building.policestation": "thumbs/building.policestation.webp?v=30a57e5168",
-  "building.school": "thumbs/building.school.webp?v=7203f417ce",
-  "building.shelter": "thumbs/building.shelter.webp?v=212fdc0b79",
-  "building.shop": "thumbs/building.shop.webp?v=4f147a5886",
-  "building.skyscraper": "thumbs/building.skyscraper.webp?v=9a67e910ff",
-  "building.stilt_house": "thumbs/building.stilt_house.webp?v=826d5890b0",
-  "building.warehouse": "thumbs/building.warehouse.webp?v=eaf20c5d02",
-  "building.watertower": "thumbs/building.watertower.webp?v=141d60c90b",
-  "debris.asphalt": "thumbs/debris.asphalt.webp?v=540d1ee77f",
-  "debris.beam": "thumbs/debris.beam.webp?v=ab81822ff2",
-  "debris.brick": "thumbs/debris.brick.webp?v=f41ce06843",
-  "debris.concrete": "thumbs/debris.concrete.webp?v=90568bbe9a",
-  "debris.driftwood": "thumbs/debris.driftwood.webp?v=790fcb0d9f",
-  "debris.glass": "thumbs/debris.glass.webp?v=faf2b11c81",
-  "debris.rock": "thumbs/debris.rock.webp?v=05468a5b73",
-  "debris.roof": "thumbs/debris.roof.webp?v=6bf700c4e5",
-  "environment.cloud": "thumbs/environment.cloud.webp?v=ff2cc43aa9",
-  "environment.island": "thumbs/environment.island.webp?v=89fe770bef",
-  "environment.moon": "thumbs/environment.moon.webp?v=5272621109",
-  "environment.mountain": "thumbs/environment.mountain.webp?v=d93b5ade7d",
-  "environment.sandbank": "thumbs/environment.sandbank.webp?v=25f6b81bac",
-  "environment.sun": "thumbs/environment.sun.webp?v=f892298c78",
-  "environment.water": "thumbs/environment.water.webp?v=ca3fef3ad6",
-  "environment.waterfall": "thumbs/environment.waterfall.webp?v=afbae9631a",
-  "food.apple": "thumbs/food.apple.webp?v=185afff794",
-  "food.banana": "thumbs/food.banana.webp?v=6b4e14af4f",
-  "food.bread": "thumbs/food.bread.webp?v=55f18e6c09",
-  "food.burger": "thumbs/food.burger.webp?v=39f37c6535",
-  "food.can": "thumbs/food.can.webp?v=7333796ebc",
-  "food.coconut": "thumbs/food.coconut.webp?v=460af47be1",
-  "food.coffee": "thumbs/food.coffee.webp?v=461c3b7316",
-  "food.crate": "thumbs/food.crate.webp?v=9890dd07f8",
-  "food.fish": "thumbs/food.fish.webp?v=2ba53db9d0",
-  "food.noodles": "thumbs/food.noodles.webp?v=fc81eafda1",
-  "food.orange": "thumbs/food.orange.webp?v=f959cb0d52",
-  "food.pineapple": "thumbs/food.pineapple.webp?v=a9f5eb7d1f",
-  "food.pizza": "thumbs/food.pizza.webp?v=49aa584e14",
-  "food.rice": "thumbs/food.rice.webp?v=4de718be26",
-  "food.sack": "thumbs/food.sack.webp?v=f8af8c0f98",
-  "food.soup": "thumbs/food.soup.webp?v=f45b0d9111",
-  "food.water": "thumbs/food.water.webp?v=8cda3f1390",
-  "food.watermelon": "thumbs/food.watermelon.webp?v=d59199ecbe",
-  "human.athlete": "thumbs/human.athlete.webp?v=b908d9e3ea",
-  "human.chef": "thumbs/human.chef.webp?v=346582a1cc",
-  "human.child": "thumbs/human.child.webp?v=f5b272bab8",
-  "human.civilian": "thumbs/human.civilian.webp?v=b908d9e3ea",
-  "human.commuter": "thumbs/human.commuter.webp?v=b908d9e3ea",
-  "human.diver": "thumbs/human.diver.webp?v=9dc5db7c28",
-  "human.elder": "thumbs/human.elder.webp?v=7980058677",
-  "human.firefighter": "thumbs/human.firefighter.webp?v=5b543943f9",
-  "human.hiker": "thumbs/human.hiker.webp?v=b908d9e3ea",
-  "human.medic": "thumbs/human.medic.webp?v=73b12171c9",
-  "human.pilot": "thumbs/human.pilot.webp?v=86a02f2373",
+  "animal.fish": "thumbs/animal.fish.webp?v=53ae38a18d",
+  "animal.fish_2": "thumbs/animal.fish_2.webp?v=01145a20d5",
+  "animal.fish_3": "thumbs/animal.fish_3.webp?v=bb79350135",
+  "animal.fish_4": "thumbs/animal.fish_4.webp?v=c46b707ba0",
+  "animal.fish_5": "thumbs/animal.fish_5.webp?v=2c2772f7bd",
+  "animal.fish_6": "thumbs/animal.fish_6.webp?v=9758b2df0a",
+  "animal.fish_7": "thumbs/animal.fish_7.webp?v=9db7e3a88f",
+  "animal.fish_8": "thumbs/animal.fish_8.webp?v=643ff43fdb",
+  "boat.canoe": "thumbs/boat.canoe.webp?v=bd78089dcf",
+  "boat.fishing": "thumbs/boat.fishing.webp?v=1595156b8b",
+  "boat.rowboat": "thumbs/boat.rowboat.webp?v=b40a783b37",
+  "building.apartment": "thumbs/building.apartment.webp?v=a5998530a2",
+  "building.block_03": "thumbs/building.block_03.webp?v=ac62904f24",
+  "building.block_04": "thumbs/building.block_04.webp?v=d429b42730",
+  "building.block_05": "thumbs/building.block_05.webp?v=795ac412e6",
+  "building.block_06": "thumbs/building.block_06.webp?v=f03a61e79e",
+  "building.block_07": "thumbs/building.block_07.webp?v=007fd52dfd",
+  "building.block_08": "thumbs/building.block_08.webp?v=2c27d25fb0",
+  "building.block_09": "thumbs/building.block_09.webp?v=ee4a626b72",
+  "building.block_10": "thumbs/building.block_10.webp?v=4482539f6f",
+  "building.cabin_02": "thumbs/building.cabin_02.webp?v=2b216c8dd5",
+  "building.cabin_03": "thumbs/building.cabin_03.webp?v=f98d00fba4",
+  "building.house": "thumbs/building.house.webp?v=e0191f1dd9",
+  "building.house_02": "thumbs/building.house_02.webp?v=736b722cff",
+  "building.house_03": "thumbs/building.house_03.webp?v=089c47965a",
+  "building.house_04": "thumbs/building.house_04.webp?v=c3632bc118",
+  "building.house_05": "thumbs/building.house_05.webp?v=2859c04c7f",
+  "building.house_06": "thumbs/building.house_06.webp?v=58d924fcbb",
+  "building.house_07": "thumbs/building.house_07.webp?v=7e4f85923d",
+  "building.house_08": "thumbs/building.house_08.webp?v=fd70cee1f4",
+  "building.house_09": "thumbs/building.house_09.webp?v=a3866f03d8",
+  "building.house_10": "thumbs/building.house_10.webp?v=3b872b9be6",
+  "building.house_11": "thumbs/building.house_11.webp?v=2cb5aadb36",
+  "building.house_12": "thumbs/building.house_12.webp?v=7ea1c35c0a",
+  "building.house_13": "thumbs/building.house_13.webp?v=852dbd48fb",
+  "building.house_14": "thumbs/building.house_14.webp?v=c31005a48a",
+  "building.house_15": "thumbs/building.house_15.webp?v=9e8ef0bd41",
+  "building.house_16": "thumbs/building.house_16.webp?v=ffea2f288b",
+  "building.hut": "thumbs/building.hut.webp?v=7e3e3eef01",
+  "building.office": "thumbs/building.office.webp?v=820930abd4",
+  "building.shop": "thumbs/building.shop.webp?v=660d87f34f",
+  "building.tower_01_2": "thumbs/building.tower_01_2.webp?v=1d442e968f",
+  "building.tower_01_3": "thumbs/building.tower_01_3.webp?v=016cfeec63",
+  "building.tower_01_4": "thumbs/building.tower_01_4.webp?v=45ea58bfa7",
+  "building.tower_02_1": "thumbs/building.tower_02_1.webp?v=0a3c063ee5",
+  "building.tower_02_2": "thumbs/building.tower_02_2.webp?v=98c65f099d",
+  "building.tower_03_1": "thumbs/building.tower_03_1.webp?v=8550fdff04",
+  "building.tower_03_2": "thumbs/building.tower_03_2.webp?v=07dc81dc80",
+  "building.tower_04_1": "thumbs/building.tower_04_1.webp?v=e916c3bef9",
+  "building.tower_04_2": "thumbs/building.tower_04_2.webp?v=65af1812a0",
+  "building.tower_05_1": "thumbs/building.tower_05_1.webp?v=5a3df68352",
+  "building.tower_05_2": "thumbs/building.tower_05_2.webp?v=a70eaa5f5e",
+  "building.tower_06_1": "thumbs/building.tower_06_1.webp?v=12dd6704f7",
+  "building.tower_06_2": "thumbs/building.tower_06_2.webp?v=e00ab616c5",
+  "building.tower_07_1": "thumbs/building.tower_07_1.webp?v=82f3c51e33",
+  "building.tower_07_2": "thumbs/building.tower_07_2.webp?v=454a66fd6a",
+  "building.tower_08_1": "thumbs/building.tower_08_1.webp?v=f50db332e1",
+  "building.tower_08_2": "thumbs/building.tower_08_2.webp?v=f31a5c7cf9",
+  "creature.antler_beast": "thumbs/creature.antler_beast.webp?v=c598cad161",
+  "creature.ghoul": "thumbs/creature.ghoul.webp?v=9f3bca5b3d",
+  "creature.ghoul_02": "thumbs/creature.ghoul_02.webp?v=72df29d4e3",
+  "food.apple": "thumbs/food.apple.webp?v=80d8074970",
+  "food.banana": "thumbs/food.banana.webp?v=7ad00184bc",
+  "food.biscuits": "thumbs/food.biscuits.webp?v=2fc4a6f8e0",
+  "food.carrot": "thumbs/food.carrot.webp?v=1841581b10",
+  "food.cereal": "thumbs/food.cereal.webp?v=cb37bc93b8",
+  "food.crate": "thumbs/food.crate.webp?v=471734371c",
+  "food.cucumber": "thumbs/food.cucumber.webp?v=a243285a02",
+  "food.drink_can": "thumbs/food.drink_can.webp?v=1081e7375b",
+  "food.icecream": "thumbs/food.icecream.webp?v=2c6359db3d",
+  "food.icecream_02": "thumbs/food.icecream_02.webp?v=4a0bf5f352",
+  "food.juice": "thumbs/food.juice.webp?v=177adf528a",
+  "food.lettuce": "thumbs/food.lettuce.webp?v=241567fb8f",
+  "food.orange": "thumbs/food.orange.webp?v=92aeed8efe",
+  "food.papaya": "thumbs/food.papaya.webp?v=0a6a25d6ae",
+  "food.snack_bag": "thumbs/food.snack_bag.webp?v=fb967d7fb1",
+  "food.soda": "thumbs/food.soda.webp?v=71d81552cb",
+  "human.athlete": "thumbs/human.athlete.webp?v=4976daee85",
+  "human.chef": "thumbs/human.chef.webp?v=4b6e015ccb",
+  "human.child": "thumbs/human.child.webp?v=9de5d8dcea",
+  "human.civilian": "thumbs/human.civilian.webp?v=4976daee85",
+  "human.commuter": "thumbs/human.commuter.webp?v=4976daee85",
+  "human.diver": "thumbs/human.diver.webp?v=81a1d40eec",
+  "human.elder": "thumbs/human.elder.webp?v=03e8010427",
+  "human.firefighter": "thumbs/human.firefighter.webp?v=6efa811104",
+  "human.hiker": "thumbs/human.hiker.webp?v=4976daee85",
+  "human.medic": "thumbs/human.medic.webp?v=325adc977e",
+  "human.pilot": "thumbs/human.pilot.webp?v=8a9067bf7b",
   "human.police": "thumbs/human.police.webp?v=f115f8225a",
-  "human.raincoat": "thumbs/human.raincoat.webp?v=44d6318b15",
-  "human.sailor": "thumbs/human.sailor.webp?v=86a02f2373",
-  "human.student": "thumbs/human.student.webp?v=b908d9e3ea",
-  "human.survivor": "thumbs/human.survivor.webp?v=b908d9e3ea",
-  "human.vendor": "thumbs/human.vendor.webp?v=a8f3ffa370",
-  "human.worker": "thumbs/human.worker.webp?v=8ade40d184",
-  "plant.bush": "thumbs/plant.bush.webp?v=e342de8fad",
-  "plant.coral": "thumbs/plant.coral.webp?v=24a0418ead",
-  "plant.fern": "thumbs/plant.fern.webp?v=a5e382970c",
-  "plant.flower": "thumbs/plant.flower.webp?v=bb3ba16321",
-  "plant.grass": "thumbs/plant.grass.webp?v=f66d620487",
-  "plant.kelp": "thumbs/plant.kelp.webp?v=d3b62e832c",
-  "plant.lily": "thumbs/plant.lily.webp?v=81fb3689ed",
-  "plant.potted": "thumbs/plant.potted.webp?v=a3fd714e2e",
-  "plant.reeds": "thumbs/plant.reeds.webp?v=f66d620487",
-  "plant.vine": "thumbs/plant.vine.webp?v=b9440e1311",
-  "prop.anchor": "thumbs/prop.anchor.webp?v=a20d1ff2f5",
-  "prop.antenna": "thumbs/prop.antenna.webp?v=ab1a6f2b76",
-  "prop.backpack": "thumbs/prop.backpack.webp?v=b53cb61d42",
-  "prop.barrel": "thumbs/prop.barrel.webp?v=03d22818b9",
-  "prop.barrier": "thumbs/prop.barrier.webp?v=3390b39d46",
-  "prop.bench": "thumbs/prop.bench.webp?v=bc685928f5",
-  "prop.bridge": "thumbs/prop.bridge.webp?v=8a0d656ce0",
-  "prop.buoy": "thumbs/prop.buoy.webp?v=a33c1fe394",
-  "prop.cart": "thumbs/prop.cart.webp?v=43c41b57ef",
-  "prop.chair": "thumbs/prop.chair.webp?v=0f6453cf87",
-  "prop.cone": "thumbs/prop.cone.webp?v=674a4fe757",
-  "prop.container": "thumbs/prop.container.webp?v=276b620e6a",
-  "prop.crate": "thumbs/prop.crate.webp?v=27e7b4b9cc",
-  "prop.dock": "thumbs/prop.dock.webp?v=68fbf71053",
-  "prop.fence": "thumbs/prop.fence.webp?v=4c5c1387d5",
-  "prop.generator": "thumbs/prop.generator.webp?v=9e295c9903",
-  "prop.hydrant": "thumbs/prop.hydrant.webp?v=e2531fce2b",
-  "prop.lamp": "thumbs/prop.lamp.webp?v=5cd57d48a9",
-  "prop.lifebuoy": "thumbs/prop.lifebuoy.webp?v=5b7c6dfe47",
-  "prop.pallet": "thumbs/prop.pallet.webp?v=d8c938ef0b",
-  "prop.sign": "thumbs/prop.sign.webp?v=d95139d70e",
-  "prop.solar": "thumbs/prop.solar.webp?v=f3f168739c",
-  "prop.suitcase": "thumbs/prop.suitcase.webp?v=629a06b815",
-  "prop.table": "thumbs/prop.table.webp?v=4f11c2ead3",
-  "prop.tent": "thumbs/prop.tent.webp?v=fe9c32bdce",
-  "prop.traffic_barrel": "thumbs/prop.traffic_barrel.webp?v=03d22818b9",
-  "prop.traffic_light": "thumbs/prop.traffic_light.webp?v=b0522edd14",
-  "prop.umbrella": "thumbs/prop.umbrella.webp?v=c3459c1c7d",
-  "trash.bag": "thumbs/trash.bag.webp?v=0be5104eeb",
-  "trash.bin": "thumbs/trash.bin.webp?v=5b0118cdc5",
-  "trash.bottle": "thumbs/trash.bottle.webp?v=10d7ef58e5",
-  "trash.can": "thumbs/trash.can.webp?v=0e66b6bf1b",
-  "trash.cardboard": "thumbs/trash.cardboard.webp?v=631afe8d2c",
-  "trash.dumpster": "thumbs/trash.dumpster.webp?v=61f17aeeb4",
-  "trash.metal": "thumbs/trash.metal.webp?v=cc79c56794",
-  "trash.net": "thumbs/trash.net.webp?v=861be51366",
-  "trash.paper": "thumbs/trash.paper.webp?v=e946c432a6",
-  "trash.plastic": "thumbs/trash.plastic.webp?v=cc79c56794",
-  "trash.tire": "thumbs/trash.tire.webp?v=e480ce782a",
-  "trash.wood": "thumbs/trash.wood.webp?v=d8c938ef0b",
-  "tree.acacia": "thumbs/tree.acacia.webp?v=05951f726f",
-  "tree.bamboo": "thumbs/tree.bamboo.webp?v=c74231e19b",
-  "tree.banana": "thumbs/tree.banana.webp?v=d683194a5c",
-  "tree.banyan": "thumbs/tree.banyan.webp?v=ce3458c57c",
-  "tree.cypress": "thumbs/tree.cypress.webp?v=5bcb76c784",
-  "tree.dead": "thumbs/tree.dead.webp?v=2bc2fe95c1",
-  "tree.jungle": "thumbs/tree.jungle.webp?v=6b1edaaf71",
-  "tree.mangrove": "thumbs/tree.mangrove.webp?v=cd534da77f",
-  "tree.oak": "thumbs/tree.oak.webp?v=6b1edaaf71",
-  "tree.palm": "thumbs/tree.palm.webp?v=98c10bc533",
-  "tree.pine": "thumbs/tree.pine.webp?v=b41e52ecb8",
-  "tree.sapling": "thumbs/tree.sapling.webp?v=6b1edaaf71",
-  "vehicle.ambulance": "thumbs/vehicle.ambulance.webp?v=e508fc23b4",
-  "vehicle.bicycle": "thumbs/vehicle.bicycle.webp?v=badd05f3f6",
-  "vehicle.bus": "thumbs/vehicle.bus.webp?v=f9da211663",
-  "vehicle.compact": "thumbs/vehicle.compact.webp?v=978810d5c6",
-  "vehicle.firetruck": "thumbs/vehicle.firetruck.webp?v=d4e9b6b2f1",
-  "vehicle.flatbed": "thumbs/vehicle.flatbed.webp?v=9470d4528e",
-  "vehicle.garbage": "thumbs/vehicle.garbage.webp?v=86cb9e7ec0",
-  "vehicle.jeepney": "thumbs/vehicle.jeepney.webp?v=d60b2a66d6",
-  "vehicle.motorcycle": "thumbs/vehicle.motorcycle.webp?v=0504334852",
-  "vehicle.pickup": "thumbs/vehicle.pickup.webp?v=34e6fd1cb8",
-  "vehicle.police": "thumbs/vehicle.police.webp?v=599a264d66",
-  "vehicle.schoolbus": "thumbs/vehicle.schoolbus.webp?v=78457d6270",
-  "vehicle.scooter": "thumbs/vehicle.scooter.webp?v=0504334852",
-  "vehicle.sedan": "thumbs/vehicle.sedan.webp?v=6dc49d07aa",
-  "vehicle.suv": "thumbs/vehicle.suv.webp?v=abd262c8be",
-  "vehicle.tanker": "thumbs/vehicle.tanker.webp?v=685f7fdb8d",
-  "vehicle.taxi": "thumbs/vehicle.taxi.webp?v=2906530273",
-  "vehicle.tractor": "thumbs/vehicle.tractor.webp?v=01b3af231e",
-  "vehicle.van": "thumbs/vehicle.van.webp?v=e4f06c255e"
+  "human.raincoat": "thumbs/human.raincoat.webp?v=58769133ca",
+  "human.sailor": "thumbs/human.sailor.webp?v=8a9067bf7b",
+  "human.student": "thumbs/human.student.webp?v=4976daee85",
+  "human.survivor": "thumbs/human.survivor.webp?v=4976daee85",
+  "human.vendor": "thumbs/human.vendor.webp?v=ae269e8205",
+  "human.worker": "thumbs/human.worker.webp?v=7946c86ff1",
+  "prop.cooler": "thumbs/prop.cooler.webp?v=1f46c4d3d2",
+  "prop.cooler_red": "thumbs/prop.cooler_red.webp?v=df7e1f10ad",
+  "prop.door": "thumbs/prop.door.webp?v=e39ae2cc49",
+  "prop.fence": "thumbs/prop.fence.webp?v=13e266d6c4",
+  "prop.outboard": "thumbs/prop.outboard.webp?v=98babbe4ca",
+  "prop.vending_01": "thumbs/prop.vending_01.webp?v=be20713617",
+  "prop.vending_02": "thumbs/prop.vending_02.webp?v=aaf9ddf2b8",
+  "prop.vending_03": "thumbs/prop.vending_03.webp?v=ec4fee0986",
+  "prop.vending_04": "thumbs/prop.vending_04.webp?v=d5eb1d3865",
+  "prop.vending_05": "thumbs/prop.vending_05.webp?v=ea11238c27",
+  "prop.vending_06": "thumbs/prop.vending_06.webp?v=ce7f45183e",
+  "prop.vending_07": "thumbs/prop.vending_07.webp?v=59c7ee554e",
+  "prop.vending_08": "thumbs/prop.vending_08.webp?v=7a67f98efa",
+  "prop.vending_09": "thumbs/prop.vending_09.webp?v=a3afd42491",
+  "prop.vending_10": "thumbs/prop.vending_10.webp?v=a2f9e475b9",
+  "prop.vending_11": "thumbs/prop.vending_11.webp?v=b8c9ee20a1",
+  "prop.vending_12": "thumbs/prop.vending_12.webp?v=d5e866fdc4",
+  "rock.boulder": "thumbs/rock.boulder.webp?v=59954c919d",
+  "rock.rock_2": "thumbs/rock.rock_2.webp?v=fdef321d58",
+  "rock.rock_3": "thumbs/rock.rock_3.webp?v=9594ee390a",
+  "rock.rock_4": "thumbs/rock.rock_4.webp?v=ed4e8d49f0",
+  "rock.rock_5": "thumbs/rock.rock_5.webp?v=76ac064935",
+  "rock.rock_6": "thumbs/rock.rock_6.webp?v=658eace234",
+  "rock.rock_7": "thumbs/rock.rock_7.webp?v=e8c685f15c",
+  "rock.rock_8": "thumbs/rock.rock_8.webp?v=7a04033767",
+  "tree.bare_sapling": "thumbs/tree.bare_sapling.webp?v=5d99673a7a",
+  "tree.birch": "thumbs/tree.birch.webp?v=5c3cc00fc9",
+  "tree.dead": "thumbs/tree.dead.webp?v=4aca828b2d",
+  "tree.fir": "thumbs/tree.fir.webp?v=a2bd052d41",
+  "tree.maple": "thumbs/tree.maple.webp?v=a291fab937",
+  "tree.oak": "thumbs/tree.oak.webp?v=599b85cda9",
+  "tree.pine": "thumbs/tree.pine.webp?v=69ef8fcfb1",
+  "tree.sapling": "thumbs/tree.sapling.webp?v=f1c2f296e3",
+  "tree.spruce": "thumbs/tree.spruce.webp?v=ac0ad6f269",
+  "vehicle.compact": "thumbs/vehicle.compact.webp?v=035514d2ce",
+  "vehicle.cruiser": "thumbs/vehicle.cruiser.webp?v=99a6dd134b",
+  "vehicle.minivan": "thumbs/vehicle.minivan.webp?v=5623e68a37",
+  "vehicle.police": "thumbs/vehicle.police.webp?v=4cb1398447",
+  "vehicle.sedan": "thumbs/vehicle.sedan.webp?v=410f6109b9",
+  "vehicle.taxi": "thumbs/vehicle.taxi.webp?v=e2936678e8",
+  "vehicle.van": "thumbs/vehicle.van.webp?v=0533ed6025",
+  "vehicle.vintage": "thumbs/vehicle.vintage.webp?v=535a989d60",
+  "vehicle.wagon": "thumbs/vehicle.wagon.webp?v=a532606265",
+  "vehicle.wreck": "thumbs/vehicle.wreck.webp?v=da6d129224"
  },
  "credits": []
 }

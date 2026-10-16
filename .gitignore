@@ -12,3 +12,5 @@ public/models/_lab/
 qa/cast-src/
 qa/asset-src/
 qa/mockups/
+archive/
+__pycache__/
