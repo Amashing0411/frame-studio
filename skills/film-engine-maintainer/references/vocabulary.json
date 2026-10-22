@@ -1,7 +1,7 @@
 {
   "version": "7",
   "generated_by": "tools/extract-vocabulary.mjs (frame-studio)",
-  "generated": "2026-10-16",
+  "generated": "2026-10-22",
   "hazards": [
     "none",
     "quake",
@@ -127,29 +127,448 @@
         0,
         1
       ]
-    },
-    "speech": [
-      "icons",
-      "text",
-      "off"
-    ]
+    }
   },
-  "speech_icons": [
-    "heart",
-    "question",
-    "exclaim",
-    "idea",
-    "food",
-    "home",
-    "coin",
-    "phone",
-    "music",
-    "sleep",
-    "angry",
-    "smile",
-    "warning",
-    "plus"
+  "psx": [
+    {
+      "key": "albedo_tex",
+      "scope": "model",
+      "group": "texture",
+      "type": "texture",
+      "default": "",
+      "textures": [
+        "brick",
+        "checker",
+        "stone",
+        "grass",
+        "crate",
+        "metal",
+        "fence",
+        "colormap"
+      ],
+      "help": "The picture on the surface. Drawn with nearest filtering and repeating, like a console texture. Empty keeps the model's own picture."
+    },
+    {
+      "key": "albedo_color",
+      "scope": "model",
+      "group": "texture",
+      "type": "color",
+      "default": "#ffffff",
+      "help": "Tint multiplied with the texture. White leaves the texture as it is."
+    },
+    {
+      "key": "vertex_color_mix",
+      "scope": "film",
+      "group": "texture",
+      "type": "range",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "help": "How much the mesh vertex colors darken or tint the surface (0 = ignore them, 1 = full). PS1 levels were lit by painting these."
+    },
+    {
+      "key": "texture_filter",
+      "scope": "film",
+      "group": "texture",
+      "type": "enum",
+      "default": 0,
+      "options": [
+        "Nearest",
+        "N64 3-point"
+      ],
+      "help": "How the texture is smoothed. Nearest = hard square texels (PS1). N64 3-point = the soft, triangular blur of the Nintendo 64, which mixes only three texels instead of four."
+    },
+    {
+      "key": "uv_scale",
+      "scope": "model",
+      "group": "texture",
+      "type": "vec2",
+      "default": [
+        1,
+        1
+      ],
+      "min": -16,
+      "max": 16,
+      "help": "Repeats the texture. 2 = twice across each face."
+    },
+    {
+      "key": "uv_offset",
+      "scope": "model",
+      "group": "texture",
+      "type": "vec2",
+      "default": [
+        0,
+        0
+      ],
+      "min": -16,
+      "max": 16,
+      "help": "Moves the texture, in texture widths."
+    },
+    {
+      "key": "uv_scroll",
+      "scope": "model",
+      "group": "texture",
+      "type": "vec2",
+      "default": [
+        0,
+        0
+      ],
+      "min": -8,
+      "max": 8,
+      "help": "Slides the texture, in texture widths per second (water, conveyor belts, flames)."
+    },
+    {
+      "key": "affine",
+      "scope": "film",
+      "group": "texture",
+      "type": "range",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "help": "Texture swimming. 1 = affine mapping like the real PS1, where the texture bends across big polygons that are close to the camera. 0 = a modern, perspective-correct texture."
+    },
+    {
+      "key": "affine_limit",
+      "scope": "film",
+      "group": "texture",
+      "type": "range",
+      "default": 0.35,
+      "min": 0.05,
+      "max": 8,
+      "help": "The most the texture may slide because of affine mapping, in texture repeats. Big polygons at the edge of a wide view would otherwise smear the whole texture; a lower value keeps the swimming but caps it. 8 = no cap."
+    },
+    {
+      "key": "pixel_size",
+      "scope": "film",
+      "group": "snapping",
+      "type": "range",
+      "default": 3,
+      "min": 1,
+      "max": 16,
+      "help": "Size of one console pixel. The vertices snap to this grid, and the dither cells use it too. 3 on a portrait film = the classic 360 x 640 (on the demo scenes, 320 x 240)."
+    },
+    {
+      "key": "snap_strength",
+      "scope": "film",
+      "group": "snapping",
+      "type": "range",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "help": "How strongly the vertices snap to the pixel grid. 1 = every vertex jumps to a whole pixel, which makes the edges shimmer when the camera or the object moves. 0 = off."
+    },
+    {
+      "key": "jitter",
+      "scope": "film",
+      "group": "snapping",
+      "type": "range",
+      "default": 0,
+      "min": 0,
+      "max": 2,
+      "help": "Random shaking of every vertex, in console pixels (the unstable geometry of the early 3D games). 0 = off."
+    },
+    {
+      "key": "jitter_rate",
+      "scope": "film",
+      "group": "snapping",
+      "type": "int",
+      "default": 12,
+      "min": 1,
+      "max": 30,
+      "help": "How many times per second the jitter changes."
+    },
+    {
+      "key": "lit",
+      "scope": "model",
+      "group": "lighting",
+      "type": "range",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "help": "1 = lit by the lights in the scene, computed at the vertices (smooth Gouraud shading, no per-pixel light). 0 = flat, the texture color as it is."
+    },
+    {
+      "key": "glow",
+      "scope": "model",
+      "group": "lighting",
+      "type": "range",
+      "default": 0,
+      "min": 0,
+      "max": 1,
+      "help": "Self illumination of the whole surface. It keeps this much of its color even in the dark."
+    },
+    {
+      "key": "emission_tex",
+      "scope": "model",
+      "group": "lighting",
+      "type": "texture",
+      "default": "",
+      "textures": [
+        "runes",
+        "lava",
+        "ember"
+      ],
+      "help": "Picture of what glows (windows, runes, lava). Only its bright parts light up, in the dark too."
+    },
+    {
+      "key": "emission_strength",
+      "scope": "model",
+      "group": "lighting",
+      "type": "range",
+      "default": 1,
+      "min": 0,
+      "max": 4,
+      "help": "How strongly the emission picture glows."
+    },
+    {
+      "key": "shadows",
+      "scope": "film",
+      "group": "lighting",
+      "type": "range",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "help": "How much of the film's shadows stays on lit surfaces. PS1 games had none (0); 1 keeps the shadows of the sun and the lamps."
+    },
+    {
+      "key": "matcap_tex",
+      "scope": "model",
+      "group": "metal",
+      "type": "texture",
+      "default": "",
+      "textures": [
+        "chrome",
+        "gold",
+        "ember"
+      ],
+      "help": "Picture of a sphere that is wrapped around the surface by its normal (a matcap): chrome, gold, a wet floor. It already contains its own light, so the lit part is replaced by it."
+    },
+    {
+      "key": "matcap_amount",
+      "scope": "model",
+      "group": "metal",
+      "type": "range",
+      "default": 0,
+      "min": 0,
+      "max": 1,
+      "help": "How much of the surface becomes the metal picture. 0 = off."
+    },
+    {
+      "key": "billboard",
+      "scope": "model",
+      "group": "sprite",
+      "type": "enum",
+      "default": 0,
+      "options": [
+        "Off",
+        "Full",
+        "Upright"
+      ],
+      "help": "Turns the surface toward the camera: a flat picture that always faces you (trees, enemies, items). Full follows the camera in every direction, Upright only turns around the vertical axis (a tree does not lean)."
+    },
+    {
+      "key": "fog_amount",
+      "scope": "film",
+      "group": "fog",
+      "type": "range",
+      "default": 0,
+      "min": 0,
+      "max": 1,
+      "help": "How much of the distance fog is used. 0 = no fog. The fog is worked out at the vertices, as on the console."
+    },
+    {
+      "key": "fog_color",
+      "scope": "film",
+      "group": "fog",
+      "type": "color",
+      "default": "#0d0f14",
+      "help": "Color of the fog."
+    },
+    {
+      "key": "fog_start",
+      "scope": "film",
+      "group": "fog",
+      "type": "range",
+      "default": 8,
+      "min": 0,
+      "max": 200,
+      "help": "Distance from the camera where the fog starts, in meters."
+    },
+    {
+      "key": "fog_end",
+      "scope": "film",
+      "group": "fog",
+      "type": "range",
+      "default": 30,
+      "min": 0.5,
+      "max": 400,
+      "help": "Distance where the fog is complete. Close to the start makes a hard wall of fog."
+    },
+    {
+      "key": "color_bits",
+      "scope": "film",
+      "group": "color",
+      "type": "int",
+      "default": 5,
+      "min": 1,
+      "max": 8,
+      "help": "Bits per color channel. 5 = the PS1 15-bit color (32 shades per channel). 8 = off, 1 = very few colors."
+    },
+    {
+      "key": "dither_amount",
+      "scope": "film",
+      "group": "color",
+      "type": "range",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "help": "Strength of the 4x4 ordered dither that hides the banding of the reduced colors. 0 = no dither."
+    },
+    {
+      "key": "cutout",
+      "scope": "model",
+      "group": "alpha",
+      "type": "range",
+      "default": 0,
+      "min": 0,
+      "max": 1,
+      "help": "Pixels with an alpha below this are cut out (leaves, fences, sprites). 0 = off, the surface is solid."
+    },
+    {
+      "key": "screen_amount",
+      "scope": "screen",
+      "group": "screen",
+      "type": "range",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "help": "How much of the screen effect is used: chunky console pixels, reduced colors and dither on the final picture. 0 = the picture as it is."
+    },
+    {
+      "key": "screen_pixel_size",
+      "scope": "screen",
+      "group": "screen",
+      "type": "range",
+      "default": 3,
+      "min": 1,
+      "max": 16,
+      "help": "Size of one console pixel on the final picture. Keep it equal to pixel_size: moving pixel_size moves this too."
+    },
+    {
+      "key": "screen_color_bits",
+      "scope": "screen",
+      "group": "screen",
+      "type": "int",
+      "default": 5,
+      "min": 1,
+      "max": 8,
+      "help": "Bits per color channel on the final picture, which also covers the light and the fog. 5 = the PS1 15-bit color. 8 = off."
+    },
+    {
+      "key": "screen_dither",
+      "scope": "screen",
+      "group": "screen",
+      "type": "range",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "help": "Strength of the 4x4 ordered dither on the final picture (0 = none)."
+    },
+    {
+      "key": "grain",
+      "scope": "screen",
+      "group": "screen",
+      "type": "range",
+      "default": 0,
+      "min": 0,
+      "max": 0.2,
+      "help": "Slight brightness noise that changes every frame, like a worn picture."
+    },
+    {
+      "key": "vignette",
+      "scope": "screen",
+      "group": "screen",
+      "type": "range",
+      "default": 0,
+      "min": 0,
+      "max": 1,
+      "help": "Darkens the corners of the screen."
+    }
   ],
+  "psx_looks": {
+    "PS1": {
+      "fog_amount": 0.55
+    },
+    "Graveyard": {
+      "fog_amount": 0.55,
+      "fog_start": 3,
+      "fog_end": 28,
+      "fog_color": "#0d121f"
+    },
+    "Horror fog": {
+      "color_bits": 4,
+      "fog_amount": 1,
+      "fog_start": 2,
+      "fog_end": 15,
+      "grain": 0.04,
+      "screen_color_bits": 4,
+      "vignette": 0.5
+    },
+    "Clean (all off)": {
+      "affine": 0,
+      "color_bits": 8,
+      "dither_amount": 0,
+      "screen_amount": 0,
+      "snap_strength": 0
+    },
+    "Crunchy 3-bit": {
+      "color_bits": 3,
+      "fog_amount": 0.4,
+      "pixel_size": 4,
+      "screen_color_bits": 3,
+      "screen_pixel_size": 4
+    },
+    "Shaky": {
+      "fog_amount": 0.3,
+      "jitter": 1
+    },
+    "N64": {
+      "affine": 0,
+      "fog_amount": 0.3,
+      "pixel_size": 2,
+      "screen_pixel_size": 2,
+      "snap_strength": 0,
+      "texture_filter": 1
+    },
+    "Chrome": {
+      "albedo_tex": "checker",
+      "matcap_tex": "chrome",
+      "matcap_amount": 1
+    },
+    "Glowing runes": {
+      "albedo_tex": "stone",
+      "emission_tex": "runes",
+      "emission_strength": 1.2,
+      "lit": 0.35
+    },
+    "Texture swimming": {
+      "albedo_tex": "brick",
+      "affine_limit": 8
+    },
+    "Fence cutout": {
+      "albedo_tex": "fence",
+      "cutout": 0.5,
+      "uv_scale": [
+        4,
+        3
+      ]
+    },
+    "Billboard": {
+      "albedo_tex": "fence",
+      "billboard": 1,
+      "cutout": 0.5
+    }
+  },
   "dialogue_moods": [
     "friendly",
     "surprised",
@@ -291,7 +710,7 @@
     "grey_sky": "overcast|gr[ae]y|smoke|haze|gloom|cloud"
   },
   "assets": {
-    "archetypes": 139,
+    "archetypes": 142,
     "variants_per_archetype": 4,
     "groups": [
       {
@@ -317,6 +736,17 @@
           "fall",
           "sleep",
           "zombie",
+          "jog",
+          "death",
+          "aim",
+          "shoot",
+          "reload",
+          "torch",
+          "sword",
+          "punch",
+          "kneel",
+          "hit_head",
+          "sit_exit",
           "think"
         ],
         "expressions": [
@@ -329,16 +759,6 @@
           "determined",
           "relief",
           "sleepy"
-        ],
-        "accessories": [
-          "backpack",
-          "cap",
-          "helmet",
-          "glasses",
-          "mask",
-          "bag",
-          "vest",
-          "umbrella"
         ],
         "ids": [
           "human.civilian",
@@ -358,7 +778,10 @@
           "human.athlete",
           "human.diver",
           "human.raincoat",
-          "human.survivor"
+          "human.survivor",
+          "human.zombie",
+          "human.killer",
+          "human.sheriff"
         ]
       },
       {
@@ -369,7 +792,6 @@
           "drive"
         ],
         "expressions": [],
-        "accessories": [],
         "ids": [
           "vehicle.wagon",
           "vehicle.sedan",
@@ -390,7 +812,6 @@
           "idle"
         ],
         "expressions": [],
-        "accessories": [],
         "ids": [
           "building.office",
           "building.tower_01_2",
@@ -448,7 +869,6 @@
           "idle"
         ],
         "expressions": [],
-        "accessories": [],
         "ids": [
           "prop.fence",
           "prop.door",
@@ -477,7 +897,6 @@
           "wind"
         ],
         "expressions": [],
-        "accessories": [],
         "ids": [
           "tree.oak",
           "tree.pine",
@@ -497,7 +916,6 @@
           "idle"
         ],
         "expressions": [],
-        "accessories": [],
         "ids": [
           "rock.boulder",
           "rock.rock_2",
@@ -517,7 +935,6 @@
           "sail"
         ],
         "expressions": [],
-        "accessories": [],
         "ids": [
           "boat.fishing",
           "boat.rowboat",
@@ -532,7 +949,6 @@
           "swim"
         ],
         "expressions": [],
-        "accessories": [],
         "ids": [
           "animal.fish",
           "animal.fish_2",
@@ -551,7 +967,6 @@
           "idle"
         ],
         "expressions": [],
-        "accessories": [],
         "ids": [
           "creature.ghoul",
           "creature.ghoul_02",
@@ -565,7 +980,6 @@
           "idle"
         ],
         "expressions": [],
-        "accessories": [],
         "ids": [
           "food.apple",
           "food.orange",

@@ -19,13 +19,25 @@ function psxLoad(id) {
   if (PSX_CAT.src.has(id)) return Promise.resolve(PSX_CAT.src.get(id));
   if (PSX_CAT.loading.has(id)) return PSX_CAT.loading.get(id);
   const p = new Promise(ok => new THREE.GLTFLoader().load('assets/' + PSX_CAT.meta[id].file, g => {
-    g.scene.traverse(o => { if (!o.isMesh) return; o.castShadow = o.receiveShadow = true; o.userData.psxShared = true; [].concat(o.material).forEach(m => m.userData.psxShared = true); });
+    psxStableMaterials(g.scene);
+    // painted PSX textures: fully matte (no metal, no sheen), like the people (castMatte)
+    g.scene.traverse(o => { if (!o.isMesh) return; o.castShadow = o.receiveShadow = true; o.userData.psxShared = true; [].concat(o.material).forEach(m => { m.userData.psxShared = true; castMatte(m); }); });
     PSX_CAT.src.set(id, g.scene); PSX_CAT.loading.delete(id); psxFill(id); ok(g.scene);
   }, undefined, e => { PSX_CAT.loading.delete(id); console.warn('PSX model ' + id + ' did not load', e); ok(null); }));
   PSX_CAT.loading.set(id, p); return p;
 }
+// The loader creates a model's materials as their textures finish decoding, so their ids come in a different order on
+// each load, and three.js draws objects with the same shader in material id order: overlapping parts (the cabin's walls
+// and trim share their vertices) then drew in a different order and the cabin changed shade between runs. Re-creating
+// the materials in name order makes the ids, and so the frames, the same every time.
+function psxStableMaterials(root) {
+  const mats = []; root.traverse(o => { if (o.isMesh) for (const m of [].concat(o.material)) if (!mats.includes(m)) mats.push(m); });
+  const order = [...mats].sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : mats.indexOf(a) - mats.indexOf(b)), copy = new Map(order.map(m => [m, m.clone()]));
+  root.traverse(o => { if (o.isMesh) o.material = Array.isArray(o.material) ? o.material.map(m => copy.get(m)) : copy.get(o.material); });
+  for (const m of mats) m.dispose();
+}
 const psxBusy = () => PSX_CAT.loading.size;
-async function psxReady() { while (PSX_CAT.loading.size) await Promise.all([...PSX_CAT.loading.values()]); }
+async function psxReady() { while (PSX_CAT.loading.size || PSX_TEX.loading.size) await Promise.all([...PSX_CAT.loading.values(), ...PSX_TEX.loading.values()]); }
 
 function buildPsxModel(id) {
   const [w, h, d] = PSX_CAT.meta[id].size, root = new THREE.Group(), box = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), PSX_STANDIN);
@@ -37,6 +49,8 @@ function psxAttach(root) {
   PSX_CAT.waiting.delete(root); if (root.getObjectByName('PSX model')) return;
   const inner = PSX_CAT.src.get(root.userData.psx)?.clone(true);
   if (!inner) return; inner.name = 'PSX model'; root.add(inner); root.updateMatrixWorld(true);
+  // the model's own PSX look, and the film finish its materials missed while the file was loading
+  psxApplyAssetLook(root); if (currentMaterialFinish) applyCinemaMaterials(currentMaterialFinish, inner);
 }
 function psxFill(id) {
   let n = 0; for (const r of [...PSX_CAT.waiting]) if (r.userData.psx === id) { psxAttach(r); n++; }

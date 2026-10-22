@@ -67,8 +67,15 @@ const tabs = await evaluate(`(()=>{const r=[],shown=el=>!!el&&el.getClientRects(
   for(const k of ['scenario','library']){tabLeft(k);r.push(['left-'+k,shown(document.getElementById('left-'+k))])}
   return r})()`);
 check('every side tab and every inspector opens', tabs.length === 11 && tabs.every(t => t[1]), tabs.map(t => `${t[0]}:${t[1] ? 'ok' : 'NO'}`).join(' '));
-const guide = await evaluate(`(()=>{showPanel('guide');const g=document.getElementById('guide');return {sections:g.querySelectorAll('.guide-sec').length,items:g.querySelectorAll('.guide-sec button').length,people:g.querySelector('.guide-counts b')?.textContent}})()`);
-check('Guide lists what the engine offers', guide.sections >= 6 && guide.items > 30 && guide.people === '21', JSON.stringify(guide));
+const guide = await evaluate(`(()=>{showPanel('guide');const g=document.getElementById('guide');return {sections:g.querySelectorAll('.guide-sec').length,items:g.querySelectorAll('.guide-sec button').length,people:g.querySelector('.guide-counts b')?.textContent,expected:String(Object.keys(CAST.manifest.people.models).length)}})()`);
+check('Guide lists what the engine offers', guide.sections >= 6 && guide.items > 30 && guide.people === guide.expected, JSON.stringify(guide));
+// the PSX look editor: opens, draws its demo scenes with the PSX material, a look applies to the film and the editor closes
+const psxEd = await evaluate(`(async()=>{openPsxEditor('sphere');psxEdPreset(PSX_PRESETS.find(p=>p.name==='Chrome'));await new Promise(r=>setTimeout(r,1500));
+  const calls=PSX_ED.renderer.info.render.calls,programs=PSX_ED.renderer.info.programs.length,rows=document.querySelectorAll('#psxEdParams .psx-p').length;
+  psxEdPreset(PSX_PRESETS.find(p=>p.name==='Crunchy 3-bit'));psxEdApply('film');const look=parse().cinema;closePsxEditor();
+  return {open:true,calls,programs,rows,params:PSX_PARAMS.length,material:look.material,bits:look.psx&&look.psx.color_bits,closed:document.getElementById('psxEditor').hidden}})()`);
+check('PSX look editor draws, applies a look to the film and closes', psxEd.calls > 0 && psxEd.rows === psxEd.params && psxEd.material === 'psx' && psxEd.bits === 3 && psxEd.closed, JSON.stringify(psxEd));
+await waitFor('!seeking', 120000);
 // the free What if… writer: a sentence becomes a checked, playable film (no AI, no network)
 const whatif = await evaluate(`(async()=>{$('whatifPrompt').value='What if a typhoon flooded Pasig at night?';await makeWhatIfFilm(false);return {ok:validatedSource===$('ta').value,hazard:SC.hazard.type,shots:shots.length,errors:(validation.e||[]).length,title:SC.meta.title}})()`);
 await waitFor('!seeking', 120000);

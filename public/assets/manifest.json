@@ -3,12 +3,14 @@
  "note": "Runtime assets served from /assets by Vercel. Built by tools/blender/*.py and tools/build-manifest.mjs; licenses in public/models/CREDITS.md.",
  "people": {
   "families": {
-   "u": {
-    "anim": "people/anim-u.glb?v=5ad6f1b890",
-    "reference": "u-man",
-    "pelvis": 0.7699,
+   "x": {
+    "anim": "people/anim-x.glb?v=4da9f7be17",
+    "reference": "x-01",
+    "pelvis": 1.0208,
     "clips": [
      "aim",
+     "aim_down",
+     "aim_up",
      "carry",
      "carry_idle",
      "cheer",
@@ -16,429 +18,2114 @@
      "crouch",
      "crouch_walk",
      "dance",
+     "dead",
+     "death",
      "drive",
      "fall",
      "hit",
+     "hit_head",
      "idle",
      "interact",
+     "jog",
      "jump",
      "jump_land",
      "jump_start",
      "kneel",
      "phone",
      "pickup",
+     "pistol_idle",
      "point",
      "punch",
+     "punch_cross",
      "push",
+     "reload",
      "roll",
      "run",
+     "shoot",
      "sit",
      "sit_enter",
+     "sit_exit",
      "sit_talk",
      "sleep",
      "sprint",
      "swim",
      "swim_idle",
+     "sword",
+     "sword_idle",
      "talk",
      "think",
+     "torch",
      "walk",
      "walk_formal",
      "wave",
      "zombie"
     ],
-    "bytes": 994996
-   },
-   "m": {
-    "anim": "people/anim-m.glb?v=0f105d7ae3",
-    "reference": "m-casual",
-    "pelvis": 0.8304,
-    "clips": [
-     "aim",
-     "carry",
-     "carry_idle",
-     "cheer",
-     "cower",
-     "crouch",
-     "crouch_walk",
-     "dance",
-     "drive",
-     "fall",
-     "hit",
-     "idle",
-     "interact",
-     "jump",
-     "jump_land",
-     "jump_start",
-     "kneel",
-     "phone",
-     "pickup",
-     "point",
-     "punch",
-     "push",
-     "roll",
-     "run",
-     "sit",
-     "sit_enter",
-     "sit_talk",
-     "sleep",
-     "sprint",
-     "swim",
-     "swim_idle",
-     "talk",
-     "think",
-     "walk",
-     "walk_formal",
-     "wave",
-     "zombie"
-    ],
-    "bytes": 1643020
+    "bytes": 1507048
    }
   },
   "models": {
-   "m-woman2": {
-    "file": "people/m-woman2.glb?v=699c26ff7f",
-    "family": "m",
-    "sex": "f",
-    "height": 1.66,
-    "pelvis": 0.8803,
-    "face": true,
+   "x-01": {
+    "file": "people/x-01.glb?v=53fe7f7f99",
+    "family": "x",
+    "sex": "m",
+    "height": 1.769,
+    "pelvis": 1.0208,
     "feet": {
-     "ankle": 0.0755,
-     "toe": 0.1892,
-     "heel": 0.0672
+     "ankle": 0.0843,
+     "toe": 0.1798,
+     "heel": 0.0477
     },
-    "bytes": 432916
+    "bytes": 67948
    },
-   "m-woman3": {
-    "file": "people/m-woman3.glb?v=4d729a9998",
-    "family": "m",
+   "x-17-female-police": {
+    "file": "people/x-17-female-police.glb?v=6e300ff0a7",
+    "family": "x",
     "sex": "f",
-    "height": 1.65,
-    "pelvis": 0.8709,
-    "face": true,
+    "height": 1.683,
+    "pelvis": 1.0209,
     "feet": {
-     "ankle": 0.075,
-     "toe": 0.1759,
-     "heel": 0.0521
+     "ankle": 0.0872,
+     "toe": 0.1805,
+     "heel": 0.0542
     },
-    "bytes": 420768
+    "bytes": 81692
    },
-   "m-punk2": {
-    "file": "people/m-punk2.glb?v=5ba7815ec8",
-    "family": "m",
+   "x-killer": {
+    "file": "people/x-killer.glb?v=6c456e6c93",
+    "family": "x",
+    "sex": "m",
+    "height": 1.883,
+    "pelvis": 1.1137,
+    "feet": {
+     "ankle": 0.1019,
+     "toe": 0.2285,
+     "heel": 0.0546
+    },
+    "bytes": 65440
+   },
+   "x-18-female-police": {
+    "file": "people/x-18-female-police.glb?v=340f66bfd2",
+    "family": "x",
     "sex": "f",
-    "height": 1.67,
-    "pelvis": 0.829,
-    "face": true,
+    "height": 1.642,
+    "pelvis": 0.9226,
     "feet": {
      "ankle": 0.0759,
-     "toe": 0.0945,
-     "heel": 0.14
+     "toe": 0.1601,
+     "heel": 0.0486
     },
-    "bytes": 409956
+    "bytes": 82788
    },
-   "m-adventurer2": {
-    "file": "people/m-adventurer2.glb?v=525dbf25eb",
-    "family": "m",
-    "sex": "f",
-    "height": 1.66,
-    "pelvis": 0.8845,
-    "face": true,
-    "feet": {
-     "ankle": 0.0755,
-     "toe": 0.1764,
-     "heel": 0.083
-    },
-    "bytes": 467060
-   },
-   "m-swat": {
-    "file": "people/m-swat.glb?v=9494eca803",
-    "family": "m",
-    "sex": "m",
-    "height": 1.82,
-    "pelvis": 0.851,
-    "face": false,
-    "feet": {
-     "ankle": 0.0827,
-     "toe": 0.169,
-     "heel": 0.1048
-    },
-    "bytes": 477368
-   },
-   "u-woman": {
-    "file": "people/u-woman.glb?v=44e936392d",
-    "family": "u",
-    "sex": "f",
-    "height": 1.66,
-    "pelvis": 0.7632,
-    "face": true,
-    "feet": {
-     "ankle": 0.0755,
-     "toe": 0.1828,
-     "heel": 0.0451
-    },
-    "bytes": 506104
-   },
-   "u-woman-casual": {
-    "file": "people/u-woman-casual.glb?v=62bdf38e8f",
-    "family": "u",
+   "x-19-female-police": {
+    "file": "people/x-19-female-police.glb?v=c6605e283b",
+    "family": "x",
     "sex": "f",
     "height": 1.64,
-    "pelvis": 0.7537,
-    "face": true,
+    "pelvis": 0.9938,
     "feet": {
-     "ankle": 0.0745,
-     "toe": 0.1805,
-     "heel": 0.0446
+     "ankle": 0.0898,
+     "toe": 0.1772,
+     "heel": 0.0511
     },
-    "bytes": 247044
+    "bytes": 83420
    },
-   "u-woman-tank": {
-    "file": "people/u-woman-tank.glb?v=1e2d2946e8",
-    "family": "u",
+   "x-20-female-police": {
+    "file": "people/x-20-female-police.glb?v=d1073f4cc2",
+    "family": "x",
     "sex": "f",
-    "height": 1.67,
-    "pelvis": 0.7623,
-    "face": true,
+    "height": 1.673,
+    "pelvis": 0.9842,
     "feet": {
      "ankle": 0.0759,
-     "toe": 0.1826,
-     "heel": 0.0451
+     "toe": 0.1626,
+     "heel": 0.05
     },
-    "bytes": 193196
+    "bytes": 86476
    },
-   "u-woman-dress": {
-    "file": "people/u-woman-dress.glb?v=5fc16e241e",
-    "family": "u",
+   "x-21-female-firefighter": {
+    "file": "people/x-21-female-firefighter.glb?v=14f26c8142",
+    "family": "x",
     "sex": "f",
-    "height": 1.65,
-    "pelvis": 0.7531,
-    "face": true,
+    "height": 1.73,
+    "pelvis": 1.0446,
     "feet": {
-     "ankle": 0.075,
-     "toe": 0.1804,
-     "heel": 0.0445
+     "ankle": 0.1003,
+     "toe": 0.1906,
+     "heel": 0.0575
     },
-    "bytes": 177980
+    "bytes": 84300
    },
-   "u-man": {
-    "file": "people/u-man.glb?v=6fae12f2c5",
-    "family": "u",
+   "x-22-female-firefighter": {
+    "file": "people/x-22-female-firefighter.glb?v=09eb6f601b",
+    "family": "x",
+    "sex": "f",
+    "height": 1.741,
+    "pelvis": 1.0091,
+    "feet": {
+     "ankle": 0.0946,
+     "toe": 0.1733,
+     "heel": 0.0485
+    },
+    "bytes": 83448
+   },
+   "x-23-female-doctor": {
+    "file": "people/x-23-female-doctor.glb?v=bb231db905",
+    "family": "x",
+    "sex": "f",
+    "height": 1.71,
+    "pelvis": 1.0265,
+    "feet": {
+     "ankle": 0.0834,
+     "toe": 0.182,
+     "heel": 0.0563
+    },
+    "bytes": 86848
+   },
+   "x-24-female-doctor": {
+    "file": "people/x-24-female-doctor.glb?v=7fd0e370d1",
+    "family": "x",
+    "sex": "f",
+    "height": 1.71,
+    "pelvis": 1.0044,
+    "feet": {
+     "ankle": 0.0762,
+     "toe": 0.165,
+     "heel": 0.0521
+    },
+    "bytes": 83864
+   },
+   "x-25-female-police": {
+    "file": "people/x-25-female-police.glb?v=bf642b0b73",
+    "family": "x",
+    "sex": "f",
+    "height": 1.63,
+    "pelvis": 0.9856,
+    "feet": {
+     "ankle": 0.0912,
+     "toe": 0.1785,
+     "heel": 0.0543
+    },
+    "bytes": 79572
+   },
+   "x-26-female-police": {
+    "file": "people/x-26-female-police.glb?v=d849e0bfd0",
+    "family": "x",
+    "sex": "f",
+    "height": 1.676,
+    "pelvis": 0.9941,
+    "feet": {
+     "ankle": 0.0749,
+     "toe": 0.1625,
+     "heel": 0.0504
+    },
+    "bytes": 76972
+   },
+   "x-27-female-hm": {
+    "file": "people/x-27-female-hm.glb?v=c4e4fa7e93",
+    "family": "x",
+    "sex": "f",
+    "height": 1.645,
+    "pelvis": 0.9905,
+    "feet": {
+     "ankle": 0.0906,
+     "toe": 0.1776,
+     "heel": 0.0515
+    },
+    "bytes": 87304
+   },
+   "x-28-female-hm": {
+    "file": "people/x-28-female-hm.glb?v=b030eea5e5",
+    "family": "x",
+    "sex": "f",
+    "height": 1.679,
+    "pelvis": 0.9586,
+    "feet": {
+     "ankle": 0.0803,
+     "toe": 0.1638,
+     "heel": 0.0479
+    },
+    "bytes": 84772
+   },
+   "x-29-female": {
+    "file": "people/x-29-female.glb?v=8b1d843051",
+    "family": "x",
+    "sex": "f",
+    "height": 1.565,
+    "pelvis": 0.9212,
+    "feet": {
+     "ankle": 0.0942,
+     "toe": 0.1729,
+     "heel": 0.0527
+    },
+    "bytes": 85760
+   },
+   "x-30-female": {
+    "file": "people/x-30-female.glb?v=c64cb7f92b",
+    "family": "x",
+    "sex": "f",
+    "height": 1.5,
+    "pelvis": 0.8672,
+    "feet": {
+     "ankle": 0.0804,
+     "toe": 0.1516,
+     "heel": 0.0492
+    },
+    "bytes": 74888
+   },
+   "x-31-female": {
+    "file": "people/x-31-female.glb?v=2bfc83feb3",
+    "family": "x",
+    "sex": "f",
+    "height": 1.566,
+    "pelvis": 0.9349,
+    "feet": {
+     "ankle": 0.1021,
+     "toe": 0.1783,
+     "heel": 0.0623
+    },
+    "bytes": 85968
+   },
+   "x-32-female": {
+    "file": "people/x-32-female.glb?v=346cad54c6",
+    "family": "x",
+    "sex": "f",
+    "height": 1.524,
+    "pelvis": 0.8504,
+    "feet": {
+     "ankle": 0.0714,
+     "toe": 0.1478,
+     "heel": 0.0461
+    },
+    "bytes": 81076
+   },
+   "x-33-female": {
+    "file": "people/x-33-female.glb?v=cc1452233a",
+    "family": "x",
+    "sex": "f",
+    "height": 1.616,
+    "pelvis": 0.9621,
+    "feet": {
+     "ankle": 0.0686,
+     "toe": 0.1529,
+     "heel": 0.0496
+    },
+    "bytes": 85856
+   },
+   "x-34-female": {
+    "file": "people/x-34-female.glb?v=1561f8e7e4",
+    "family": "x",
+    "sex": "f",
+    "height": 1.696,
+    "pelvis": 0.9214,
+    "feet": {
+     "ankle": 0.099,
+     "toe": 0.1899,
+     "heel": 0.0487
+    },
+    "bytes": 95552
+   },
+   "x-35-female": {
+    "file": "people/x-35-female.glb?v=4ea054fb85",
+    "family": "x",
+    "sex": "f",
+    "height": 1.644,
+    "pelvis": 0.8986,
+    "feet": {
+     "ankle": 0.0886,
+     "toe": 0.1818,
+     "heel": 0.059
+    },
+    "bytes": 96652
+   },
+   "x-36-female": {
+    "file": "people/x-36-female.glb?v=10537d471a",
+    "family": "x",
+    "sex": "f",
+    "height": 1.653,
+    "pelvis": 0.9162,
+    "feet": {
+     "ankle": 0.0798,
+     "toe": 0.1765,
+     "heel": 0.0611
+    },
+    "bytes": 91756
+   },
+   "x-37-female": {
+    "file": "people/x-37-female.glb?v=ace9f1a28e",
+    "family": "x",
+    "sex": "f",
+    "height": 1.634,
+    "pelvis": 0.8499,
+    "feet": {
+     "ankle": 0.0889,
+     "toe": 0.1779,
+     "heel": 0.0503
+    },
+    "bytes": 98440
+   },
+   "x-38-female": {
+    "file": "people/x-38-female.glb?v=36807b882f",
+    "family": "x",
+    "sex": "f",
+    "height": 1.564,
+    "pelvis": 0.8252,
+    "feet": {
+     "ankle": 0.0833,
+     "toe": 0.1769,
+     "heel": 0.0535
+    },
+    "bytes": 94400
+   },
+   "x-39-female": {
+    "file": "people/x-39-female.glb?v=2f89f99dae",
+    "family": "x",
+    "sex": "f",
+    "height": 1.573,
+    "pelvis": 0.8437,
+    "feet": {
+     "ankle": 0.0798,
+     "toe": 0.1659,
+     "heel": 0.0522
+    },
+    "bytes": 94792
+   },
+   "x-40-female": {
+    "file": "people/x-40-female.glb?v=c83ff98d14",
+    "family": "x",
+    "sex": "f",
+    "height": 1.479,
+    "pelvis": 0.7894,
+    "feet": {
+     "ankle": 0.0815,
+     "toe": 0.1602,
+     "heel": 0.0433
+    },
+    "bytes": 167896
+   },
+   "x-41-female": {
+    "file": "people/x-41-female.glb?v=4860be4e22",
+    "family": "x",
+    "sex": "f",
+    "height": 1.6,
+    "pelvis": 0.8855,
+    "feet": {
+     "ankle": 0.0867,
+     "toe": 0.1724,
+     "heel": 0.0494
+    },
+    "bytes": 105144
+   },
+   "x-42-female": {
+    "file": "people/x-42-female.glb?v=94855ba1f7",
+    "family": "x",
+    "sex": "f",
+    "height": 1.629,
+    "pelvis": 0.9017,
+    "feet": {
+     "ankle": 0.0837,
+     "toe": 0.1745,
+     "heel": 0.0551
+    },
+    "bytes": 199312
+   },
+   "x-43-female": {
+    "file": "people/x-43-female.glb?v=6bd8bedda9",
+    "family": "x",
+    "sex": "f",
+    "height": 1.512,
+    "pelvis": 0.823,
+    "feet": {
+     "ankle": 0.0736,
+     "toe": 0.1739,
+     "heel": 0.063
+    },
+    "bytes": 96960
+   },
+   "x-44-female": {
+    "file": "people/x-44-female.glb?v=b317fd4570",
+    "family": "x",
+    "sex": "f",
+    "height": 1.633,
+    "pelvis": 0.9161,
+    "feet": {
+     "ankle": 0.085,
+     "toe": 0.1749,
+     "heel": 0.0512
+    },
+    "bytes": 111320
+   },
+   "x-45-female": {
+    "file": "people/x-45-female.glb?v=e28c2d77a2",
+    "family": "x",
+    "sex": "f",
+    "height": 1.552,
+    "pelvis": 0.8154,
+    "feet": {
+     "ankle": 0.0812,
+     "toe": 0.1716,
+     "heel": 0.0649
+    },
+    "bytes": 112672
+   },
+   "x-46-female": {
+    "file": "people/x-46-female.glb?v=dc7c65eba8",
+    "family": "x",
+    "sex": "f",
+    "height": 1.568,
+    "pelvis": 0.8946,
+    "feet": {
+     "ankle": 0.097,
+     "toe": 0.181,
+     "heel": 0.0568
+    },
+    "bytes": 115944
+   },
+   "x-47-female": {
+    "file": "people/x-47-female.glb?v=beac2c0e37",
+    "family": "x",
+    "sex": "f",
+    "height": 1.559,
+    "pelvis": 0.894,
+    "feet": {
+     "ankle": 0.0919,
+     "toe": 0.1788,
+     "heel": 0.0552
+    },
+    "bytes": 123740
+   },
+   "x-48-female": {
+    "file": "people/x-48-female.glb?v=3deca56d11",
+    "family": "x",
+    "sex": "f",
+    "height": 1.653,
+    "pelvis": 0.9332,
+    "feet": {
+     "ankle": 0.1011,
+     "toe": 0.1908,
+     "heel": 0.0556
+    },
+    "bytes": 113256
+   },
+   "x-49-female": {
+    "file": "people/x-49-female.glb?v=2773332033",
+    "family": "x",
+    "sex": "f",
+    "height": 1.721,
+    "pelvis": 0.9464,
+    "feet": {
+     "ankle": 0.0973,
+     "toe": 0.1999,
+     "heel": 0.0641
+    },
+    "bytes": 116232
+   },
+   "x-50-female": {
+    "file": "people/x-50-female.glb?v=abe20f24cf",
+    "family": "x",
+    "sex": "f",
+    "height": 1.785,
+    "pelvis": 1.0278,
+    "feet": {
+     "ankle": 0.1009,
+     "toe": 0.2073,
+     "heel": 0.061
+    },
+    "bytes": 118432
+   },
+   "x-51-female": {
+    "file": "people/x-51-female.glb?v=114c0c1a50",
+    "family": "x",
+    "sex": "f",
+    "height": 1.516,
+    "pelvis": 0.7388,
+    "feet": {
+     "ankle": 0.0778,
+     "toe": 0.171,
+     "heel": 0.0563
+    },
+    "bytes": 129860
+   },
+   "x-52-female": {
+    "file": "people/x-52-female.glb?v=c82ffdaf64",
+    "family": "x",
+    "sex": "f",
+    "height": 1.67,
+    "pelvis": 0.9309,
+    "feet": {
+     "ankle": 0.0901,
+     "toe": 0.1886,
+     "heel": 0.0591
+    },
+    "bytes": 116908
+   },
+   "x-53-female": {
+    "file": "people/x-53-female.glb?v=1a6860fdb7",
+    "family": "x",
+    "sex": "f",
+    "height": 1.674,
+    "pelvis": 0.9362,
+    "feet": {
+     "ankle": 0.096,
+     "toe": 0.195,
+     "heel": 0.0538
+    },
+    "bytes": 119072
+   },
+   "x-54-female": {
+    "file": "people/x-54-female.glb?v=af577b75be",
+    "family": "x",
+    "sex": "f",
+    "height": 1.541,
+    "pelvis": 0.823,
+    "feet": {
+     "ankle": 0.084,
+     "toe": 0.1757,
+     "heel": 0.0522
+    },
+    "bytes": 118644
+   },
+   "x-55-female": {
+    "file": "people/x-55-female.glb?v=456aac163f",
+    "family": "x",
+    "sex": "f",
+    "height": 1.515,
+    "pelvis": 0.87,
+    "feet": {
+     "ankle": 0.0842,
+     "toe": 0.1756,
+     "heel": 0.0522
+    },
+    "bytes": 118240
+   },
+   "x-57-female": {
+    "file": "people/x-57-female.glb?v=1b9bc845d1",
+    "family": "x",
+    "sex": "f",
+    "height": 1.672,
+    "pelvis": 0.9294,
+    "feet": {
+     "ankle": 0.0951,
+     "toe": 0.192,
+     "heel": 0.0559
+    },
+    "bytes": 117900
+   },
+   "x-female-02": {
+    "file": "people/x-female-02.glb?v=d4d8e33857",
+    "family": "x",
+    "sex": "f",
+    "height": 1.673,
+    "pelvis": 0.9907,
+    "feet": {
+     "ankle": 0.088,
+     "toe": 0.1789,
+     "heel": 0.055
+    },
+    "bytes": 91300
+   },
+   "x-female-03": {
+    "file": "people/x-female-03.glb?v=1bc41669f8",
+    "family": "x",
+    "sex": "f",
+    "height": 1.72,
+    "pelvis": 1.0324,
+    "feet": {
+     "ankle": 0.0949,
+     "toe": 0.1857,
+     "heel": 0.0539
+    },
+    "bytes": 84160
+   },
+   "x-female-04": {
+    "file": "people/x-female-04.glb?v=6bcd941b9b",
+    "family": "x",
+    "sex": "f",
+    "height": 1.804,
+    "pelvis": 1.0803,
+    "feet": {
+     "ankle": 0.1019,
+     "toe": 0.1921,
+     "heel": 0.0579
+    },
+    "bytes": 85108
+   },
+   "x-female-05": {
+    "file": "people/x-female-05.glb?v=e0df5f7d2b",
+    "family": "x",
+    "sex": "f",
+    "height": 1.592,
+    "pelvis": 0.9688,
+    "feet": {
+     "ankle": 0.0793,
+     "toe": 0.1632,
+     "heel": 0.0492
+    },
+    "bytes": 87512
+   },
+   "x-female-06": {
+    "file": "people/x-female-06.glb?v=ed886bc7aa",
+    "family": "x",
+    "sex": "f",
+    "height": 1.665,
+    "pelvis": 0.9483,
+    "feet": {
+     "ankle": 0.0767,
+     "toe": 0.1671,
+     "heel": 0.0518
+    },
+    "bytes": 85712
+   },
+   "x-female-07": {
+    "file": "people/x-female-07.glb?v=a9220d0f9f",
+    "family": "x",
+    "sex": "f",
+    "height": 1.639,
+    "pelvis": 0.9859,
+    "feet": {
+     "ankle": 0.0878,
+     "toe": 0.177,
+     "heel": 0.0517
+    },
+    "bytes": 92652
+   },
+   "x-female-08": {
+    "file": "people/x-female-08.glb?v=cd882c750e",
+    "family": "x",
+    "sex": "f",
+    "height": 1.615,
+    "pelvis": 0.9673,
+    "feet": {
+     "ankle": 0.0892,
+     "toe": 0.1745,
+     "heel": 0.0503
+    },
+    "bytes": 87932
+   },
+   "x-female-09": {
+    "file": "people/x-female-09.glb?v=c29bab3832",
+    "family": "x",
+    "sex": "f",
+    "height": 1.647,
+    "pelvis": 0.9942,
+    "feet": {
+     "ankle": 0.0709,
+     "toe": 0.1802,
+     "heel": 0.0495
+    },
+    "bytes": 93064
+   },
+   "x-female-10": {
+    "file": "people/x-female-10.glb?v=7384df9ec3",
+    "family": "x",
+    "sex": "f",
+    "height": 1.683,
+    "pelvis": 0.98,
+    "feet": {
+     "ankle": 0.0737,
+     "toe": 0.1614,
+     "heel": 0.0524
+    },
+    "bytes": 84772
+   },
+   "x-female-11": {
+    "file": "people/x-female-11.glb?v=c3f4449ef0",
+    "family": "x",
+    "sex": "f",
+    "height": 1.644,
+    "pelvis": 0.9884,
+    "feet": {
+     "ankle": 0.0772,
+     "toe": 0.1866,
+     "heel": 0.0683
+    },
+    "bytes": 87168
+   },
+   "x-female-12": {
+    "file": "people/x-female-12.glb?v=ec37d30134",
+    "family": "x",
+    "sex": "f",
+    "height": 1.58,
+    "pelvis": 0.9205,
+    "feet": {
+     "ankle": 0.0825,
+     "toe": 0.1598,
+     "heel": 0.0489
+    },
+    "bytes": 87616
+   },
+   "x-female-13": {
+    "file": "people/x-female-13.glb?v=36c0df8d9a",
+    "family": "x",
+    "sex": "f",
+    "height": 1.669,
+    "pelvis": 1.016,
+    "feet": {
+     "ankle": 0.0828,
+     "toe": 0.1783,
+     "heel": 0.0544
+    },
+    "bytes": 82976
+   },
+   "x-female-14": {
+    "file": "people/x-female-14.glb?v=4192678477",
+    "family": "x",
+    "sex": "f",
+    "height": 1.624,
+    "pelvis": 0.9476,
+    "feet": {
+     "ankle": 0.0753,
+     "toe": 0.1581,
+     "heel": 0.051
+    },
+    "bytes": 84740
+   },
+   "x-female-15": {
+    "file": "people/x-female-15.glb?v=01ae05eaaf",
+    "family": "x",
+    "sex": "f",
+    "height": 1.609,
+    "pelvis": 0.9772,
+    "feet": {
+     "ankle": 0.0838,
+     "toe": 0.1727,
+     "heel": 0.0514
+    },
+    "bytes": 87872
+   },
+   "x-female-16": {
+    "file": "people/x-female-16.glb?v=c9bb1cc1e4",
+    "family": "x",
+    "sex": "f",
+    "height": 1.643,
+    "pelvis": 0.9418,
+    "feet": {
+     "ankle": 0.0766,
+     "toe": 0.16,
+     "heel": 0.0487
+    },
+    "bytes": 83688
+   },
+   "x-killer-01": {
+    "file": "people/x-killer-01.glb?v=f909127283",
+    "family": "x",
     "sex": "m",
-    "height": 1.76,
-    "pelvis": 0.7699,
-    "face": true,
+    "height": 1.801,
+    "pelvis": 0.9946,
     "feet": {
-     "ankle": 0.08,
-     "toe": 0.1863,
-     "heel": 0.046
+     "ankle": 0.0958,
+     "toe": 0.2147,
+     "heel": 0.0499
     },
-    "bytes": 178372
+    "bytes": 68512
    },
-   "u-man2": {
-    "file": "people/u-man2.glb?v=8d2d6ffbe8",
-    "family": "u",
+   "x-killer-02": {
+    "file": "people/x-killer-02.glb?v=d1631995a5",
+    "family": "x",
     "sex": "m",
-    "height": 1.78,
-    "pelvis": 0.7787,
-    "face": true,
+    "height": 1.847,
+    "pelvis": 1.0834,
     "feet": {
-     "ankle": 0.0809,
-     "toe": 0.1884,
-     "heel": 0.0465
+     "ankle": 0.092,
+     "toe": 0.2192,
+     "heel": 0.052
     },
-    "bytes": 184176
+    "bytes": 64668
    },
-   "u-man-sleeves": {
-    "file": "people/u-man-sleeves.glb?v=f2e2d9db29",
-    "family": "u",
+   "x-killer-03": {
+    "file": "people/x-killer-03.glb?v=00a1d30e66",
+    "family": "x",
+    "sex": "m",
+    "height": 1.915,
+    "pelvis": 1.1273,
+    "feet": {
+     "ankle": 0.1105,
+     "toe": 0.2305,
+     "heel": 0.0577
+    },
+    "bytes": 68680
+   },
+   "x-killer-04": {
+    "file": "people/x-killer-04.glb?v=54f4189778",
+    "family": "x",
+    "sex": "m",
+    "height": 1.845,
+    "pelvis": 1.0704,
+    "feet": {
+     "ankle": 0.0921,
+     "toe": 0.2169,
+     "heel": 0.0443
+    },
+    "bytes": 64648
+   },
+   "x-killer-05": {
+    "file": "people/x-killer-05.glb?v=79ae1709a9",
+    "family": "x",
+    "sex": "m",
+    "height": 1.856,
+    "pelvis": 1.0698,
+    "feet": {
+     "ankle": 0.0992,
+     "toe": 0.219,
+     "heel": 0.0506
+    },
+    "bytes": 69736
+   },
+   "x-killer-06": {
+    "file": "people/x-killer-06.glb?v=58eab87f68",
+    "family": "x",
+    "sex": "m",
+    "height": 1.808,
+    "pelvis": 1.0476,
+    "feet": {
+     "ankle": 0.0992,
+     "toe": 0.2201,
+     "heel": 0.0533
+    },
+    "bytes": 70220
+   },
+   "x-killer-07": {
+    "file": "people/x-killer-07.glb?v=ef2c8109d9",
+    "family": "x",
+    "sex": "m",
+    "height": 1.842,
+    "pelvis": 1.0142,
+    "feet": {
+     "ankle": 0.1032,
+     "toe": 0.2203,
+     "heel": 0.0528
+    },
+    "bytes": 70332
+   },
+   "x-killer-08": {
+    "file": "people/x-killer-08.glb?v=e7a34c5ef5",
+    "family": "x",
+    "sex": "m",
+    "height": 1.858,
+    "pelvis": 1.0288,
+    "feet": {
+     "ankle": 0.0712,
+     "toe": 0.2107,
+     "heel": 0.068
+    },
+    "bytes": 102264
+   },
+   "x-killer-09": {
+    "file": "people/x-killer-09.glb?v=479881b9c1",
+    "family": "x",
+    "sex": "m",
+    "height": 1.728,
+    "pelvis": 0.9585,
+    "feet": {
+     "ankle": 0.0639,
+     "toe": 0.2005,
+     "heel": 0.0624
+    },
+    "bytes": 106328
+   },
+   "x-killer-10": {
+    "file": "people/x-killer-10.glb?v=5ce167718a",
+    "family": "x",
+    "sex": "m",
+    "height": 1.767,
+    "pelvis": 0.8799,
+    "feet": {
+     "ankle": 0.141,
+     "toe": 0.2421,
+     "heel": 0.0854
+    },
+    "bytes": 114036
+   },
+   "x-killer-10-01": {
+    "file": "people/x-killer-10-01.glb?v=0be2d0b8c2",
+    "family": "x",
+    "sex": "m",
+    "height": 1.767,
+    "pelvis": 0.8921,
+    "feet": {
+     "ankle": 0.1377,
+     "toe": 0.2402,
+     "heel": 0.0873
+    },
+    "bytes": 83540
+   },
+   "x-monster-06": {
+    "file": "people/x-monster-06.glb?v=d5bbf74b5a",
+    "family": "x",
+    "sex": "m",
+    "height": 1.936,
+    "pelvis": 1.026,
+    "feet": {
+     "ankle": 0.0663,
+     "toe": 0.2216,
+     "heel": 0.0586
+    },
+    "bytes": 106676
+   },
+   "x-monster-07": {
+    "file": "people/x-monster-07.glb?v=c08c8122e6",
+    "family": "x",
+    "sex": "m",
+    "height": 2.085,
+    "pelvis": 1.1658,
+    "feet": {
+     "ankle": 0.136,
+     "toe": 0.2591,
+     "heel": 0.0762
+    },
+    "bytes": 98980
+   },
+   "x-monster-08": {
+    "file": "people/x-monster-08.glb?v=ca72c45f4a",
+    "family": "x",
+    "sex": "m",
+    "height": 2.689,
+    "pelvis": 1.4526,
+    "feet": {
+     "ankle": 0.1576,
+     "toe": 0.3627,
+     "heel": 0.1312
+    },
+    "bytes": 107452
+   },
+   "x-02": {
+    "file": "people/x-02.glb?v=91dfa40c77",
+    "family": "x",
+    "sex": "m",
+    "height": 1.733,
+    "pelvis": 0.9839,
+    "feet": {
+     "ankle": 0.099,
+     "toe": 0.2057,
+     "heel": 0.0532
+    },
+    "bytes": 67384
+   },
+   "x-03": {
+    "file": "people/x-03.glb?v=d40568d9ef",
+    "family": "x",
+    "sex": "m",
+    "height": 1.731,
+    "pelvis": 1.0122,
+    "feet": {
+     "ankle": 0.084,
+     "toe": 0.1769,
+     "heel": 0.0462
+    },
+    "bytes": 67980
+   },
+   "x-04": {
+    "file": "people/x-04.glb?v=8819c98780",
+    "family": "x",
+    "sex": "m",
+    "height": 1.754,
+    "pelvis": 1.0031,
+    "feet": {
+     "ankle": 0.0852,
+     "toe": 0.1803,
+     "heel": 0.048
+    },
+    "bytes": 69064
+   },
+   "x-05": {
+    "file": "people/x-05.glb?v=ddbaf78f79",
+    "family": "x",
     "sex": "m",
     "height": 1.75,
-    "pelvis": 0.7656,
-    "face": true,
+    "pelvis": 1.012,
+    "feet": {
+     "ankle": 0.0908,
+     "toe": 0.1779,
+     "heel": 0.0454
+    },
+    "bytes": 69968
+   },
+   "x-06": {
+    "file": "people/x-06.glb?v=b8db4d8ce3",
+    "family": "x",
+    "sex": "m",
+    "height": 1.693,
+    "pelvis": 1.0046,
+    "feet": {
+     "ankle": 0.0809,
+     "toe": 0.1678,
+     "heel": 0.0379
+    },
+    "bytes": 75012
+   },
+   "x-07": {
+    "file": "people/x-07.glb?v=292ca1ee10",
+    "family": "x",
+    "sex": "m",
+    "height": 1.715,
+    "pelvis": 1.0053,
+    "feet": {
+     "ankle": 0.0816,
+     "toe": 0.1796,
+     "heel": 0.0387
+    },
+    "bytes": 70860
+   },
+   "x-08": {
+    "file": "people/x-08.glb?v=95b60c8009",
+    "family": "x",
+    "sex": "m",
+    "height": 1.762,
+    "pelvis": 1.0325,
+    "feet": {
+     "ankle": 0.0915,
+     "toe": 0.1893,
+     "heel": 0.0462
+    },
+    "bytes": 68880
+   },
+   "x-09": {
+    "file": "people/x-09.glb?v=413d8e7d39",
+    "family": "x",
+    "sex": "m",
+    "height": 1.742,
+    "pelvis": 0.9988,
+    "feet": {
+     "ankle": 0.0931,
+     "toe": 0.1931,
+     "heel": 0.044
+    },
+    "bytes": 74480
+   },
+   "x-10": {
+    "file": "people/x-10.glb?v=a5dc1a4e82",
+    "family": "x",
+    "sex": "m",
+    "height": 1.719,
+    "pelvis": 1.0104,
+    "feet": {
+     "ankle": 0.0892,
+     "toe": 0.1845,
+     "heel": 0.0429
+    },
+    "bytes": 74304
+   },
+   "x-11": {
+    "file": "people/x-11.glb?v=888ec52ba1",
+    "family": "x",
+    "sex": "m",
+    "height": 1.695,
+    "pelvis": 0.9928,
+    "feet": {
+     "ankle": 0.0811,
+     "toe": 0.2142,
+     "heel": 0.0397
+    },
+    "bytes": 74676
+   },
+   "x-12": {
+    "file": "people/x-12.glb?v=85312a26f3",
+    "family": "x",
+    "sex": "m",
+    "height": 1.696,
+    "pelvis": 0.9808,
+    "feet": {
+     "ankle": 0.0823,
+     "toe": 0.2032,
+     "heel": 0.0455
+    },
+    "bytes": 81900
+   },
+   "x-13": {
+    "file": "people/x-13.glb?v=431423962f",
+    "family": "x",
+    "sex": "m",
+    "height": 1.789,
+    "pelvis": 1.0542,
+    "feet": {
+     "ankle": 0.0842,
+     "toe": 0.2061,
+     "heel": 0.0455
+    },
+    "bytes": 72336
+   },
+   "x-14": {
+    "file": "people/x-14.glb?v=1a34810e4e",
+    "family": "x",
+    "sex": "m",
+    "height": 1.746,
+    "pelvis": 1.0435,
+    "feet": {
+     "ankle": 0.0847,
+     "toe": 0.1926,
+     "heel": 0.0528
+    },
+    "bytes": 78320
+   },
+   "x-15": {
+    "file": "people/x-15.glb?v=8786d6a052",
+    "family": "x",
+    "sex": "m",
+    "height": 1.771,
+    "pelvis": 1.0348,
+    "feet": {
+     "ankle": 0.0873,
+     "toe": 0.1947,
+     "heel": 0.0502
+    },
+    "bytes": 69864
+   },
+   "x-16": {
+    "file": "people/x-16.glb?v=762ad1abef",
+    "family": "x",
+    "sex": "m",
+    "height": 1.742,
+    "pelvis": 1.0196,
+    "feet": {
+     "ankle": 0.072,
+     "toe": 0.1854,
+     "heel": 0.0505
+    },
+    "bytes": 99112
+   },
+   "x-17-police": {
+    "file": "people/x-17-police.glb?v=cd033ebe04",
+    "family": "x",
+    "sex": "m",
+    "height": 1.797,
+    "pelvis": 1.0772,
+    "feet": {
+     "ankle": 0.0815,
+     "toe": 0.208,
+     "heel": 0.0374
+    },
+    "bytes": 68492
+   },
+   "x-18-police": {
+    "file": "people/x-18-police.glb?v=ed6b4dbf85",
+    "family": "x",
+    "sex": "m",
+    "height": 1.754,
+    "pelvis": 1.0173,
+    "feet": {
+     "ankle": 0.0848,
+     "toe": 0.1917,
+     "heel": 0.051
+    },
+    "bytes": 67512
+   },
+   "x-19-police": {
+    "file": "people/x-19-police.glb?v=ea82afda96",
+    "family": "x",
+    "sex": "m",
+    "height": 1.742,
+    "pelvis": 1.0055,
+    "feet": {
+     "ankle": 0.0737,
+     "toe": 0.1962,
+     "heel": 0.0371
+    },
+    "bytes": 72816
+   },
+   "x-20-police": {
+    "file": "people/x-20-police.glb?v=e4ba760698",
+    "family": "x",
+    "sex": "m",
+    "height": 1.709,
+    "pelvis": 1.0032,
+    "feet": {
+     "ankle": 0.0793,
+     "toe": 0.1892,
+     "heel": 0.0542
+    },
+    "bytes": 71988
+   },
+   "x-21-police": {
+    "file": "people/x-21-police.glb?v=3f6ce87116",
+    "family": "x",
+    "sex": "m",
+    "height": 1.731,
+    "pelvis": 1.0375,
+    "feet": {
+     "ankle": 0.0893,
+     "toe": 0.1924,
+     "heel": 0.0527
+    },
+    "bytes": 63792
+   },
+   "x-22-police": {
+    "file": "people/x-22-police.glb?v=db432181f6",
+    "family": "x",
+    "sex": "m",
+    "height": 1.729,
+    "pelvis": 1.0046,
+    "feet": {
+     "ankle": 0.0779,
+     "toe": 0.199,
+     "heel": 0.0361
+    },
+    "bytes": 65444
+   },
+   "x-23-firefighter": {
+    "file": "people/x-23-firefighter.glb?v=c56eedf830",
+    "family": "x",
+    "sex": "m",
+    "height": 1.763,
+    "pelvis": 1.0386,
+    "feet": {
+     "ankle": 0.1,
+     "toe": 0.1985,
+     "heel": 0.0593
+    },
+    "bytes": 72428
+   },
+   "x-24-firefighter": {
+    "file": "people/x-24-firefighter.glb?v=7ed59cb8dc",
+    "family": "x",
+    "sex": "m",
+    "height": 1.753,
+    "pelvis": 0.9905,
+    "feet": {
+     "ankle": 0.0793,
+     "toe": 0.2077,
+     "heel": 0.0594
+    },
+    "bytes": 75980
+   },
+   "x-25-doctor": {
+    "file": "people/x-25-doctor.glb?v=7122fae4c1",
+    "family": "x",
+    "sex": "m",
+    "height": 1.717,
+    "pelvis": 0.9792,
+    "feet": {
+     "ankle": 0.0847,
+     "toe": 0.189,
+     "heel": 0.0482
+    },
+    "bytes": 72820
+   },
+   "x-26-doctor": {
+    "file": "people/x-26-doctor.glb?v=5674be7da8",
+    "family": "x",
+    "sex": "m",
+    "height": 1.694,
+    "pelvis": 0.9502,
+    "feet": {
+     "ankle": 0.0816,
+     "toe": 0.1972,
+     "heel": 0.0402
+    },
+    "bytes": 72784
+   },
+   "x-27-hm": {
+    "file": "people/x-27-hm.glb?v=aa6d4bd555",
+    "family": "x",
+    "sex": "m",
+    "height": 1.754,
+    "pelvis": 1.0246,
+    "feet": {
+     "ankle": 0.0858,
+     "toe": 0.192,
+     "heel": 0.0507
+    },
+    "bytes": 74280
+   },
+   "x-28-hm": {
+    "file": "people/x-28-hm.glb?v=c26f5aea95",
+    "family": "x",
+    "sex": "m",
+    "height": 1.808,
+    "pelvis": 1.0349,
+    "feet": {
+     "ankle": 0.0972,
+     "toe": 0.219,
+     "heel": 0.0487
+    },
+    "bytes": 84032
+   },
+   "x-29": {
+    "file": "people/x-29.glb?v=9c7e2bd064",
+    "family": "x",
+    "sex": "m",
+    "height": 1.65,
+    "pelvis": 0.9488,
     "feet": {
      "ankle": 0.0795,
-     "toe": 0.1852,
-     "heel": 0.0457
+     "toe": 0.1782,
+     "heel": 0.0468
     },
-    "bytes": 184764
+    "bytes": 68948
    },
-   "u-man-suit": {
-    "file": "people/u-man-suit.glb?v=d121463ba8",
-    "family": "u",
+   "x-30": {
+    "file": "people/x-30.glb?v=f2e2d48699",
+    "family": "x",
     "sex": "m",
-    "height": 1.72,
-    "pelvis": 0.7524,
-    "face": true,
+    "height": 1.628,
+    "pelvis": 0.9202,
     "feet": {
-     "ankle": 0.0782,
-     "toe": 0.1829,
-     "heel": 0.0441
+     "ankle": 0.0712,
+     "toe": 0.1854,
+     "heel": 0.0325
     },
-    "bytes": 193124
+    "bytes": 69252
    },
-   "m-beach": {
-    "file": "people/m-beach.glb?v=42430491be",
-    "family": "m",
+   "x-31": {
+    "file": "people/x-31.glb?v=4f577b4d5a",
+    "family": "x",
     "sex": "m",
-    "height": 1.77,
-    "pelvis": 0.8185,
-    "face": true,
+    "height": 1.607,
+    "pelvis": 0.9733,
     "feet": {
      "ankle": 0.0805,
-     "toe": 0.1641,
-     "heel": 0.1039
+     "toe": 0.1766,
+     "heel": 0.0466
     },
-    "bytes": 455800
+    "bytes": 69652
    },
-   "m-casual": {
-    "file": "people/m-casual.glb?v=b8d77f91ad",
-    "family": "m",
+   "x-32": {
+    "file": "people/x-32.glb?v=2feb6a59d1",
+    "family": "x",
     "sex": "m",
-    "height": 1.78,
-    "pelvis": 0.8304,
-    "face": true,
+    "height": 1.605,
+    "pelvis": 0.9425,
     "feet": {
-     "ankle": 0.0809,
-     "toe": 0.1927,
-     "heel": 0.0829
+     "ankle": 0.0682,
+     "toe": 0.1815,
+     "heel": 0.0333
     },
-    "bytes": 407732
+    "bytes": 66448
    },
-   "m-business": {
-    "file": "people/m-business.glb?v=554df48d5c",
-    "family": "m",
+   "x-male-33": {
+    "file": "people/x-male-33.glb?v=862402116e",
+    "family": "x",
     "sex": "m",
-    "height": 1.79,
-    "pelvis": 0.8355,
-    "face": true,
+    "height": 1.671,
+    "pelvis": 0.853,
     "feet": {
-     "ankle": 0.0814,
-     "toe": 0.2007,
-     "heel": 0.0766
+     "ankle": 0.1052,
+     "toe": 0.1977,
+     "heel": 0.0505
     },
-    "bytes": 467136
+    "bytes": 96216
    },
-   "m-hoodie": {
-    "file": "people/m-hoodie.glb?v=5f62ed0f41",
-    "family": "m",
+   "x-male-34": {
+    "file": "people/x-male-34.glb?v=82e2db31b7",
+    "family": "x",
     "sex": "m",
-    "height": 1.76,
-    "pelvis": 0.8183,
-    "face": true,
+    "height": 1.685,
+    "pelvis": 0.9013,
     "feet": {
-     "ankle": 0.08,
-     "toe": 0.1895,
-     "heel": 0.0812
+     "ankle": 0.0913,
+     "toe": 0.192,
+     "heel": 0.0631
     },
-    "bytes": 433224
+    "bytes": 102344
    },
-   "m-farmer": {
-    "file": "people/m-farmer.glb?v=aaa79c2d94",
-    "family": "m",
+   "x-male-35": {
+    "file": "people/x-male-35.glb?v=839f323826",
+    "family": "x",
     "sex": "m",
-    "height": 1.77,
-    "pelvis": 0.8257,
-    "face": true,
+    "height": 1.752,
+    "pelvis": 0.9235,
     "feet": {
-     "ankle": 0.0805,
-     "toe": 0.1642,
-     "heel": 0.1018
+     "ankle": 0.1033,
+     "toe": 0.203,
+     "heel": 0.0571
     },
-    "bytes": 407276
+    "bytes": 96076
    },
-   "m-punk": {
-    "file": "people/m-punk.glb?v=ae8b3754a1",
-    "family": "m",
+   "x-male-36": {
+    "file": "people/x-male-36.glb?v=f3061abbdd",
+    "family": "x",
     "sex": "m",
-    "height": 1.78,
-    "pelvis": 0.7859,
-    "face": true,
+    "height": 1.705,
+    "pelvis": 0.9148,
     "feet": {
-     "ankle": 0.0809,
-     "toe": 0.1839,
+     "ankle": 0.0881,
+     "toe": 0.1896,
+     "heel": 0.0541
+    },
+    "bytes": 102772
+   },
+   "x-male-37": {
+    "file": "people/x-male-37.glb?v=9e346117b5",
+    "family": "x",
+    "sex": "m",
+    "height": 1.811,
+    "pelvis": 0.9619,
+    "feet": {
+     "ankle": 0.0936,
+     "toe": 0.2057,
+     "heel": 0.0529
+    },
+    "bytes": 102880
+   },
+   "x-male-38": {
+    "file": "people/x-male-38.glb?v=bd16a77a31",
+    "family": "x",
+    "sex": "m",
+    "height": 1.704,
+    "pelvis": 0.9216,
+    "feet": {
+     "ankle": 0.0925,
+     "toe": 0.1888,
+     "heel": 0.0565
+    },
+    "bytes": 91092
+   },
+   "x-male-39": {
+    "file": "people/x-male-39.glb?v=ebddb41373",
+    "family": "x",
+    "sex": "m",
+    "height": 1.717,
+    "pelvis": 0.9171,
+    "feet": {
+     "ankle": 0.0875,
+     "toe": 0.1986,
+     "heel": 0.0563
+    },
+    "bytes": 90964
+   },
+   "x-male-40": {
+    "file": "people/x-male-40.glb?v=fe116b1357",
+    "family": "x",
+    "sex": "m",
+    "height": 1.691,
+    "pelvis": 0.8977,
+    "feet": {
+     "ankle": 0.0769,
+     "toe": 0.1781,
+     "heel": 0.0632
+    },
+    "bytes": 90616
+   },
+   "x-male-41": {
+    "file": "people/x-male-41.glb?v=309e18ecee",
+    "family": "x",
+    "sex": "m",
+    "height": 1.732,
+    "pelvis": 0.8911,
+    "feet": {
+     "ankle": 0.1109,
+     "toe": 0.1914,
+     "heel": 0.0621
+    },
+    "bytes": 93692
+   },
+   "x-male-42": {
+    "file": "people/x-male-42.glb?v=1c73438c89",
+    "family": "x",
+    "sex": "m",
+    "height": 1.647,
+    "pelvis": 0.8538,
+    "feet": {
+     "ankle": 0.0836,
+     "toe": 0.1934,
+     "heel": 0.0702
+    },
+    "bytes": 92708
+   },
+   "x-male-43": {
+    "file": "people/x-male-43.glb?v=3360e4b829",
+    "family": "x",
+    "sex": "m",
+    "height": 1.744,
+    "pelvis": 0.9014,
+    "feet": {
+     "ankle": 0.0897,
+     "toe": 0.2066,
+     "heel": 0.0738
+    },
+    "bytes": 93972
+   },
+   "x-male-44": {
+    "file": "people/x-male-44.glb?v=329cb4f663",
+    "family": "x",
+    "sex": "m",
+    "height": 1.642,
+    "pelvis": 0.8525,
+    "feet": {
+     "ankle": 0.0868,
+     "toe": 0.1933,
+     "heel": 0.0723
+    },
+    "bytes": 93016
+   },
+   "x-male-45": {
+    "file": "people/x-male-45.glb?v=9869ba80fe",
+    "family": "x",
+    "sex": "m",
+    "height": 1.69,
+    "pelvis": 0.9182,
+    "feet": {
+     "ankle": 0.068,
+     "toe": 0.1923,
+     "heel": 0.0608
+    },
+    "bytes": 111448
+   },
+   "x-male-46": {
+    "file": "people/x-male-46.glb?v=8dfa4c731f",
+    "family": "x",
+    "sex": "m",
+    "height": 1.662,
+    "pelvis": 0.8378,
+    "feet": {
+     "ankle": 0.0616,
+     "toe": 0.1789,
+     "heel": 0.0569
+    },
+    "bytes": 113500
+   },
+   "x-male-47": {
+    "file": "people/x-male-47.glb?v=68a21164c5",
+    "family": "x",
+    "sex": "m",
+    "height": 1.726,
+    "pelvis": 0.8722,
+    "feet": {
+     "ankle": 0.0655,
+     "toe": 0.1944,
+     "heel": 0.0631
+    },
+    "bytes": 115904
+   },
+   "x-male-48": {
+    "file": "people/x-male-48.glb?v=6bb8c5db2e",
+    "family": "x",
+    "sex": "m",
+    "height": 1.793,
+    "pelvis": 0.9773,
+    "feet": {
+     "ankle": 0.0722,
+     "toe": 0.1986,
      "heel": 0.0761
     },
-    "bytes": 388720
+    "bytes": 113888
    },
-   "m-adventurer": {
-    "file": "people/m-adventurer.glb?v=a70d2a5251",
-    "family": "m",
+   "x-male-49": {
+    "file": "people/x-male-49.glb?v=89983aba56",
+    "family": "x",
     "sex": "m",
-    "height": 1.8,
-    "pelvis": 0.84,
-    "face": true,
+    "height": 1.718,
+    "pelvis": 0.8979,
     "feet": {
-     "ankle": 0.0818,
-     "toe": 0.1773,
-     "heel": 0.093
+     "ankle": 0.0664,
+     "toe": 0.1898,
+     "heel": 0.0533
     },
-    "bytes": 1286456
+    "bytes": 119592
    },
-   "m-worker": {
-    "file": "people/m-worker.glb?v=e022028d50",
-    "family": "m",
+   "x-male-50": {
+    "file": "people/x-male-50.glb?v=ed4848d9ce",
+    "family": "x",
     "sex": "m",
-    "height": 1.79,
-    "pelvis": 0.8335,
-    "face": true,
+    "height": 1.706,
+    "pelvis": 0.9199,
     "feet": {
-     "ankle": 0.0814,
-     "toe": 0.1754,
-     "heel": 0.092
+     "ankle": 0.0651,
+     "toe": 0.1863,
+     "heel": 0.052
     },
-    "bytes": 393468
+    "bytes": 114480
+   },
+   "x-male-51": {
+    "file": "people/x-male-51.glb?v=fa4a5c148b",
+    "family": "x",
+    "sex": "m",
+    "height": 1.745,
+    "pelvis": 0.9488,
+    "feet": {
+     "ankle": 0.0762,
+     "toe": 0.2025,
+     "heel": 0.0602
+    },
+    "bytes": 127628
+   },
+   "x-male-52": {
+    "file": "people/x-male-52.glb?v=a54abc9e74",
+    "family": "x",
+    "sex": "m",
+    "height": 1.82,
+    "pelvis": 0.9751,
+    "feet": {
+     "ankle": 0.0718,
+     "toe": 0.2055,
+     "heel": 0.0605
+    },
+    "bytes": 116420
+   },
+   "x-male-53": {
+    "file": "people/x-male-53.glb?v=62f924fe7b",
+    "family": "x",
+    "sex": "m",
+    "height": 1.703,
+    "pelvis": 0.9075,
+    "feet": {
+     "ankle": 0.0817,
+     "toe": 0.1833,
+     "heel": 0.0507
+    },
+    "bytes": 121548
+   },
+   "x-male-54": {
+    "file": "people/x-male-54.glb?v=14b6f83956",
+    "family": "x",
+    "sex": "m",
+    "height": 1.747,
+    "pelvis": 0.9432,
+    "feet": {
+     "ankle": 0.0714,
+     "toe": 0.1847,
+     "heel": 0.0579
+    },
+    "bytes": 117856
+   },
+   "x-male-55": {
+    "file": "people/x-male-55.glb?v=faf63f5959",
+    "family": "x",
+    "sex": "m",
+    "height": 1.783,
+    "pelvis": 0.943,
+    "feet": {
+     "ankle": 0.0852,
+     "toe": 0.1924,
+     "heel": 0.0528
+    },
+    "bytes": 119520
+   },
+   "x-male-56": {
+    "file": "people/x-male-56.glb?v=42d199f71c",
+    "family": "x",
+    "sex": "m",
+    "height": 1.689,
+    "pelvis": 0.9049,
+    "feet": {
+     "ankle": 0.0796,
+     "toe": 0.1807,
+     "heel": 0.0507
+    },
+    "bytes": 117764
+   },
+   "x-male-57": {
+    "file": "people/x-male-57.glb?v=ade07c5fea",
+    "family": "x",
+    "sex": "m",
+    "height": 1.757,
+    "pelvis": 0.9442,
+    "feet": {
+     "ankle": 0.0837,
+     "toe": 0.1907,
+     "heel": 0.0529
+    },
+    "bytes": 118712
+   },
+   "x-sheriff-n": {
+    "file": "people/x-sheriff-n.glb?v=71ac1520d6",
+    "family": "x",
+    "sex": "m",
+    "height": 1.72,
+    "pelvis": 0.9485,
+    "feet": {
+     "ankle": 0.0785,
+     "toe": 0.2086,
+     "heel": 0.0679
+    },
+    "bytes": 155752
+   },
+   "x-sheriff-n-01": {
+    "file": "people/x-sheriff-n-01.glb?v=e2d09696a0",
+    "family": "x",
+    "sex": "m",
+    "height": 1.74,
+    "pelvis": 0.9192,
+    "feet": {
+     "ankle": 0.0796,
+     "toe": 0.2063,
+     "heel": 0.0686
+    },
+    "bytes": 140200
+   },
+   "x-monster-01": {
+    "file": "people/x-monster-01.glb?v=40fe7fa532",
+    "family": "x",
+    "sex": "m",
+    "height": 1.954,
+    "pelvis": 1.1269,
+    "feet": {
+     "ankle": 0.057,
+     "toe": 0.2645,
+     "heel": -0.018
+    },
+    "bytes": 88936
+   },
+   "x-monster-02": {
+    "file": "people/x-monster-02.glb?v=774bb6fd44",
+    "family": "x",
+    "sex": "m",
+    "height": 1.667,
+    "pelvis": 0.962,
+    "feet": {
+     "ankle": 0.0525,
+     "toe": 0.2428,
+     "heel": -0.0142
+    },
+    "bytes": 68480
+   },
+   "x-monster-03": {
+    "file": "people/x-monster-03.glb?v=3a264e88f4",
+    "family": "x",
+    "sex": "m",
+    "height": 1.901,
+    "pelvis": 1.0954,
+    "feet": {
+     "ankle": 0.0596,
+     "toe": 0.1777,
+     "heel": 0.0549
+    },
+    "bytes": 93800
+   },
+   "x-monster-04": {
+    "file": "people/x-monster-04.glb?v=6e2a7f1dcf",
+    "family": "x",
+    "sex": "m",
+    "height": 2.207,
+    "pelvis": 1.2744,
+    "feet": {
+     "ankle": 0.0527,
+     "toe": 0.2259,
+     "heel": 0.0912
+    },
+    "bytes": 88444
+   },
+   "x-monster-05": {
+    "file": "people/x-monster-05.glb?v=5d124d3c53",
+    "family": "x",
+    "sex": "m",
+    "height": 2.057,
+    "pelvis": 1.187,
+    "feet": {
+     "ankle": 0.0621,
+     "toe": 0.2568,
+     "heel": 0.0019
+    },
+    "bytes": 71548
    }
   },
   "women": [
-   "m-woman2",
-   "m-woman3",
-   "m-punk2",
-   "m-adventurer2",
-   "u-woman",
-   "u-woman-casual",
-   "u-woman-tank",
-   "u-woman-dress"
+   "x-29-female",
+   "x-30-female",
+   "x-31-female",
+   "x-32-female",
+   "x-33-female",
+   "x-34-female",
+   "x-35-female",
+   "x-36-female",
+   "x-37-female",
+   "x-38-female",
+   "x-39-female",
+   "x-40-female",
+   "x-41-female",
+   "x-42-female",
+   "x-43-female",
+   "x-44-female",
+   "x-45-female",
+   "x-46-female",
+   "x-47-female",
+   "x-48-female",
+   "x-49-female",
+   "x-50-female",
+   "x-51-female",
+   "x-52-female",
+   "x-53-female",
+   "x-54-female",
+   "x-55-female",
+   "x-57-female",
+   "x-female-02",
+   "x-female-03",
+   "x-female-04",
+   "x-female-05",
+   "x-female-06",
+   "x-female-07",
+   "x-female-08",
+   "x-female-09",
+   "x-female-10",
+   "x-female-11",
+   "x-female-12",
+   "x-female-13",
+   "x-female-14",
+   "x-female-15",
+   "x-female-16"
   ],
   "men": [
-   "u-man",
-   "u-man2",
-   "u-man-sleeves",
-   "m-beach",
-   "m-casual",
-   "m-business",
-   "m-hoodie",
-   "m-farmer",
-   "m-punk",
-   "m-adventurer"
+   "x-01",
+   "x-02",
+   "x-03",
+   "x-04",
+   "x-05",
+   "x-06",
+   "x-07",
+   "x-08",
+   "x-09",
+   "x-10",
+   "x-11",
+   "x-12",
+   "x-13",
+   "x-14",
+   "x-15",
+   "x-16",
+   "x-29",
+   "x-30",
+   "x-31",
+   "x-32",
+   "x-male-33",
+   "x-male-34",
+   "x-male-35",
+   "x-male-36",
+   "x-male-37",
+   "x-male-38",
+   "x-male-39",
+   "x-male-40",
+   "x-male-41",
+   "x-male-42",
+   "x-male-43",
+   "x-male-44",
+   "x-male-45",
+   "x-male-46",
+   "x-male-47",
+   "x-male-48",
+   "x-male-49",
+   "x-male-50",
+   "x-male-51",
+   "x-male-52",
+   "x-male-53",
+   "x-male-54",
+   "x-male-55",
+   "x-male-56",
+   "x-male-57"
   ],
   "roles": {
-   "elder": "u-man-suit",
-   "worker": "m-worker",
-   "police": "m-swat",
-   "sol": "m-swat"
+   "police": {
+    "m": [
+     "x-17-police",
+     "x-18-police",
+     "x-19-police",
+     "x-20-police"
+    ],
+    "f": [
+     "x-17-female-police",
+     "x-18-female-police",
+     "x-19-female-police",
+     "x-20-female-police"
+    ]
+   },
+   "sol": {
+    "m": [
+     "x-21-police",
+     "x-22-police"
+    ],
+    "f": [
+     "x-25-female-police",
+     "x-26-female-police"
+    ]
+   },
+   "sheriff": {
+    "m": [
+     "x-sheriff-n",
+     "x-sheriff-n-01"
+    ],
+    "f": [
+     "x-19-female-police",
+     "x-20-female-police"
+    ]
+   },
+   "fire": {
+    "m": [
+     "x-23-firefighter",
+     "x-24-firefighter"
+    ],
+    "f": [
+     "x-21-female-firefighter",
+     "x-22-female-firefighter"
+    ]
+   },
+   "medic": {
+    "m": [
+     "x-25-doctor",
+     "x-26-doctor"
+    ],
+    "f": [
+     "x-23-female-doctor",
+     "x-24-female-doctor"
+    ]
+   },
+   "worker": {
+    "m": [
+     "x-27-hm",
+     "x-28-hm"
+    ],
+    "f": [
+     "x-27-female-hm",
+     "x-28-female-hm"
+    ]
+   },
+   "office": {
+    "m": [
+     "x-05",
+     "x-male-36",
+     "x-male-47",
+     "x-male-45"
+    ],
+    "f": [
+     "x-37-female",
+     "x-38-female",
+     "x-39-female",
+     "x-45-female"
+    ]
+   },
+   "vendor": {
+    "m": [
+     "x-male-35",
+     "x-male-45",
+     "x-male-49",
+     "x-male-53"
+    ],
+    "f": [
+     "x-43-female",
+     "x-49-female",
+     "x-54-female",
+     "x-55-female"
+    ]
+   },
+   "athlete": {
+    "m": [
+     "x-11",
+     "x-12",
+     "x-male-55"
+    ],
+    "f": [
+     "x-41-female",
+     "x-47-female",
+     "x-female-09"
+    ]
+   },
+   "hiker": {
+    "m": [
+     "x-male-44",
+     "x-16",
+     "x-male-43"
+    ],
+    "f": [
+     "x-34-female",
+     "x-35-female",
+     "x-43-female"
+    ]
+   },
+   "survivor": {
+    "m": [
+     "x-male-57",
+     "x-14",
+     "x-male-42"
+    ],
+    "f": [
+     "x-40-female",
+     "x-44-female",
+     "x-female-12"
+    ]
+   },
+   "elder": {
+    "m": [
+     "x-male-33",
+     "x-male-34",
+     "x-male-51",
+     "x-male-48"
+    ],
+    "f": [
+     "x-29-female",
+     "x-30-female",
+     "x-31-female",
+     "x-32-female",
+     "x-51-female"
+    ]
+   },
+   "child": {
+    "m": [
+     "x-11",
+     "x-12",
+     "x-03",
+     "x-07"
+    ],
+    "f": [
+     "x-female-15",
+     "x-female-16",
+     "x-female-05",
+     "x-33-female"
+    ]
+   },
+   "killer": {
+    "m": [
+     "x-killer",
+     "x-killer-01",
+     "x-killer-02",
+     "x-killer-03",
+     "x-killer-04",
+     "x-killer-05",
+     "x-killer-06",
+     "x-killer-07",
+     "x-killer-08",
+     "x-killer-09",
+     "x-killer-10",
+     "x-killer-10-01"
+    ]
+   },
+   "zombie": {
+    "m": [
+     "x-monster-01",
+     "x-monster-02",
+     "x-monster-03",
+     "x-monster-04",
+     "x-monster-05",
+     "x-monster-06",
+     "x-monster-07",
+     "x-monster-08"
+    ]
+   },
+   "chef": {
+    "m": [
+     "x-male-35",
+     "x-male-45",
+     "x-male-49",
+     "x-male-53"
+    ],
+    "f": [
+     "x-43-female",
+     "x-49-female",
+     "x-54-female",
+     "x-55-female"
+    ]
+   },
+   "student": {
+    "m": [
+     "x-11",
+     "x-12",
+     "x-03",
+     "x-07"
+    ],
+    "f": [
+     "x-female-15",
+     "x-female-16",
+     "x-female-05",
+     "x-33-female"
+    ]
+   },
+   "civ": {}
   },
   "stride": {
-   "u": {
+   "x": {
     "refHeight": 1.76,
-    "walk": 1.13,
-    "walk_formal": 1.16,
-    "zombie": 1.13,
-    "carry": 1.13,
-    "crouch_walk": 0.81,
-    "run": 2.3,
-    "sprint": 3,
-    "swim": 1.3
-   },
-   "m": {
-    "refHeight": 1.78,
-    "walk": 1.38,
-    "walk_formal": 1.4,
-    "zombie": 1.38,
-    "carry": 1.38,
-    "crouch_walk": 1.2,
-    "run": 2.75,
-    "sprint": 3.6,
+    "walk": 1.36,
+    "walk_formal": 1.39,
+    "zombie": 1.36,
+    "carry": 1.36,
+    "crouch_walk": 0.97,
+    "run": 2.53,
+    "jog": 2.53,
+    "sprint": 3.3,
     "swim": 1.3
    }
   }
@@ -2291,145 +3978,185 @@
   }
  },
  "thumbs": {
-  "animal.fish": "thumbs/animal.fish.webp?v=53ae38a18d",
-  "animal.fish_2": "thumbs/animal.fish_2.webp?v=01145a20d5",
-  "animal.fish_3": "thumbs/animal.fish_3.webp?v=bb79350135",
-  "animal.fish_4": "thumbs/animal.fish_4.webp?v=c46b707ba0",
-  "animal.fish_5": "thumbs/animal.fish_5.webp?v=2c2772f7bd",
-  "animal.fish_6": "thumbs/animal.fish_6.webp?v=9758b2df0a",
-  "animal.fish_7": "thumbs/animal.fish_7.webp?v=9db7e3a88f",
-  "animal.fish_8": "thumbs/animal.fish_8.webp?v=643ff43fdb",
-  "boat.canoe": "thumbs/boat.canoe.webp?v=bd78089dcf",
-  "boat.fishing": "thumbs/boat.fishing.webp?v=1595156b8b",
-  "boat.rowboat": "thumbs/boat.rowboat.webp?v=b40a783b37",
-  "building.apartment": "thumbs/building.apartment.webp?v=a5998530a2",
-  "building.block_03": "thumbs/building.block_03.webp?v=ac62904f24",
-  "building.block_04": "thumbs/building.block_04.webp?v=d429b42730",
-  "building.block_05": "thumbs/building.block_05.webp?v=795ac412e6",
-  "building.block_06": "thumbs/building.block_06.webp?v=f03a61e79e",
-  "building.block_07": "thumbs/building.block_07.webp?v=007fd52dfd",
-  "building.block_08": "thumbs/building.block_08.webp?v=2c27d25fb0",
-  "building.block_09": "thumbs/building.block_09.webp?v=ee4a626b72",
-  "building.block_10": "thumbs/building.block_10.webp?v=4482539f6f",
-  "building.cabin_02": "thumbs/building.cabin_02.webp?v=2b216c8dd5",
-  "building.cabin_03": "thumbs/building.cabin_03.webp?v=f98d00fba4",
-  "building.house": "thumbs/building.house.webp?v=e0191f1dd9",
-  "building.house_02": "thumbs/building.house_02.webp?v=736b722cff",
-  "building.house_03": "thumbs/building.house_03.webp?v=089c47965a",
-  "building.house_04": "thumbs/building.house_04.webp?v=c3632bc118",
-  "building.house_05": "thumbs/building.house_05.webp?v=2859c04c7f",
-  "building.house_06": "thumbs/building.house_06.webp?v=58d924fcbb",
-  "building.house_07": "thumbs/building.house_07.webp?v=7e4f85923d",
-  "building.house_08": "thumbs/building.house_08.webp?v=fd70cee1f4",
-  "building.house_09": "thumbs/building.house_09.webp?v=a3866f03d8",
-  "building.house_10": "thumbs/building.house_10.webp?v=3b872b9be6",
-  "building.house_11": "thumbs/building.house_11.webp?v=2cb5aadb36",
-  "building.house_12": "thumbs/building.house_12.webp?v=7ea1c35c0a",
-  "building.house_13": "thumbs/building.house_13.webp?v=852dbd48fb",
-  "building.house_14": "thumbs/building.house_14.webp?v=c31005a48a",
-  "building.house_15": "thumbs/building.house_15.webp?v=9e8ef0bd41",
-  "building.house_16": "thumbs/building.house_16.webp?v=ffea2f288b",
-  "building.hut": "thumbs/building.hut.webp?v=7e3e3eef01",
-  "building.office": "thumbs/building.office.webp?v=820930abd4",
-  "building.shop": "thumbs/building.shop.webp?v=660d87f34f",
-  "building.tower_01_2": "thumbs/building.tower_01_2.webp?v=1d442e968f",
-  "building.tower_01_3": "thumbs/building.tower_01_3.webp?v=016cfeec63",
-  "building.tower_01_4": "thumbs/building.tower_01_4.webp?v=45ea58bfa7",
-  "building.tower_02_1": "thumbs/building.tower_02_1.webp?v=0a3c063ee5",
-  "building.tower_02_2": "thumbs/building.tower_02_2.webp?v=98c65f099d",
-  "building.tower_03_1": "thumbs/building.tower_03_1.webp?v=8550fdff04",
-  "building.tower_03_2": "thumbs/building.tower_03_2.webp?v=07dc81dc80",
-  "building.tower_04_1": "thumbs/building.tower_04_1.webp?v=e916c3bef9",
-  "building.tower_04_2": "thumbs/building.tower_04_2.webp?v=65af1812a0",
-  "building.tower_05_1": "thumbs/building.tower_05_1.webp?v=5a3df68352",
-  "building.tower_05_2": "thumbs/building.tower_05_2.webp?v=a70eaa5f5e",
-  "building.tower_06_1": "thumbs/building.tower_06_1.webp?v=12dd6704f7",
-  "building.tower_06_2": "thumbs/building.tower_06_2.webp?v=e00ab616c5",
-  "building.tower_07_1": "thumbs/building.tower_07_1.webp?v=82f3c51e33",
-  "building.tower_07_2": "thumbs/building.tower_07_2.webp?v=454a66fd6a",
-  "building.tower_08_1": "thumbs/building.tower_08_1.webp?v=f50db332e1",
-  "building.tower_08_2": "thumbs/building.tower_08_2.webp?v=f31a5c7cf9",
-  "creature.antler_beast": "thumbs/creature.antler_beast.webp?v=c598cad161",
-  "creature.ghoul": "thumbs/creature.ghoul.webp?v=9f3bca5b3d",
-  "creature.ghoul_02": "thumbs/creature.ghoul_02.webp?v=72df29d4e3",
-  "food.apple": "thumbs/food.apple.webp?v=80d8074970",
-  "food.banana": "thumbs/food.banana.webp?v=7ad00184bc",
-  "food.biscuits": "thumbs/food.biscuits.webp?v=2fc4a6f8e0",
-  "food.carrot": "thumbs/food.carrot.webp?v=1841581b10",
-  "food.cereal": "thumbs/food.cereal.webp?v=cb37bc93b8",
-  "food.crate": "thumbs/food.crate.webp?v=471734371c",
-  "food.cucumber": "thumbs/food.cucumber.webp?v=a243285a02",
-  "food.drink_can": "thumbs/food.drink_can.webp?v=1081e7375b",
-  "food.icecream": "thumbs/food.icecream.webp?v=2c6359db3d",
-  "food.icecream_02": "thumbs/food.icecream_02.webp?v=4a0bf5f352",
-  "food.juice": "thumbs/food.juice.webp?v=177adf528a",
-  "food.lettuce": "thumbs/food.lettuce.webp?v=241567fb8f",
-  "food.orange": "thumbs/food.orange.webp?v=92aeed8efe",
-  "food.papaya": "thumbs/food.papaya.webp?v=0a6a25d6ae",
-  "food.snack_bag": "thumbs/food.snack_bag.webp?v=fb967d7fb1",
-  "food.soda": "thumbs/food.soda.webp?v=71d81552cb",
-  "human.athlete": "thumbs/human.athlete.webp?v=4976daee85",
-  "human.chef": "thumbs/human.chef.webp?v=4b6e015ccb",
-  "human.child": "thumbs/human.child.webp?v=9de5d8dcea",
-  "human.civilian": "thumbs/human.civilian.webp?v=4976daee85",
-  "human.commuter": "thumbs/human.commuter.webp?v=4976daee85",
-  "human.diver": "thumbs/human.diver.webp?v=81a1d40eec",
-  "human.elder": "thumbs/human.elder.webp?v=03e8010427",
-  "human.firefighter": "thumbs/human.firefighter.webp?v=6efa811104",
-  "human.hiker": "thumbs/human.hiker.webp?v=4976daee85",
-  "human.medic": "thumbs/human.medic.webp?v=325adc977e",
-  "human.pilot": "thumbs/human.pilot.webp?v=8a9067bf7b",
-  "human.police": "thumbs/human.police.webp?v=f115f8225a",
-  "human.raincoat": "thumbs/human.raincoat.webp?v=58769133ca",
-  "human.sailor": "thumbs/human.sailor.webp?v=8a9067bf7b",
-  "human.student": "thumbs/human.student.webp?v=4976daee85",
-  "human.survivor": "thumbs/human.survivor.webp?v=4976daee85",
-  "human.vendor": "thumbs/human.vendor.webp?v=ae269e8205",
-  "human.worker": "thumbs/human.worker.webp?v=7946c86ff1",
-  "prop.cooler": "thumbs/prop.cooler.webp?v=1f46c4d3d2",
-  "prop.cooler_red": "thumbs/prop.cooler_red.webp?v=df7e1f10ad",
-  "prop.door": "thumbs/prop.door.webp?v=e39ae2cc49",
-  "prop.fence": "thumbs/prop.fence.webp?v=13e266d6c4",
-  "prop.outboard": "thumbs/prop.outboard.webp?v=98babbe4ca",
-  "prop.vending_01": "thumbs/prop.vending_01.webp?v=be20713617",
-  "prop.vending_02": "thumbs/prop.vending_02.webp?v=aaf9ddf2b8",
-  "prop.vending_03": "thumbs/prop.vending_03.webp?v=ec4fee0986",
-  "prop.vending_04": "thumbs/prop.vending_04.webp?v=d5eb1d3865",
-  "prop.vending_05": "thumbs/prop.vending_05.webp?v=ea11238c27",
-  "prop.vending_06": "thumbs/prop.vending_06.webp?v=ce7f45183e",
-  "prop.vending_07": "thumbs/prop.vending_07.webp?v=59c7ee554e",
-  "prop.vending_08": "thumbs/prop.vending_08.webp?v=7a67f98efa",
-  "prop.vending_09": "thumbs/prop.vending_09.webp?v=a3afd42491",
-  "prop.vending_10": "thumbs/prop.vending_10.webp?v=a2f9e475b9",
-  "prop.vending_11": "thumbs/prop.vending_11.webp?v=b8c9ee20a1",
-  "prop.vending_12": "thumbs/prop.vending_12.webp?v=d5e866fdc4",
-  "rock.boulder": "thumbs/rock.boulder.webp?v=59954c919d",
-  "rock.rock_2": "thumbs/rock.rock_2.webp?v=fdef321d58",
-  "rock.rock_3": "thumbs/rock.rock_3.webp?v=9594ee390a",
-  "rock.rock_4": "thumbs/rock.rock_4.webp?v=ed4e8d49f0",
-  "rock.rock_5": "thumbs/rock.rock_5.webp?v=76ac064935",
-  "rock.rock_6": "thumbs/rock.rock_6.webp?v=658eace234",
-  "rock.rock_7": "thumbs/rock.rock_7.webp?v=e8c685f15c",
-  "rock.rock_8": "thumbs/rock.rock_8.webp?v=7a04033767",
-  "tree.bare_sapling": "thumbs/tree.bare_sapling.webp?v=5d99673a7a",
-  "tree.birch": "thumbs/tree.birch.webp?v=5c3cc00fc9",
-  "tree.dead": "thumbs/tree.dead.webp?v=4aca828b2d",
-  "tree.fir": "thumbs/tree.fir.webp?v=a2bd052d41",
-  "tree.maple": "thumbs/tree.maple.webp?v=a291fab937",
-  "tree.oak": "thumbs/tree.oak.webp?v=599b85cda9",
-  "tree.pine": "thumbs/tree.pine.webp?v=69ef8fcfb1",
-  "tree.sapling": "thumbs/tree.sapling.webp?v=f1c2f296e3",
-  "tree.spruce": "thumbs/tree.spruce.webp?v=ac0ad6f269",
-  "vehicle.compact": "thumbs/vehicle.compact.webp?v=035514d2ce",
-  "vehicle.cruiser": "thumbs/vehicle.cruiser.webp?v=99a6dd134b",
-  "vehicle.minivan": "thumbs/vehicle.minivan.webp?v=5623e68a37",
-  "vehicle.police": "thumbs/vehicle.police.webp?v=4cb1398447",
-  "vehicle.sedan": "thumbs/vehicle.sedan.webp?v=410f6109b9",
-  "vehicle.taxi": "thumbs/vehicle.taxi.webp?v=e2936678e8",
-  "vehicle.van": "thumbs/vehicle.van.webp?v=0533ed6025",
-  "vehicle.vintage": "thumbs/vehicle.vintage.webp?v=535a989d60",
-  "vehicle.wagon": "thumbs/vehicle.wagon.webp?v=a532606265",
-  "vehicle.wreck": "thumbs/vehicle.wreck.webp?v=da6d129224"
+  "animal.fish": "thumbs/animal.fish.webp?v=1b1cebe507",
+  "animal.fish_2": "thumbs/animal.fish_2.webp?v=be95c51d32",
+  "animal.fish_3": "thumbs/animal.fish_3.webp?v=2f2dd52f36",
+  "animal.fish_4": "thumbs/animal.fish_4.webp?v=dc37b6a6fd",
+  "animal.fish_5": "thumbs/animal.fish_5.webp?v=fae693b67e",
+  "animal.fish_6": "thumbs/animal.fish_6.webp?v=8686b136d5",
+  "animal.fish_7": "thumbs/animal.fish_7.webp?v=0fa50c8e6d",
+  "animal.fish_8": "thumbs/animal.fish_8.webp?v=d2e3f9c584",
+  "boat.canoe": "thumbs/boat.canoe.webp?v=d28133af1f",
+  "boat.fishing": "thumbs/boat.fishing.webp?v=7b6364f768",
+  "boat.rowboat": "thumbs/boat.rowboat.webp?v=3f3741f7d3",
+  "building.apartment": "thumbs/building.apartment.webp?v=0530e7ba03",
+  "building.block_03": "thumbs/building.block_03.webp?v=9baa58027d",
+  "building.block_04": "thumbs/building.block_04.webp?v=306f3c262f",
+  "building.block_05": "thumbs/building.block_05.webp?v=ffc636a788",
+  "building.block_06": "thumbs/building.block_06.webp?v=ad347ca739",
+  "building.block_07": "thumbs/building.block_07.webp?v=d16b506e7f",
+  "building.block_08": "thumbs/building.block_08.webp?v=627057470d",
+  "building.block_09": "thumbs/building.block_09.webp?v=974b72e3d8",
+  "building.block_10": "thumbs/building.block_10.webp?v=d51eff5df6",
+  "building.cabin_02": "thumbs/building.cabin_02.webp?v=d3da313f6f",
+  "building.cabin_03": "thumbs/building.cabin_03.webp?v=2e822639d9",
+  "building.house": "thumbs/building.house.webp?v=f6f9dc4fd7",
+  "building.house_02": "thumbs/building.house_02.webp?v=515adffe57",
+  "building.house_03": "thumbs/building.house_03.webp?v=b03502c0ec",
+  "building.house_04": "thumbs/building.house_04.webp?v=7359d6065e",
+  "building.house_05": "thumbs/building.house_05.webp?v=c6ccaed987",
+  "building.house_06": "thumbs/building.house_06.webp?v=af070b3c3e",
+  "building.house_07": "thumbs/building.house_07.webp?v=763870e5bc",
+  "building.house_08": "thumbs/building.house_08.webp?v=5bf4103600",
+  "building.house_09": "thumbs/building.house_09.webp?v=ef1022d0e1",
+  "building.house_10": "thumbs/building.house_10.webp?v=40c6df65aa",
+  "building.house_11": "thumbs/building.house_11.webp?v=590a2a871e",
+  "building.house_12": "thumbs/building.house_12.webp?v=7ad479ef42",
+  "building.house_13": "thumbs/building.house_13.webp?v=a65e56969a",
+  "building.house_14": "thumbs/building.house_14.webp?v=b31ace18bd",
+  "building.house_15": "thumbs/building.house_15.webp?v=693328fdb7",
+  "building.house_16": "thumbs/building.house_16.webp?v=b3f0d8adb3",
+  "building.hut": "thumbs/building.hut.webp?v=f1c5c34972",
+  "building.office": "thumbs/building.office.webp?v=a90bb1eb21",
+  "building.shop": "thumbs/building.shop.webp?v=5cace9a37a",
+  "building.tower_01_2": "thumbs/building.tower_01_2.webp?v=7cf3ad2321",
+  "building.tower_01_3": "thumbs/building.tower_01_3.webp?v=d4774be75a",
+  "building.tower_01_4": "thumbs/building.tower_01_4.webp?v=3aa58ce272",
+  "building.tower_02_1": "thumbs/building.tower_02_1.webp?v=da59d81c08",
+  "building.tower_02_2": "thumbs/building.tower_02_2.webp?v=228b5f8d99",
+  "building.tower_03_1": "thumbs/building.tower_03_1.webp?v=ef8aa1ccc5",
+  "building.tower_03_2": "thumbs/building.tower_03_2.webp?v=6c8e7a6e65",
+  "building.tower_04_1": "thumbs/building.tower_04_1.webp?v=8d80f2ddb2",
+  "building.tower_04_2": "thumbs/building.tower_04_2.webp?v=e6b1a559dc",
+  "building.tower_05_1": "thumbs/building.tower_05_1.webp?v=15a26dadb2",
+  "building.tower_05_2": "thumbs/building.tower_05_2.webp?v=639dbb1e16",
+  "building.tower_06_1": "thumbs/building.tower_06_1.webp?v=f6155f6143",
+  "building.tower_06_2": "thumbs/building.tower_06_2.webp?v=1480cdcab2",
+  "building.tower_07_1": "thumbs/building.tower_07_1.webp?v=560b1d18fe",
+  "building.tower_07_2": "thumbs/building.tower_07_2.webp?v=8db41d8e5e",
+  "building.tower_08_1": "thumbs/building.tower_08_1.webp?v=2f815d447f",
+  "building.tower_08_2": "thumbs/building.tower_08_2.webp?v=8161862596",
+  "creature.antler_beast": "thumbs/creature.antler_beast.webp?v=73aa0f8573",
+  "creature.ghoul": "thumbs/creature.ghoul.webp?v=8e091f823e",
+  "creature.ghoul_02": "thumbs/creature.ghoul_02.webp?v=7f862add19",
+  "food.apple": "thumbs/food.apple.webp?v=4c8a28ffdc",
+  "food.banana": "thumbs/food.banana.webp?v=4f97d1f954",
+  "food.biscuits": "thumbs/food.biscuits.webp?v=e33c458bf9",
+  "food.carrot": "thumbs/food.carrot.webp?v=c85a88752a",
+  "food.cereal": "thumbs/food.cereal.webp?v=951c404028",
+  "food.crate": "thumbs/food.crate.webp?v=5d8cf85de0",
+  "food.cucumber": "thumbs/food.cucumber.webp?v=9336a01fe7",
+  "food.drink_can": "thumbs/food.drink_can.webp?v=56c3da0862",
+  "food.icecream": "thumbs/food.icecream.webp?v=e942077ff6",
+  "food.icecream_02": "thumbs/food.icecream_02.webp?v=4793ece35a",
+  "food.juice": "thumbs/food.juice.webp?v=f00bd1cb45",
+  "food.lettuce": "thumbs/food.lettuce.webp?v=abce8cefc0",
+  "food.orange": "thumbs/food.orange.webp?v=b8ddd762e3",
+  "food.papaya": "thumbs/food.papaya.webp?v=a381c838a7",
+  "food.snack_bag": "thumbs/food.snack_bag.webp?v=57a169ef92",
+  "food.soda": "thumbs/food.soda.webp?v=49220d4fc5",
+  "human.athlete": "thumbs/human.athlete.webp?v=048a0f5320",
+  "human.chef": "thumbs/human.chef.webp?v=5ef14cdbb7",
+  "human.child": "thumbs/human.child.webp?v=048a0f5320",
+  "human.civilian": "thumbs/human.civilian.webp?v=b7192ba0b1",
+  "human.commuter": "thumbs/human.commuter.webp?v=cbf00df6d9",
+  "human.diver": "thumbs/human.diver.webp?v=b7192ba0b1",
+  "human.elder": "thumbs/human.elder.webp?v=a6574d0ac1",
+  "human.firefighter": "thumbs/human.firefighter.webp?v=aa1780bf6a",
+  "human.hiker": "thumbs/human.hiker.webp?v=39f96da270",
+  "human.killer": "thumbs/human.killer.webp?v=154e083bb1",
+  "human.medic": "thumbs/human.medic.webp?v=82f504ad1d",
+  "human.pilot": "thumbs/human.pilot.webp?v=b7192ba0b1",
+  "human.police": "thumbs/human.police.webp?v=6c63f40f66",
+  "human.raincoat": "thumbs/human.raincoat.webp?v=b7192ba0b1",
+  "human.sailor": "thumbs/human.sailor.webp?v=b7192ba0b1",
+  "human.sheriff": "thumbs/human.sheriff.webp?v=4a249a1649",
+  "human.student": "thumbs/human.student.webp?v=048a0f5320",
+  "human.survivor": "thumbs/human.survivor.webp?v=70d41661e5",
+  "human.vendor": "thumbs/human.vendor.webp?v=6da1d95d68",
+  "human.worker": "thumbs/human.worker.webp?v=eb1cc33fc7",
+  "human.zombie": "thumbs/human.zombie.webp?v=0c8bb92f36",
+  "prop.cooler": "thumbs/prop.cooler.webp?v=e374b3e374",
+  "prop.cooler_red": "thumbs/prop.cooler_red.webp?v=24c12e38e8",
+  "prop.door": "thumbs/prop.door.webp?v=84522fcd02",
+  "prop.fence": "thumbs/prop.fence.webp?v=5560f24ed4",
+  "prop.outboard": "thumbs/prop.outboard.webp?v=53e41fd594",
+  "prop.vending_01": "thumbs/prop.vending_01.webp?v=0295d5752b",
+  "prop.vending_02": "thumbs/prop.vending_02.webp?v=8e5b984129",
+  "prop.vending_03": "thumbs/prop.vending_03.webp?v=7ed1c25a4d",
+  "prop.vending_04": "thumbs/prop.vending_04.webp?v=674925a2db",
+  "prop.vending_05": "thumbs/prop.vending_05.webp?v=11afb160d6",
+  "prop.vending_06": "thumbs/prop.vending_06.webp?v=91cbf790e7",
+  "prop.vending_07": "thumbs/prop.vending_07.webp?v=f83898252a",
+  "prop.vending_08": "thumbs/prop.vending_08.webp?v=d6169166b1",
+  "prop.vending_09": "thumbs/prop.vending_09.webp?v=0b81407c82",
+  "prop.vending_10": "thumbs/prop.vending_10.webp?v=e080a3f3ba",
+  "prop.vending_11": "thumbs/prop.vending_11.webp?v=e8d285cf21",
+  "prop.vending_12": "thumbs/prop.vending_12.webp?v=f933893202",
+  "rock.boulder": "thumbs/rock.boulder.webp?v=1e22eb7b57",
+  "rock.rock_2": "thumbs/rock.rock_2.webp?v=19bc88be38",
+  "rock.rock_3": "thumbs/rock.rock_3.webp?v=a26f683765",
+  "rock.rock_4": "thumbs/rock.rock_4.webp?v=ce84e54b64",
+  "rock.rock_5": "thumbs/rock.rock_5.webp?v=3172018bc3",
+  "rock.rock_6": "thumbs/rock.rock_6.webp?v=d7cd78a3ce",
+  "rock.rock_7": "thumbs/rock.rock_7.webp?v=de1b7ff404",
+  "rock.rock_8": "thumbs/rock.rock_8.webp?v=bb93bd52e3",
+  "tree.bare_sapling": "thumbs/tree.bare_sapling.webp?v=84e79bbf25",
+  "tree.birch": "thumbs/tree.birch.webp?v=b95002db3c",
+  "tree.dead": "thumbs/tree.dead.webp?v=c6c00b9c59",
+  "tree.fir": "thumbs/tree.fir.webp?v=61255acb35",
+  "tree.maple": "thumbs/tree.maple.webp?v=ca5089c0d6",
+  "tree.oak": "thumbs/tree.oak.webp?v=c7987f69e6",
+  "tree.pine": "thumbs/tree.pine.webp?v=bebe3725c6",
+  "tree.sapling": "thumbs/tree.sapling.webp?v=984e257b6c",
+  "tree.spruce": "thumbs/tree.spruce.webp?v=d750f9a407",
+  "vehicle.compact": "thumbs/vehicle.compact.webp?v=13a3759ed8",
+  "vehicle.cruiser": "thumbs/vehicle.cruiser.webp?v=b3d4027e4b",
+  "vehicle.minivan": "thumbs/vehicle.minivan.webp?v=e12c8e680c",
+  "vehicle.police": "thumbs/vehicle.police.webp?v=048791996e",
+  "vehicle.sedan": "thumbs/vehicle.sedan.webp?v=19bd685478",
+  "vehicle.taxi": "thumbs/vehicle.taxi.webp?v=8f9028aaaf",
+  "vehicle.van": "thumbs/vehicle.van.webp?v=32c77d376e",
+  "vehicle.vintage": "thumbs/vehicle.vintage.webp?v=5e200ded74",
+  "vehicle.wagon": "thumbs/vehicle.wagon.webp?v=300036e713",
+  "vehicle.wreck": "thumbs/vehicle.wreck.webp?v=f225013646"
+ },
+ "psxLook": {
+  "textures": {
+   "brick": "psx-look/textures/brick.png?v=8a967401c2",
+   "checker": "psx-look/textures/checker.png?v=3e7cd5d6d7",
+   "chrome": "psx-look/textures/chrome.png?v=9502f65025",
+   "colormap": "psx-look/textures/colormap.png?v=a94b4dc4f7",
+   "crate": "psx-look/textures/crate.png?v=d4c6a21674",
+   "ember": "psx-look/textures/ember.png?v=68f40044e9",
+   "fence": "psx-look/textures/fence.png?v=926a54a5a7",
+   "gold": "psx-look/textures/gold.png?v=2d74e7ac97",
+   "grass": "psx-look/textures/grass.png?v=47ea91f3d7",
+   "lava": "psx-look/textures/lava.png?v=7fb53ea3bb",
+   "metal": "psx-look/textures/metal.png?v=b7f44a6a2c",
+   "runes": "psx-look/textures/runes.png?v=407053069f",
+   "stone": "psx-look/textures/stone.png?v=c0f3e7a405"
+  },
+  "kenney": {
+   "character-ghost": "psx-look/kenney/character-ghost.glb?v=d4334bc0c7",
+   "character-skeleton": "psx-look/kenney/character-skeleton.glb?v=72f20c53c6",
+   "crypt-large": "psx-look/kenney/crypt-large.glb?v=2995f0d135",
+   "fire-basket": "psx-look/kenney/fire-basket.glb?v=f72e5a3f69",
+   "grave": "psx-look/kenney/grave.glb?v=72218a7052",
+   "gravestone-bevel": "psx-look/kenney/gravestone-bevel.glb?v=83c78e259f",
+   "gravestone-broken": "psx-look/kenney/gravestone-broken.glb?v=67693974f6",
+   "gravestone-decorative": "psx-look/kenney/gravestone-decorative.glb?v=3011f6c20c",
+   "gravestone-round": "psx-look/kenney/gravestone-round.glb?v=20574c84e4",
+   "gravestone-wide": "psx-look/kenney/gravestone-wide.glb?v=ddbdd81590",
+   "iron-fence": "psx-look/kenney/iron-fence.glb?v=6ea3e334d9",
+   "lightpost-single": "psx-look/kenney/lightpost-single.glb?v=76a179f45f",
+   "pine-crooked": "psx-look/kenney/pine-crooked.glb?v=3080ca745d",
+   "pine-fall": "psx-look/kenney/pine-fall.glb?v=1370654dc1",
+   "pine": "psx-look/kenney/pine.glb?v=0bd5e72e2a",
+   "pumpkin-carved": "psx-look/kenney/pumpkin-carved.glb?v=391f55e283",
+   "road": "psx-look/kenney/road.glb?v=2c090747a4"
+  },
+  "graveyard": "psx-look/graveyard.json?v=b72888be4d"
  },
  "credits": []
 }

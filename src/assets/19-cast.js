@@ -1,42 +1,71 @@
-// People cast: Quaternius bodies rebuilt in Blender (tools/blender/build_people.py) and served from Vercel's static CDN
-// through public/assets/manifest.json. Each model keeps its own face (and mouth), with blink / brow morph targets for
-// expressions, and plays authored clips (Quaternius Universal Animation Library and pack clips, retargeted per rig
-// family): walk and run advance with the distance walked, so feet plant instead of gliding.
-// buildToyRig still makes the jointed rig the engine's poses, IK, camera and balloons read; attachCastBody fits its
+// People cast: Characters PSX 1.2 (elbolilloduro) rebuilt in Blender (tools/blender/build_psx_people.py) and served from Vercel's static CDN
+// through public/assets/manifest.json, loaded on demand (only the people a story uses; castLoadMissing). Each model keeps
+// its painted face and plays authored clips (Quaternius Universal Animation Library and pack clips, retargeted onto the
+// Mixamo rig): walk and run advance with the distance walked, so feet plant instead of gliding.
+// buildToyRig still makes the jointed rig the engine's poses, IK and camera read; attachCastBody fits its
 // joints to the model, hides it and moves accessories and props onto the model's own bones. poseCastBody (a named step
 // at the end of poseJointedRig) records what each person is doing; syncCastBodies (a named step of renderFilm and the
 // Asset studio render) picks and crossfades the clips and sets the face just before drawing. Everything is a function
 // of the simulation clock (stepCount), so seekFilm and exports stay repeatable. Without the assets, people keep their
 // procedural bodies.
-const CAST = { ready: false, manifest: null, src: new Map(), clips: {}, modelClips: new Map(), info: new Map(), people: new Set() };
+const CAST = { ready: false, manifest: null, src: new Map(), clips: {}, modelClips: new Map(), info: new Map(), people: new Set(), loading: new Map(), missing: new Set() };
 // Children are made from the adult models: the person's child scale plus a bigger head.
 const CAST_CHILD_HEAD = 1.28;
 const CAST_SKIN = /^Skin/, CAST_NOT_CLOTH = /^(Skin|Skin_Darker|Hair|HairBase|Hair_.*|Eye|Eyes|Eyebrows|Moustache|Gold|Earrings|Visor|Mouth|Brown|Black)$/;
 const CAST_FADE = .25;
 // clips played once and held on their last frame
-const CAST_ONCE = new Set(['fall', 'sleep', 'sit_enter', 'jump_start', 'jump_land', 'hit', 'pickup', 'roll', 'punch']);
+const CAST_ONCE = new Set(['fall', 'sleep', 'sit_enter', 'sit_exit', 'jump_start', 'jump_land', 'hit', 'hit_head', 'pickup', 'roll', 'punch', 'punch_cross', 'death', 'shoot', 'reload', 'sword']);
 
 async function loadCast() {
   try {
     const m = await (await fetch('assets/manifest.json')).json(), P = m.people;
     definePsxCatalog(m.psx); rebuildCatalog();
-    // castProgress (20-ui-shell.js) fills the film's loading bar as each file arrives
-    const total = Object.keys(P.families).length + Object.keys(P.models).length; let done = 0;
+    // castProgress (20-ui-shell.js) fills the film's loading bar as each file arrives. Only the clip libraries load
+    // here; each person's model loads when a story first uses it (castLoadModel), about 100 KB each.
+    const total = Object.keys(P.families).length; let done = 0;
     const loader = new THREE.GLTFLoader(), load = u => new Promise((ok, fail) => loader.load('assets/' + u, g => { castProgress(++done, total); ok(g); }, undefined, fail));
-    await Promise.all([
-      ...Object.entries(P.families).map(async ([f, d]) => { CAST.clips[f] = (await load(d.anim)).animations; }),
-      ...Object.entries(P.models).map(async ([id, d]) => { CAST.src.set(id, (await load(d.file)).scene); }),
-    ]);
+    await Promise.all(Object.entries(P.families).map(async ([f, d]) => { CAST.clips[f] = (await load(d.anim)).animations; }));
     CAST.manifest = m; CAST.ready = true;
-    for (const id of CAST.src.keys()) { castInfo(id); castMergeModel(id); }
+    // each family's reference model too: castClipsFor fits the clips to every model by comparing it with the reference
+    await Promise.all(Object.values(P.families).map(d => castLoadModel(d.reference)));
   } catch (e) { CAST.src.clear(); CAST.ready = false; console.warn('Cast assets did not load; people keep their procedural bodies.', e); }
 }
 
+// A role's pool for the person's sex (the other sex's pool when it has none), else the everyday crowd pool.
 function castModelFor({ role = 'casual', variant = 0 }, feminine) {
-  const P = CAST.manifest.people;
-  if (role === 'elder' && feminine) return P.women[variant % P.women.length];
-  if (P.roles[role]) return P.roles[role];
-  const list = feminine ? P.women : P.men; return list[variant % list.length];
+  const P = CAST.manifest.people, r = P.roles[role] || {}, sex = feminine ? 'f' : 'm';
+  const list = r[sex]?.length ? r[sex] : r[feminine ? 'm' : 'f']?.length ? r[feminine ? 'm' : 'f'] : feminine ? P.women : P.men;
+  return list[variant % list.length];
+}
+
+// On-demand models. attachCastBody records a model that is not loaded yet (the person keeps the procedural body
+// meanwhile); seekFilm then loads the missing ones and rebuilds the scene once, so every frame, playback or export,
+// is drawn as if all models had been there from the start. Loaded models are made matte: these are painted textures,
+// and the earlier models' metalness (0.4) made people look like plastic in the sun.
+function castLoadModel(id) {
+  if (CAST.src.has(id)) return Promise.resolve(CAST.src.get(id));
+  if (CAST.loading.has(id)) return CAST.loading.get(id);
+  const d = CAST.manifest.people.models[id];
+  const p = new Promise(ok => new THREE.GLTFLoader().load('assets/' + d.file, g => {
+    g.scene.traverse(o => { if (o.isMesh) for (const mt of [].concat(o.material)) castMatte(mt); });
+    CAST.src.set(id, g.scene); castInfo(id); castMergeModel(id); CAST.loading.delete(id); ok(g.scene);
+  }, undefined, e => { console.warn('Person model ' + id + ' did not load', e); CAST.loading.delete(id); ok(null); }));
+  CAST.loading.set(id, p); return p;
+}
+function castMatte(m) { if (m.isMeshStandardMaterial) { m.metalness = 0; m.roughness = 1; m.envMapIntensity = 0; } }
+// Loads every model the last scene build asked for; true if any was missing (the scene must be built again). The list
+// is cleared only once they are in, so a seek that starts while 'Check story' is still downloading also waits.
+async function castLoadMissing() {
+  if (!CAST.missing.size) return false;
+  const ids = [...CAST.missing];
+  await Promise.all(ids.map(castLoadModel));
+  for (const id of ids) CAST.missing.delete(id);
+  return true;
+}
+// After a build outside a seek (Check story): fetch the missing people, then redraw at the same time with them.
+function castFetchAfterBuild() {
+  if (!CAST.missing.size) return;
+  Promise.all([...CAST.missing].map(castLoadModel)).then(() => { if (sceneReady && !seeking && !recording && CAST.missing.size) seekFilm(T); });
 }
 
 // Per source model, measured once: which material is the top garment (it takes the person's palette colour).
@@ -176,7 +205,7 @@ const castV = () => new THREE.Vector3();
 function castLocalPos(p, o, out = castV()) { return p.g.worldToLocal(o.getWorldPosition(out)); }
 
 function attachCastBody(p, opts = {}) {
-  const id = castModelFor(opts, p.fem), src = CAST.src.get(id); if (!src) return p;
+  const id = castModelFor(opts, p.fem), src = CAST.src.get(id); if (!src) { CAST.missing.add(id); return p; }
   const info = castInfo(id), body = THREE.SkeletonUtils.clone(src);
   body.name = 'Cast body ' + id; body.userData.castId = id; p.g.add(body);
   // no shadow-map shadows: at the sun map's ~30 cm texels a body only smudged the ground at its feet, and its skinned
@@ -200,7 +229,8 @@ function attachCastBody(p, opts = {}) {
     G.legs.push({ up: bone('UpperLeg' + sd), low: bone('LowerLeg' + sd), foot: bone('Foot' + sd) });
   }
   if (!G.body || !G.hips || !G.torso || !G.head || G.arms.some(a => !a.up || !a.low || !a.hand) || G.legs.some(l => !l.up || !l.low || !l.foot)) { p.g.remove(body); return p; }
-  if (opts.role === 'child') G.head.scale.setScalar(CAST_CHILD_HEAD);
+  const bigHead = opts.role === 'child' && CAST.manifest.people.models[id].family !== 'x';  // painted PSX bodies: smaller scale only, the bigger head floated on them
+  if (bigHead) G.head.scale.setScalar(CAST_CHILD_HEAD);
   p.g.updateMatrixWorld(true);
 
   // 1. Fit the rig to the model: same joint positions and limb lengths, so the engine's IK, head point and props
@@ -215,7 +245,7 @@ function attachCastBody(p, opts = {}) {
   }
   p.ankleY = (at(G.legs[0].foot).y + at(G.legs[1].foot).y) / 2; p.footX = (Math.abs(at(G.legs[0].foot).x) + Math.abs(at(G.legs[1].foot).x)) / 2;
   for (const b of p.bones) { b.quaternion.fromArray(b.userData.restQuaternion); b.scale.fromArray(b.userData.restScale); }
-  if (opts.role === 'child') { p.hd.userData.restScale = p.hd.userData.restScale.map(v => v * CAST_CHILD_HEAD); p.hd.scale.fromArray(p.hd.userData.restScale); }
+  if (bigHead) { p.hd.userData.restScale = p.hd.userData.restScale.map(v => v * CAST_CHILD_HEAD); p.hd.scale.fromArray(p.hd.userData.restScale); }
   p.g.updateMatrixWorld(true);
 
   // 2. Accessories, held props and the apron move onto the model's bones (same place at rest).
@@ -232,6 +262,10 @@ function attachCastBody(p, opts = {}) {
     acc.position.add(acc.parent.worldToLocal(want.clone()).sub(acc.parent.worldToLocal(now.clone())));
   }
   const pack = p.g.getObjectByName('Accessory_backpack'); if (pack) for (const c of pack.children) if (/^Strap/.test(c.name)) c.visible = false;
+  // painted models come dressed (uniforms, caps, helmets, masks are in their texture): the rig's worn accessories stay hidden
+  // no accessories on painted models (owner's call, 2026-10-22): backpacks, bags, umbrellas, caps, helmets, glasses,
+  // masks, vests and aprons all stay hidden; the phone and parcel that the phone and carry actions hold remain
+  if (CAST.manifest.people.models[id].family === 'x') p.g.traverse(o => { if (/^(Accessory_|Cloth apron|Apron)/.test(o.name)) { o.visible = false; o.userData.castHidden = true; } });
 
   // 3. Hide the rig's body and its face (the model's own face is used); keep accessories, props, apron, shadow.
   const keepName = /^(Accessory_|Cloth apron|Apron|Contact shadow|HeldPhone|HeldParcel|Phone|Lit phone|Screen message|Parcel|Tote|Backpack|Cap|Brim|Helmet|Mask|Vest|Bridge|Handle|Canopy)/;
@@ -249,7 +283,9 @@ function attachCastBody(p, opts = {}) {
     if (!o.isMesh) return;
     o.castShadow = o.receiveShadow = o.material.name !== 'Mouth'; o.userData.keepGeo = true;
     if (o.morphTargetDictionary) morphs.push(o);
-    if (CAST_SKIN.test(o.material.name)) { skin = skin || o.material.clone(); o.material = skin; }
+    // a painted (textured) body has its skin and clothes in one picture: it becomes the private skin material (the
+    // zombie tint greys and greens it) and never takes a palette colour
+    if (CAST_SKIN.test(o.material.name) || o.material.map) { skin = skin || o.material.clone(); o.material = skin; }
     else if (o.material.name === info.top) { top = top || o.material.clone(); o.material = top; }
     if (o.material.name === 'Mouth') { o.material = o.material.clone(); o.material.polygonOffset = true; o.material.polygonOffsetFactor = -4; o.material.polygonOffsetUnits = -60; }
   });
@@ -305,6 +341,8 @@ function castClipFor(p, state, speed) {
     case 'climb': return has('crouch_walk') || 'walk';
     case 'swim': return speed > .1 ? has('swim') || 'walk' : has('swim_idle') || has('swim') || 'idle';
     case 'crouch': return has('crouch') || 'idle';
+    case 'jog': return has('jog') || 'run';
+    case 'death': return has('death') || 'fall';
     default: return has(state) || 'idle';
   }
 }
@@ -390,9 +428,9 @@ function castApply(p) {
 }
 
 // clips whose feet stand on the floor
-const CAST_FLOAT = new Set(['sit', 'sit_talk', 'sit_enter', 'swim', 'swim_idle', 'jump', 'jump_start', 'jump_land', 'drive']);
+const CAST_FLOAT = new Set(['sit', 'sit_talk', 'sit_enter', 'sit_exit', 'swim', 'swim_idle', 'jump', 'jump_start', 'jump_land', 'drive']);
 // clips that end on the ground
-const CAST_LIE = new Set(['fall', 'sleep', 'roll']);
+const CAST_LIE = new Set(['fall', 'sleep', 'roll', 'death', 'dead']);
 // Puts the lower foot on the floor (at its rest height) for grounded clips: no sinking or floating whatever the model.
 // Uses the heel and toe points (getWorldPosition updates only each point's chain of parents, not the whole body).
 function castGround(p) {

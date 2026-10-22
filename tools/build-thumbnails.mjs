@@ -18,7 +18,8 @@ await c.evaluate(`(()=>{const r=new THREE.WebGLRenderer({antialias:true,alpha:tr
   window.__thumb={r,s,cam:new THREE.PerspectiveCamera(28,1,.01,2000)}})()`);
 let n = 0;
 for (const id of ids) {
-  await c.evaluate(`(async()=>{const e=catalogEntries.find(e=>e.archetype===${JSON.stringify(id)});if(e&&resolveCatalog(e.id)?.base.kind==='psx')await psxLoad(resolveCatalog(e.id).base.id)})()`);
+  // PSX models and people load on demand: build once to learn what is missing, load it, then draw
+  await c.evaluate(`(async()=>{const e=catalogEntries.find(e=>e.archetype===${JSON.stringify(id)});if(!e)return;if(resolveCatalog(e.id)?.base.kind==='psx')await psxLoad(resolveCatalog(e.id).base.id);else{const r=buildCatalogModel(e.id);disposeCatalogModel(r);await castLoadMissing()}})()`);
   const png = await c.evaluate(`(()=>{const {r,s,cam}=window.__thumb,entry=catalogEntries.find(e=>e.archetype===${JSON.stringify(id)}&&e.variant===0)||catalogEntries.find(e=>e.archetype===${JSON.stringify(id)});if(!entry)return null;
     const root=buildCatalogModel(entry.id);try{applyCatalogPose(root,entry.states.includes('idle')?'idle':entry.states[0],.6)}catch(e){}
     const shadow=root.getObjectByName('Contact shadow');if(shadow)shadow.visible=false;s.add(root);root.updateMatrixWorld(true);if(typeof syncCastBodies==='function')syncCastBodies();root.updateMatrixWorld(true);

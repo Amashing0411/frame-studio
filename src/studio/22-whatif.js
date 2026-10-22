@@ -141,7 +141,8 @@ function writeWhatIf(text, seed) {
 async function makeWhatIfFilm(remix) {
   const text = $('whatifPrompt').value.trim();
   if (!text) { $('whatifPrompt').focus(); notifyUser('Type a what-if first, or tap an example.'); return; }
-  if (recording || seeking) return;
+  if (recording) return;
+  cancelSeek(); // a background seek (people still loading) must not swallow the click
   whatifSeed = remix && text === whatifLast ? whatifSeed + 1 : 0; whatifLast = text;
   const { scenario, parsed } = writeWhatIf(text, whatifSeed);
   closeSheet(); setScenario(scenario);

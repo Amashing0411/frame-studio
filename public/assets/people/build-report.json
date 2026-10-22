@@ -1,443 +1,2163 @@
 {
+ "pipeline": "psx",
  "models": {
-  "m-woman2": {
-   "family": "m",
-   "height": 1.66,
-   "pelvis": 0.8803,
-   "meshes": 5,
-   "face": {
-    "eye_z": 1.513,
-    "eye_x": 0.053,
-    "chin": 1.415,
-    "mouth_z": 1.459,
-    "brow_verts": 12,
-    "face_meshes": [
-     "Casual_Head_face"
-    ]
-   },
+  "x-01": {
+   "family": "x",
+   "name": "Character_01",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.769,
+   "pelvis": 1.0208,
+   "bones": 33,
+   "tris": 486,
+   "textured": true,
    "feet": {
-    "ankle": 0.0755,
-    "toe": 0.1892,
-    "heel": 0.0672
+    "ankle": 0.0843,
+    "toe": 0.1798,
+    "heel": 0.0477
    }
   },
-  "m-woman3": {
-   "family": "m",
-   "height": 1.65,
-   "pelvis": 0.8709,
-   "meshes": 5,
-   "face": {
-    "eye_z": 1.503,
-    "eye_x": 0.053,
-    "chin": 1.405,
-    "mouth_z": 1.449,
-    "brow_verts": 86,
-    "face_meshes": [
-     "Formad_Head_face"
-    ]
-   },
+  "x-17-female-police": {
+   "family": "x",
+   "name": "Character_17_Female_Police",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.683,
+   "pelvis": 1.0209,
+   "bones": 33,
+   "tris": 673,
+   "textured": true,
    "feet": {
-    "ankle": 0.075,
-    "toe": 0.1759,
+    "ankle": 0.0872,
+    "toe": 0.1805,
+    "heel": 0.0542
+   }
+  },
+  "x-killer": {
+   "family": "x",
+   "name": "Character_Killer",
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 1.883,
+   "pelvis": 1.1137,
+   "bones": 33,
+   "tris": 496,
+   "textured": true,
+   "feet": {
+    "ankle": 0.1019,
+    "toe": 0.2285,
+    "heel": 0.0546
+   }
+  },
+  "x-18-female-police": {
+   "family": "x",
+   "name": "Character_18_Female_Police",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.642,
+   "pelvis": 0.9226,
+   "bones": 41,
+   "tris": 620,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0759,
+    "toe": 0.1601,
+    "heel": 0.0486
+   }
+  },
+  "x-19-female-police": {
+   "family": "x",
+   "name": "Character_19_Female_Police",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.64,
+   "pelvis": 0.9938,
+   "bones": 33,
+   "tris": 685,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0898,
+    "toe": 0.1772,
+    "heel": 0.0511
+   }
+  },
+  "x-20-female-police": {
+   "family": "x",
+   "name": "Character_20_Female_Police",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.673,
+   "pelvis": 0.9842,
+   "bones": 41,
+   "tris": 644,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0759,
+    "toe": 0.1626,
+    "heel": 0.05
+   }
+  },
+  "x-21-female-firefighter": {
+   "family": "x",
+   "name": "Character_21_Female_Firefighter",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.73,
+   "pelvis": 1.0446,
+   "bones": 33,
+   "tris": 686,
+   "textured": true,
+   "feet": {
+    "ankle": 0.1003,
+    "toe": 0.1906,
+    "heel": 0.0575
+   }
+  },
+  "x-22-female-firefighter": {
+   "family": "x",
+   "name": "Character_22_Female_Firefighter",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.741,
+   "pelvis": 1.0091,
+   "bones": 41,
+   "tris": 593,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0946,
+    "toe": 0.1733,
+    "heel": 0.0485
+   }
+  },
+  "x-23-female-doctor": {
+   "family": "x",
+   "name": "Character_23_Female_Doctor",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.71,
+   "pelvis": 1.0265,
+   "bones": 33,
+   "tris": 696,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0834,
+    "toe": 0.182,
+    "heel": 0.0563
+   }
+  },
+  "x-24-female-doctor": {
+   "family": "x",
+   "name": "Character_24_Female_Doctor",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.71,
+   "pelvis": 1.0044,
+   "bones": 41,
+   "tris": 597,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0762,
+    "toe": 0.165,
     "heel": 0.0521
    }
   },
-  "m-punk2": {
-   "family": "m",
+  "x-25-female-police": {
+   "family": "x",
+   "name": "Character_25_Female_Police",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.63,
+   "pelvis": 0.9856,
+   "bones": 33,
+   "tris": 673,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0912,
+    "toe": 0.1785,
+    "heel": 0.0543
+   }
+  },
+  "x-26-female-police": {
+   "family": "x",
+   "name": "Character_26_Female_Police",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.676,
+   "pelvis": 0.9941,
+   "bones": 41,
+   "tris": 593,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0749,
+    "toe": 0.1625,
+    "heel": 0.0504
+   }
+  },
+  "x-27-female-hm": {
+   "family": "x",
+   "name": "Character_27_Female_HM",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.645,
+   "pelvis": 0.9905,
+   "bones": 33,
+   "tris": 673,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0906,
+    "toe": 0.1776,
+    "heel": 0.0515
+   }
+  },
+  "x-28-female-hm": {
+   "family": "x",
+   "name": "Character_28_Female_HM",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.679,
+   "pelvis": 0.9586,
+   "bones": 41,
+   "tris": 582,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0803,
+    "toe": 0.1638,
+    "heel": 0.0479
+   }
+  },
+  "x-29-female": {
+   "family": "x",
+   "name": "Character_29_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.565,
+   "pelvis": 0.9212,
+   "bones": 33,
+   "tris": 676,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0942,
+    "toe": 0.1729,
+    "heel": 0.0527
+   }
+  },
+  "x-30-female": {
+   "family": "x",
+   "name": "Character_30_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.5,
+   "pelvis": 0.8672,
+   "bones": 33,
+   "tris": 582,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0804,
+    "toe": 0.1516,
+    "heel": 0.0492
+   }
+  },
+  "x-31-female": {
+   "family": "x",
+   "name": "Character_31_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.566,
+   "pelvis": 0.9349,
+   "bones": 33,
+   "tris": 693,
+   "textured": true,
+   "feet": {
+    "ankle": 0.1021,
+    "toe": 0.1783,
+    "heel": 0.0623
+   }
+  },
+  "x-32-female": {
+   "family": "x",
+   "name": "Character_32_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.524,
+   "pelvis": 0.8504,
+   "bones": 41,
+   "tris": 608,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0714,
+    "toe": 0.1478,
+    "heel": 0.0461
+   }
+  },
+  "x-33-female": {
+   "family": "x",
+   "name": "Character_33_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.616,
+   "pelvis": 0.9621,
+   "bones": 41,
+   "tris": 674,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0686,
+    "toe": 0.1529,
+    "heel": 0.0496
+   }
+  },
+  "x-34-female": {
+   "family": "x",
+   "name": "Character_34_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.696,
+   "pelvis": 0.9214,
+   "bones": 33,
+   "tris": 830,
+   "textured": true,
+   "feet": {
+    "ankle": 0.099,
+    "toe": 0.1899,
+    "heel": 0.0487
+   }
+  },
+  "x-35-female": {
+   "family": "x",
+   "name": "Character_35_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.644,
+   "pelvis": 0.8986,
+   "bones": 33,
+   "tris": 832,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0886,
+    "toe": 0.1818,
+    "heel": 0.059
+   }
+  },
+  "x-36-female": {
+   "family": "x",
+   "name": "Character_36_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.653,
+   "pelvis": 0.9162,
+   "bones": 33,
+   "tris": 798,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0798,
+    "toe": 0.1765,
+    "heel": 0.0611
+   }
+  },
+  "x-37-female": {
+   "family": "x",
+   "name": "Character_37_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.634,
+   "pelvis": 0.8499,
+   "bones": 33,
+   "tris": 854,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0889,
+    "toe": 0.1779,
+    "heel": 0.0503
+   }
+  },
+  "x-38-female": {
+   "family": "x",
+   "name": "Character_38_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.564,
+   "pelvis": 0.8252,
+   "bones": 33,
+   "tris": 790,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0833,
+    "toe": 0.1769,
+    "heel": 0.0535
+   }
+  },
+  "x-39-female": {
+   "family": "x",
+   "name": "Character_39_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.573,
+   "pelvis": 0.8437,
+   "bones": 33,
+   "tris": 802,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0798,
+    "toe": 0.1659,
+    "heel": 0.0522
+   }
+  },
+  "x-40-female": {
+   "family": "x",
+   "name": "Character_40_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.479,
+   "pelvis": 0.7894,
+   "bones": 33,
+   "tris": 804,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0815,
+    "toe": 0.1602,
+    "heel": 0.0433
+   }
+  },
+  "x-41-female": {
+   "family": "x",
+   "name": "Character_41_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.6,
+   "pelvis": 0.8855,
+   "bones": 65,
+   "tris": 826,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0867,
+    "toe": 0.1724,
+    "heel": 0.0494
+   }
+  },
+  "x-42-female": {
+   "family": "x",
+   "name": "Character_42_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.629,
+   "pelvis": 0.9017,
+   "bones": 65,
+   "tris": 968,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0837,
+    "toe": 0.1745,
+    "heel": 0.0551
+   }
+  },
+  "x-43-female": {
+   "family": "x",
+   "name": "Character_43_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.512,
+   "pelvis": 0.823,
+   "bones": 33,
+   "tris": 804,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0736,
+    "toe": 0.1739,
+    "heel": 0.063
+   }
+  },
+  "x-44-female": {
+   "family": "x",
+   "name": "Character_44_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.633,
+   "pelvis": 0.9161,
+   "bones": 65,
+   "tris": 892,
+   "textured": true,
+   "feet": {
+    "ankle": 0.085,
+    "toe": 0.1749,
+    "heel": 0.0512
+   }
+  },
+  "x-45-female": {
+   "family": "x",
+   "name": "Character_45_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.552,
+   "pelvis": 0.8154,
+   "bones": 57,
+   "tris": 830,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0812,
+    "toe": 0.1716,
+    "heel": 0.0649
+   }
+  },
+  "x-46-female": {
+   "family": "x",
+   "name": "Character_46_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.568,
+   "pelvis": 0.8946,
+   "bones": 65,
+   "tris": 992,
+   "textured": true,
+   "feet": {
+    "ankle": 0.097,
+    "toe": 0.181,
+    "heel": 0.0568
+   }
+  },
+  "x-47-female": {
+   "family": "x",
+   "name": "Character_47_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.559,
+   "pelvis": 0.894,
+   "bones": 65,
+   "tris": 1078,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0919,
+    "toe": 0.1788,
+    "heel": 0.0552
+   }
+  },
+  "x-48-female": {
+   "family": "x",
+   "name": "Character_48_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.653,
+   "pelvis": 0.9332,
+   "bones": 65,
+   "tris": 988,
+   "textured": true,
+   "feet": {
+    "ankle": 0.1011,
+    "toe": 0.1908,
+    "heel": 0.0556
+   }
+  },
+  "x-49-female": {
+   "family": "x",
+   "name": "Character_49_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.721,
+   "pelvis": 0.9464,
+   "bones": 65,
+   "tris": 1050,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0973,
+    "toe": 0.1999,
+    "heel": 0.0641
+   }
+  },
+  "x-50-female": {
+   "family": "x",
+   "name": "Character_50_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.785,
+   "pelvis": 1.0278,
+   "bones": 65,
+   "tris": 978,
+   "textured": true,
+   "feet": {
+    "ankle": 0.1009,
+    "toe": 0.2073,
+    "heel": 0.061
+   }
+  },
+  "x-51-female": {
+   "family": "x",
+   "name": "Character_51_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.516,
+   "pelvis": 0.7388,
+   "bones": 65,
+   "tris": 1120,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0778,
+    "toe": 0.171,
+    "heel": 0.0563
+   }
+  },
+  "x-52-female": {
+   "family": "x",
+   "name": "Character_52_Female",
+   "group": "Female",
+   "sex": "f",
    "height": 1.67,
-   "pelvis": 0.829,
-   "meshes": 5,
-   "face": {
-    "eye_z": 1.431,
-    "eye_x": 0.051,
-    "chin": 1.337,
-    "mouth_z": 1.38,
-    "brow_verts": 12,
-    "face_meshes": [
-     "Punk_Head_face"
-    ]
-   },
+   "pelvis": 0.9309,
+   "bones": 65,
+   "tris": 994,
+   "textured": true,
    "feet": {
-    "ankle": 0.0759,
-    "toe": 0.0945,
-    "heel": 0.14
+    "ankle": 0.0901,
+    "toe": 0.1886,
+    "heel": 0.0591
    }
   },
-  "m-adventurer2": {
-   "family": "m",
-   "height": 1.66,
-   "pelvis": 0.8845,
-   "meshes": 5,
-   "face": {
-    "eye_z": 1.526,
-    "eye_x": 0.054,
-    "chin": 1.426,
-    "mouth_z": 1.471,
-    "brow_verts": 12,
-    "face_meshes": [
-     "Adventurer_Head_face"
-    ]
-   },
+  "x-53-female": {
+   "family": "x",
+   "name": "Character_53_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.674,
+   "pelvis": 0.9362,
+   "bones": 65,
+   "tris": 996,
+   "textured": true,
    "feet": {
-    "ankle": 0.0755,
-    "toe": 0.1764,
-    "heel": 0.083
+    "ankle": 0.096,
+    "toe": 0.195,
+    "heel": 0.0538
    }
   },
-  "m-swat": {
-   "family": "m",
-   "height": 1.82,
-   "pelvis": 0.851,
-   "meshes": 4,
-   "face": null,
+  "x-54-female": {
+   "family": "x",
+   "name": "Character_54_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.541,
+   "pelvis": 0.823,
+   "bones": 65,
+   "tris": 995,
+   "textured": true,
    "feet": {
-    "ankle": 0.0827,
-    "toe": 0.169,
-    "heel": 0.1048
+    "ankle": 0.084,
+    "toe": 0.1757,
+    "heel": 0.0522
    }
   },
-  "u-woman": {
-   "family": "u",
-   "height": 1.66,
-   "pelvis": 0.7632,
-   "meshes": 2,
-   "face": {
-    "eye_z": 1.541,
-    "eye_x": 0.054,
-    "chin": 1.418,
-    "mouth_z": 1.473,
-    "brow_verts": 68,
-    "face_meshes": [
-     "Female_face"
-    ]
-   },
+  "x-55-female": {
+   "family": "x",
+   "name": "Character_55_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.515,
+   "pelvis": 0.87,
+   "bones": 65,
+   "tris": 979,
+   "textured": true,
    "feet": {
-    "ankle": 0.0755,
-    "toe": 0.1828,
-    "heel": 0.0451
+    "ankle": 0.0842,
+    "toe": 0.1756,
+    "heel": 0.0522
    }
   },
-  "u-woman-casual": {
-   "family": "u",
-   "height": 1.64,
-   "pelvis": 0.7537,
-   "meshes": 2,
-   "face": {
-    "eye_z": 1.521,
-    "eye_x": 0.053,
-    "chin": 1.401,
-    "mouth_z": 1.455,
-    "brow_verts": 152,
-    "face_meshes": [
-     "Female_face"
-    ]
-   },
+  "x-57-female": {
+   "family": "x",
+   "name": "Character_57_Female",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.672,
+   "pelvis": 0.9294,
+   "bones": 65,
+   "tris": 1014,
+   "textured": true,
    "feet": {
-    "ankle": 0.0745,
-    "toe": 0.1805,
-    "heel": 0.0446
+    "ankle": 0.0951,
+    "toe": 0.192,
+    "heel": 0.0559
    }
   },
-  "u-woman-tank": {
-   "family": "u",
-   "height": 1.67,
-   "pelvis": 0.7623,
-   "meshes": 2,
-   "face": {
-    "eye_z": 1.539,
-    "eye_x": 0.053,
-    "chin": 1.416,
-    "mouth_z": 1.471,
-    "brow_verts": 86,
-    "face_meshes": [
-     "BaseHuman.000_face"
-    ]
-   },
+  "x-female-02": {
+   "family": "x",
+   "name": "Character_Female_02",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.673,
+   "pelvis": 0.9907,
+   "bones": 33,
+   "tris": 713,
+   "textured": true,
    "feet": {
-    "ankle": 0.0759,
-    "toe": 0.1826,
-    "heel": 0.0451
+    "ankle": 0.088,
+    "toe": 0.1789,
+    "heel": 0.055
    }
   },
-  "u-woman-dress": {
-   "family": "u",
-   "height": 1.65,
-   "pelvis": 0.7531,
-   "meshes": 2,
-   "face": {
-    "eye_z": 1.52,
-    "eye_x": 0.053,
-    "chin": 1.399,
-    "mouth_z": 1.454,
-    "brow_verts": 56,
-    "face_meshes": [
-     "Female_face"
-    ]
-   },
+  "x-female-03": {
+   "family": "x",
+   "name": "Character_Female_03",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.72,
+   "pelvis": 1.0324,
+   "bones": 33,
+   "tris": 671,
+   "textured": true,
    "feet": {
-    "ankle": 0.075,
-    "toe": 0.1804,
-    "heel": 0.0445
+    "ankle": 0.0949,
+    "toe": 0.1857,
+    "heel": 0.0539
    }
   },
-  "u-man": {
-   "family": "u",
-   "height": 1.76,
-   "pelvis": 0.7699,
-   "meshes": 2,
-   "face": {
-    "eye_z": 1.623,
-    "eye_x": 0.055,
-    "chin": 1.496,
-    "mouth_z": 1.553,
-    "brow_verts": 16,
-    "face_meshes": [
-     "BaseHuman_face"
-    ]
-   },
+  "x-female-04": {
+   "family": "x",
+   "name": "Character_Female_04",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.804,
+   "pelvis": 1.0803,
+   "bones": 33,
+   "tris": 710,
+   "textured": true,
    "feet": {
-    "ankle": 0.08,
-    "toe": 0.1863,
-    "heel": 0.046
+    "ankle": 0.1019,
+    "toe": 0.1921,
+    "heel": 0.0579
    }
   },
-  "u-man2": {
-   "family": "u",
-   "height": 1.78,
-   "pelvis": 0.7787,
-   "meshes": 2,
-   "face": {
-    "eye_z": 1.641,
-    "eye_x": 0.055,
-    "chin": 1.513,
-    "mouth_z": 1.571,
-    "brow_verts": 28,
-    "face_meshes": [
-     "BaseHuman_face"
-    ]
-   },
+  "x-female-05": {
+   "family": "x",
+   "name": "Character_Female_05",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.592,
+   "pelvis": 0.9688,
+   "bones": 33,
+   "tris": 681,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0793,
+    "toe": 0.1632,
+    "heel": 0.0492
+   }
+  },
+  "x-female-06": {
+   "family": "x",
+   "name": "Character_Female_06",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.665,
+   "pelvis": 0.9483,
+   "bones": 41,
+   "tris": 608,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0767,
+    "toe": 0.1671,
+    "heel": 0.0518
+   }
+  },
+  "x-female-07": {
+   "family": "x",
+   "name": "Character_Female_07",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.639,
+   "pelvis": 0.9859,
+   "bones": 33,
+   "tris": 736,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0878,
+    "toe": 0.177,
+    "heel": 0.0517
+   }
+  },
+  "x-female-08": {
+   "family": "x",
+   "name": "Character_Female_08",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.615,
+   "pelvis": 0.9673,
+   "bones": 33,
+   "tris": 750,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0892,
+    "toe": 0.1745,
+    "heel": 0.0503
+   }
+  },
+  "x-female-09": {
+   "family": "x",
+   "name": "Character_Female_09",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.647,
+   "pelvis": 0.9942,
+   "bones": 33,
+   "tris": 776,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0709,
+    "toe": 0.1802,
+    "heel": 0.0495
+   }
+  },
+  "x-female-10": {
+   "family": "x",
+   "name": "Character_Female_10",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.683,
+   "pelvis": 0.98,
+   "bones": 41,
+   "tris": 644,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0737,
+    "toe": 0.1614,
+    "heel": 0.0524
+   }
+  },
+  "x-female-11": {
+   "family": "x",
+   "name": "Character_Female_11",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.644,
+   "pelvis": 0.9884,
+   "bones": 33,
+   "tris": 735,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0772,
+    "toe": 0.1866,
+    "heel": 0.0683
+   }
+  },
+  "x-female-12": {
+   "family": "x",
+   "name": "Character_Female_12",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.58,
+   "pelvis": 0.9205,
+   "bones": 41,
+   "tris": 677,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0825,
+    "toe": 0.1598,
+    "heel": 0.0489
+   }
+  },
+  "x-female-13": {
+   "family": "x",
+   "name": "Character_Female_13",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.669,
+   "pelvis": 1.016,
+   "bones": 33,
+   "tris": 712,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0828,
+    "toe": 0.1783,
+    "heel": 0.0544
+   }
+  },
+  "x-female-14": {
+   "family": "x",
+   "name": "Character_Female_14",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.624,
+   "pelvis": 0.9476,
+   "bones": 41,
+   "tris": 637,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0753,
+    "toe": 0.1581,
+    "heel": 0.051
+   }
+  },
+  "x-female-15": {
+   "family": "x",
+   "name": "Character_Female_15",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.609,
+   "pelvis": 0.9772,
+   "bones": 33,
+   "tris": 728,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0838,
+    "toe": 0.1727,
+    "heel": 0.0514
+   }
+  },
+  "x-female-16": {
+   "family": "x",
+   "name": "Character_Female_16",
+   "group": "Female",
+   "sex": "f",
+   "height": 1.643,
+   "pelvis": 0.9418,
+   "bones": 41,
+   "tris": 636,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0766,
+    "toe": 0.16,
+    "heel": 0.0487
+   }
+  },
+  "x-killer-01": {
+   "family": "x",
+   "name": "Character_Killer_01",
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 1.801,
+   "pelvis": 0.9946,
+   "bones": 33,
+   "tris": 496,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0958,
+    "toe": 0.2147,
+    "heel": 0.0499
+   }
+  },
+  "x-killer-02": {
+   "family": "x",
+   "name": "Character_Killer_02",
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 1.847,
+   "pelvis": 1.0834,
+   "bones": 33,
+   "tris": 510,
+   "textured": true,
+   "feet": {
+    "ankle": 0.092,
+    "toe": 0.2192,
+    "heel": 0.052
+   }
+  },
+  "x-killer-03": {
+   "family": "x",
+   "name": "Character_Killer_03",
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 1.915,
+   "pelvis": 1.1273,
+   "bones": 33,
+   "tris": 538,
+   "textured": true,
+   "feet": {
+    "ankle": 0.1105,
+    "toe": 0.2305,
+    "heel": 0.0577
+   }
+  },
+  "x-killer-04": {
+   "family": "x",
+   "name": "Character_Killer_04",
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 1.845,
+   "pelvis": 1.0704,
+   "bones": 33,
+   "tris": 492,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0921,
+    "toe": 0.2169,
+    "heel": 0.0443
+   }
+  },
+  "x-killer-05": {
+   "family": "x",
+   "name": "Character_Killer_05",
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 1.856,
+   "pelvis": 1.0698,
+   "bones": 33,
+   "tris": 542,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0992,
+    "toe": 0.219,
+    "heel": 0.0506
+   }
+  },
+  "x-killer-06": {
+   "family": "x",
+   "name": "Character_Killer_06",
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 1.808,
+   "pelvis": 1.0476,
+   "bones": 33,
+   "tris": 508,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0992,
+    "toe": 0.2201,
+    "heel": 0.0533
+   }
+  },
+  "x-killer-07": {
+   "family": "x",
+   "name": "Character_Killer_07",
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 1.842,
+   "pelvis": 1.0142,
+   "bones": 33,
+   "tris": 508,
+   "textured": true,
+   "feet": {
+    "ankle": 0.1032,
+    "toe": 0.2203,
+    "heel": 0.0528
+   }
+  },
+  "x-killer-08": {
+   "family": "x",
+   "name": "Character_Killer_08",
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 1.858,
+   "pelvis": 1.0288,
+   "bones": 33,
+   "tris": 836,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0712,
+    "toe": 0.2107,
+    "heel": 0.068
+   }
+  },
+  "x-killer-09": {
+   "family": "x",
+   "name": "Character_Killer_09",
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 1.728,
+   "pelvis": 0.9585,
+   "bones": 57,
+   "tris": 828,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0639,
+    "toe": 0.2005,
+    "heel": 0.0624
+   }
+  },
+  "x-killer-10": {
+   "family": "x",
+   "name": "Character_Killer_10",
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 1.767,
+   "pelvis": 0.8799,
+   "bones": 65,
+   "tris": 906,
+   "textured": true,
+   "feet": {
+    "ankle": 0.141,
+    "toe": 0.2421,
+    "heel": 0.0854
+   }
+  },
+  "x-killer-10-01": {
+   "family": "x",
+   "name": "Character_Killer_10_01",
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 1.767,
+   "pelvis": 0.8921,
+   "bones": 57,
+   "tris": 794,
+   "textured": false,
+   "feet": {
+    "ankle": 0.1377,
+    "toe": 0.2402,
+    "heel": 0.0873
+   }
+  },
+  "x-monster-06": {
+   "family": "x",
+   "name": "Character_Monster_06",
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 1.936,
+   "pelvis": 1.026,
+   "bones": 65,
+   "tris": 866,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0663,
+    "toe": 0.2216,
+    "heel": 0.0586
+   }
+  },
+  "x-monster-07": {
+   "family": "x",
+   "name": "Character_Monster_07",
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 2.085,
+   "pelvis": 1.1658,
+   "bones": 65,
+   "tris": 792,
+   "textured": true,
+   "feet": {
+    "ankle": 0.136,
+    "toe": 0.2591,
+    "heel": 0.0762
+   }
+  },
+  "x-monster-08": {
+   "family": "x",
+   "name": "Character_Monster_08",
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 2.689,
+   "pelvis": 1.4526,
+   "bones": 65,
+   "tris": 868,
+   "textured": true,
+   "feet": {
+    "ankle": 0.1576,
+    "toe": 0.3627,
+    "heel": 0.1312
+   }
+  },
+  "x-02": {
+   "family": "x",
+   "name": "Character_02",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.733,
+   "pelvis": 0.9839,
+   "bones": 33,
+   "tris": 486,
+   "textured": true,
+   "feet": {
+    "ankle": 0.099,
+    "toe": 0.2057,
+    "heel": 0.0532
+   }
+  },
+  "x-03": {
+   "family": "x",
+   "name": "Character_03",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.731,
+   "pelvis": 1.0122,
+   "bones": 33,
+   "tris": 496,
+   "textured": true,
+   "feet": {
+    "ankle": 0.084,
+    "toe": 0.1769,
+    "heel": 0.0462
+   }
+  },
+  "x-04": {
+   "family": "x",
+   "name": "Character_04",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.754,
+   "pelvis": 1.0031,
+   "bones": 33,
+   "tris": 486,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0852,
+    "toe": 0.1803,
+    "heel": 0.048
+   }
+  },
+  "x-05": {
+   "family": "x",
+   "name": "Character_05",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.75,
+   "pelvis": 1.012,
+   "bones": 33,
+   "tris": 494,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0908,
+    "toe": 0.1779,
+    "heel": 0.0454
+   }
+  },
+  "x-06": {
+   "family": "x",
+   "name": "Character_06",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.693,
+   "pelvis": 1.0046,
+   "bones": 41,
+   "tris": 508,
+   "textured": true,
    "feet": {
     "ankle": 0.0809,
-    "toe": 0.1884,
-    "heel": 0.0465
+    "toe": 0.1678,
+    "heel": 0.0379
    }
   },
-  "u-man-sleeves": {
-   "family": "u",
-   "height": 1.75,
-   "pelvis": 0.7656,
-   "meshes": 2,
-   "face": {
-    "eye_z": 1.614,
-    "eye_x": 0.054,
-    "chin": 1.487,
-    "mouth_z": 1.544,
-    "brow_verts": 16,
-    "face_meshes": [
-     "BaseHuman_face"
-    ]
-   },
+  "x-07": {
+   "family": "x",
+   "name": "Character_07",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.715,
+   "pelvis": 1.0053,
+   "bones": 33,
+   "tris": 510,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0816,
+    "toe": 0.1796,
+    "heel": 0.0387
+   }
+  },
+  "x-08": {
+   "family": "x",
+   "name": "Character_08",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.762,
+   "pelvis": 1.0325,
+   "bones": 33,
+   "tris": 510,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0915,
+    "toe": 0.1893,
+    "heel": 0.0462
+   }
+  },
+  "x-09": {
+   "family": "x",
+   "name": "Character_09",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.742,
+   "pelvis": 0.9988,
+   "bones": 33,
+   "tris": 512,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0931,
+    "toe": 0.1931,
+    "heel": 0.044
+   }
+  },
+  "x-10": {
+   "family": "x",
+   "name": "Character_10",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.719,
+   "pelvis": 1.0104,
+   "bones": 33,
+   "tris": 510,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0892,
+    "toe": 0.1845,
+    "heel": 0.0429
+   }
+  },
+  "x-11": {
+   "family": "x",
+   "name": "Character_11",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.695,
+   "pelvis": 0.9928,
+   "bones": 33,
+   "tris": 534,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0811,
+    "toe": 0.2142,
+    "heel": 0.0397
+   }
+  },
+  "x-12": {
+   "family": "x",
+   "name": "Character_12",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.696,
+   "pelvis": 0.9808,
+   "bones": 33,
+   "tris": 536,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0823,
+    "toe": 0.2032,
+    "heel": 0.0455
+   }
+  },
+  "x-13": {
+   "family": "x",
+   "name": "Character_13",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.789,
+   "pelvis": 1.0542,
+   "bones": 33,
+   "tris": 486,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0842,
+    "toe": 0.2061,
+    "heel": 0.0455
+   }
+  },
+  "x-14": {
+   "family": "x",
+   "name": "Character_14",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.746,
+   "pelvis": 1.0435,
+   "bones": 33,
+   "tris": 547,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0847,
+    "toe": 0.1926,
+    "heel": 0.0528
+   }
+  },
+  "x-15": {
+   "family": "x",
+   "name": "Character_15",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.771,
+   "pelvis": 1.0348,
+   "bones": 33,
+   "tris": 511,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0873,
+    "toe": 0.1947,
+    "heel": 0.0502
+   }
+  },
+  "x-16": {
+   "family": "x",
+   "name": "Character_16",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.742,
+   "pelvis": 1.0196,
+   "bones": 33,
+   "tris": 543,
+   "textured": true,
+   "feet": {
+    "ankle": 0.072,
+    "toe": 0.1854,
+    "heel": 0.0505
+   }
+  },
+  "x-17-police": {
+   "family": "x",
+   "name": "Character_17_Police",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.797,
+   "pelvis": 1.0772,
+   "bones": 33,
+   "tris": 508,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0815,
+    "toe": 0.208,
+    "heel": 0.0374
+   }
+  },
+  "x-18-police": {
+   "family": "x",
+   "name": "Character_18_Police",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.754,
+   "pelvis": 1.0173,
+   "bones": 33,
+   "tris": 499,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0848,
+    "toe": 0.1917,
+    "heel": 0.051
+   }
+  },
+  "x-19-police": {
+   "family": "x",
+   "name": "Character_19_Police",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.742,
+   "pelvis": 1.0055,
+   "bones": 33,
+   "tris": 524,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0737,
+    "toe": 0.1962,
+    "heel": 0.0371
+   }
+  },
+  "x-20-police": {
+   "family": "x",
+   "name": "Character_20_Police",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.709,
+   "pelvis": 1.0032,
+   "bones": 33,
+   "tris": 515,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0793,
+    "toe": 0.1892,
+    "heel": 0.0542
+   }
+  },
+  "x-21-police": {
+   "family": "x",
+   "name": "Character_21_Police",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.731,
+   "pelvis": 1.0375,
+   "bones": 33,
+   "tris": 499,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0893,
+    "toe": 0.1924,
+    "heel": 0.0527
+   }
+  },
+  "x-22-police": {
+   "family": "x",
+   "name": "Character_22_Police",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.729,
+   "pelvis": 1.0046,
+   "bones": 33,
+   "tris": 508,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0779,
+    "toe": 0.199,
+    "heel": 0.0361
+   }
+  },
+  "x-23-firefighter": {
+   "family": "x",
+   "name": "Character_23_Firefighter",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.763,
+   "pelvis": 1.0386,
+   "bones": 33,
+   "tris": 509,
+   "textured": true,
+   "feet": {
+    "ankle": 0.1,
+    "toe": 0.1985,
+    "heel": 0.0593
+   }
+  },
+  "x-24-firefighter": {
+   "family": "x",
+   "name": "Character_24_Firefighter",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.753,
+   "pelvis": 0.9905,
+   "bones": 33,
+   "tris": 526,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0793,
+    "toe": 0.2077,
+    "heel": 0.0594
+   }
+  },
+  "x-25-doctor": {
+   "family": "x",
+   "name": "Character_25_Doctor",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.717,
+   "pelvis": 0.9792,
+   "bones": 33,
+   "tris": 513,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0847,
+    "toe": 0.189,
+    "heel": 0.0482
+   }
+  },
+  "x-26-doctor": {
+   "family": "x",
+   "name": "Character_26_Doctor",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.694,
+   "pelvis": 0.9502,
+   "bones": 33,
+   "tris": 510,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0816,
+    "toe": 0.1972,
+    "heel": 0.0402
+   }
+  },
+  "x-27-hm": {
+   "family": "x",
+   "name": "Character_27_HM",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.754,
+   "pelvis": 1.0246,
+   "bones": 33,
+   "tris": 507,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0858,
+    "toe": 0.192,
+    "heel": 0.0507
+   }
+  },
+  "x-28-hm": {
+   "family": "x",
+   "name": "Character_28_HM",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.808,
+   "pelvis": 1.0349,
+   "bones": 33,
+   "tris": 546,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0972,
+    "toe": 0.219,
+    "heel": 0.0487
+   }
+  },
+  "x-29": {
+   "family": "x",
+   "name": "Character_29",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.65,
+   "pelvis": 0.9488,
+   "bones": 33,
+   "tris": 499,
+   "textured": true,
    "feet": {
     "ankle": 0.0795,
-    "toe": 0.1852,
-    "heel": 0.0457
+    "toe": 0.1782,
+    "heel": 0.0468
    }
   },
-  "u-man-suit": {
-   "family": "u",
-   "height": 1.72,
-   "pelvis": 0.7524,
-   "meshes": 2,
-   "face": {
-    "eye_z": 1.586,
-    "eye_x": 0.053,
-    "chin": 1.462,
-    "mouth_z": 1.518,
-    "brow_verts": 16,
-    "face_meshes": [
-     "BaseHuman_face"
-    ]
-   },
+  "x-30": {
+   "family": "x",
+   "name": "Character_30",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.628,
+   "pelvis": 0.9202,
+   "bones": 33,
+   "tris": 508,
+   "textured": true,
    "feet": {
-    "ankle": 0.0782,
-    "toe": 0.1829,
-    "heel": 0.0441
+    "ankle": 0.0712,
+    "toe": 0.1854,
+    "heel": 0.0325
    }
   },
-  "m-beach": {
-   "family": "m",
-   "height": 1.77,
-   "pelvis": 0.8185,
-   "meshes": 5,
-   "face": {
-    "eye_z": 1.6,
-    "eye_x": 0.054,
-    "chin": 1.479,
-    "mouth_z": 1.534,
-    "brow_verts": 48,
-    "face_meshes": [
-     "Beach_Head_face"
-    ]
-   },
+  "x-31": {
+   "family": "x",
+   "name": "Character_31",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.607,
+   "pelvis": 0.9733,
+   "bones": 33,
+   "tris": 503,
+   "textured": true,
    "feet": {
     "ankle": 0.0805,
-    "toe": 0.1641,
-    "heel": 0.1039
+    "toe": 0.1766,
+    "heel": 0.0466
    }
   },
-  "m-casual": {
-   "family": "m",
-   "height": 1.78,
-   "pelvis": 0.8304,
-   "meshes": 5,
-   "face": {
-    "eye_z": 1.627,
-    "eye_x": 0.055,
-    "chin": 1.547,
-    "mouth_z": 1.583,
-    "brow_verts": 48,
-    "face_meshes": [
-     "Casual2_Head_face"
-    ]
-   },
+  "x-32": {
+   "family": "x",
+   "name": "Character_32",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.605,
+   "pelvis": 0.9425,
+   "bones": 33,
+   "tris": 508,
+   "textured": true,
    "feet": {
-    "ankle": 0.0809,
-    "toe": 0.1927,
-    "heel": 0.0829
+    "ankle": 0.0682,
+    "toe": 0.1815,
+    "heel": 0.0333
    }
   },
-  "m-business": {
-   "family": "m",
-   "height": 1.79,
-   "pelvis": 0.8355,
-   "meshes": 5,
-   "face": {
-    "eye_z": 1.637,
-    "eye_x": 0.055,
-    "chin": 1.513,
-    "mouth_z": 1.569,
-    "brow_verts": 48,
-    "face_meshes": [
-     "Suit_Head_face"
-    ]
-   },
+  "x-male-33": {
+   "family": "x",
+   "name": "Character_Male_33",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.671,
+   "pelvis": 0.853,
+   "bones": 33,
+   "tris": 808,
+   "textured": true,
    "feet": {
-    "ankle": 0.0814,
-    "toe": 0.2007,
-    "heel": 0.0766
+    "ankle": 0.1052,
+    "toe": 0.1977,
+    "heel": 0.0505
    }
   },
-  "m-hoodie": {
-   "family": "m",
-   "height": 1.76,
-   "pelvis": 0.8183,
-   "meshes": 5,
-   "face": {
-    "eye_z": 1.6,
-    "eye_x": 0.054,
-    "chin": 1.487,
-    "mouth_z": 1.538,
-    "brow_verts": 80,
-    "face_meshes": [
-     "Casual_Head_face"
-    ]
-   },
+  "x-male-34": {
+   "family": "x",
+   "name": "Character_Male_34",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.685,
+   "pelvis": 0.9013,
+   "bones": 65,
+   "tris": 792,
+   "textured": true,
    "feet": {
-    "ankle": 0.08,
-    "toe": 0.1895,
-    "heel": 0.0812
+    "ankle": 0.0913,
+    "toe": 0.192,
+    "heel": 0.0631
    }
   },
-  "m-farmer": {
-   "family": "m",
-   "height": 1.77,
-   "pelvis": 0.8257,
-   "meshes": 5,
-   "face": {
-    "eye_z": 1.618,
-    "eye_x": 0.054,
-    "chin": 1.496,
-    "mouth_z": 1.551,
-    "brow_verts": 384,
-    "face_meshes": [
-     "Farmer_Head_face"
-    ]
-   },
+  "x-male-35": {
+   "family": "x",
+   "name": "Character_Male_35",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.752,
+   "pelvis": 0.9235,
+   "bones": 33,
+   "tris": 820,
+   "textured": true,
    "feet": {
-    "ankle": 0.0805,
-    "toe": 0.1642,
-    "heel": 0.1018
+    "ankle": 0.1033,
+    "toe": 0.203,
+    "heel": 0.0571
    }
   },
-  "m-punk": {
-   "family": "m",
-   "height": 1.78,
-   "pelvis": 0.7859,
-   "meshes": 5,
-   "face": {
-    "eye_z": 1.537,
-    "eye_x": 0.052,
-    "chin": 1.421,
-    "mouth_z": 1.473,
-    "brow_verts": 48,
-    "face_meshes": [
-     "Punk_Head_face"
-    ]
-   },
+  "x-male-36": {
+   "family": "x",
+   "name": "Character_Male_36",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.705,
+   "pelvis": 0.9148,
+   "bones": 65,
+   "tris": 806,
+   "textured": true,
    "feet": {
-    "ankle": 0.0809,
-    "toe": 0.1839,
+    "ankle": 0.0881,
+    "toe": 0.1896,
+    "heel": 0.0541
+   }
+  },
+  "x-male-37": {
+   "family": "x",
+   "name": "Character_Male_37",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.811,
+   "pelvis": 0.9619,
+   "bones": 65,
+   "tris": 794,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0936,
+    "toe": 0.2057,
+    "heel": 0.0529
+   }
+  },
+  "x-male-38": {
+   "family": "x",
+   "name": "Character_Male_38",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.704,
+   "pelvis": 0.9216,
+   "bones": 33,
+   "tris": 778,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0925,
+    "toe": 0.1888,
+    "heel": 0.0565
+   }
+  },
+  "x-male-39": {
+   "family": "x",
+   "name": "Character_Male_39",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.717,
+   "pelvis": 0.9171,
+   "bones": 33,
+   "tris": 778,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0875,
+    "toe": 0.1986,
+    "heel": 0.0563
+   }
+  },
+  "x-male-40": {
+   "family": "x",
+   "name": "Character_Male_40",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.691,
+   "pelvis": 0.8977,
+   "bones": 33,
+   "tris": 786,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0769,
+    "toe": 0.1781,
+    "heel": 0.0632
+   }
+  },
+  "x-male-41": {
+   "family": "x",
+   "name": "Character_Male_41",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.732,
+   "pelvis": 0.8911,
+   "bones": 33,
+   "tris": 792,
+   "textured": true,
+   "feet": {
+    "ankle": 0.1109,
+    "toe": 0.1914,
+    "heel": 0.0621
+   }
+  },
+  "x-male-42": {
+   "family": "x",
+   "name": "Character_Male_42",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.647,
+   "pelvis": 0.8538,
+   "bones": 33,
+   "tris": 792,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0836,
+    "toe": 0.1934,
+    "heel": 0.0702
+   }
+  },
+  "x-male-43": {
+   "family": "x",
+   "name": "Character_Male_43",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.744,
+   "pelvis": 0.9014,
+   "bones": 33,
+   "tris": 792,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0897,
+    "toe": 0.2066,
+    "heel": 0.0738
+   }
+  },
+  "x-male-44": {
+   "family": "x",
+   "name": "Character_Male_44",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.642,
+   "pelvis": 0.8525,
+   "bones": 33,
+   "tris": 792,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0868,
+    "toe": 0.1933,
+    "heel": 0.0723
+   }
+  },
+  "x-male-45": {
+   "family": "x",
+   "name": "Character_Male_45",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.69,
+   "pelvis": 0.9182,
+   "bones": 65,
+   "tris": 864,
+   "textured": true,
+   "feet": {
+    "ankle": 0.068,
+    "toe": 0.1923,
+    "heel": 0.0608
+   }
+  },
+  "x-male-46": {
+   "family": "x",
+   "name": "Character_Male_46",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.662,
+   "pelvis": 0.8378,
+   "bones": 65,
+   "tris": 902,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0616,
+    "toe": 0.1789,
+    "heel": 0.0569
+   }
+  },
+  "x-male-47": {
+   "family": "x",
+   "name": "Character_Male_47",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.726,
+   "pelvis": 0.8722,
+   "bones": 65,
+   "tris": 992,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0655,
+    "toe": 0.1944,
+    "heel": 0.0631
+   }
+  },
+  "x-male-48": {
+   "family": "x",
+   "name": "Character_Male_48",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.793,
+   "pelvis": 0.9773,
+   "bones": 65,
+   "tris": 938,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0722,
+    "toe": 0.1986,
     "heel": 0.0761
    }
   },
-  "m-adventurer": {
-   "family": "m",
-   "height": 1.8,
-   "pelvis": 0.84,
-   "meshes": 6,
-   "face": {
-    "eye_z": 1.646,
-    "eye_x": 0.055,
-    "chin": 1.521,
-    "mouth_z": 1.577,
-    "brow_verts": 48,
-    "face_meshes": [
-     "Adventurer_Head_face"
-    ]
-   },
+  "x-male-49": {
+   "family": "x",
+   "name": "Character_Male_49",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.718,
+   "pelvis": 0.8979,
+   "bones": 65,
+   "tris": 956,
+   "textured": true,
    "feet": {
-    "ankle": 0.0818,
-    "toe": 0.1773,
-    "heel": 0.093
+    "ankle": 0.0664,
+    "toe": 0.1898,
+    "heel": 0.0533
    }
   },
-  "m-worker": {
-   "family": "m",
-   "height": 1.79,
-   "pelvis": 0.8335,
-   "meshes": 5,
-   "face": {
-    "eye_z": 1.631,
-    "eye_x": 0.055,
-    "chin": 1.508,
-    "mouth_z": 1.563,
-    "brow_verts": 384,
-    "face_meshes": [
-     "Worker_Head_face"
-    ]
-   },
+  "x-male-50": {
+   "family": "x",
+   "name": "Character_Male_50",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.706,
+   "pelvis": 0.9199,
+   "bones": 65,
+   "tris": 974,
+   "textured": true,
    "feet": {
-    "ankle": 0.0814,
-    "toe": 0.1754,
-    "heel": 0.092
+    "ankle": 0.0651,
+    "toe": 0.1863,
+    "heel": 0.052
+   }
+  },
+  "x-male-51": {
+   "family": "x",
+   "name": "Character_Male_51",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.745,
+   "pelvis": 0.9488,
+   "bones": 65,
+   "tris": 1098,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0762,
+    "toe": 0.2025,
+    "heel": 0.0602
+   }
+  },
+  "x-male-52": {
+   "family": "x",
+   "name": "Character_Male_52",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.82,
+   "pelvis": 0.9751,
+   "bones": 65,
+   "tris": 974,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0718,
+    "toe": 0.2055,
+    "heel": 0.0605
+   }
+  },
+  "x-male-53": {
+   "family": "x",
+   "name": "Character_Male_53",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.703,
+   "pelvis": 0.9075,
+   "bones": 65,
+   "tris": 998,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0817,
+    "toe": 0.1833,
+    "heel": 0.0507
+   }
+  },
+  "x-male-54": {
+   "family": "x",
+   "name": "Character_Male_54",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.747,
+   "pelvis": 0.9432,
+   "bones": 65,
+   "tris": 990,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0714,
+    "toe": 0.1847,
+    "heel": 0.0579
+   }
+  },
+  "x-male-55": {
+   "family": "x",
+   "name": "Character_Male_55",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.783,
+   "pelvis": 0.943,
+   "bones": 65,
+   "tris": 974,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0852,
+    "toe": 0.1924,
+    "heel": 0.0528
+   }
+  },
+  "x-male-56": {
+   "family": "x",
+   "name": "Character_Male_56",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.689,
+   "pelvis": 0.9049,
+   "bones": 65,
+   "tris": 974,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0796,
+    "toe": 0.1807,
+    "heel": 0.0507
+   }
+  },
+  "x-male-57": {
+   "family": "x",
+   "name": "Character_Male_57",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.757,
+   "pelvis": 0.9442,
+   "bones": 65,
+   "tris": 974,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0837,
+    "toe": 0.1907,
+    "heel": 0.0529
+   }
+  },
+  "x-sheriff-n": {
+   "family": "x",
+   "name": "Character_Sheriff_N",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.72,
+   "pelvis": 0.9485,
+   "bones": 65,
+   "tris": 870,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0785,
+    "toe": 0.2086,
+    "heel": 0.0679
+   }
+  },
+  "x-sheriff-n-01": {
+   "family": "x",
+   "name": "Character_Sheriff_N_01",
+   "group": "Male",
+   "sex": "m",
+   "height": 1.74,
+   "pelvis": 0.9192,
+   "bones": 65,
+   "tris": 880,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0796,
+    "toe": 0.2063,
+    "heel": 0.0686
+   }
+  },
+  "x-monster-01": {
+   "family": "x",
+   "name": "Character_Monster_01",
+   "autorig": true,
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 1.954,
+   "pelvis": 1.1269,
+   "bones": 33,
+   "tris": 684,
+   "textured": true,
+   "feet": {
+    "ankle": 0.057,
+    "toe": 0.2645,
+    "heel": -0.018
+   }
+  },
+  "x-monster-02": {
+   "family": "x",
+   "name": "Character_Monster_02",
+   "autorig": true,
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 1.667,
+   "pelvis": 0.962,
+   "bones": 33,
+   "tris": 473,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0525,
+    "toe": 0.2428,
+    "heel": -0.0142
+   }
+  },
+  "x-monster-03": {
+   "family": "x",
+   "name": "Character_Monster_03",
+   "autorig": true,
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 1.901,
+   "pelvis": 1.0954,
+   "bones": 33,
+   "tris": 763,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0596,
+    "toe": 0.1777,
+    "heel": 0.0549
+   }
+  },
+  "x-monster-04": {
+   "family": "x",
+   "name": "Character_Monster_04",
+   "autorig": true,
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 2.207,
+   "pelvis": 1.2744,
+   "bones": 33,
+   "tris": 744,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0527,
+    "toe": 0.2259,
+    "heel": 0.0912
+   }
+  },
+  "x-monster-05": {
+   "family": "x",
+   "name": "Character_Monster_05",
+   "autorig": true,
+   "group": "Killer_M",
+   "sex": "m",
+   "height": 2.057,
+   "pelvis": 1.187,
+   "bones": 33,
+   "tris": 479,
+   "textured": true,
+   "feet": {
+    "ankle": 0.0621,
+    "toe": 0.2568,
+    "heel": 0.0019
    }
   }
  },
  "families": {
-  "u": {
-   "reference": "u-man",
+  "x": {
+   "reference": "x-01",
    "clips": [
     "aim",
+    "aim_down",
+    "aim_up",
     "carry",
     "carry_idle",
     "cheer",
@@ -445,80 +2165,289 @@
     "crouch",
     "crouch_walk",
     "dance",
+    "dead",
+    "death",
     "drive",
     "fall",
     "hit",
+    "hit_head",
     "idle",
     "interact",
+    "jog",
     "jump",
     "jump_land",
     "jump_start",
     "kneel",
     "phone",
     "pickup",
+    "pistol_idle",
     "point",
     "punch",
+    "punch_cross",
     "push",
+    "reload",
     "roll",
     "run",
+    "shoot",
     "sit",
     "sit_enter",
+    "sit_exit",
     "sit_talk",
     "sleep",
     "sprint",
     "swim",
     "swim_idle",
+    "sword",
+    "sword_idle",
     "talk",
     "think",
+    "torch",
     "walk",
     "walk_formal",
     "wave",
     "zombie"
    ],
-   "pelvis": 0.7699
-  },
-  "m": {
-   "reference": "m-casual",
-   "clips": [
-    "aim",
-    "carry",
-    "carry_idle",
-    "cheer",
-    "cower",
-    "crouch",
-    "crouch_walk",
-    "dance",
-    "drive",
-    "fall",
-    "hit",
-    "idle",
-    "interact",
-    "jump",
-    "jump_land",
-    "jump_start",
-    "kneel",
-    "phone",
-    "pickup",
-    "point",
-    "punch",
-    "push",
-    "roll",
-    "run",
-    "sit",
-    "sit_enter",
-    "sit_talk",
-    "sleep",
-    "sprint",
-    "swim",
-    "swim_idle",
-    "talk",
-    "think",
-    "walk",
-    "walk_formal",
-    "wave",
-    "zombie"
-   ],
-   "pelvis": 0.8304
+   "pelvis": 1.0208,
+   "stride": {
+    "refHeight": 1.76,
+    "walk": 1.36,
+    "walk_formal": 1.39,
+    "zombie": 1.36,
+    "carry": 1.36,
+    "crouch_walk": 0.97,
+    "run": 2.53,
+    "jog": 2.53,
+    "sprint": 3.3,
+    "swim": 1.3
+   },
+   "stride_measured": {
+    "refHeight": 1.769,
+    "walk": 1.105,
+    "walk_formal": 1.099,
+    "zombie": 1.105,
+    "carry": 1.105,
+    "crouch_walk": 1.061,
+    "run": 2.329,
+    "jog": 2.329,
+    "sprint": 2.208,
+    "swim": 0.462
+   }
   }
+ },
+ "roles": {
+  "police": {
+   "m": [
+    "x-17-police",
+    "x-18-police",
+    "x-19-police",
+    "x-20-police"
+   ],
+   "f": [
+    "x-17-female-police",
+    "x-18-female-police",
+    "x-19-female-police",
+    "x-20-female-police"
+   ]
+  },
+  "sol": {
+   "m": [
+    "x-21-police",
+    "x-22-police"
+   ],
+   "f": [
+    "x-25-female-police",
+    "x-26-female-police"
+   ]
+  },
+  "sheriff": {
+   "m": [
+    "x-sheriff-n",
+    "x-sheriff-n-01"
+   ],
+   "f": [
+    "x-19-female-police",
+    "x-20-female-police"
+   ]
+  },
+  "fire": {
+   "m": [
+    "x-23-firefighter",
+    "x-24-firefighter"
+   ],
+   "f": [
+    "x-21-female-firefighter",
+    "x-22-female-firefighter"
+   ]
+  },
+  "medic": {
+   "m": [
+    "x-25-doctor",
+    "x-26-doctor"
+   ],
+   "f": [
+    "x-23-female-doctor",
+    "x-24-female-doctor"
+   ]
+  },
+  "worker": {
+   "m": [
+    "x-27-hm",
+    "x-28-hm"
+   ],
+   "f": [
+    "x-27-female-hm",
+    "x-28-female-hm"
+   ]
+  },
+  "office": {
+   "m": [
+    "x-05",
+    "x-male-36",
+    "x-male-47",
+    "x-male-45"
+   ],
+   "f": [
+    "x-37-female",
+    "x-38-female",
+    "x-39-female",
+    "x-45-female"
+   ]
+  },
+  "vendor": {
+   "m": [
+    "x-male-35",
+    "x-male-45",
+    "x-male-49",
+    "x-male-53"
+   ],
+   "f": [
+    "x-43-female",
+    "x-49-female",
+    "x-54-female",
+    "x-55-female"
+   ]
+  },
+  "athlete": {
+   "m": [
+    "x-11",
+    "x-12",
+    "x-male-55"
+   ],
+   "f": [
+    "x-41-female",
+    "x-47-female",
+    "x-female-09"
+   ]
+  },
+  "hiker": {
+   "m": [
+    "x-male-44",
+    "x-16",
+    "x-male-43"
+   ],
+   "f": [
+    "x-34-female",
+    "x-35-female",
+    "x-43-female"
+   ]
+  },
+  "survivor": {
+   "m": [
+    "x-male-57",
+    "x-14",
+    "x-male-42"
+   ],
+   "f": [
+    "x-40-female",
+    "x-44-female",
+    "x-female-12"
+   ]
+  },
+  "elder": {
+   "m": [
+    "x-male-33",
+    "x-male-34",
+    "x-male-51",
+    "x-male-48"
+   ],
+   "f": [
+    "x-29-female",
+    "x-30-female",
+    "x-31-female",
+    "x-32-female",
+    "x-51-female"
+   ]
+  },
+  "child": {
+   "m": [
+    "x-11",
+    "x-12",
+    "x-03",
+    "x-07"
+   ],
+   "f": [
+    "x-female-15",
+    "x-female-16",
+    "x-female-05",
+    "x-33-female"
+   ]
+  },
+  "killer": {
+   "m": [
+    "x-killer",
+    "x-killer-01",
+    "x-killer-02",
+    "x-killer-03",
+    "x-killer-04",
+    "x-killer-05",
+    "x-killer-06",
+    "x-killer-07",
+    "x-killer-08",
+    "x-killer-09",
+    "x-killer-10",
+    "x-killer-10-01"
+   ]
+  },
+  "zombie": {
+   "m": [
+    "x-monster-01",
+    "x-monster-02",
+    "x-monster-03",
+    "x-monster-04",
+    "x-monster-05",
+    "x-monster-06",
+    "x-monster-07",
+    "x-monster-08"
+   ]
+  },
+  "chef": {
+   "m": [
+    "x-male-35",
+    "x-male-45",
+    "x-male-49",
+    "x-male-53"
+   ],
+   "f": [
+    "x-43-female",
+    "x-49-female",
+    "x-54-female",
+    "x-55-female"
+   ]
+  },
+  "student": {
+   "m": [
+    "x-11",
+    "x-12",
+    "x-03",
+    "x-07"
+   ],
+   "f": [
+    "x-female-15",
+    "x-female-16",
+    "x-female-05",
+    "x-33-female"
+   ]
+  },
+  "civ": {}
  }
 }

@@ -17,8 +17,8 @@ function collect() {
   const water = quoted(validateWaterHazard, /h==='(\w+)'/g);
   const groups = new Map();
   for (const a of CATALOG_BASE) {
-    const key = [a.category, a.states.join(' '), (a.expressions || []).join(' '), (a.accessories || []).join(' ')].join('|');
-    if (!groups.has(key)) groups.set(key, { category: a.category, kind: a.kind, states: a.states, expressions: a.expressions || [], accessories: a.accessories || [], ids: [] });
+    const key = [a.category, a.states.join(' '), (a.expressions || []).join(' '), ].join('|');
+    if (!groups.has(key)) groups.set(key, { category: a.category, kind: a.kind, states: a.states, expressions: a.expressions || [], ids: [] });
     groups.get(key).ids.push(a.id);
   }
   return {
@@ -26,8 +26,10 @@ function collect() {
     presets: PRE, moves: MOV, events: EVT, crowd: CRW, emotions: EMOS, zombies: ZMB,
     biomes: lists(validateCatalogScenario).find(l => l.includes('city') && l.includes('coast')),
     finishes: quoted(validateFinish, /'(\w+)'/g).filter(x => x !== 'toy' ? x === 'classic' : true),
-    cinema: { material: FILM_FINISHES, grade: lists(validateCinemaAndMoments)[0], ranges: cinemaRanges, speech: lists(validateSpeech)[0] },
-    speech_icons: SPEECH_ICONS,
+    cinema: { material: FILM_FINISHES, grade: lists(validateCinemaAndMoments)[0], ranges: cinemaRanges },
+    // the PSX look (25-psx-shader.js): cinema.psx and shot cinema.psx take the film and screen settings, assets[].psx the model ones
+    psx: PSX_PARAMS.map(p => ({ key: p.key, scope: p.scope, group: p.group, type: p.type, default: p.def, ...(p.min !== undefined ? { min: p.min, max: p.max } : {}), ...(p.options ? { options: p.options } : {}), ...(p.set ? { textures: PSX_TEXTURE_SETS[p.set] } : {}), help: p.help })),
+    psx_looks: Object.fromEntries(PSX_PRESETS.map(p => [p.name, p.look])),
     dialogue_moods: ['friendly', ...quoted(String(updateTalkingFaces) + String(applyConversation), /d\.mood==='(\w+)'/g)],
     shaders: [...document.getElementById('catalogShader').options].map(o => o.value),
     sfx_first_match_wins: soundTypes.map(([id, label, group, re]) => ({ id, label, group, match: re.source })),
@@ -37,6 +39,8 @@ function collect() {
   };
 }
 
+// Left out on purpose (Phase 1): speech balloons / dialogue icons (no longer drawn; scripts that still carry them
+// validate) and accessories (hidden on the PSX people).
 // A readable copy of the same data, for skills and people.
 function markdown(v) {
   const L = [`# Frame Studio scenario vocabulary (schema v${v.version})`, '',
@@ -45,9 +49,12 @@ function markdown(v) {
   row('hazard.type', v.hazards); row('cam.preset', v.presets); row('cam.move', v.moves); row('events', v.events);
   row('behavior.crowd', v.crowd); row('behavior.emotion', v.emotions); row('behavior.zombies', v.zombies);
   row('world.biome', v.biomes); row('world.finish', v.finishes);
-  row('cinema.material', v.cinema.material); row('cinema.grade', v.cinema.grade); row('cinema.speech', v.cinema.speech);
+  row('cinema.material', v.cinema.material); row('cinema.grade', v.cinema.grade);
   L.push(`- **cinema ranges**: ${Object.entries(v.cinema.ranges).map(([k, [a, b]]) => `${k} ${a}-${b}`).join(', ')}`);
-  row('dialogue icon', v.speech_icons); row('dialogue mood', v.dialogue_moods); row('asset shader', v.shaders);
+  row('dialogue mood', v.dialogue_moods); row('asset shader', v.shaders);
+  L.push('', '## PSX look (cinema.material "psx")', '', 'cinema.psx (film) and the cinema.psx of a shot take the film and screen settings; assets[].psx takes the model settings. Leave out what stays at the default.', '');
+  for (const p of v.psx) L.push(`- **${p.key}** (${p.scope}${p.options ? ': ' + p.options.map((o, i) => i + ' = ' + o).join(', ') : p.min !== undefined ? ', ' + p.min + '-' + p.max : p.textures ? ': ' + p.textures.join(', ') + ' or a data URL' : ''}; default ${JSON.stringify(p.default)}): ${p.help}`);
+  L.push('', 'Ready looks: ' + Object.entries(v.psx_looks).map(([n, l]) => `${n} ${JSON.stringify(l)}`).join('; '));
   L.push('', '## sfx keywords (checked in this order, first match wins, no match = silent)', '');
   for (const s of v.sfx_first_match_wins) L.push(`- **${s.id}** (${s.label}): \`${s.match}\``);
   L.push('', '## time_of_day and weather keywords', '');
@@ -57,7 +64,6 @@ function markdown(v) {
   for (const g of v.assets.groups) {
     L.push(`- **${g.category}/${g.kind}** (${g.ids.length}): ${g.ids.join(', ')}`, `  - states: ${g.states.join(' ')}`);
     if (g.expressions.length) L.push(`  - expressions: ${g.expressions.join(' ')}`);
-    if (g.accessories.length) L.push(`  - accessories: ${g.accessories.join(' ')}`);
   }
   return L.join('\n') + '\n';
 }

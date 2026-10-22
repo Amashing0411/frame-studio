@@ -422,3 +422,70 @@ details.fold>.wide{width:calc(100% - 28px)}
 .asset-grid small{display:none}
 .asset-swatch{position:absolute;top:11px;right:11px;width:12px;height:12px;border-radius:50%;box-shadow:0 0 0 2px var(--surface)}
 @media (hover:hover) and (pointer:fine){.asset-grid .asset-item:hover{box-shadow:inset 0 0 0 1px var(--line2),var(--sh1)}}
+/* PSX look editor (26-psx-editor.js): the shader viewer as a full-screen view. Preview on the left (or on top on a
+   phone), the panel with looks, settings and code on the right (or as a sheet below). The preview canvas keeps hard
+   pixels; everything else is the studio's own system. */
+.psx-ed{position:fixed;inset:0;z-index:55;display:grid;grid-template-columns:minmax(0,1fr) min(440px,42vw);gap:12px;padding:12px;background:var(--bg);opacity:0;transform:scale(.985);transition:opacity 180ms var(--ease-out),transform 220ms var(--ease-out)}
+.psx-ed.in{opacity:1;transform:none}
+.psx-ed:focus{outline:none}
+.psx-ed__stage{position:relative;min-height:0;border-radius:var(--r-lg);overflow:hidden;background:#07080a;box-shadow:var(--film-shadow)}
+.psx-ed__stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;image-rendering:pixelated}
+#psxEdCanvas{touch-action:none;cursor:grab}#psxEdCanvas:active{cursor:grabbing}
+.psx-ed__hint{position:absolute;left:14px;right:14px;bottom:12px;color:rgba(255,255,255,.72);font-size:12.5px;text-shadow:0 1px 2px rgba(0,0,0,.6);pointer-events:none}
+.psx-ed__loading{position:absolute;top:14px;left:14px;padding:5px 10px;border-radius:99px;background:rgba(0,0,0,.55);color:#fff;font-size:12px}
+.psx-ed__panel{display:flex;flex-direction:column;min-height:0;background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--sh2);overflow:hidden}
+.psx-ed__head{display:flex;align-items:center;gap:10px;padding:14px 10px 8px 18px}
+.psx-ed__head h2{font-size:21px;letter-spacing:-.02em}.psx-ed__head .muted{margin-left:auto;font-size:12.5px}
+.psx-ed__top{display:grid;gap:10px;padding:0 18px 4px}
+.psx-ed__scene{display:flex;gap:8px}.psx-ed__scene select{flex:1;min-width:0}
+.psx-ed__scene input[type=color]{width:42px;height:38px;padding:4px;border:0;border-radius:var(--r-sm);background:var(--sunk);cursor:pointer}
+.psx-ed__label{font-size:13px;font-weight:600;color:var(--ink2);margin-top:2px}
+.psx-ed__presets{display:flex;flex-wrap:wrap;gap:6px}
+.psx-ed__presets button{height:32px;padding:0 11px;border-radius:9px;font-size:13px}
+.psx-ed__presets button[aria-pressed=true]{background:var(--ink);color:var(--surface)}
+.psx-ed__tabs{margin-top:4px}.psx-ed__tabs button{flex:1;gap:6px}
+.psx-ed__body{flex:1;min-height:0;overflow:auto;padding:2px 18px 16px;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
+details.psx-g{border-top:1px solid var(--line)}details.psx-g:first-child{border-top:0}
+details.psx-g>summary{list-style:none;display:flex;align-items:center;gap:8px;height:44px;font-weight:600;font-size:14px;cursor:pointer;user-select:none}
+details.psx-g>summary::-webkit-details-marker{display:none}
+details.psx-g>summary svg.i{width:16px;height:16px;color:var(--ink3);transform:rotate(-90deg);transition:transform 160ms var(--ease-out)}
+details.psx-g[open]>summary svg.i{transform:none}
+.psx-g__note{margin-left:auto;font-size:11.5px;font-weight:500;color:var(--ink3)}
+.psx-p{display:grid;gap:6px;padding:8px 0 14px}
+.psx-p__head{display:flex;align-items:center;gap:8px}
+.psx-p__head code{font-size:12.5px;background:transparent;padding:0;color:var(--ink);font-weight:600}
+.psx-p__scope{height:20px;padding:0 7px;border-radius:99px;background:var(--sunk);color:var(--ink3);font-size:11px;font-weight:600;display:inline-flex;align-items:center}
+.psx-p[data-scope=model] .psx-p__scope{background:var(--tint);color:var(--accent)}
+.psx-ed--film .psx-p[data-scope=model]{opacity:.62}
+.psx-p__help{font-size:12.5px;line-height:1.5;color:var(--ink3);max-width:62ch}
+.psx-p__slider{display:flex;align-items:center;gap:10px}
+.psx-p__slider input[type=range]{flex:1;min-width:0;accent-color:var(--accent);height:28px}
+.psx-p__num,.psx-p__vec input{width:74px;height:34px;padding:0 8px;border:0;border-radius:9px;background:var(--sunk);font-variant-numeric:tabular-nums;text-align:right}
+.psx-p__vec{display:flex;gap:10px}.psx-p__vec label{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink3)}
+.psx-p__color{display:flex;align-items:center;gap:10px}.psx-p__color input{width:46px;height:34px;padding:3px;border:0;border-radius:9px;background:var(--sunk);cursor:pointer}.psx-p__color span{font-size:12.5px;color:var(--ink2)}
+.psx-p__enum{align-self:start}
+.psx-tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:6px}
+.psx-tiles button{height:52px;padding:4px;border-radius:10px;background:var(--sunk);font-size:12px;color:var(--ink2)}
+.psx-tiles img{display:block;width:100%;height:100%;object-fit:cover;border-radius:7px;image-rendering:pixelated}
+.psx-tiles button[aria-pressed=true]{box-shadow:inset 0 0 0 2px var(--accent);background:var(--tint)}
+.psx-tiles .psx-tile-text{grid-column:span 2}
+.psx-ed__code{display:flex;flex-direction:column;gap:10px}
+.psx-ed__code textarea{flex:1;min-height:240px;padding:12px;border:0;border-radius:var(--r-sm);background:var(--sunk);font:12.5px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;resize:vertical;tab-size:2}
+.psx-ed__err{min-height:1.2em;font-size:12.5px;color:var(--bad)}
+.psx-ed__foot{display:grid;gap:8px;padding:12px 18px calc(12px + env(safe-area-inset-bottom));box-shadow:0 -1px 0 var(--line)}
+.psx-ed__foot .row{flex-wrap:nowrap}.psx-ed__foot .row button{flex:1;min-width:0;gap:6px}.psx-ed__foot .row button span,.psx-ed__foot .row button{overflow:hidden;text-overflow:ellipsis}
+#psxLookSection button.wide{gap:8px}
+@media (max-width:760px){
+ .psx-ed{grid-template-columns:1fr;grid-template-rows:minmax(200px,38dvh) minmax(0,1fr);gap:0;padding:0}
+ .psx-ed__stage{border-radius:0;box-shadow:none}
+ .psx-ed__hint{bottom:28px}
+ .psx-ed__panel{margin-top:-16px;position:relative;border-radius:var(--r-lg) var(--r-lg) 0 0}
+ .psx-ed__head{padding-top:12px}
+ .psx-ed__presets{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -18px;padding:0 18px}.psx-ed__presets::-webkit-scrollbar{display:none}
+ .psx-ed__presets button{height:40px;flex:none}
+ .psx-ed__scene select,.psx-ed__scene input[type=color],.psx-ed__foot button,.psx-ed__tabs button{min-height:44px}
+ .psx-p__num,.psx-p__vec input,.psx-p__color input{height:40px}
+ .psx-p__enum button{min-height:40px}
+ .psx-ed__foot .row:first-child button span{display:none}
+}
+@media (prefers-reduced-motion:reduce){.psx-ed{transition:opacity 120ms ease;transform:none}details.psx-g>summary svg.i{transition:none}}

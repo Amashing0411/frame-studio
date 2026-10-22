@@ -1,6 +1,6 @@
 ---
 name: "whatif-director"
-description: "Turns a \"what if\" idea into an engine-ready Frame Studio scenario JSON (schema v7): fact brief, cast, beat sheet, shots, actions, dialogue, thoughts, camera targets. Use for WHATIF:, scripts, shot lists or fixing scenario JSON."
+description: "Turns a \"what if\" idea into an engine-ready Frame Studio scenario JSON (schema v7): fact brief, cast, beat sheet, shots, actions, dialogue, camera targets. Use for WHATIF:, scripts, shot lists or fixing scenario JSON."
 ---
 
 # What-If Director (schema v7)
@@ -20,7 +20,7 @@ An idea, optional length (default 60 s for a character story, up to 3 minutes fo
 3. **BEAT SHEET**: beats that sum to the target length.
 4. **SCENARIO JSON**: one code block, schema v7 below.
 5. **VALIDATE**: if you can run code, save the Validator below to `validate_v7.py`, save the JSON, and run `python3 validate_v7.py scenario.json`. Fix every ERROR and every WARNING you can. If you cannot run code, run the same checks by hand and print the real numbers.
-6. **AUDIT**: print real numbers: shot count, every shot length in order, length trend, closeups (subject + emotion), crowd sequence, re-hook times, fact_id of every fact caption, cast shots, dialogue lines and thoughts. A check you did not run must say "NOT CHECKED", never PASS.
+6. **AUDIT**: print real numbers: shot count, every shot length in order, length trend, closeups (subject + emotion), crowd sequence, re-hook times, fact_id of every fact caption, cast shots and dialogue lines. A check you did not run must say "NOT CHECKED", never PASS.
 7. If requests were dropped, add **REJECTED REQUESTS** (one line each). If the idea needs something the engine lacks, add **MISSING CAPABILITIES**.
 
 ## Scenario schema v7
@@ -35,9 +35,9 @@ An idea, optional length (default 60 s for a character story, up to 3 minutes fo
   "environment": {"sun":{"enabled","azimuth","elevation","intensity"}, "moon":{"enabled","phase","intensity"},
                   "clouds":{"coverage","speed"}, "wind":0-5,
                   "water":{"level","wave_height","speed","color":"#rrggbb"}, "fog":{"near","far"}},
-  "cinema": {"material","grade","dof","focus","radial","bloom","vignette","grain","voices","bubbles","speech"},
+  "cinema": {"material","grade","dof","focus","radial","bloom","vignette","grain","voices","psx":{...PSX film look}},
   "assets": [ {"instance_id","asset_id","name","position":[x,y,z],"rotation":[0,yawDeg,0],"scale":[x,y,z],
-               "state","expression","accessories":[],"shader","visible",
+               "state","expression","shader","visible","psx":{...PSX model look},
                "path":[{"t","position":[x,y,z]}], "orient_to_path":true} ],
   "chapters":[{"id","title","shots":[{
       "t0","t1",
@@ -48,7 +48,7 @@ An idea, optional length (default 60 s for a character story, up to 3 minutes fo
       "events":[], "sfx":[],
       "behavior":{"crowd","emotion","zombies"},
       "actions":[{"target","state","expression","transition"}],
-      "dialogue":[{"target","text","mood","start","duration","icon"}],
+      "dialogue":[{"target","text","mood","start","duration"}],
       "thoughts":[{"target","text","start","duration"}],
       "cinema":{...per-shot overrides...} }]}],
   "end_card":{"text","disclaimer"} }
@@ -74,23 +74,24 @@ Any key not listed inside `assets[]` items or `actions` is an ERROR in the engin
 - **world.finish**: toy (default; city buildings, vehicles and props get bevelled edges and the softer clay palette that matches the characters) or classic (the older flat low-poly city). Only affects the city biome.
 - **hazard.type**: quake, zombie, tsunami, flood, or none (a character story with no disaster). Quake and zombie effects only show in the city biome. Tsunami and flood draw their full water (wave, flooded streets, floating cars) in the city biome; in other biomes only the biome's own water level follows them. A tsunami needs a `tsunami_wave` event (usually after a `sea_retreat` shot) or no wave arrives; a flood needs at least one `flood_rise` or the water stays low.
 - **actions**: change a placed asset's `state` and/or `expression` from the start of that shot. They **persist** into later shots until another action changes them. `transition` 0-5 s blend (default 0.45). One action per target per shot.
-- **dialogue**: the character lip-syncs in a babble voice that stays the same for that character all film (children higher, elders lower). A speech balloon appears beside the speaker: by default 1-2 pictogram icons picked from the line's words; with `cinema.speech:"text"` it shows the words (first 120 characters); `"off"` hides it (voice only). `icon` (optional) forces the pictogram: heart, question, exclaim, idea, food, home, coin, phone, music, sleep, angry, smile, warning, plus. `mood`: friendly, surprised, worried (anything else plays as friendly). `start` default 0.4 s, `duration` default 2.2 s, both within the shot. Text max 200 characters. One speaker at a time.
+- **dialogue**: the character talks in a babble voice that stays the same for that character all film (children higher, elders lower) and plays talking gestures. **Nothing is drawn on screen**: there are no speech balloons, icons or emojis (removed as redundant), so the words themselves are never shown. Anything the audience must read goes in a `caption`. `mood`: friendly, surprised, worried (anything else plays as friendly). `start` default 0.4 s, `duration` default 2.2 s, both within the shot. Text max 200 characters. One speaker at a time. Older scripts with `icon`, `cinema.speech` or `cinema.bubbles` still load; those fields do nothing.
 - **Conversation (automatic)**: while someone speaks, other placed humans within 7 m turn their heads toward them and nod; the speaker looks at whoever spoke last (otherwise the nearest listener). A speaker whose state is idle and who is not walking blends into talking hand gestures for the line. Heads turn at most about 60 degrees, so stand people in conversation within 7 m of each other and roughly facing each other.
-- **thoughts**: a thought-cloud bubble with the text above the character's head. Keep it to 40 characters or fewer. `start` default 0, `duration` default the whole shot.
-- **cinema** (top level and per shot): material natural|soft|ceramic|faceted|toon|psx (psx = PlayStation-1 look: low-res pixels, wobble, dither; turns off dof/bloom/grain); grade neutral|warm|cool|mono; dof 0-1; focus 0-300 (0 = auto); radial 0-1 (motion blur from center); bloom 0-1; vignette 0-1; grain 0-1; voices true/false; bubbles true/false (thought clouds); speech icons|text|off (speech balloons, default icons). Typical: closeup dof 0.5-0.65; action radial 0.1-0.2.
+- **thoughts**: still accepted, but **not drawn** (thought clouds were removed). Put an inner thought in a `narration` caption instead, or leave it out.
+- **cinema** (top level and per shot): material natural|soft|ceramic|faceted|toon|psx (psx = PlayStation-1 look: low-res pixels, wobble, dither; turns off dof/bloom/grain); grade neutral|warm|cool|mono; dof 0-1; focus 0-300 (0 = auto); radial 0-1 (motion blur from center); bloom 0-1; vignette 0-1; grain 0-1; voices true/false. Typical: closeup dof 0.5-0.65; action radial 0.1-0.2.
+- **PSX look** (with `cinema.material: "psx"`, top level or per shot): `cinema.psx` tunes the PlayStation look of the whole film or one shot, `assets[].psx` gives one placed model its own surface. Write only what differs from the defaults; the full list with ranges and plain help is in `references/vocabulary.md` ("PSX look"). Film settings: pixel_size (1-16, 3 = 360 x 640), snap_strength, jitter (shaky geometry), affine (texture swimming), texture_filter (0 Nearest, 1 N64), fog_amount/fog_color/fog_start/fog_end (metres), color_bits (1-8, 5 = PS1), dither_amount, shadows, and the screen effect: screen_amount, screen_pixel_size, screen_color_bits, screen_dither, grain, vignette. Model settings: albedo_tex (brick, checker, stone, grass, crate, metal, fence, colormap), albedo_color, uv_scale/uv_offset/uv_scroll, lit, glow, emission_tex (runes, lava, ember) + emission_strength, matcap_tex (chrome, gold, ember) + matcap_amount, billboard (0 off, 1 full, 2 upright), cutout. Ready looks: PS1 `{"fog_amount":0.55}`, Horror fog `{"color_bits":4,"fog_amount":1,"fog_start":2,"fog_end":15,"grain":0.04,"screen_color_bits":4,"vignette":0.5}`, Crunchy 3-bit `{"color_bits":3,"fog_amount":0.4,"pixel_size":4,"screen_color_bits":3,"screen_pixel_size":4}`, N64 `{"affine":0,"fog_amount":0.3,"pixel_size":2,"screen_pixel_size":2,"snap_strength":0,"texture_filter":1}`. Use PSX for a retro or horror tone; fog distances are metres, so a city needs larger fog_start/fog_end than the 8-30 m of a corridor.
 - **environment**: overrides lighting only for the parts you include. In city films leave out sun/fog/clouds and let time_of_day and weather light the scene; include them for other biomes. Ranges: sun azimuth ±360, elevation ±90, intensity 0-5; moon phase 0-1, intensity 0-3; clouds coverage 0-1, speed ±20; wind 0-5 (above 2 makes trees sway hard); water level ±100, wave_height 0-5, speed 0-5, color #rrggbb; fog near 0-1000, far 1-2000 and greater than near.
 - **Camera on a placed asset**: `target_id` (an instance_id), `target_height` (where to look, metres above the asset's feet, ±1000), `offset` (camera position relative to the asset, WORLD axes, not rotated with the asset, nonzero). With target_id only push/pull (zoom 18%) and orbit (circles) move the camera; crane and track give a static frame. The camera follows the asset if it walks a path.
 - **Authored camera** (any world): `position` and `look` (world [x,y,z], each coordinate within ±1000) place the camera exactly; both are required, one alone is ignored. Add `end_position` and/or `end_look` to glide smoothly to them over the shot. Preset and move then only affect shake. `target_id` overrides an authored position, so use one or the other. Use authored cameras for precise compositions (a low angle past a foreground prop, a reveal over a rooftop edge); use target_id for anything that follows a moving actor. "Keep camera clear of solid scenery" may nudge an authored camera out of a wall.
 - **cam.fov** (15-100, any shot): lens angle. Default 56 for presets, 42 for authored cameras. 30-40 is a tight telephoto closeup, 60-75 a wide establishing shot.
 
-## Asset list (asset_id → states | expressions | accessories)
+## Asset list (asset_id → states | expressions)
 
 Use a base id (e.g. `human.medic`) or a variant `.v01` to `.v24` (e.g. `human.medic.v03`) for a different color and outfit. Give each cast member a different variant. `shader` (optional): standard, matte, metal, glass, toon, emissive. `extension.*` ids only work if the user imported that extension pack; never use them unless the user says so.
 
-- **Humans** (fully rigged, lip-sync): human.civilian, human.commuter, human.medic, human.firefighter, human.police, human.worker, human.sailor, human.pilot, human.hiker, human.chef, human.vendor, human.student, human.child, human.elder, human.athlete, human.diver, human.raincoat, human.survivor
-  - states: idle walk run wave talk phone sit crouch cower cheer point carry swim dance jump climb fall sleep zombie think
-  - expressions: neutral happy sad angry fear surprised determined relief sleepy
-  - accessories: backpack cap helmet glasses mask bag vest umbrella
+- **Humans** (painted PSX characters from Characters PSX 1.2, animated with motion-captured clips; the id picks the role, e.g. `human.police` is a police officer, `human.zombie` a zombie, `human.child` a child; a variant `.vNN` picks a different person of that role): human.civilian, human.commuter, human.medic, human.firefighter, human.police, human.worker, human.sailor, human.pilot, human.hiker, human.chef, human.vendor, human.student, human.child, human.elder, human.athlete, human.diver, human.raincoat, human.survivor, human.zombie, human.killer, human.sheriff
+  - states: idle walk run jog wave talk phone sit sit_exit crouch kneel cower cheer point think carry swim dance jump climb fall death hit_head sleep zombie aim shoot reload torch sword punch (jog 2-2.5 m/s; death and fall play once and stay down; sit_exit stands up from sitting)
+  - expressions: neutral happy sad angry fear surprised determined relief sleepy. Faces are painted, so an expression barely shows: **show feelings with the state** (cower, cheer, think, point, kneel, hit_head) and with the camera.
+  - No accessories: the PSX people wear what is painted on them (an `accessories` list in older scripts is ignored).
 <!-- assets:start -->
 Each model below has one look: use the id as written (an old `.vNN` suffix still resolves to the same model). Sizes are width×height×depth in metres; models stand on y = 0, centred, facing +z.
 
@@ -129,7 +130,7 @@ In the full JSON every id is written out in full (`vehicle.taxi`, never `.taxi`)
 - Alternate wide/close and high/low. Hazard films include aerial, ground, pov and rooftop-or-window shots.
 - **Cast:** give the story 1-3 named characters (placed humans) and frame them with `target_id` in at least a third of the shots. Every cast member must be a camera target at least once. Their faces come from `actions[].expression`, not `behavior.emotion`.
 - **Faces and emotion:** at least 4 `closeup` shots, cast closeups preferred. Include one human reaction BEFORE the hazard is explained.
-- **Talking:** short lines (under 8 words read best). Alternate speakers and leave a 0.3 s gap. Set the speaker's action state to talk for long exchanges. If the audience must understand the exact words, set `"cinema":{"speech":"text"}` on that shot or use a thought. Use `icon` when the automatic pictogram would be wrong.
+- **Talking:** short lines (under 8 words read best). Alternate speakers and leave a 0.3 s gap. Set the speaker's action state to talk for long exchanges. Dialogue words are not shown on screen, so if the audience must understand them, put the line in a caption.
 - **Crowd arc** (hazard films): `behavior.crowd` must progress (calm → alert/freeze/film → panic/flee → hide/help → relief). Never leave it empty during a hazard.
 - **Variety:** choose biome, style, time_of_day, weather and seed to fit THIS idea; a zombie film and a quake film must not look alike. Do not reuse defaults.
 - Over 4 minutes: split into parts of at most 3 minutes, each its own JSON with continuous timestamps and a one-shot recap.
@@ -163,23 +164,23 @@ Copy its shape, not its content.
  "environment":{"wind":2},
  "cinema":{"grade":"warm","dof":0.35,"bloom":0.12,"vignette":0.2,"grain":0.04},
  "assets":[
-  {"instance_id":"ana","asset_id":"human.student.v04","name":"Ana","position":[20,0,22],"rotation":[0,-135,0],"state":"phone","expression":"neutral","accessories":["backpack"],"path":[{"t":0,"position":[20,0,22]},{"t":22,"position":[20,0,22]},{"t":29,"position":[28,0,31]}]},
+  {"instance_id":"ana","asset_id":"human.student.v04","name":"Ana","position":[20,0,22],"rotation":[0,-135,0],"state":"phone","expression":"neutral","path":[{"t":0,"position":[20,0,22]},{"t":22,"position":[20,0,22]},{"t":29,"position":[28,0,31]}]},
   {"instance_id":"lola","asset_id":"human.elder.v02","name":"Lola Nena","position":[21.2,0,20.6],"rotation":[0,-135,0],"state":"idle","expression":"happy","path":[{"t":0,"position":[21.2,0,20.6]},{"t":22,"position":[21.2,0,20.6]},{"t":29,"position":[29.4,0,29.6]}]},
   {"instance_id":"rico","asset_id":"human.medic.v03","name":"Rico","position":[42,0,8],"rotation":[0,45,0],"state":"idle","expression":"determined","path":[{"t":0,"position":[42,0,8]},{"t":29,"position":[42,0,8]},{"t":37,"position":[25.6,0,29.2]}]},
   {"instance_id":"vend1","asset_id":"prop.vending_02","position":[24.5,0,27.5]}
  ],
  "chapters":[{"id":"ch1","title":"Dismissal","shots":[
-  {"t0":0,"t1":4,"label":"What if a strong earthquake struck during school dismissal?","caption":{"type":"narration","text":"The ground begins to move."},"cam":{"preset":"closeup","move":"push","target_id":"ana","target_height":1.5,"offset":[-0.87,0.06,-0.62]},"events":["quake_shake"],"sfx":["deep_rumble","car_horns"],"behavior":{"crowd":"freeze","emotion":"shock"},"actions":[{"target":"ana","state":"phone","expression":"surprised","transition":0.3}],"thoughts":[{"target":"ana","text":"Is the ground moving?","start":0.6,"duration":3}],"cinema":{"dof":0.6}},
+  {"t0":0,"t1":4,"label":"What if a strong earthquake struck during school dismissal?","caption":{"type":"narration","text":"The ground begins to move."},"cam":{"preset":"closeup","move":"push","target_id":"ana","target_height":1.5,"offset":[-0.87,0.06,-0.62]},"events":["quake_shake"],"sfx":["deep_rumble","car_horns"],"behavior":{"crowd":"freeze","emotion":"shock"},"actions":[{"target":"ana","state":"phone","expression":"surprised","transition":0.3}],"cinema":{"dof":0.6}},
   {"t0":4,"t1":10,"label":"The whole district shakes","caption":{"type":"narration","text":"Traffic stops. Buildings sway."},"cam":{"preset":"aerial","move":"crane","target":"city district","height":170},"events":["quake_shake","traffic_jam"],"sfx":["rumble","horns"],"behavior":{"crowd":"alert"}},
   {"t0":10,"t1":15,"label":"Get low","caption":{"type":"fact","text":"Drop, Cover, and Hold On during the shaking.","fact_id":"F1"},"cam":{"preset":"ground","move":"push","target_id":"ana","target_height":0.9,"offset":[-4.53,1.1,-1.41]},"events":["quake_shake","dust_cloud"],"sfx":["rumble","glass_rattle"],"behavior":{"crowd":"hide"},"actions":[{"target":"ana","state":"crouch","expression":"fear","transition":0.4},{"target":"lola","state":"cower","expression":"fear","transition":0.6}],"dialogue":[{"target":"ana","text":"Lola, get down! Cover your head!","mood":"worried","start":0.5,"duration":2.6}]},
   {"t0":15,"t1":19,"label":"What else is falling?","caption":{"type":"narration","text":"Glass and masonry come down along the avenue."},"cam":{"preset":"window","move":"pull","target":"office window"},"events":["quake_shake","facade_fall","dust_cloud"],"sfx":["debris","concrete_crack"],"behavior":{"crowd":"panic"}},
-  {"t0":19,"t1":22,"label":"Hold on until it stops","caption":{"type":"narration","text":"Seconds feel like minutes."},"cam":{"preset":"closeup","move":"push","target_id":"lola","target_height":1.15,"offset":[-0.6,0.1,-0.81]},"events":["quake_shake"],"sfx":["rumble"],"behavior":{"crowd":"hide","emotion":"fear"},"thoughts":[{"target":"lola","text":"Stay low. Wait.","start":0.3,"duration":2.5}],"cinema":{"dof":0.55}},
+  {"t0":19,"t1":22,"label":"Hold on until it stops","caption":{"type":"narration","text":"Seconds feel like minutes."},"cam":{"preset":"closeup","move":"push","target_id":"lola","target_height":1.15,"offset":[-0.6,0.1,-0.81]},"events":["quake_shake"],"sfx":["rumble"],"behavior":{"crowd":"hide","emotion":"fear"},"cinema":{"dof":0.55}},
   {"t0":22,"t1":26,"label":"Where is it safe now?","caption":{"type":"narration","text":"When the shaking stops, people move to open ground."},"cam":{"preset":"pov","move":"track","target":"pedestrian on avenue"},"events":["crowd_evacuate"],"sfx":["footsteps","crowd"],"behavior":{"crowd":"flee"},"actions":[{"target":"ana","state":"walk","expression":"determined"},{"target":"lola","state":"walk","expression":"sad"}]},
   {"t0":26,"t1":29,"label":"Away from walls and glass","caption":{"type":"narration","text":"Ana guides her grandmother to the plaza."},"cam":{"preset":"over_shoulder","move":"push","target_id":"ana","target_height":1.3,"offset":[-1.22,0.7,-2.13]},"events":[],"sfx":["footsteps","distant_sirens"],"behavior":{"crowd":"flee"}},
   {"t0":29,"t1":33,"label":"A second danger?","caption":{"type":"narration","text":"Power fails. Smoke rises between the buildings."},"cam":{"preset":"rooftop","move":"pull","target":"city blocks"},"events":["power_outage","fire_small","smoke_plume","siren"],"sfx":["fire_crackle","siren"],"behavior":{"crowd":"flee"},"actions":[{"target":"ana","state":"idle"},{"target":"lola","state":"sit","expression":"sad","transition":0.8},{"target":"rico","state":"run"}]},
   {"t0":33,"t1":38,"label":"Help arrives","caption":{"type":"narration","text":"Responders check on people in the open."},"cam":{"preset":"ground","move":"orbit","target_id":"rico","target_height":1.0,"offset":[4.5,1.6,-3.5]},"events":["rescue_crew","siren"],"sfx":["siren","radio_chatter"],"behavior":{"crowd":"help"}},
   {"t0":38,"t1":44,"label":"Is anyone hurt?","caption":{"type":"narration","text":"A first check, then a plan."},"cam":{"preset":"closeup","move":"push","target_id":"ana","target_height":1.5,"offset":[-1.06,0.05,-0.28]},"events":["rescue_crew"],"sfx":["radio_chatter","crowd"],"behavior":{"crowd":"help","emotion":"relief"},"actions":[{"target":"rico","state":"talk"},{"target":"ana","state":"talk","expression":"relief","transition":0.5}],"dialogue":[{"target":"rico","text":"Is anyone hurt?","mood":"friendly","start":0.4,"duration":1.8},{"target":"ana","text":"We're okay. We did what we practiced.","mood":"friendly","start":2.5,"duration":3}],"cinema":{"dof":0.6}},
-  {"t0":44,"t1":49,"label":"Stay in the open","caption":{"type":"narration","text":"Rico keeps them in the open."},"cam":{"preset":"closeup","move":"push","target_id":"rico","target_height":1.5,"offset":[0.88,0.05,0.67]},"events":[],"sfx":["radio_chatter","soft_ambient_music"],"behavior":{"crowd":"help","emotion":"determined"},"actions":[{"target":"ana","state":"idle"}],"dialogue":[{"target":"rico","text":"Stay here, away from the buildings.","mood":"worried","start":0.5,"duration":2.6}],"thoughts":[{"target":"ana","text":"Practice paid off.","start":1.2,"duration":3.2}],"cinema":{"dof":0.55}},
+  {"t0":44,"t1":49,"label":"Stay in the open","caption":{"type":"narration","text":"Rico keeps them in the open."},"cam":{"preset":"closeup","move":"push","target_id":"rico","target_height":1.5,"offset":[0.88,0.05,0.67]},"events":[],"sfx":["radio_chatter","soft_ambient_music"],"behavior":{"crowd":"help","emotion":"determined"},"actions":[{"target":"ana","state":"idle"}],"dialogue":[{"target":"rico","text":"Stay here, away from the buildings.","mood":"worried","start":0.5,"duration":2.6}],"cinema":{"dof":0.55}},
   {"t0":49,"t1":56,"label":"Would your family know what to do?","caption":{"type":"narration","text":"Practice before it happens."},"cam":{"preset":"aerial","move":"pull","target":"skyline at dusk","height":160},"events":["helicopter"],"sfx":["helicopter_rotors","music_resolve"],"behavior":{"crowd":"relief"},"actions":[{"target":"ana","state":"wave","expression":"happy"},{"target":"lola","state":"idle","expression":"relief"},{"target":"rico","state":"idle","expression":"happy"}]}
  ]}],
  "end_card":{"text":"DROP. COVER. HOLD ON.\nPractice with your family. Know your open spaces.","disclaimer":"Illustrative scenario. Not a prediction."}
@@ -212,7 +213,45 @@ GRADES = "neutral warm cool mono".split()
 MOODS = "friendly surprised worried".split()
 SPEECH_ICONS = "heart question exclaim idea food home coin phone music sleep angry smile warning plus".split()
 CINEMA_RANGES = {"dof": (0, 1), "focus": (0, 300), "radial": (0, 1), "bloom": (0, 1), "vignette": (0, 1), "grain": (0, 1)}
-ASSET_KEYS = set("instance_id asset_id name position rotation scale state expression accessories shader path orient_to_path visible".split())
+ASSET_KEYS = set("instance_id asset_id name position rotation scale state expression accessories shader path orient_to_path visible psx".split())
+# PSX look settings (engine PSX_PARAMS): key -> (scope, type, min, max). Film/screen go in cinema.psx, model in assets[].psx
+PSX = {
+    "albedo_tex": ('model', 'texture', None, None),
+    "albedo_color": ('model', 'color', None, None),
+    "vertex_color_mix": ('film', 'range', 0, 1),
+    "texture_filter": ('film', 'enum', 0, 1),
+    "uv_scale": ('model', 'vec2', -16, 16),
+    "uv_offset": ('model', 'vec2', -16, 16),
+    "uv_scroll": ('model', 'vec2', -8, 8),
+    "affine": ('film', 'range', 0, 1),
+    "affine_limit": ('film', 'range', 0.05, 8),
+    "pixel_size": ('film', 'range', 1, 16),
+    "snap_strength": ('film', 'range', 0, 1),
+    "jitter": ('film', 'range', 0, 2),
+    "jitter_rate": ('film', 'int', 1, 30),
+    "lit": ('model', 'range', 0, 1),
+    "glow": ('model', 'range', 0, 1),
+    "emission_tex": ('model', 'texture', None, None),
+    "emission_strength": ('model', 'range', 0, 4),
+    "shadows": ('film', 'range', 0, 1),
+    "matcap_tex": ('model', 'texture', None, None),
+    "matcap_amount": ('model', 'range', 0, 1),
+    "billboard": ('model', 'enum', 0, 2),
+    "fog_amount": ('film', 'range', 0, 1),
+    "fog_color": ('film', 'color', None, None),
+    "fog_start": ('film', 'range', 0, 200),
+    "fog_end": ('film', 'range', 0.5, 400),
+    "color_bits": ('film', 'int', 1, 8),
+    "dither_amount": ('film', 'range', 0, 1),
+    "cutout": ('model', 'range', 0, 1),
+    "screen_amount": ('screen', 'range', 0, 1),
+    "screen_pixel_size": ('screen', 'range', 1, 16),
+    "screen_color_bits": ('screen', 'int', 1, 8),
+    "screen_dither": ('screen', 'range', 0, 1),
+    "grain": ('screen', 'range', 0, 0.2),
+    "vignette": ('screen', 'range', 0, 1),
+}
+PSX_TEXTURES = set("brick checker chrome colormap crate ember fence gold grass lava metal runes stone".split())
 ACTION_KEYS = {"target", "state", "expression", "transition"}
 AUTHORED_CAM = ("position", "look", "end_position", "end_look")
 SHOT_KEYS = set("t0 t1 cam label caption events sfx behavior actions dialogue thoughts cinema".split())
@@ -225,12 +264,13 @@ SFX = [re.compile(p) for p in (  # engine soundTypes, first match wins
     "wave|sea|surf|water|flood|splash|tsunami|ocean|river")]
 BANNED = re.compile(r"\bsimulation\b|\bAI\b|breaking news", re.I)
 
-HUMAN_STATES = "idle walk run wave talk phone sit crouch cower cheer point carry swim dance jump climb fall sleep zombie think".split()
+HUMAN_STATES = "idle walk run wave talk phone sit crouch cower cheer point carry swim dance jump climb fall sleep zombie jog death aim shoot reload torch sword punch kneel hit_head sit_exit think".split()
 HUMAN_EXPR = "neutral happy sad angry fear surprised determined relief sleepy".split()
-HUMAN_ACC = "backpack cap helmet glasses mask bag vest umbrella".split()
+HUMAN_ACC = []  # PSX people wear what is painted on them: accessories are ignored
 GROUPS = [  # (ids, states, expressions, accessories)
     ("human.civilian human.commuter human.medic human.firefighter human.police human.worker human.sailor human.pilot human.hiker "
-     "human.chef human.vendor human.student human.child human.elder human.athlete human.diver human.raincoat human.survivor",
+     "human.chef human.vendor human.student human.child human.elder human.athlete human.diver human.raincoat human.survivor "
+     "human.zombie human.killer human.sheriff",
      HUMAN_STATES, HUMAN_EXPR, HUMAN_ACC),
     # groups:start
     ("vehicle.wagon vehicle.sedan vehicle.compact vehicle.minivan vehicle.cruiser vehicle.police vehicle.taxi vehicle.wreck vehicle.vintage vehicle.van",
@@ -332,6 +372,7 @@ def main(path):
         for k in a:
             if k not in ASSET_KEYS:
                 E.append(f"{p}: unknown property {k!r}")
+        if "psx" in a: check_psx(a["psx"], f"{p}: psx", ("model",), E)
         iid = a.get("instance_id")
         if not isinstance(iid, str) or not ID_RE.match(iid):
             E.append(f"{p}.instance_id must be a letter then letters/digits/_/- (max 64)"); continue
@@ -353,8 +394,8 @@ def main(path):
             E.append(f"{p}: {r[0]} has no state {a['state']!r} (has: {' '.join(states)})")
         if "expression" in a and exprs is not None and a["expression"] not in exprs:
             E.append(f"{p}: {r[0]} has no expression {a['expression']!r}")
-        if "accessories" in a and accs is not None and (not isinstance(a["accessories"], list) or any(x not in accs for x in a["accessories"])):
-            E.append(f"{p}: unsupported accessories {a['accessories']!r}")
+        if a.get("accessories"):
+            W.append(f"{p}: accessories are ignored (the PSX people wear what is painted on them)")
         if "shader" in a and a["shader"] not in SHADERS:
             E.append(f"{p}: shader must be one of {SHADERS}")
         for k in ("visible", "orient_to_path"):
@@ -462,9 +503,9 @@ def main(path):
                 if not obj(m): E.append(f"{n}: {key} entry must be an object"); continue
                 for kk in m:
                     if kk not in ("target", "text", "start", "duration") + (("mood", "icon") if key == "dialogue" else ()): W.append(f"{n}: unknown {key} field {kk!r} (ignored)")
-                if key == "dialogue" and "icon" in m and m["icon"] not in SPEECH_ICONS: E.append(f"{n}: dialogue icon must be one of {SPEECH_ICONS}")
+                if key == "dialogue" and "icon" in m: W.append(f"{n}: dialogue icon is ignored (no speech balloons are drawn)")
                 if m.get("target") not in cast: E.append(f"{n}: {key} target {m.get('target')!r} not placed")
-                elif cast[m["target"]][0].split(".")[0] != "human" and key == "dialogue": W.append(f"{n}: {m['target']} is not a human rig; no lip-sync")
+                elif cast[m["target"]][0].split(".")[0] != "human" and key == "dialogue": W.append(f"{n}: {m['target']} is not a human; no voice or talking gestures")
                 if not isinstance(m.get("text"), str) or len(m["text"]) > 200: E.append(f"{n}: {key} text missing or over 200 chars")
                 for kk in ("start", "duration"):
                     if kk in m and (not num(m[kk]) or m[kk] < 0 or m[kk] > L): E.append(f"{n}: {key} {kk} outside 0-{L}")
@@ -479,7 +520,7 @@ def main(path):
                     if BANNED.search(m.get("text", "")): E.append(f"{n}: banned wording in dialogue")
                 else:
                     thought_count += 1
-                    if isinstance(m.get("text"), str) and len(m["text"]) > 40: W.append(f"{n}: thought over 40 chars may not fit the bubble")
+                    W.append(f"{n}: thoughts are not drawn on screen; use a narration caption")
                     if BANNED.search(m.get("text", "")): E.append(f"{n}: banned wording in thought")
             if key == "dialogue":
                 spans.sort()
@@ -547,13 +588,28 @@ def main(path):
     return 1 if E else 0
 
 
+def check_psx(look, where, scopes, E):
+    if not isinstance(look, dict): E.append(f"{where} must be an object"); return
+    for k, v in look.items():
+        spec = PSX.get(k)
+        if not spec: E.append(f"{where}: unknown PSX setting {k!r}"); continue
+        scope, kind, lo, hi = spec
+        if scope not in scopes: E.append(f"{where}: {k} belongs to {'assets[].psx' if scope == 'model' else 'cinema.psx'}"); continue
+        if kind in ("range", "int", "enum") and (not num(v) or not lo <= v <= hi or (kind != "range" and v != int(v))): E.append(f"{where}: {k} must be {lo}-{hi}")
+        elif kind == "vec2" and (not isinstance(v, list) or len(v) != 2 or not all(num(x) and lo <= x <= hi for x in v)): E.append(f"{where}: {k} must be two numbers {lo}-{hi}")
+        elif kind == "color" and not (isinstance(v, str) and re.match(r"^#[0-9a-fA-F]{6}$", v)): E.append(f"{where}: {k} must be #rrggbb")
+        elif kind == "texture" and not (isinstance(v, str) and (v == "" or v in PSX_TEXTURES or v.startswith("data:image/"))): E.append(f"{where}: {k} must be one of {sorted(PSX_TEXTURES)}")
+
+
 def check_cinema(fx, n, E):
     if not isinstance(fx, dict): E.append(f"{n}: cinema must be an object"); return
     for k, (lo, hi) in CINEMA_RANGES.items():
         if k in fx and (not num(fx[k]) or not lo <= fx[k] <= hi): E.append(f"{n}: cinema.{k} must be {lo}-{hi}")
     if "material" in fx and fx["material"] not in MATERIALS: E.append(f"{n}: cinema.material must be one of {MATERIALS}")
     if "grade" in fx and fx["grade"] not in GRADES: E.append(f"{n}: cinema.grade must be one of {GRADES}")
-    if "speech" in fx and fx["speech"] not in ("icons", "text", "off"): E.append(f"{n}: cinema.speech must be icons, text or off")
+    if "psx" in fx: check_psx(fx["psx"], f"{n}: cinema.psx", ("film", "screen"), E)
+    for k in ("speech", "bubbles"):
+        if k in fx: W.append(f"{n}: cinema.{k} is ignored (speech balloons and thought clouds were removed)")
 
 
 def check_env(e, E):

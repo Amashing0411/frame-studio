@@ -63,7 +63,7 @@ async function writeWithAI() {
   const text = $('whatifPrompt').value.trim(), key = aiKeyMemory || $('aiKey').value.trim(), model = $('aiModel').value;
   if (!text) { $('whatifPrompt').focus(); notifyUser('Type a what-if first.'); return; }
   if (!key) { $('aiKey').focus(); notifyUser('Paste your Anthropic API key first, or use Make my film (free).'); return; }
-  if (recording || seeking) return;
+  if (recording) return;
   const btn = $('aiWrite'), label = btn.textContent; btn.disabled = true; btn.textContent = 'Writing…'; $('aiStatus').textContent = 'Claude is writing your film. This takes a few seconds.';
   let Anthropic = null;
   try {
@@ -84,7 +84,8 @@ async function writeWithAI() {
     const block = response.content.find(b => b.type === 'text');
     if (!block) throw new Error('Claude sent no script back. Please try again.');
     const scenario = aiToScenario(JSON.parse(block.text));
-    closeSheet(); setScenario(scenario);
+    if (recording) return;
+    cancelSeek(); closeSheet(); setScenario(scenario);
     if (validateOnly()) { selectShot(0, false); await seekFilm(0); }
     $('aiStatus').textContent = `Written by ${response.model}: ${scenario.chapters[0].shots.length} shots, ${scenario.meta.length_s} s.`;
     notifyUser('Your AI-written film is ready. Press Play.');
