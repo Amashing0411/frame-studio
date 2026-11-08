@@ -24,10 +24,12 @@ function marketJeep(){const g=new THREE.Group();g.name='Ilaya jeepney';const yel
 function buildMarket(){
  workshopCrowd=[];workshopProps=[];sun.shadow.camera.left=-30;sun.shadow.camera.right=30;sun.shadow.camera.top=40;sun.shadow.camera.bottom=-40;sun.shadow.camera.updateProjectionMatrix();sun.shadow.mapSize.set(2048,2048);sun.shadow.normalBias=.015;sun.shadow.bias=-.0002;
  const ground=world.children.find(x=>x.name==='Biome ground');if(ground)ground.material.color.set('#c9baa0').convertSRGBToLinear();const street=toyBox(world,'Market walkway',[0,-.03,-15],[14,.10,84],toyMaterial(0xb4aa93),.01);street.castShadow=false;
- for(let i=0;i<8;i++)for(const side of[-1,1]){marketBuilding(side*8.0,11-i*7.8,i+(side>0?3:0));marketParasol(side*4.8,7-i*6.7,WORKSHOP_STYLE.palette[(i+(side>0?2:0))%5]);marketStall(side*4.9,7-i*6.7,i+(side>0?2:0))}
+ // the PSX market (27-psx-city.js) when the catalog is there, else the hand-made set
+ if(typeof psxCityReady==='function'&&psxCityReady())psxMarketSet(street);else{for(let i=0;i<8;i++)for(const side of[-1,1]){marketBuilding(side*8.0,11-i*7.8,i+(side>0?3:0));marketParasol(side*4.8,7-i*6.7,WORKSHOP_STYLE.palette[(i+(side>0?2:0))%5]);marketStall(side*4.9,7-i*6.7,i+(side>0?2:0))}
  for(let z=3;z>-40;z-=9){const rope=toyTube(world,'Fiesta cord',[0,7.7,z],.025,.025,15,toyMaterial(0x746e5a));rope.rotation.z=Math.PI/2;for(let i=0;i<11;i++){const o=toyBox(world,'Fiesta pennant',[(i-5)*1.28,7.6-Math.sin(i/10*Math.PI)*.75,z],[.52,.65,.026],toyMaterial(WORKSHOP_STYLE.palette[(i+Math.abs(z))%5]),.012);o.rotation.z=Math.PI/4}}
+ }
  const banner=marketSign(world,'TAWAD PO, SUKI!',[0,5.4,-12],11,1.03,'#d7b151','#7b4836');banner.name='Market welcome banner';marketSign(world,'ILAYA STREET  /  DIVISORIA',[0,4.64,-12],8,.43,'#ece0bd','#596350');
- const jeep=marketJeep();jeep.position.set(-1.8,0,-15);jeep.rotation.y=.13;
+ if(!(typeof psxCityReady==='function'&&psxCityReady())){const jeep=marketJeep();jeep.position.set(-1.8,0,-15);jeep.rotation.y=.13}
  const r=rngf(9284);for(let i=0;i<22;i++){const v=Math.floor(r()*24),p=toyPerson({variant:v,color:WORKSHOP_STYLE.palette[v%5],role:i%8===0?'vendor':i%11===0?'child':'casual',accessories:i%7===0?['backpack']:i%9===0?['cap']:[]});const x=(r()-.5)*6,z=-10-r()*32;const anchor=V(x,0,z);p.g.position.copy(anchor);p.g.rotation.y=i%3?0:Math.PI;p.g.name='Market resident '+(i+1);world.add(p.g);workshopCrowd.push({p,anchor,walk:i%3!==0,phase:r()*6})}
 ;refreshCameraSolids()}
 let authoredCamShot=false;

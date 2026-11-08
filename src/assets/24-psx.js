@@ -49,8 +49,12 @@ function psxAttach(root) {
   PSX_CAT.waiting.delete(root); if (root.getObjectByName('PSX model')) return;
   const inner = PSX_CAT.src.get(root.userData.psx)?.clone(true);
   if (!inner) return; inner.name = 'PSX model'; root.add(inner); root.updateMatrixWorld(true);
+  // a fixed draw rank per model (its place in the catalog): three.js breaks draw-order ties by material id, and shared
+  // PSX materials get their ids in the order their files arrive, so overlapping models drew in a different order per
+  // load (a few pixels changed between runs of the outbreak)
+  const rank = 1 + Object.keys(PSX_CAT.meta).indexOf(root.userData.psx); inner.traverse(o => { if (o.isMesh) o.renderOrder = rank; });
   // the model's own PSX look, and the film finish its materials missed while the file was loading
-  psxApplyAssetLook(root); if (currentMaterialFinish) applyCinemaMaterials(currentMaterialFinish, inner);
+  psxApplyAssetLook(root); root.userData.psxOnAttach?.(root); if (currentMaterialFinish) applyCinemaMaterials(currentMaterialFinish, inner);
 }
 function psxFill(id) {
   let n = 0; for (const r of [...PSX_CAT.waiting]) if (r.userData.psx === id) { psxAttach(r); n++; }

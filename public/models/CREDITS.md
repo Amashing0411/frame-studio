@@ -155,6 +155,10 @@ Universal Animation Library (CC0) retargeted onto the Mixamo rig. The earlier Qu
 | ../assets/people/anim-x.glb | clip library retargeted onto x-01 | Universal Animation Library (CC0) + Quaternius pack wave/clapping | Quaternius | https://quaternius.itch.io/universal-animation-library |
 <!-- cast:end -->
 
+## PSX city street textures (Phase 3)
+
+`public/assets/psx-city/` (built by `tools/build-psx-city.mjs`): asphalt (`T (1).jpg`), paving slabs (`T (4).jpg`) and stone paving (`T (3).jpg`) from the **Roads** pack in the owner's itch.io downloads (used with the authors' permission, October 2026), resized to 128 px.
+
 ## PSX look editor (Phase 2 of design/overhaul-plan.md)
 
 `public/assets/psx-look/` (built by `tools/build-psx-look.mjs` from the shader project):

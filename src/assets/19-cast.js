@@ -12,7 +12,7 @@ const CAST = { ready: false, manifest: null, src: new Map(), clips: {}, modelCli
 // Children are made from the adult models: the person's child scale plus a bigger head.
 const CAST_CHILD_HEAD = 1.28;
 const CAST_SKIN = /^Skin/, CAST_NOT_CLOTH = /^(Skin|Skin_Darker|Hair|HairBase|Hair_.*|Eye|Eyes|Eyebrows|Moustache|Gold|Earrings|Visor|Mouth|Brown|Black)$/;
-const CAST_FADE = .25;
+const CAST_FADE = .35;  // crossfade between clips (s); .25 read as a cut when an action changed
 // clips played once and held on their last frame
 const CAST_ONCE = new Set(['fall', 'sleep', 'sit_enter', 'sit_exit', 'jump_start', 'jump_land', 'hit', 'hit_head', 'pickup', 'roll', 'punch', 'punch_cross', 'death', 'shoot', 'reload', 'sword']);
 
@@ -205,7 +205,10 @@ const castV = () => new THREE.Vector3();
 function castLocalPos(p, o, out = castV()) { return p.g.worldToLocal(o.getWorldPosition(out)); }
 
 function attachCastBody(p, opts = {}) {
-  const id = castModelFor(opts, p.fem), src = CAST.src.get(id); if (!src) { CAST.missing.add(id); return p; }
+  // a model still downloading: the person is built again once it arrives (castLoadMissing / castFetchAfterBuild);
+  // until then its procedural body stays out of the picture and the shadows (layer 31, which no camera renders),
+  // instead of flashing the old toy people on the first frame of a story
+  const id = castModelFor(opts, p.fem), src = CAST.src.get(id); if (!src) { CAST.missing.add(id); p.g.traverse(o => o.layers.set(31)); return p; }
   const info = castInfo(id), body = THREE.SkeletonUtils.clone(src);
   body.name = 'Cast body ' + id; body.userData.castId = id; p.g.add(body);
   // no shadow-map shadows: at the sun map's ~30 cm texels a body only smudged the ground at its feet, and its skinned
@@ -389,7 +392,8 @@ function castCommit(p, c) {
   // engine people fall over and (as zombies) get back up: the fall clip follows the fall amount, so rising plays it back
   else if (clip === 'fall' && p.fall > 0) a.time = Math.min(1, p.fall) * (dur - 1e-3);
   else if (CAST_ONCE.has(clip)) a.time = Math.min(dur - 1e-3, Math.max(0, c.clock - a.since));
-  else a.time = (c.t + (p.variant || 0) * .37) % dur;
+  // idle, talk and other loops: each person a little faster or slower (±8%) and out of step, so a crowd does not move in unison
+  else a.time = (c.t * (1 + (((p.variant || 0) * 7919 % 17) / 16 - .5) * .16) + (p.variant || 0) * .37) % dur;
   a.expression = c.expression || 'neutral'; a.talk = c.state === 'talk'; a.t = c.t;
   a.pending = null;
 }

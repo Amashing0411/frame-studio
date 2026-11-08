@@ -40,6 +40,9 @@ const look = join(assets, 'psx-look'), psxLook = existsSync(look) ? {
   graveyard: url('psx-look/graveyard.json'),
 } : null;
 
+// PSX city street textures (tools/build-psx-city.mjs, from the Roads pack)
+const city = join(assets, 'psx-city'), psxCity = existsSync(city) ? { textures: Object.fromEntries(readdirSync(city).filter(f => f.endsWith('.jpg')).sort().map(f => [f.replace(/\.jpg$/, ''), url(`psx-city/${f}`)])) } : null;
+
 const manifest = {
   version: 1,
   note: 'Runtime assets served from /assets by Vercel. Built by tools/blender/*.py and tools/build-manifest.mjs; licenses in public/models/CREDITS.md.',
@@ -53,6 +56,7 @@ const manifest = {
   psx,
   thumbs,
   psxLook,
+  psxCity,
   credits: [],
 };
 const total = Object.values(models).reduce((s, m) => s + m.bytes, 0) + Object.values(families).reduce((s, f) => s + f.bytes, 0);

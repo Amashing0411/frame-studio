@@ -4,7 +4,7 @@
 // layers also get a polygon offset, so thin markings do not flicker against the road far from the camera.
 const CITY_TOP={road:.006,plaza:.012,pavement:.018,mark:.010};
 // A thin slab whose top is at `top`, drawn over the layers below it.
-function citySlab(w,d,top,c,layer){const m=mk(w,.04,d,c);Object.assign(m.material,{polygonOffset:true,polygonOffsetFactor:-layer,polygonOffsetUnits:-4*layer});return put(flat(m),0,top-.02,0)}
+function citySlab(w,d,top,c,layer){const m=mk(w,.04,d,c);m.userData.citySurface=top===CITY_TOP.road?'road':top===CITY_TOP.pavement?'pavement':top===CITY_TOP.plaza?'plaza':'';Object.assign(m.material,{polygonOffset:true,polygonOffsetFactor:-layer,polygonOffsetUnits:-4*layer});return put(flat(m),0,top-.02,0)}
 // Surface height at a point of the city layout (pavements at 14-19 m from either avenue's axis, plazas beyond).
 function cityTopAt(x,z){const ax=Math.abs(x),az=Math.abs(z);if(ax<14||az<14)return CITY_TOP.road;if(ax<19||az<19)return CITY_TOP.pavement;if(ax<48&&az<48)return CITY_TOP.plaza;return 0}
 function buildBaseWorld(seed,style,hz){
@@ -46,6 +46,6 @@ function buildBaseWorld(seed,style,hz){
  for(let i=0;i<Math.round(4*QL);i++){const g=new THREE.Group(),c=pick([0x8a6a46,0x2a2a2a,0xc9a46a,0xd8d8d8]),bd=ico(.28,c);bd.scale.set(.6,.55,1.2);bd.position.y=.5;const hd=ico(.15,c);hd.position.set(0,.66,.38);const sn=mk(.1,.08,.14,0x222222);sn.position.set(0,.62,.5);const tail=cyl(.025,.04,.3,4,c);tail.position.set(0,.68,-.38);tail.rotation.x=-.9;g.add(bd,hd,sn,tail);
   const lg=[];for(const sx of[-.1,.1])for(const sz of[-.25,.25]){const l=new THREE.Mesh(new THREE.CylinderGeometry(.04,.03,.34,5).translate(0,-.17,0),mat(c));l.position.set(sx,.4,sz);g.add(l);lg.push(l)}
   world.add(g);dogs.push({g,lg,tail,ax:i%2?'z':'x',side:R()<.5?-1:1,pos0:(24+R()*130)*(R()<.5?-1:1),dir0:R()<.5?-1:1,ph:R()*6})}
- enhanceModels();world.traverse(o=>{if(o.isMesh){o.receiveShadow=true;o.castShadow=!o.userData.nf&&!o.userData.pp}})}
+ if(typeof psxCityReady==='function'&&psxCityReady())psxCitySurfaces();enhanceModels();world.traverse(o=>{if(o.isMesh){o.receiveShadow=true;o.castShadow=!o.userData.nf&&!o.userData.pp}})}
 // Build the world from a seed; city worlds then get the toy finish unless the scenario asks for the classic look.
 function build(seed,style,hz){worldLife={plants:[],bodies:[],t:0};buildBaseWorld(seed,style,hz);if(SC?.world?.biome&&SC.world.biome!=='city')return;if(SC?.world?.finish==='classic')return;stylizeCityWorld()}

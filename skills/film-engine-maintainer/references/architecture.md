@@ -65,6 +65,7 @@ Vendor (npm, pinned): `three@0.128.0` (`build/three.min.js` + `examples/js` Orbi
 | 18 | studio/safe-zones | platform safe zones: `SAFE_ZONES`, `safeArea`, `safeTextBoxes`, the guides canvas (`drawSafeGuides`), `validateSafeZoneText`, `checkSafeZoneSubjects` |
 | 25 | studio/psx-shader | the PSX look: `PSX_PARAMS`, `psxInjectShader`, `psxFilmShader`, `PSX_SCREEN_GLSL`, `psxFilmFrame`, `psxApplyAssetLook`, `validatePsxLook`, `psxLookTexture` |
 | 26 | studio/psx-editor | PSX look editor: `initPsxEditor` (More › Look), `openPsxEditor`, presets, demo scenes, Apply to film/shot/model |
+| 27 | studio/psx-city | PSX city (Phase 3): `psxCityBuilding` (tower/house, holder + private materials for the hazards), `psxCityVehicle` (mkVeh), `psxCityTree` (palm/tree/bush), `psxCitySurfaces` (Roads textures on the slabs), `psxMarketSet` (buildMarket). Engine builders call them when `psxCityReady()`; the procedural code is the fallback |
 | 99 | studio/boot | `initializeWorkshop();` (boot). Always the last file |
 
 ## Load order and boot

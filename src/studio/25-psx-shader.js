@@ -87,7 +87,7 @@ function psxLookTexture(key, gltf = false) {
   if (!key) return null;
   const id = (gltf ? 'gltf:' : '') + key;
   if (PSX_TEX.cache.has(id)) return PSX_TEX.cache.get(id);
-  const url = key.startsWith('data:') ? key : CAST.manifest?.psxLook?.textures?.[key] && 'assets/' + CAST.manifest.psxLook.textures[key];
+  const file = CAST.manifest?.psxLook?.textures?.[key] || CAST.manifest?.psxCity?.textures?.[key], url = key.startsWith('data:') ? key : file && 'assets/' + file;
   if (!url) return null;
   const t = new THREE.Texture(); t.magFilter = t.minFilter = THREE.NearestFilter; t.generateMipmaps = false; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.encoding = THREE.sRGBEncoding; t.flipY = !gltf; t.name = key.startsWith('data:') ? 'your picture' : key;
   PSX_TEX.cache.set(id, t);

@@ -83,7 +83,25 @@ function poseJointedRig(p,state,t,expression='neutral',distance=null,speed=.85){
 function poseV2(p,state,t,expression='neutral',distance=null,speed=.85){if(p?.v3){p.posing3={state,t}}try{poseJointedRig(p,state,t,expression,distance,speed)}finally{if(p)p.posing3=null}}
 for(const b of CATALOG_BASE)if(b.kind==='human'&&!b.states.includes('think'))b.states.push('think');
 
-function pathDistance(path,t){let distance=0,speed=0;for(let i=1;i<path.length;i++){const a=path[i-1],b=path[i],len=V(...b.position).distanceTo(V(...a.position));const u=cl((t-a.t)/(b.t-a.t));distance+=len*sm(u);if(t>=a.t&&t<b.t)speed=len/(b.t-a.t)*6*u*(1-u)}return{distance,speed}}
+// A story path (points {t, position}) as one continuous movement: the straight walk between the points at constant
+// speed, averaged over a 0.6 s window. Corners round off, a start or a stop eases over the window, and the speed no
+// longer drops to zero at every point (each segment used to ease in and out on its own, so walkers stopped and
+// restarted at every waypoint and their legs, which follow the distance, froze and restarted with them). Returns the
+// position, the distance walked (drives the walk clip), the speed and the facing (along the movement; standing
+// still, along the nearest segment that moves).
+const PATH_WINDOW=.3,PATH_TAPS=9;
+function pathLinear(path,t){if(t<=path[0].t)return{p:V(...path[0].position),d:0};let d=0;for(let i=1;i<path.length;i++){const a=path[i-1],b=path[i],pa=V(...a.position),pb=V(...b.position),len=pa.distanceTo(pb);if(t<b.t){const u=cl((t-a.t)/Math.max(b.t-a.t,1e-6));return{p:pa.lerp(pb,u),d:d+len*u}}d+=len}return{p:V(...path[path.length-1].position),d}}
+function pathMotion(path,t){const {p,d}=pathLinearAvg(path,t),e=.05,speed=(pathLinearAvg(path,t+e).d-pathLinearAvg(path,t-e).d)/(2*e);
+ // facing: the movement direction averaged over +-0.35 s with the angles unwrapped, so a corner or a turn-around
+ // (stop, then walk back) rotates over that time instead of flipping in one tick
+ const N=31;let ref=null,sum=0;for(let k=0;k<N;k++){let y=pathHeading(path,t+(k/(N-1)*2-1)*.35);if(ref===null)ref=y;else{while(y-ref>Math.PI)y-=Math.PI*2;while(y-ref<-Math.PI)y+=Math.PI*2}sum+=y}  // 31 samples: a turn-around advances ~6 deg per tick, not in 20 deg steps
+ return{position:p,distance:d,speed,yaw:sum/N}}
+// the raw movement direction at t: along the (averaged) motion, or standing still, along the nearest segment that moves
+function pathHeading(path,t){const e=.05,v=pathLinearAvg(path,t+e).p.sub(pathLinearAvg(path,t-e).p);if(v.lengthSq()>1e-4)return Math.atan2(v.x,v.z);  // moving at least 0.1 m/s
+ let i=0;while(i<path.length-2&&t>path[i+1].t)i++;const order=[i,...Array.from({length:path.length-1},(_,k)=>i-1-k).filter(j=>j>=0),...Array.from({length:path.length-1},(_,k)=>i+1+k).filter(j=>j<path.length-1)];
+ for(const j of order){const a=V(...path[j].position),b=V(...path[j+1].position);if(a.distanceToSquared(b)>1e-8)return Math.atan2(b.x-a.x,b.z-a.z)}return 0}
+function pathLinearAvg(path,t){const p=V();let d=0;for(let k=0;k<PATH_TAPS;k++){const s=pathLinear(path,t+(k/(PATH_TAPS-1)*2-1)*PATH_WINDOW);p.add(s.p);d+=s.d}return{p:p.divideScalar(PATH_TAPS),d:d/PATH_TAPS}}
+function pathDistance(path,t){const m=pathMotion(path,t);return{distance:m.distance,speed:m.speed}}
 // Path-driven walk speed for catalog characters, read by their gait.
 function updateCatalogGait(t){for(const item of catalogInstances){if(item.spec.path?.length){const p=pathDistance(item.spec.path,t);item.object.userData.gaitDistance=p.distance;item.object.userData.gaitSpeed=p.speed}else{delete item.object.userData.gaitDistance;delete item.object.userData.gaitSpeed}}}
 // The Divisoria workshop crowd walks or idles; imported models registered as references stay hidden.

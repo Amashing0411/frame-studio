@@ -4158,5 +4158,12 @@
   },
   "graveyard": "psx-look/graveyard.json?v=b72888be4d"
  },
+ "psxCity": {
+  "textures": {
+   "asphalt": "psx-city/asphalt.jpg?v=9e992438d2",
+   "slabs": "psx-city/slabs.jpg?v=93e46eb0f1",
+   "stone": "psx-city/stone.jpg?v=3a1a83fd7a"
+  }
+ },
  "credits": []
 }
