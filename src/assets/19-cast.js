@@ -313,6 +313,7 @@ function attachCastBody(p, opts = {}) {
   // body points for lying clips (fall, sleep, roll): none may go below the floor
   const lying = [G.head, G.hips, G.chest, G.body, G.arms[0].hand, G.arms[1].hand, G.arms[0].low, G.arms[1].low, feet[0], feet[1], G.legs[0].low, G.legs[1].low];
   p.cast = { id, body, mixer, actions, morphs, ground, lying, head: G.head, family: CAST.manifest.people.models[id].family, height: CAST.manifest.people.models[id].height * (p.sc || 1) };
+  p.cast.phone = castPhoneGrip(G.arms[1].hand, body);
   p.castAnim = { tick: -1, pending: null, clip: 'idle', time: 0, since: 0, prev: null, expression: 'neutral', talk: false, t: 0 };
   CAST.people.add(p);
   castApply(p);
@@ -334,13 +335,27 @@ function castFaceAnchors(body) {
 }
 
 // engine pose state -> clip
-function castClipFor(p, state, speed) {
+// Where the held phone sits, in the hand bone's own frame: lying on the palm, its length along the fingers, its screen
+// (+z) facing out of the palm. Every model rests in a T-pose with the palms down, so out of the palm is the body's down
+// (not all models have all fingers). poseJointedRig applies it in the 'phone' state.
+function castPhoneGrip(hand, body) {
+  const sd = hand.name.slice(-1), at = n => hand.children.find(c => c.name === n + sd)?.position, mid = at('Middle1') || at('Index1');
+  if (!mid) return null;
+  const y = mid.clone().normalize(), toBody = body.getWorldQuaternion(new THREE.Quaternion()).invert().multiply(hand.getWorldQuaternion(new THREE.Quaternion())).invert(), z = V(0, -1, 0).applyQuaternion(toBody);
+  z.addScaledVector(y, -z.dot(y)).normalize();
+  const x = y.clone().cross(z), q = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(x, y, z));
+  return { p: mid.clone().multiplyScalar(.7).addScaledVector(z, .058), q };
+}
+
+function castClipFor(p, state, speed, distance) {
   const has = n => p.cast.actions[n] ? n : null;
   switch (state) {
     case 'walk': return 'walk';
     case 'run': return speed > 4.6 ? has('sprint') || 'run' : 'run';
     case 'zombie': return has('zombie') || 'walk';
     case 'carry': return speed > .1 ? has('carry') || 'walk' : has('carry_idle') || 'idle';
+    // no distance = a pose with no walking behind it (Model studio, a standing action): the default speed does not count
+    case 'phone': return speed > .1 && distance != null ? has('phone_walk') || 'walk' : has('phone') || 'idle';
     case 'climb': return has('crouch_walk') || 'walk';
     case 'swim': return speed > .1 ? has('swim') || 'walk' : has('swim_idle') || has('swim') || 'idle';
     case 'crouch': return has('crouch') || 'idle';
@@ -382,7 +397,7 @@ function castCommit(p, c) {
   if (c.clock < a.since - 1e-6) { a.prev = null; a.since = c.clock; }  // a seek restarted the clock
   // a person the crowd LOD skipped for a while was not playing its old clip on the previous tick: no fade from it
   const gap = c.clock - (a.last ?? -1), fresh = gap > 0 && gap < 1.5 / 60; a.last = c.clock;
-  const clip = castClipFor(p, c.state, c.speed || 0), act = p.cast.actions[clip], dur = act ? act.getClip().duration : 1;
+  const clip = castClipFor(p, c.state, c.speed || 0, c.distance), act = p.cast.actions[clip], dur = act ? act.getClip().duration : 1;
   if (clip !== a.clip) {
     a.prev = simulating && fresh && a.clip ? { clip: a.clip, time: a.time, at: c.clock } : null;
     a.clip = clip; a.since = c.clock;

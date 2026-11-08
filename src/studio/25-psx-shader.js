@@ -109,7 +109,7 @@ const PSX_MAT = new WeakMap();
 function psxModelUniforms(look) {
   const u = { psxTint: { value: new THREE.Color(1, 1, 1) }, psxUvScale: { value: new THREE.Vector2(1, 1) }, psxUvOffset: { value: new THREE.Vector2() }, psxUvScroll: { value: new THREE.Vector2() },
     psxLit: { value: 1 }, psxGlow: { value: 0 }, psxEmissionMap: { value: PSX_BLACK }, psxEmissionStrength: { value: 1 }, psxMatcapMap: { value: PSX_WHITE }, psxMatcapAmount: { value: 0 },
-    psxBillboard: { value: 0 }, psxCutout: { value: 0 } };
+    psxBillboard: { value: 0 }, psxCutout: { value: 0 }, psxFlat: { value: 0 } };
   if (look) psxSetModelUniforms(u, look);
   return u;
 }
@@ -132,8 +132,31 @@ const PSX_GLSL_COMMON = `
 float psxBayer(vec2 cell){vec2 a=mod(cell,2.),b=mod(floor(cell*.5),2.);return 4.*(2.*a.x+3.*a.y-4.*a.x*a.y)+(2.*b.x+3.*b.y-4.*b.x*b.y);}`;
 // The material: injected into a MeshStandard/Phong/Toon program. this = the material (three calls onBeforeCompile on
 // it), view = the view's shared uniforms. A material without a texture of its own gets plain UVs (it has no uvTransform).
+// Flat ground layers do not snap: the ground, roads, pavements, plazas, markings, puddles and the market walkway lie
+// millimetres to centimetres apart, and snapping moves each corner on screen while keeping its depth, which tilts
+// every big flat triangle a little differently. Far corners tilt them most (the biome ground is one 4-corner square):
+// the ground then poked through the walkway and the roads in patches (z-fighting). On a flat floor snapping shows
+// nothing else, so these layers only keep their texture look; everything standing on them still snaps. A material
+// counts when every mesh using it lies within 3.5 cm of y = 0 and is at most 25 cm thick (shared materials used by
+// anything else keep snapping). Called at the end of build() (06-world.js).
+// (rebuilt with every world: a shared material can lie flat in one story and stand up in the next)
+const PSX_FLAT = new Set();
+function psxMarkFlatGround(root) {
+  for (const m of PSX_FLAT) { const mu = PSX_MAT.get(m); if (mu) mu.psxFlat.value = 0; }
+  PSX_FLAT.clear();
+  const flat = new Map(), box = new THREE.Box3(); root.updateMatrixWorld(true);
+  root.traverse(o => {
+    if (!o.isMesh || o.isSkinnedMesh || o.isInstancedMesh) return;
+    const g = o.geometry; if (!g.boundingBox) g.computeBoundingBox();
+    box.copy(g.boundingBox).applyMatrix4(o.matrixWorld);
+    const lies = box.max.y <= .035 && box.max.y - box.min.y <= .25;
+    for (const m of [].concat(o.material)) flat.set(m, (flat.get(m) ?? true) && lies);
+  });
+  for (const [m, yes] of flat) if (yes) { PSX_FLAT.add(m); const mu = PSX_MAT.get(m); if (mu) mu.psxFlat.value = 1; }
+}
 function psxInjectShader(shader, material, view) {
   let mu = PSX_MAT.get(material); if (!mu) PSX_MAT.set(material, mu = psxModelUniforms(material.userData.psxModelLook));
+  mu.psxFlat.value = PSX_FLAT.has(material) ? 1 : 0;
   Object.assign(shader.uniforms, view, mu);
   const m = material, threeUv = !!(m.map || m.specularMap || m.displacementMap || m.normalMap || m.bumpMap || m.roughnessMap || m.metalnessMap || m.alphaMap || m.emissiveMap || m.clearcoatMap || m.clearcoatNormalMap || m.clearcoatRoughnessMap || m.transmissionMap);
   const varyings = `
@@ -146,7 +169,7 @@ varying vec3 vLightBack;varying vec3 vIndirectBack;
     .replace('#include <common>', `#include <common>
 #include <bsdfs>
 #include <lights_pars_begin>
-uniform vec2 psxGrid,psxUvScale,psxUvOffset,psxUvScroll;uniform float psxSnap,psxJitter,psxJitterRate,psxTime,psxFogAmount,psxFogStart,psxFogEnd,psxBillboard;${varyings}
+uniform vec2 psxGrid,psxUvScale,psxUvOffset,psxUvScroll;uniform float psxSnap,psxJitter,psxJitterRate,psxTime,psxFogAmount,psxFogStart,psxFogEnd,psxBillboard,psxFlat;${varyings}
 float psxHash(vec3 p){p=fract(p*.1031);p+=dot(p,p.zyx+31.32);return fract((p.x+p.y)*p.z);}`)
     .replace('#include <uv_vertex>', (threeUv ? '#include <uv_vertex>' : 'vUv=uv;') + '\nvUv=vUv*psxUvScale+psxUvOffset+psxUvScroll*psxTime;')
     .replace('#include <project_vertex>', `#include <project_vertex>
@@ -155,7 +178,7 @@ if(psxBillboard>.5){vec3 c=modelMatrix[3].xyz,s=vec3(length(modelMatrix[0].xyz),
  if(psxBillboard>1.5){u=normalize(modelMatrix[1].xyz);r=normalize(cross(u,vec3(viewMatrix[0][2],viewMatrix[1][2],viewMatrix[2][2])));}
  mvPosition=viewMatrix*vec4(c+r*transformed.x*s.x+u*transformed.y*s.y,1.);gl_Position=projectionMatrix*mvPosition;}
 float psxW=max(gl_Position.w,.0001);
-if(gl_Position.w>.0001&&(psxSnap>0.||psxJitter>0.)){vec2 ndc=gl_Position.xy/gl_Position.w;
+if(gl_Position.w>.0001&&psxFlat<.5&&(psxSnap>0.||psxJitter>0.)){vec2 ndc=gl_Position.xy/gl_Position.w;
  if(psxJitter>0.){float id=floor(psxTime*psxJitterRate);ndc+=(vec2(psxHash(transformed*7.+id),psxHash(transformed*7.-id+3.1))-.5)*psxJitter/psxGrid;}
  gl_Position.xy=mix(ndc,floor(ndc*psxGrid+.5)/psxGrid,psxSnap)*gl_Position.w;}
 vPsxAffine=vec3(vUv*psxW,psxW);

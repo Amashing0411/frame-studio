@@ -12,7 +12,7 @@ function resetWorld(){S={quaked:false,jam:false,evac:false,out:false,q:0,plumes:
 const near=(h,n,f)=>blds.filter(f).sort((a,b)=>Math.hypot(a.x-h.x,a.z-h.z)-Math.hypot(b.x-h.x,b.z-h.z)).slice(0,n);
 const nearP=(h,n,f)=>ppl.filter(f).sort((a,b)=>Math.hypot(a.x-h.x,a.z-h.z)-Math.hypot(b.x-h.x,b.z-h.z)).slice(0,n);
 function damage(b){b.dmg++;b.tilt+=(Q()-.5)*.05;b.mats.forEach(m=>m.color.lerp(new THREE.Color(0x7d7260),.35));S.dmg.push(b);const sg=Math.sign(b.x)||1;
- for(let i=0;i<7;i++){const d=debris.find(x=>!x.on);if(!d)break;d.on=true;d.settled=false;d.m.visible=true;d.m.position.set(b.x-sg*(b.w/2+.8)+(Q()-.5)*3,4+Q()*Math.min(b.h,25),b.z+(Q()-.5)*b.d);d.v.set(-sg*(1+Q()*3),0,(Q()-.5)*3);d.m.scale.set(.6+Q()*1.3,.5+Q(),.6+Q()*1.3);d.m.rotation.set(Q()*3,Q()*3,Q()*3)}
+ for(let i=0;i<7;i++){const d=debris.find(x=>!x.on);if(!d)break;d.on=true;d.settled=false;d.m.visible=true;d.m.position.set(b.x-sg*(b.w/2+.8)+(Q()-.5)*3,4+Q()*Math.min(b.h,25),b.z+(Q()-.5)*b.d);d.v.set(-sg*(1+Q()*3),0,(Q()-.5)*3);d.m.scale.set(.6+Q()*1.3,.5+Q(),.6+Q()*1.3);d.m.rotation.set(Q()*3,Q()*3,Q()*3);if((typeof psxCityReady==='function'&&psxCityReady()))psxDebrisLook(d,i)}
  for(let i=0;i<8;i++)emit(b.x-sg*(b.w/2+2)+(Q()-.5)*4,2+Q()*8,b.z+(Q()-.5)*b.d,0xb9a98a,6,1.2,3,16,.55)}
 function makeZ(o){if(o.zm)return;o.zm=true;o.inf=0;S.zc++;o.skM.color.set(0x7f9a74);o.shM.color.lerp(new THREE.Color(0x3f4a3a),.6);o.eyeP.color.set(0xff3b2a);o.eyeP.emissiveIntensity=1.3}
 function onShot(s){const e=s.ev,h=s.hub;

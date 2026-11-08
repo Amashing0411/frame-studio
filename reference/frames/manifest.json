@@ -77,7 +77,7 @@
       "file": "market-0950.png",
       "time": 9.5,
       "timecode": "00:09.50",
-      "sha256": "42dd4d3566b64dcf64c04c20087c0edfc72bc9bfdbd895d01c5d14f8d09212cb"
+      "sha256": "74d1d06f4d7832914bdd24049b42e53ccf81a66c08008eca2e246b42dee4824c"
     },
     {
       "story": "market",
@@ -98,56 +98,56 @@
       "file": "earthquake-0200.png",
       "time": 2,
       "timecode": "00:02.00",
-      "sha256": "15762230129fc2405c162e28ce7da3ca98b9011248c8eef4c0e02b9c525ab379"
+      "sha256": "0edf98dc6ae59cc30937c01bd12b5ca63db8bf5e3de5cba569e2f5109859a630"
     },
     {
       "story": "earthquake",
       "file": "earthquake-2150.png",
       "time": 21.5,
       "timecode": "00:21.50",
-      "sha256": "8991f52b4ca8c2a1fcfa5e7f023799aefe1ddfcd33f9145875dd5ec4ef5a5a33"
+      "sha256": "5044ad131265f779d6a20e1d27badc58fe6e0ec20b628b02aee9ffe71161f687"
     },
     {
       "story": "earthquake",
       "file": "earthquake-4200.png",
       "time": 42,
       "timecode": "00:42.00",
-      "sha256": "7b372c16c7fb72807a9b0c7c8a17d7a3b2a91ce20d227921b8cb7c09e114c001"
+      "sha256": "3acbc73df2599b1ec092d1a47f9770f7cdc3390d4552f214d5f1e3597604d97b"
     },
     {
       "story": "earthquake",
       "file": "earthquake-5900.png",
       "time": 59,
       "timecode": "00:59.00",
-      "sha256": "9a4d29d93153491c028ada2f9a6a3ddf8b4c430baabd3305506f17de14dac92a"
+      "sha256": "7e2c8282b1e1f6bcc15da43599c272518ee1cc499a6952ede1a2461907a4db0e"
     },
     {
       "story": "outbreak",
       "file": "outbreak-0200.png",
       "time": 2,
       "timecode": "00:02.00",
-      "sha256": "f3d08b8056631631ace708a701866e96a6a76830f9d8b6ce76500b77df77bb95"
+      "sha256": "7634ce69c7bbf784c335f0bba3c8e9d9c4f259bdb7172d858012f7d8f0fa62f3"
     },
     {
       "story": "outbreak",
       "file": "outbreak-2050.png",
       "time": 20.5,
       "timecode": "00:20.50",
-      "sha256": "d519d18c42e33641b0dd5c728bf9e66a61deccccf110e03808e478b69a2a4158"
+      "sha256": "8dcad363199d86820db3f9db26d60d328323fb1c243bffd363fecf301809e4dc"
     },
     {
       "story": "outbreak",
       "file": "outbreak-3850.png",
       "time": 38.5,
       "timecode": "00:38.50",
-      "sha256": "464b1db7b8f4cc7cff62fc09db68640a4b49197756311ad21ee39bee5d638ecf"
+      "sha256": "e352bd822e3347eee9cf70178bd0ffbab5cdc40cc63cf8630b64a2b21c3ba399"
     },
     {
       "story": "outbreak",
       "file": "outbreak-5500.png",
       "time": 55,
       "timecode": "00:55.00",
-      "sha256": "a880ecda32c7ca3a1a8763753230c50394861e08452d6db201ff5d14ef72abca"
+      "sha256": "ef37635d96840d05769ac6ecdd9b648f4cbc9a036a05b85e05ec0c910d37467c"
     },
     {
       "story": "coast",
@@ -168,7 +168,7 @@
       "file": "coast-0750.png",
       "time": 7.5,
       "timecode": "00:07.50",
-      "sha256": "820518d19224bbf2dc5e428e44a9ed548ff4bd817359cc18fffae75870a88d50"
+      "sha256": "7eda4afbe3bc1e41181c7b4930a5964ba89a2ebfe0952f31454312b69f2f0e9a"
     },
     {
       "story": "coast",

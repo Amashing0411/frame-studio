@@ -37,7 +37,7 @@ function finishUIShell() {
   initGuide();
   initWhatIf();
   initAIWriter();
-  initPasteScript();
+  initPasteScript(); initPromptKit();
   phonePreviewDefault();
   loadFilmFonts();
   $('loadOverlay').classList.add('done');
@@ -119,7 +119,8 @@ function foldFieldset(f, open) {
 // The eye button on the film bar mirrors Look › Safe-zone guides.
 function syncGuidesToggle() { const on = $('showSafe').checked; $('guidesToggle').classList.toggle('on', on); $('guidesToggle').setAttribute('aria-pressed', on); $('guidesToggle').title = on ? 'Hide the safe-zone guides' : 'Show the safe-zone guides'; }
 
-// "Paste a script from Claude": the whatif-director skill (or any chat) hands back a JSON script; paste it, check it, play.
+// "Paste a script from any AI": a chat AI given the prompt kit (28-prompt-kit.js), or the whatif-director skill, hands
+// back a JSON script; paste it, check it, play. A script with problems says so: the report is what to send back to the AI.
 function initPasteScript() {
   $('pasteScript').onclick = async () => {
     let text = '';
@@ -127,7 +128,7 @@ function initPasteScript() {
     if (!text.trim().startsWith('{')) text = prompt('Paste the script (JSON) here:', '') || '';
     const json = (text.match(/\{[\s\S]*\}/) || [''])[0];
     if (!json) return;
-    try { closeSheet(); setScenario(JSON.parse(json)); if (validateOnly()) { selectShot(0, false); await seekFilm(0); notifyUser('Script loaded. Press Play.'); } }
+    try { cancelSeek(); closeSheet(); setScenario(JSON.parse(json)); if (validateOnly()) { selectShot(0, false); await seekFilm(0); notifyUser('Script loaded. Press Play.'); } else notifyUser('The script has problems: see the report under Check story. Copy it back to the AI and ask it to fix exactly those.'); }
     catch (e) { notifyUser('That does not look like a film script: ' + e.message); }
   };
 }

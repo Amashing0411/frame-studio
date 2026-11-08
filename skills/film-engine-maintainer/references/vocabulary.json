@@ -1,7 +1,7 @@
 {
   "version": "7",
   "generated_by": "tools/extract-vocabulary.mjs (frame-studio)",
-  "generated": "2026-10-22",
+  "generated": "2026-11-08",
   "hazards": [
     "none",
     "quake",
@@ -782,6 +782,29 @@
           "human.zombie",
           "human.killer",
           "human.sheriff"
+        ],
+        "names": [
+          "City civilian",
+          "Office commuter",
+          "Emergency medic",
+          "Firefighter",
+          "Police officer",
+          "Construction worker",
+          "Deck crew",
+          "Pilot",
+          "Jungle explorer",
+          "Street food chef",
+          "Market vendor",
+          "Student",
+          "Child",
+          "Older resident",
+          "Runner",
+          "Ocean diver",
+          "Raincoat resident",
+          "Disaster survivor",
+          "Zombie",
+          "Masked killer",
+          "Sheriff"
         ]
       },
       {
@@ -803,6 +826,18 @@
           "vehicle.wreck",
           "vehicle.vintage",
           "vehicle.van"
+        ],
+        "names": [
+          "Station wagon",
+          "City sedan",
+          "Compact hatchback",
+          "Minivan",
+          "Full-size sedan",
+          "Police cruiser",
+          "Taxi",
+          "Burned-out car",
+          "Vintage car",
+          "Delivery van"
         ]
       },
       {
@@ -860,6 +895,55 @@
           "building.hut",
           "building.cabin_02",
           "building.cabin_03"
+        ],
+        "names": [
+          "Office tower",
+          "Tower 01.2",
+          "Tower 01.3",
+          "Tower 01.4",
+          "Tower 02.1",
+          "Tower 02.2",
+          "Tower 03.1",
+          "Tower 03.2",
+          "Tower 04.1",
+          "Tower 04.2",
+          "Tower 05.1",
+          "Tower 05.2",
+          "Tower 06.1",
+          "Tower 06.2",
+          "Tower 07.1",
+          "Tower 07.2",
+          "Tower 08.1",
+          "Tower 08.2",
+          "Apartment block",
+          "Corner shops",
+          "City block 3",
+          "City block 4",
+          "City block 5",
+          "City block 6",
+          "City block 7",
+          "City block 8",
+          "City block 9",
+          "City block 10",
+          "Town house",
+          "Town building 2",
+          "Town building 3",
+          "Town building 4",
+          "Town building 5",
+          "Town building 6",
+          "Town building 7",
+          "Town building 8",
+          "Town building 9",
+          "Town building 10",
+          "Town building 11",
+          "Town building 12",
+          "Town building 13",
+          "Town building 14",
+          "Town building 15",
+          "Town building 16",
+          "Wooden cabin",
+          "Long cabin",
+          "Cabin with porch"
         ]
       },
       {
@@ -887,6 +971,25 @@
           "prop.cooler",
           "prop.cooler_red",
           "prop.outboard"
+        ],
+        "names": [
+          "Wooden fence",
+          "Wooden door",
+          "Vending machine 1",
+          "Vending machine 2",
+          "Vending machine 3",
+          "Vending machine 4",
+          "Vending machine 5",
+          "Vending machine 6",
+          "Vending machine 7",
+          "Vending machine 8",
+          "Vending machine 9",
+          "Vending machine 10",
+          "Vending machine 11",
+          "Vending machine 12",
+          "Cooler box",
+          "Red cooler",
+          "Outboard motor"
         ]
       },
       {
@@ -907,6 +1010,17 @@
           "tree.maple",
           "tree.dead",
           "tree.bare_sapling"
+        ],
+        "names": [
+          "Broadleaf tree",
+          "Pine",
+          "Young tree",
+          "Fir",
+          "Thin spruce",
+          "Birch",
+          "Round tree",
+          "Bare tree",
+          "Bare sapling"
         ]
       },
       {
@@ -925,6 +1039,16 @@
           "rock.rock_6",
           "rock.rock_7",
           "rock.rock_8"
+        ],
+        "names": [
+          "Boulder",
+          "Rock 2",
+          "Rock 3",
+          "Rock 4",
+          "Rock 5",
+          "Rock 6",
+          "Rock 7",
+          "Rock 8"
         ]
       },
       {
@@ -939,6 +1063,11 @@
           "boat.fishing",
           "boat.rowboat",
           "boat.canoe"
+        ],
+        "names": [
+          "Fishing boat",
+          "Rowing boat",
+          "Small boat"
         ]
       },
       {
@@ -958,6 +1087,16 @@
           "animal.fish_6",
           "animal.fish_7",
           "animal.fish_8"
+        ],
+        "names": [
+          "Fish",
+          "Fish 2",
+          "Fish 3",
+          "Fish 4",
+          "Fish 5",
+          "Fish 6",
+          "Fish 7",
+          "Fish 8"
         ]
       },
       {
@@ -971,6 +1110,11 @@
           "creature.ghoul",
           "creature.ghoul_02",
           "creature.antler_beast"
+        ],
+        "names": [
+          "Ghoul",
+          "Pale ghoul",
+          "Antlered beast"
         ]
       },
       {
@@ -997,6 +1141,24 @@
           "food.cereal",
           "food.crate",
           "food.biscuits"
+        ],
+        "names": [
+          "Apple",
+          "Orange",
+          "Banana",
+          "Carrot",
+          "Cucumber",
+          "Lettuce",
+          "Papaya",
+          "Ice cream tub",
+          "Ice cream tub 2",
+          "Soda bottle",
+          "Juice bottle",
+          "Drink can",
+          "Snack bag",
+          "Cereal box",
+          "Produce crate",
+          "Biscuit pack"
         ]
       }
     ]

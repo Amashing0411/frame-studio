@@ -9,35 +9,7 @@ import { launch, sleep, STUDIO_READY } from './lib/chrome.mjs';
 
 const [target = 'http://localhost:5173/', out = 'qa/captures/vocabulary.json'] = process.argv.slice(2);
 
-// Runs in the page. Uses the engine's own arrays and, where a list only exists inside a validator, that validator's source.
-function collect() {
-  const lists = fn => (String(fn).match(/\[('[a-z_]+',?)+\]/g) || []).map(s => s.slice(1, -1).split(',').map(x => x.slice(1, -1)));
-  const quoted = (fn, re) => [...new Set([...String(fn).matchAll(re)].map(m => m[1]))];
-  const tod = String(setTOD), rx = name => (tod.match(new RegExp(name + '=\\/([^/]+)\\/i')) || [])[1];
-  const water = quoted(validateWaterHazard, /h==='(\w+)'/g);
-  const groups = new Map();
-  for (const a of CATALOG_BASE) {
-    const key = [a.category, a.states.join(' '), (a.expressions || []).join(' '), ].join('|');
-    if (!groups.has(key)) groups.set(key, { category: a.category, kind: a.kind, states: a.states, expressions: a.expressions || [], ids: [] });
-    groups.get(key).ids.push(a.id);
-  }
-  return {
-    hazards: ['none', ...Object.keys(KL), ...water],
-    presets: PRE, moves: MOV, events: EVT, crowd: CRW, emotions: EMOS, zombies: ZMB,
-    biomes: lists(validateCatalogScenario).find(l => l.includes('city') && l.includes('coast')),
-    finishes: quoted(validateFinish, /'(\w+)'/g).filter(x => x !== 'toy' ? x === 'classic' : true),
-    cinema: { material: FILM_FINISHES, grade: lists(validateCinemaAndMoments)[0], ranges: cinemaRanges },
-    // the PSX look (25-psx-shader.js): cinema.psx and shot cinema.psx take the film and screen settings, assets[].psx the model ones
-    psx: PSX_PARAMS.map(p => ({ key: p.key, scope: p.scope, group: p.group, type: p.type, default: p.def, ...(p.min !== undefined ? { min: p.min, max: p.max } : {}), ...(p.options ? { options: p.options } : {}), ...(p.set ? { textures: PSX_TEXTURE_SETS[p.set] } : {}), help: p.help })),
-    psx_looks: Object.fromEntries(PSX_PRESETS.map(p => [p.name, p.look])),
-    dialogue_moods: ['friendly', ...quoted(String(updateTalkingFaces) + String(applyConversation), /d\.mood==='(\w+)'/g)],
-    shaders: [...document.getElementById('catalogShader').options].map(o => o.value),
-    sfx_first_match_wins: soundTypes.map(([id, label, group, re]) => ({ id, label, group, match: re.source })),
-    time_of_day: { night: rx('night'), golden: rx('gold'), day: 'anything else' },
-    weather: { rain: rx('rainy'), storm_lightning: rx('storm'), fog: rx('fog'), grey_sky: (tod.match(/ov=rainy\|\|fog\|\|\/([^/]+)\/i/) || [])[1] },
-    assets: { archetypes: CATALOG_BASE.length, variants_per_archetype: Math.round(catalogEntries.length / CATALOG_BASE.length), groups: [...groups.values()] },
-  };
-}
+// Runs in the page: engineVocabulary() (src/studio/28-prompt-kit.js), the same lists the in-app AI prompt kit uses.
 
 // Left out on purpose (Phase 1): speech balloons / dialogue icons (no longer drawn; scripts that still carry them
 // validate) and accessories (hidden on the PSX people).
@@ -72,7 +44,7 @@ const chrome = await launch();
 await chrome.open(target);
 await chrome.waitFor(STUDIO_READY);
 await sleep(1200);
-const vocab = await chrome.evaluate(`(${collect.toString()})()`);
+const vocab = await chrome.evaluate(`engineVocabulary()`);
 const result = { version: '7', generated_by: 'tools/extract-vocabulary.mjs (frame-studio)', generated: new Date().toISOString().slice(0, 10), ...vocab };
 writeFileSync(out, JSON.stringify(result, null, 2) + '\n');
 if (out.endsWith('.json')) writeFileSync(out.replace(/\.json$/, '.md'), markdown(result));

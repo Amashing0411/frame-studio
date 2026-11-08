@@ -1369,10 +1369,10 @@
     3.15,
     7.69
    ],
-   "tris": 1965,
+   "tris": 655,
    "materials": 3,
    "textures": 3,
-   "bytes": 253620,
+   "bytes": 128044,
    "source": {
     "name": "Paquete de modelos low poly estilo psx",
     "author": "elbolilloduro",
@@ -1395,10 +1395,10 @@
     2.91,
     4.91
    ],
-   "tris": 1374,
+   "tris": 458,
    "materials": 3,
    "textures": 3,
-   "bytes": 196884,
+   "bytes": 109024,
    "source": {
     "name": "Paquete de modelos low poly estilo psx",
     "author": "elbolilloduro",
@@ -1421,10 +1421,10 @@
     3.68,
     8.56
    ],
-   "tris": 1800,
+   "tris": 600,
    "materials": 3,
    "textures": 3,
-   "bytes": 237788,
+   "bytes": 122676,
    "source": {
     "name": "Paquete de modelos low poly estilo psx",
     "author": "elbolilloduro",

@@ -71,6 +71,7 @@ export default {
       'src/studio/25-psx-shader.js',
       'src/studio/26-psx-editor.js',
       'src/studio/27-psx-city.js',
+      'src/studio/28-prompt-kit.js',
       'src/studio/99-boot.js',
     ],
   },

@@ -75,7 +75,7 @@ function poseJointedRig(p,state,t,expression='neutral',distance=null,speed=.85){
  if(state==='climb'){for(let i=0;i<2;i++)armTargets[i].set((i?1:-1)*.26,1.60+Math.sin(t*3+i*Math.PI)*.12,.33)}
  if(state==='swim'){for(let i=0;i<2;i++)armTargets[i].set((i?1:-1)*.35,1.35+Math.sin(t*3+i*Math.PI)*.27,.2)}
  for(let i=0;i<2;i++){const a=p.arms[i];solveLimb(p.g,a.sh,a.el,a.ha,armTargets[i],poles[i]);uprightJoint(p.g,a.ha,state==='wave'&&i===1?[0,0,Math.PI+Math.sin(t*5)*.16]:state==='phone'&&i===1?[-.25,Math.PI-.25,.08]:state==='talk'?[.2,0,(i?1:-1)*.15]:[0,0,0]);const fingerBones=p.fingerBones||(p.fingerBones=[0,1].map(k=>[0,1,2,3].map(f=>p.g.getObjectByName('Finger'+(k?'R':'L')+f))));for(let f=0;f<4;f++){const finger=fingerBones[i][f];finger.rotation.x=state==='phone'&&i===1?-.95:state==='point'&&i===1&&f===0?0:.13}}
- if(state==='phone'){p.phone.rotation.set(0,0,0);p.phone.position.set(0,-.014,.033)}
+ if(state==='phone'){const h=p.cast?.phone;if(h){p.phone.position.copy(h.p);p.phone.quaternion.copy(h.q)}else{p.phone.rotation.set(0,0,0);p.phone.position.set(0,-.014,.033)}}
  if(state==='fall'){p.pv.rotation.x=sm(cl(t))*1.45;p.pv.position.y-=sm(cl(t))*.55}
  if(state==='sleep')expression='sleepy';faceV2(p,state,t,expression);p.g.updateMatrixWorld(true);poseCastBody(p,state,t,expression,distance,speed);
 }

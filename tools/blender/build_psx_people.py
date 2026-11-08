@@ -55,14 +55,21 @@ CLIPS = {
     'sprint': 'Sprint_Loop', 'crouch': 'Crouch_Idle_Loop', 'crouch_walk': 'Crouch_Fwd_Loop', 'sit': 'Sitting_Idle_Loop',
     'sit_talk': 'Sitting_Talking_Loop', 'sit_enter': 'Sitting_Enter', 'jump': 'Jump_Loop', 'jump_start': 'Jump_Start', 'jump_land': 'Jump_Land',
     'dance': 'Dance_Loop', 'swim': 'Swim_Fwd_Loop', 'swim_idle': 'Swim_Idle_Loop', 'fall': 'Death01', 'hit': 'Hit_Chest',
-    'interact': 'Interact', 'aim': 'Pistol_Aim_Neutral', 'phone': 'Idle_Torch_Loop', 'push': 'Push_Loop', 'drive': 'Driving_Loop',
+    'interact': 'Interact', 'aim': 'Pistol_Aim_Neutral', 'push': 'Push_Loop', 'drive': 'Driving_Loop',
     'pickup': 'PickUp_Table', 'kneel': 'Fixing_Kneeling', 'roll': 'Roll', 'punch': 'Punch_Jab',
     'jog': 'Jog_Fwd_Loop', 'death': 'Death01', 'shoot': 'Pistol_Shoot', 'reload': 'Pistol_Reload', 'pistol_idle': 'Pistol_Idle_Loop',
     'aim_up': 'Pistol_Aim_Up', 'aim_down': 'Pistol_Aim_Down', 'torch': 'Idle_Torch_Loop', 'sword': 'Sword_Attack', 'sword_idle': 'Sword_Idle',
     'hit_head': 'Hit_Head', 'sit_exit': 'Sitting_Exit', 'punch_cross': 'Punch_Cross',
 }
-# clips made from a library clip with some bones aimed at fixed directions (Blender world: faces -Y, left +X, up +Z)
+# holding a phone in the left hand (the hand the rig's HeldPhone rides on): elbow by the ribs, forearm up, palm and screen
+# towards the eyes, head bowed over it. The library has no phone clip (this used to borrow Idle_Torch_Loop, arm held out).
+PHONE_AIMS = {'upperarm_l': (0.16, -0.42, -0.89), 'lowerarm_l': ((-0.33, -0.87, 0.36), (-0.37, 0.76, 0.6)), 'hand_l': ((-0.1, -0.55, 0.83), (-0.37, 0.76, 0.6)),
+              'neck_01': (0.0, -0.16, 0.99), 'Head': (0.0, -0.42, 0.91)}
+# clips made from a library clip with some bones aimed at fixed directions (Blender world: faces -Y, left +X, up +Z);
+# an aim is a direction, or (direction, palm direction) to also turn the bone about its length so the palm faces that way
 POSED = {
+    'phone': ('Idle_Loop', PHONE_AIMS, 'all'),
+    'phone_walk': ('Walk_Loop', PHONE_AIMS, 'all'),
     'point': ('Idle_Loop', {'upperarm_r': (-0.12, -1.0, 0.18), 'lowerarm_r': (-0.12, -1.0, 0.2), 'hand_r': (-0.1, -1.0, 0.2)}, 'all'),
     'think': ('Idle_Loop', {'upperarm_r': (-0.18, -0.35, -0.92), 'lowerarm_r': (0.45, -0.5, 0.74), 'hand_r': (0.35, -0.3, 0.88)}, 'all'),
     'carry': ('Walk_Loop', {'upperarm_l': (0.18, -0.45, -0.87), 'lowerarm_l': (-0.3, -0.95, 0.05), 'upperarm_r': (-0.18, -0.45, -0.87), 'lowerarm_r': (0.3, -0.95, 0.05)}, 'all'),
@@ -87,7 +94,7 @@ for S in 'LR':
     PACK_BONES_U[f'Palm.{S}'] = f'Palm.{S}'; PACK_BONES_M[f'Wrist.{S}'] = f'Palm.{S}'
 PACK_CLIPS = [('m-casual', 'Wave', 'wave', PACK_BONES_M), ('u-man', 'Clapping', 'cheer', PACK_BONES_U)]
 # walking clips whose time follows the distance walked (stride = metres per clip cycle, measured on the reference)
-STRIDE_CLIPS = ['walk', 'walk_formal', 'zombie', 'carry', 'crouch_walk', 'run', 'jog', 'sprint', 'swim']
+STRIDE_CLIPS = ['walk', 'walk_formal', 'zombie', 'carry', 'phone_walk', 'crouch_walk', 'run', 'jog', 'sprint', 'swim']
 
 # Role pools (ids), per sex. Crowds pick from 'casual'; elders and children have their own; the uniforms go to their
 # roles; killers and monsters are the horror cast. Anything not listed for a role falls back to 'casual'.
@@ -274,7 +281,10 @@ def retarget(src, tgt, mapping, act, clip_name, height_ratio, aims=None, frames=
         if not t_name or t_name not in tgt.data.bones: continue
         b = tgt.data.bones[t_name]; kid = mapping.get(child.get(s_name, ''), None)
         tip = tgt.data.bones[kid].head_local if kid and kid in tgt.data.bones else (b.children[0].head_local if b.children else b.tail_local)
-        t_aims[t_name] = (b.matrix_local.to_3x3().inverted() @ (tip - b.head_local).normalized(), Vector(d).normalized())
+        d, palm = (d if isinstance(d[0], (tuple, list)) else (d, None))
+        # the rest pose is a T-pose with the palms down (the reference model has an index finger only, so not read from fingers)
+        palm_local = (b.matrix_local.to_3x3().inverted() @ Vector((0, 0, -1))).normalized() if palm else None
+        t_aims[t_name] = (b.matrix_local.to_3x3().inverted() @ (tip - b.head_local).normalized(), Vector(d).normalized(), palm_local, Vector(palm).normalized() if palm else None)
     curls = {}
     for b in tgt.data.bones:
         if not FINGER.match(b.name): continue
@@ -309,8 +319,11 @@ def retarget(src, tgt, mapping, act, clip_name, height_ratio, aims=None, frames=
                     loc = b.matrix_local.to_translation() + tw_inv.to_3x3() @ ((sp - src_root_rest) * height_ratio)
                 want = Matrix.Translation(loc) @ (tw_inv.to_quaternion() @ wt).to_matrix().to_4x4()
             if b.name in t_aims:
-                local, d = t_aims[b.name]; now = (want.to_3x3() @ local).normalized()
-                want = Matrix.Translation(want.to_translation()) @ (now.rotation_difference(d).to_matrix() @ want.to_3x3()).to_4x4()
+                local, d, palm_local, palm = t_aims[b.name]; now = (want.to_3x3() @ local).normalized(); m3 = now.rotation_difference(d).to_matrix() @ want.to_3x3()
+                if palm_local is not None:
+                    a = m3 @ palm_local; a = (a - d * a.dot(d)).normalized(); g = (palm - d * palm.dot(d)).normalized()
+                    m3 = Quaternion(d, math.atan2(d.dot(a.cross(g)), a.dot(g))).to_matrix() @ m3
+                want = Matrix.Translation(want.to_translation()) @ m3.to_4x4()
             M[b.name] = want
             l, r, _ = (fk.inverted() @ want).decompose()
             pb.rotation_mode = 'QUATERNION'; pb.rotation_quaternion = r
@@ -343,7 +356,7 @@ def measure_stride(arm, act):
 # tools/foot-probe.mjs (median slide of the planted point): the earlier cast's table for the same library clips left
 # these legs sliding (market 22%, outbreak 27% against 13% for the old cast); walking clips x1.2 and running clips x1.1
 # bring both back to the old cast's level. The simple measurement below is kept in the report as a cross-check.
-STRIDE = {'refHeight': 1.76, 'walk': 1.36, 'walk_formal': 1.39, 'zombie': 1.36, 'carry': 1.36, 'crouch_walk': .97, 'run': 2.53, 'jog': 2.53, 'sprint': 3.3, 'swim': 1.3}
+STRIDE = {'refHeight': 1.76, 'walk': 1.36, 'walk_formal': 1.39, 'zombie': 1.36, 'carry': 1.36, 'phone_walk': 1.36, 'crouch_walk': .97, 'run': 2.53, 'jog': 2.53, 'sprint': 3.3, 'swim': 1.3}
 
 
 def export_glb(path, objs, animations):

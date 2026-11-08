@@ -70,6 +70,7 @@ function psxCityTree(x, z, kind) {
 // The street slabs take the Roads pack's textures, mapped in world space (one repeat per few metres on every slab,
 // whatever its size). Markings and other slabs keep their colours. Called at the end of buildBaseWorld for the city.
 function psxCitySurfaces() {
+  psxDebrisPreload();
   const looks = {};
   for (const [kind, [tex, tile, tint]] of Object.entries(PSX_CITY.surfaces)) {
     const t = psxLookTexture(tex); if (!t) continue;
@@ -82,7 +83,9 @@ function psxCitySurfaces() {
     const pos = g.attributes.position, uv = g.attributes.uv;
     for (let i = 0; i < pos.count; i++) { p.fromBufferAttribute(pos, i).applyMatrix4(o.matrixWorld); uv.setXY(i, p.x / look.tile, p.z / look.tile); }
     o.geometry.dispose(); o.geometry = g;
-    // the slab's layer offset stays (thin layers do not flicker against each other far away)
+    // the slab's layer offset stays (thin layers do not flicker against each other far away). The market walkway has
+    // none: an offset there would cover the people's soles; under the PSX finish it is kept off the ground by
+    // psxMarkFlatGround (flat layers do not snap)
     const m = look.mat.clone(); Object.assign(m, { polygonOffset: old.polygonOffset, polygonOffsetFactor: old.polygonOffsetFactor, polygonOffsetUnits: old.polygonOffsetUnits });
     o.material = m; o.userData.keepGeo = true;
   });
@@ -117,3 +120,13 @@ function psxMarketSet(walkway) {
   if (walkway) walkway.userData.citySurface = 'pavement';
   psxCitySurfaces();
 }
+// Falling masonry (damage() in 08-state.js) in the PSX city: each piece of the engine's debris pool carries a PSX rock
+// sized like the old 1.6 m piece and centred on it; the piece itself is drawn invisible. The physics stays the engine's.
+const PSX_DEBRIS = ['rock.boulder', 'rock.rock_2', 'rock.rock_3', 'rock.rock_4', 'rock.rock_5', 'rock.rock_6', 'rock.rock_7', 'rock.rock_8'];
+function psxDebrisLook(d, i) {
+  if (d.psxRock) return;
+  const id = PSX_DEBRIS[(debris.indexOf(d) + i) % PSX_DEBRIS.length], [sx, sy, sz] = psxCitySize(id), k = 1.6 / Math.max(sx, sy, sz), rock = buildPsxModel(id);
+  rock.scale.setScalar(k); rock.position.y = -sy * k / 2; d.m.add(rock); d.m.material = PSX_STANDIN; d.psxRock = rock;
+}
+// the rocks start downloading as soon as a quake city is built, so the first collapse already shows them
+function psxDebrisPreload() { if (SC?.hazard?.type === 'quake') for (const id of PSX_DEBRIS) psxLoad(id); }

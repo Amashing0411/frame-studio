@@ -4,7 +4,7 @@
  "people": {
   "families": {
    "x": {
-    "anim": "people/anim-x.glb?v=4da9f7be17",
+    "anim": "people/anim-x.glb?v=dde64e55f7",
     "reference": "x-01",
     "pelvis": 1.0208,
     "clips": [
@@ -32,6 +32,7 @@
      "jump_start",
      "kneel",
      "phone",
+     "phone_walk",
      "pickup",
      "pistol_idle",
      "point",
@@ -60,7 +61,7 @@
      "wave",
      "zombie"
     ],
-    "bytes": 1507048
+    "bytes": 1530820
    }
   },
   "models": {
@@ -2122,6 +2123,7 @@
     "walk_formal": 1.39,
     "zombie": 1.36,
     "carry": 1.36,
+    "phone_walk": 1.36,
     "crouch_walk": 0.97,
     "run": 2.53,
     "jog": 2.53,
@@ -2952,7 +2954,7 @@
    "bytes": 40688
   },
   "building.hut": {
-   "file": "psx/building.hut.glb?v=1fe72e0b53",
+   "file": "psx/building.hut.glb?v=aa85a98d1a",
    "name": "Wooden cabin",
    "category": "building",
    "states": [
@@ -2963,11 +2965,11 @@
     3.15,
     7.69
    ],
-   "tris": 1965,
-   "bytes": 253620
+   "tris": 655,
+   "bytes": 128044
   },
   "building.cabin_02": {
-   "file": "psx/building.cabin_02.glb?v=03516d7948",
+   "file": "psx/building.cabin_02.glb?v=1ad11f00c3",
    "name": "Long cabin",
    "category": "building",
    "states": [
@@ -2978,11 +2980,11 @@
     2.91,
     4.91
    ],
-   "tris": 1374,
-   "bytes": 196884
+   "tris": 458,
+   "bytes": 109024
   },
   "building.cabin_03": {
-   "file": "psx/building.cabin_03.glb?v=e594202bec",
+   "file": "psx/building.cabin_03.glb?v=f1a052fc3c",
    "name": "Cabin with porch",
    "category": "building",
    "states": [
@@ -2993,8 +2995,8 @@
     3.68,
     8.56
    ],
-   "tris": 1800,
-   "bytes": 237788
+   "tris": 600,
+   "bytes": 122676
   },
   "prop.fence": {
    "file": "psx/prop.fence.glb?v=146d3aacf8",
@@ -3998,8 +4000,8 @@
   "building.block_08": "thumbs/building.block_08.webp?v=627057470d",
   "building.block_09": "thumbs/building.block_09.webp?v=974b72e3d8",
   "building.block_10": "thumbs/building.block_10.webp?v=d51eff5df6",
-  "building.cabin_02": "thumbs/building.cabin_02.webp?v=d3da313f6f",
-  "building.cabin_03": "thumbs/building.cabin_03.webp?v=2e822639d9",
+  "building.cabin_02": "thumbs/building.cabin_02.webp?v=5105ed3a0a",
+  "building.cabin_03": "thumbs/building.cabin_03.webp?v=433606b14c",
   "building.house": "thumbs/building.house.webp?v=f6f9dc4fd7",
   "building.house_02": "thumbs/building.house_02.webp?v=515adffe57",
   "building.house_03": "thumbs/building.house_03.webp?v=b03502c0ec",
@@ -4016,7 +4018,7 @@
   "building.house_14": "thumbs/building.house_14.webp?v=b31ace18bd",
   "building.house_15": "thumbs/building.house_15.webp?v=693328fdb7",
   "building.house_16": "thumbs/building.house_16.webp?v=b3f0d8adb3",
-  "building.hut": "thumbs/building.hut.webp?v=f1c5c34972",
+  "building.hut": "thumbs/building.hut.webp?v=76e04b0713",
   "building.office": "thumbs/building.office.webp?v=a90bb1eb21",
   "building.shop": "thumbs/building.shop.webp?v=5cace9a37a",
   "building.tower_01_2": "thumbs/building.tower_01_2.webp?v=7cf3ad2321",

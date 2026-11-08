@@ -1,6 +1,6 @@
 # Frame Studio scenario vocabulary (schema v7)
 
-Generated 2026-10-22 from the running engine by `tools/extract-vocabulary.mjs (frame-studio)`. Do not edit by hand; re-run the tool.
+Generated 2026-11-08 from the running engine by `tools/extract-vocabulary.mjs (frame-studio)`. Do not edit by hand; re-run the tool.
 
 - **hazard.type**: none, quake, zombie, tsunami, flood
 - **cam.preset**: aerial, ground, rooftop, waterline, pov, over_shoulder, window, orbit, closeup
