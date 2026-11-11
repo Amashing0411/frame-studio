@@ -31,7 +31,10 @@ function initUIShell() {
 function finishUIShell() {
   buildChoiceMirror('shotPreset', UI_CAMERAS, 'grid');
   buildChoiceMirror('shotMove', UI_MOVES, 'chips');
-  for (const f of $all('#panel-shot fieldset, #panel-more fieldset')) foldFieldset(f, f.closest('#panel-shot') && f.querySelector('#actionTarget'));
+  buildChoiceMirror('previewRes', { 360: ['Fast'], 540: ['Balanced'], 720: ['Detail'], 1080: ['Full HD'] }, 'chips');
+  buildChoiceMirror('ql', { '.45': ['Light'], '.7': ['Balanced'], 1: ['Full'] }, 'chips');
+  initControlSync();
+  for (const f of $all('#panel-shot fieldset, #panel-more fieldset')) foldFieldset(f, (f.closest('#panel-shot') && f.querySelector('#actionTarget')) || f.querySelector('#previewRes'));  // open: people's actions, and render quality (the first thing to reach for when playback stutters)
   syncChoiceMirrors();
   renderShotTicks();
   initGuide();
@@ -59,6 +62,7 @@ function showPanel(key, open = false) {
   for (const b of $all('.paneltabs button')) { const on = b.dataset.panel === key; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); }
   document.querySelector('.paneltabs .pill').style.transform = `translateX(${UI_PANELS.indexOf(key) * 100}%)`;
   if (key === 'guide') renderGuide(true);
+  syncChoiceMirrors();
   if (open && UI_PHONE.matches) document.body.classList.add('sheet-open');
 }
 function closeSheet() { document.body.classList.remove('sheet-open'); }
@@ -105,6 +109,26 @@ function syncChoiceMirrors() {
     const sel = $(box.dataset.for); if (!sel) continue;
     for (const b of box.children) { b.classList.toggle('on', b.dataset.value === sel.value); b.disabled = sel.disabled; }
   }
+  refreshRanges();
+}
+// Sliders: a filled track (--p) and the value beside the label (the value element is added on first sight, so sliders
+// that scripts write into the page later get one too). The film scrubber and the PSX editor draw their own.
+function refreshRanges() {
+  for (const r of $all('input[type=range]:not(#timeline)')) {
+    if (r.closest('.psx-ed')) continue;
+    let out = r.nextElementSibling;
+    if (!out || !out.classList.contains('range-val')) { out = document.createElement('output'); out.className = 'range-val'; r.after(out); r.parentElement.classList.add('has-range'); }
+    const min = +r.min || 0, max = r.max === '' ? 100 : +r.max, v = +r.value;
+    r.style.setProperty('--p', ((v - min) / (max - min || 1) * 100).toFixed(1) + '%');
+    const text = r.dataset.zero && v === 0 ? r.dataset.zero : String(+v.toFixed(3)); if (out.textContent !== text) out.textContent = text;
+  }
+}
+// Keeps the picture buttons and slider values in step with their controls, whoever changed them: a person (input,
+// change), a section opening (its controls may have been filled while it was closed), or a loaded project.
+function initControlSync() {
+  document.addEventListener('input', e => { if (e.target.type === 'range') refreshRanges(); });
+  document.addEventListener('change', syncChoiceMirrors);
+  document.addEventListener('toggle', syncChoiceMirrors, true);
 }
 
 // A fieldset whose legend opens and closes it (open: start opened).
@@ -112,7 +136,7 @@ function foldFieldset(f, open) {
   const legend = f.querySelector(':scope > legend'); if (!legend || f.classList.contains('fold-set')) return;
   f.classList.add('fold-set'); f.classList.toggle('open', !!open);
   legend.tabIndex = 0; legend.setAttribute('role', 'button');
-  const flip = () => f.classList.toggle('open');
+  const flip = () => { f.classList.toggle('open'); syncChoiceMirrors(); };
   legend.onclick = flip; legend.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } };
 }
 
@@ -164,6 +188,6 @@ function adaptPreviewQuality(ms, now) {
   const slow = UI_SLOW.slow > UI_SLOW.total * .6; UI_SLOW.since = now; UI_SLOW.slow = UI_SLOW.total = 0;
   const sel = $('previewRes'), options = [...sel.options].map(o => o.value), i = options.indexOf(sel.value);
   if (!slow || i <= 0) return;
-  sel.value = options[i - 1]; configureRender(); autosave();
+  sel.value = options[i - 1]; configureRender(); autosave(); syncChoiceMirrors();
   notifyUser('Preview lowered to ' + sel.selectedOptions[0].textContent.split(' · ')[0] + ' to keep playback smooth. Exports are unaffected (More › Look).');
 }

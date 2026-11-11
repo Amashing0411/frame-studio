@@ -6,7 +6,7 @@ let UI={titles:true,captions:true,clock:true,end:true,font:'sans',textScale:1,ex
 const canvas=$('output'),cx=canvas.getContext('2d');
 const $all=s=>Array.from(document.querySelectorAll(s)),copy=o=>JSON.parse(JSON.stringify(o)),timecode=t=>fm(t/60)+':'+fm(t%60)+'.'+String(Math.floor((t%1)*100)).padStart(2,'0');
 function notifyUser(msg){$('toast').textContent=msg;$('toast').classList.add('show');clearTimeout(notifyUser.timer);notifyUser.timer=setTimeout(()=>$('toast').classList.remove('show'),3800)}
-function status(msg,error=false){$('status').textContent=msg;$('status').classList.toggle('error',error)}
+function status(msg,error=false){$('status').textContent=msg;$('status').classList.toggle('error',error);$('status').classList.toggle('busy',!error&&/…/.test(msg))}
 // The inspectors live in the Shot tab (shot) and the More tab (model, audio, look, export) of 20-ui-shell.js.
 function tabInspector(key){if(key==='shot')showPanel('shot');else{showPanel('more');openMoreSection(key)}if(key==='model')resizeAssetViewer()}
 // The scenario and workshop panes live in the Story tab; the asset library in the More tab.

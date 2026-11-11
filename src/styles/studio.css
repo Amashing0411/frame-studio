@@ -387,8 +387,41 @@ kbd{background:var(--sunk);border-radius:6px;padding:2px 7px;font:12px ui-monosp
  #toast{bottom:calc(84px + env(safe-area-inset-bottom))}
  .guide-counts{grid-template-columns:repeat(5,1fr)}
 }
+/* ---- Step 15: fluid controls. Patterns ported from 21st.dev components (slider, accordion, animated tabs, shine
+   button, skeleton) to plain CSS: only transform and opacity move, everything under 300 ms. ---- */
+/* sliders: filled track, soft thumb, the live value at the label's right (refreshRanges in 20-ui-shell.js) */
+label.has-range{position:relative}
+.range-val{position:absolute;top:0;right:0;font:inherit;font-size:12px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.panel input[type=range]{-webkit-appearance:none;appearance:none;height:28px;background:transparent;cursor:pointer;touch-action:pan-y}
+.panel input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:9px;background:linear-gradient(90deg,var(--accent) var(--p,50%),var(--sunk2) var(--p,50%))}
+.panel input[type=range]::-moz-range-track{height:6px;border-radius:9px;background:var(--sunk2)}
+.panel input[type=range]::-moz-range-progress{height:6px;border-radius:9px;background:var(--accent)}
+.panel input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;margin-top:-7px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.08),0 2px 6px rgba(0,0,0,.28);transition:transform 160ms var(--ease-out)}
+.panel input[type=range]::-moz-range-thumb{width:20px;height:20px;border:0;border-radius:50%;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.08),0 2px 6px rgba(0,0,0,.28);transition:transform 160ms var(--ease-out)}
+.panel input[type=range]:active::-webkit-slider-thumb{transform:scale(1.18)}
+.panel input[type=range]:active::-moz-range-thumb{transform:scale(1.18)}
+.panel input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:8px}
+/* quality choices: one even row of segments */
+.choice-chips[data-for=previewRes],.choice-chips[data-for=ql]{display:grid;grid-auto-flow:column;grid-auto-columns:1fr}
+.choice-chips[data-for=previewRes] button,.choice-chips[data-for=ql] button{padding:0 6px}
+/* a tab's content and an opened section settle in instead of popping */
+.panel.active{animation:settle 220ms var(--ease-out)}
+details[open]>:not(summary),fieldset.fold-set.open>:not(legend){animation:settle 220ms var(--ease-out)}
+@keyframes settle{from{opacity:0;transform:translateY(6px)}}
+/* the main action catches the light once when the pointer arrives */
+.primary{position:relative;overflow:hidden}
+.primary::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 38%,color-mix(in srgb,var(--accent) 34%,transparent) 50%,transparent 62%);transform:translateX(-110%)}
+@media (hover:hover) and (pointer:fine){.primary:hover:not(:disabled)::after{transform:translateX(110%);transition:transform 280ms var(--ease-out)}}
+/* library pictures: a quiet placeholder that the picture fades over; off-screen tiles are not laid out or painted */
+.asset-grid .asset-thumb{opacity:0;transition:opacity 200ms ease}
+.asset-grid .asset-thumb.in{opacity:1}
+.asset-grid .asset-item{content-visibility:auto;contain-intrinsic-size:auto 124px}
+/* working… (Seeking, Loading): the status breathes while the film is busy */
+#status.busy{animation:rec 1.3s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){
  *,*::before,*::after{animation-duration:1ms!important;animation-iteration-count:1!important}
+ .panel.active,details[open]>:not(summary),fieldset.fold-set.open>:not(legend){animation:none}
+ .asset-grid .asset-thumb{transition:none}
  .paneltabs .pill,.panels,button,.load-bar i{transition-duration:1ms!important}
 }
 .guide-more{margin-top:8px;height:34px;width:100%;background:transparent;color:var(--accent);font-weight:600;font-size:13px}
