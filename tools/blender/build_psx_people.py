@@ -356,7 +356,9 @@ def measure_stride(arm, act):
 # tools/foot-probe.mjs (median slide of the planted point): the earlier cast's table for the same library clips left
 # these legs sliding (market 22%, outbreak 27% against 13% for the old cast); walking clips x1.2 and running clips x1.1
 # bring both back to the old cast's level. The simple measurement below is kept in the report as a cross-check.
-STRIDE = {'refHeight': 1.76, 'walk': 1.36, 'walk_formal': 1.39, 'zombie': 1.36, 'carry': 1.36, 'phone_walk': 1.36, 'crouch_walk': .97, 'run': 2.53, 'jog': 2.53, 'sprint': 3.3, 'swim': 1.3}
+# run/jog: the grounded stride of a full run; the engine blends walk and run by speed (castCommit in 19-cast.js). The
+# clip's true stride with its flight is 5.5 m (stride_measured counts only the stance travel).
+STRIDE = {'refHeight': 1.76, 'walk': 1.36, 'walk_formal': 1.39, 'zombie': 1.36, 'carry': 1.36, 'phone_walk': 1.36, 'crouch_walk': .97, 'run': 2.6, 'jog': 2.6, 'sprint': 3.3, 'swim': 1.3}
 
 
 def export_glb(path, objs, animations):

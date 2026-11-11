@@ -14,6 +14,9 @@ const CAST_CHILD_HEAD = 1.28;
 const CAST_SKIN = /^Skin/, CAST_NOT_CLOTH = /^(Skin|Skin_Darker|Hair|HairBase|Hair_.*|Eye|Eyes|Eyebrows|Moustache|Gold|Earrings|Visor|Mouth|Brown|Black)$/;
 const CAST_FADE = .35;  // crossfade between clips (s); .25 read as a cut when an action changed
 // clips played once and held on their last frame
+// gaits that blend into each other by speed (castCommit)
+const CAST_GAIT_BLEND = new Set(['walk', 'run', 'jog']);
+const CAST_RUN_FULL = 8;  // m/s (at the reference height) at which a run is the run clip alone
 const CAST_ONCE = new Set(['fall', 'sleep', 'sit_enter', 'sit_exit', 'jump_start', 'jump_land', 'hit', 'hit_head', 'pickup', 'roll', 'punch', 'punch_cross', 'death', 'shoot', 'reload', 'sword']);
 
 async function loadCast() {
@@ -394,16 +397,35 @@ function castDeferred(p) {
 
 function castCommit(p, c) {
   const a = p.castAnim, P = CAST.manifest.people;
-  if (c.clock < a.since - 1e-6) { a.prev = null; a.since = c.clock; }  // a seek restarted the clock
+  if (c.clock < a.since - 1e-6) { a.prev = null; a.since = c.clock; a.gait = false; }  // a seek restarted the clock
   // a person the crowd LOD skipped for a while was not playing its old clip on the previous tick: no fade from it
   const gap = c.clock - (a.last ?? -1), fresh = gap > 0 && gap < 1.5 / 60; a.last = c.clock;
   const clip = castClipFor(p, c.state, c.speed || 0, c.distance), act = p.cast.actions[clip], dur = act ? act.getClip().duration : 1;
   if (clip !== a.clip) {
-    a.prev = simulating && fresh && a.clip ? { clip: a.clip, time: a.time, at: c.clock } : null;
+    // walk <-> run needs no crossfade: the step phase carries over and the run starts as mostly walk (the blend below)
+    a.prev = simulating && fresh && a.clip && !(CAST_GAIT_BLEND.has(clip) && CAST_GAIT_BLEND.has(a.clip)) ? { clip: a.clip, time: a.time, at: c.clock } : null;
     a.clip = clip; a.since = c.clock;
   }
-  const S = P.stride[p.cast.family], stride = S && S[clip];
-  if (stride && c.distance != null) a.time = ((c.distance / (stride * p.cast.height / S.refHeight)) % 1) * dur;
+  const S = P.stride[p.cast.family], stride = S && S[clip], gait = stride && c.distance != null;
+  a.mix = null; if (!gait) a.gait = false;
+  if (gait) {
+    // Feet plant when the body covers one stride per clip cycle. The library's run is a sprint (measured: 5.5 m a cycle
+    // with 65% of it in the air, 5.9 m/s) and engine people run at 2.5-2.75 m/s with their lower foot kept on the floor:
+    // played alone, the planted foot swept back at 3 m/s (84% foot slide in the earthquake), and at its true stride it
+    // would be slow motion. So a run is the walk and the run clips blended by speed (both start a cycle on the same
+    // foot): the slower the run, the more walk in it, pure run from CAST_RUN_FULL m/s; the stride goes from the walk's
+    // to the run's grounded stride (the table's, 2.6 m) with it. About 2/3 walk at 2.7 m/s still reads as a jog (arms
+    // pumping, leaning in) and halves the slide; more walk slides less but reads as a walk. The step phase advances by
+    // the distance covered over the current stride, so it stays continuous while the speed, and the stride, change.
+    const h = p.cast.height / S.refHeight, wa = p.cast.actions.walk; let st = stride * h;
+    if (CAST_GAIT_BLEND.has(clip) && clip !== 'walk' && wa && S.walk) {
+      const wd = wa.getClip().duration, sw = S.walk * h, vW = sw / wd, w = Math.min(1, Math.max(0, ((c.speed || 0) - vW) / (CAST_RUN_FULL * h - vW)));
+      st = sw + (st - sw) * w; if (w < 1) a.mix = { clip: 'walk', w: 1 - w, dur: wd };
+    }
+    const d = c.distance - a.dist;
+    a.phase = a.gait && d >= 0 ? (a.phase + d / st) % 1 : (c.distance / st) % 1;
+    a.dist = c.distance; a.gait = true; a.time = a.phase * dur; if (a.mix) a.mix.time = a.phase * a.mix.dur;
+  }
   // engine people fall over and (as zombies) get back up: the fall clip follows the fall amount, so rising plays it back
   else if (clip === 'fall' && p.fall > 0) a.time = Math.min(1, p.fall) * (dur - 1e-3);
   else if (CAST_ONCE.has(clip)) a.time = Math.min(dur - 1e-3, Math.max(0, c.clock - a.since));
@@ -436,7 +458,9 @@ function castApply(p) {
   const fade = a.prev ? Math.min(1, (a.tick - a.since) / CAST_FADE) : 1, k = fade * fade * (3 - 2 * fade);
   // only the current and the fading clip stay enabled, so the mixer evaluates two clips, not thirty
   for (const n in c.actions) { c.actions[n].enabled = false; c.actions[n].setEffectiveWeight(0); }
-  const cur = c.actions[a.clip] || c.actions.idle; cur.enabled = true; cur.time = a.time; cur.setEffectiveWeight(k);
+  const cur = c.actions[a.clip] || c.actions.idle, mixed = a.mix && c.actions[a.mix.clip], mw = mixed ? a.mix.w : 0;
+  cur.enabled = true; cur.time = a.time; cur.setEffectiveWeight(k * (1 - mw));
+  if (mixed) { mixed.enabled = true; mixed.time = a.mix.time; mixed.setEffectiveWeight(k * mw); }  // the walk part of a run (castCommit)
   if (a.prev && k < 1) {
     const pa = c.actions[a.prev.clip];
     if (pa) { pa.enabled = true; const dur = pa.getClip().duration; pa.time = CAST_ONCE.has(a.prev.clip) ? Math.min(dur - 1e-3, a.prev.time) : (a.prev.time + Math.max(0, a.tick - a.prev.at)) % dur; pa.setEffectiveWeight(1 - k); }

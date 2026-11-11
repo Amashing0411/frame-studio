@@ -2217,8 +2217,8 @@
     "carry": 1.36,
     "phone_walk": 1.36,
     "crouch_walk": 0.97,
-    "run": 2.53,
-    "jog": 2.53,
+    "run": 2.6,
+    "jog": 2.6,
     "sprint": 3.3,
     "swim": 1.3
    },

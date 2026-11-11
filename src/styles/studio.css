@@ -489,3 +489,8 @@ details.psx-g[open]>summary svg.i{transform:none}
  .psx-ed__foot .row:first-child button span{display:none}
 }
 @media (prefers-reduced-motion:reduce){.psx-ed{transition:opacity 120ms ease;transform:none}details.psx-g>summary svg.i{transition:none}}
+/* Credits (More tab) */
+.credits ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:13px;line-height:1.45;color:var(--ink2)}
+.credits li b{color:var(--ink)}
+.credits a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.credits .muted{margin:14px 0 0;font-size:12px;line-height:1.5;color:var(--ink3)}
